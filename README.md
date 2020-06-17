@@ -6,8 +6,10 @@ Everytime an exchange calls an ID provider to KYC documents, they incure an expe
 
 ## How it works
 
-### Claims based ID
+1. Submit your documentation to a trusted provider with an ETH public key
+2. Add documents to the contract as a claim
 
+### Claims based ID
 
 
 ## Trusted ID verification providers
