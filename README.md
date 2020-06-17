@@ -2,7 +2,7 @@
 Using EIP 820 for ID claims
 
 ## Overview
-Everytime an exchange calls an ID provider to KYC documents, they incure an expense.
+Everytime an exchange calls an ID provider to KYC documents, they incure an expense.  Futhermore, users are required every time provide KYC information, instead of a portable verification.
 
 ## How it works
 
