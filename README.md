@@ -23,6 +23,7 @@ Subject:  See table
 | Key | Document | Details
 | --- | --- | ---
 | 0x00 | Australian birth certificate | A full birth certificate in your name or former name issued by Births, Deaths and Marriages. We can’t accept birth extracts or birth cards.
+| 0x01 | Australian driver licence | A current driver licence with your photo issued in your name. This includes physical and digital driver licences, current learner permits and provisional licences. 
 
 
 780 Example
