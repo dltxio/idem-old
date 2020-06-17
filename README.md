@@ -1,10 +1,13 @@
-# blockchain-id
+# Blockchain ID
 Using EIP 820 for ID claims
 
 ## Overview
 Everytime an exchange calls an ID provider to KYC documents, they incure an expense.
 
 ## How it works
+
+
+## Trusted ID verification providers
 
 1812 Example
 ```
