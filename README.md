@@ -6,10 +6,16 @@ Everytime an exchange calls an ID provider to KYC documents, they incure an expe
 
 ## How it works
 
+### Claims based ID
+
+
 
 ## Trusted ID verification providers
 
+A smart contract contains a stuct of trusted providers.  The providers can only be granted or revoked by an independent third party, such as Blockchain Australia.
+
 1812 Example
+
 ```
 struct ID {
 	address issuer;
@@ -69,6 +75,9 @@ contract EthereumClaimsRegistry {
     }
 }
 ```
+
+## JWTs
+
 
 ## References
 https://www.servicesaustralia.gov.au/individuals/topics/confirm-your-identity/29166
