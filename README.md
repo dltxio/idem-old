@@ -4,10 +4,11 @@ Using EIP 820 for ID claims
 ## Overview
 Everytime an exchange calls an ID provider to KYC documents, they incure an expense.  Futhermore, users are required every time provide KYC information, instead of a portable verification.
 
-## How it works
+## Process
 
 1. Submit your documentation to a trusted provider with an ETH public key
 2. Add documents to the contract as a claim
+3. Authenticate with compatible services
 
 ### Claims based ID
 
@@ -77,6 +78,9 @@ contract EthereumClaimsRegistry {
     }
 }
 ```
+
+# Verfication
+Once the user has verified their identity, a third party service such as a crypto exchange may want to verifiy their users identity.  Put simply, "is this person who they say they are?"
 
 ## JWTs
 
