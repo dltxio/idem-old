@@ -12,6 +12,12 @@ Everytime an exchange calls an ID provider to KYC documents, they incure an expe
 
 ### Claims based ID
 
+List of claims
+
+|---|---|---|
+| Full Name | Clients Full Name | |
+
+
 
 ## Trusted ID verification providers
 
