@@ -27,13 +27,10 @@ List of claims
 
 A smart contract contains a stuct of trusted providers.  The providers can only be granted or revoked by an independent third party, such as Blockchain Australia.
 
-1812 Example
+
+### ERC 1812 Example
 
 ```
-stuct Claim {
-	bytes2 key
-}
-
 struct ID {
 	address issuer;
 	address subject;
@@ -52,7 +49,7 @@ Subject:  See table
 | 0x01 | Australian driver licence | A current driver licence with your photo issued in your name. This includes physical and digital driver licences, current learner permits and provisional licences. 
 
 
-780 Example
+### ERC 780 Example
 ```
 contract EthereumClaimsRegistry {
 
