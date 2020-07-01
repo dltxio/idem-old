@@ -16,11 +16,11 @@ A user makes a claim that is substantiated with with some supporting evidence, s
 
 List of claims
 
-| Key | Type | Format | Description |
+| Key | Subject | Format | Description |
 |---|---|---|---|
-| 0x00 | Full Name | Clients Full Name |  |
-| 0x01 | Birth Year | YYYY | ISO 8601 |
-| 0x02 | Date of Birth | YYYY-MM-DD | ISO 8601 |
+| 0x0000 | Full Name | Clients Full Name |  |
+| 0x0001 | Birth Year | YYYY | ISO 8601 |
+| 0x0002 | Date of Birth | YYYY-MM-DD | ISO 8601 |
 
 
 ## Trusted ID verification providers
@@ -30,6 +30,10 @@ A smart contract contains a stuct of trusted providers.  The providers can only 
 1812 Example
 
 ```
+stuct Claim {
+	bytes2 key
+}
+
 struct ID {
 	address issuer;
 	address subject;
