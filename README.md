@@ -10,7 +10,7 @@ Everytime an exchange calls an ID provider to KYC documents, they incure an expe
 
 A user makes a claim that is substantiated with with some supporting evidence, such as a government issued document, utilities bill or such.
 
-1. Submit your claim with supporting documentation to a trusted provider with an ETH public key
+1. Submit your claim with supporting documentation to a trusted provider signed with an ETH public / private key pair
 2. Add documents to the contract as a claim
 3. Authenticate with compatible services
 
@@ -20,9 +20,9 @@ List of claims
 
 | Key | Subject | Format | Description |
 |---|---|---|---|
-| 0x0000 | Full Name | Clients Full Name |  |
-| 0x0001 | Birth Year | YYYY | ISO 8601 |
-| 0x0002 | Date of Birth | YYYY-MM-DD | ISO 8601 |
+| 0x00 | Full Name | Clients Full Name |  |
+| 0x01 | Birth Year | YYYY | ISO 8601 |
+| 0x02 | Date of Birth | YYYY-MM-DD | ISO 8601 |
 
 
 ## Trusted ID verification providers
