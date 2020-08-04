@@ -24,11 +24,9 @@ List of claims
 | 0x01 | Birth Year | YYYY | ISO 8601 |
 | 0x02 | Date of Birth | YYYY-MM-DD | ISO 8601 |
 
-
 ## Trusted ID verification providers
 
-A smart contract contains a stuct of trusted providers.  The providers can only be granted or revoked by an independent third party, such as Blockchain Australia.
-
+A smart contract contains a struct of trusted providers.  The providers can only be granted or revoked by an independent third party, such as Blockchain Australia.
 
 ### ERC 1812 Example
 
@@ -43,7 +41,6 @@ struct ID {
 
 Issuer: The ID provider.  This could be Blockchain Australia
 Subject:  See table
-
 
 | Key | Document | Details
 | --- | --- | ---
