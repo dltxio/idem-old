@@ -20,7 +20,7 @@ List of claims
 
 | Key | Subject | Format | Description |
 |---|---|---|---|
-| 0x00 | Full Name | Clients Full Name |  |
+| 0x00 | Full Name |  | Clients Full Name |
 | 0x01 | Birth Year | YYYY | ISO 8601 |
 | 0x02 | Date of Birth | YYYY-MM-DD | ISO 8601 |
 
