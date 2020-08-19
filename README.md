@@ -8,7 +8,14 @@ Everytime an exchange calls an ID provider to KYC documents, they incure an expe
 
 ## Process
 
-A user makes a claim that is substantiated with with some supporting evidence, such as a government issued document, utilities bill or such.
+### Step 1: User adds their data
+
+On the mobile application, a user completes forms such as Data of Birth, Address etc.  This information is stored on the mobile device.
+
+### Step 2:
+
+
+A user makes a claim that is substantiated with some supporting evidence, such as a government issued document, utilities bill or such.
 
 1. Submit your claim with supporting documentation to a trusted provider signed with an ETH public / private key pair
 2. Add documents to the contract as a claim
