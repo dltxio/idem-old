@@ -8,19 +8,32 @@ Everytime an exchange calls an ID provider to KYC documents, they incure an expe
 
 ## Process
 
-### Step 1: User adds their data
+### Step 1: New registration
 
-On the mobile application, a user completes forms such as Data of Birth, Address etc.  This information is stored on the mobile device.
+User onboards to the app via Email and Mobile number.
 
-### Step 2:
+### Step 2: Create new Key Pair
+The KeyPair
 
+Note: PGP/GPG should not be ruled out.
 
-A user makes a claim that is substantiated with some supporting evidence, such as a government issued document, utilities bill or such.
+### Step 2: User adds their data
+
+On the mobile application, a user completes forms such as Data of Birth, Address etc.  This information is stored on the mobile device.  These are claims with a specific taxonomy defined below.
+
+### Step 3:
+
+A user makes a claim that is substantiated with supporting evidence such as a government issued document, utilities bill or such.
 
 1. Submit your claim with supporting documentation to a trusted provider signed with an ETH public / private key pair
 2. Add documents to the contract as a claim
 3. Authenticate with compatible services
 
+### Step 4:  Onboarding on Third Party Sites
+
+
+
+## Appendix
 ### Claims based ID
 
 List of claims
@@ -31,9 +44,9 @@ List of claims
 | 0x01 | Birth Year | YYYY | ISO 8601 |
 | 0x02 | Date of Birth | YYYY-MM-DD | ISO 8601 |
 
-## Trusted ID verification providers
+### Trusted ID verification providers
 
-A smart contract contains a struct of trusted providers.  The providers can only be granted or revoked by an independent third party, such as Blockchain Australia.
+A smart contract contains a struct of trusted providers.  The providers can only be granted or revoked by an independent third party, such as Blockchain Australia, DataZoo etc.
 
 ### ERC 1812 Example
 
