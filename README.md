@@ -13,7 +13,7 @@ Everytime an exchange calls an ID provider to KYC documents, they incure an expe
 User onboards to the app via Email and Mobile number.
 
 ### Step 2: Create new Key Pair
-The KeyPair
+The a private / public key pair is created on the device, using the ECDSA256spk algorithim.  This will be used to sign messages to third parties.
 
 Note: PGP/GPG should not be ruled out.
 
@@ -31,7 +31,9 @@ A user makes a claim that is substantiated with supporting evidence such as a go
 
 ### Step 4:  Onboarding on Third Party Sites
 
-
+1. Hash
+2. Sign
+3. Share
 
 ## Appendix
 ### Claims based ID
