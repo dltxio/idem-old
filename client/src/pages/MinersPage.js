@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import useResource from "../hooks/useResource";
 import Loader from "../components/Loader";
 import { useParams } from "react-router-dom";
-import MinerTable from "../components/MinerTable";
+import MinerTable from "../components/ClaimsTable";
 import useSWR, { mutate } from "swr";
 
 const MinersPage = () => {

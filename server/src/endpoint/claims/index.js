@@ -10,9 +10,9 @@ router.get("/claims", async (request, response) => {
   };
 
   const claim = {
-      name: "18+",
-      type: "18+"
-  }
+    name: "18+",
+    type: "18+"
+  };
 
   const claims = [];
   claims.push(claim);
@@ -20,4 +20,4 @@ router.get("/claims", async (request, response) => {
   response.send(claims);
 });
 
-export default router;
+module.exports = router;

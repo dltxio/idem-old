@@ -25,7 +25,7 @@ const columnConfig = {
   }
 };
 
-const HistoryTable = ({ data, ...props }) => (
+const ClaimsTable = ({ data, ...props }) => (
   <Table
     data={data}
     columnConfig={columnConfig}
@@ -34,4 +34,4 @@ const HistoryTable = ({ data, ...props }) => (
   />
 );
 
-export default HistoryTable;
+export default ClaimsTable;
