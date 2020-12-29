@@ -9,10 +9,9 @@ export const history = createBrowserHistory();
 
 const Router = () => (
   <ReactRouter history={history}>
+    <Route exact path="/" component={Claims} />
     <Switch>
-      <Route exact path="/" component={Claims} />
-      <Route path="/claims" component={Claims} />
-      <Route exact path="/account" component={Account} />
+      <Route path="/account" component={Account} />
       <Route path="/blockchain" component={Blockchain} />
     </Switch>
   </ReactRouter>
