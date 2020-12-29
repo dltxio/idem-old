@@ -3,6 +3,7 @@ import { Router as ReactRouter, Route, Switch } from "react-router-dom";
 import Account from "../pages/AccountPage";
 import Blockchain from "../pages/BlockchainPage";
 import Claims from "../pages/ClaimsPage";
+import Sites from "../pages/SitesPage";
 import { createBrowserHistory } from "history";
 
 export const history = createBrowserHistory();
@@ -13,6 +14,7 @@ const Router = () => (
     <Switch>
       <Route path="/account" component={Account} />
       <Route path="/blockchain" component={Blockchain} />
+      <Route path="/sites" component={Sites} />
     </Switch>
   </ReactRouter>
 );

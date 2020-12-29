@@ -4,11 +4,14 @@ import Table from "./Table";
 // dataField (key) props (value)
 const columnConfig = {
   type: {
-    children: "Url",
-    width: "40%"
+    children: "Url"
   },
   name: {
     children: "Name"
+  },
+  date: {
+    children: "Date Requested",
+    width: "15%"
   }
 };
 
