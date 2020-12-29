@@ -4,13 +4,13 @@ Using EIP 820 for ID claims.
 
 ## Overview
 
-Everytime an exchange calls an ID provider to KYC documents, they incure an expense.  Futhermore, users are required every time provide KYC information instead of a portable verification.
+Everytime an exchange calls an ID provider to KYC documents, they incure an expense.  Futhermore, users are required every time provide KYC information instead of a portable verification.  By locally storing users information verified information, we can increase the customer onboarding expirence and reduce the costs to the exchanges and other services.
 
 ## Process
 
 ### Step 1: New registration
 
-User onboards to the app via Email and Mobile number.
+User onboards to the app via Email or Mobile number.
 
 ### Step 2: Create new Key Pair
 The a private / public key pair is created on the device, using the ECDSA256spk algorithim.  This will be used to sign messages to third parties.
@@ -23,9 +23,10 @@ On the mobile application or site the new can choose certain types of claims tha
 
 ### Step 4:
 
-A user makes a claim that is substantiated with supporting evidence such as a government issued document, utilities bill or such.
+A user makes a claim that is substantiated with supporting evidence such as a government issued document, utilities bill or such.   These claims are then verified by a third party, who returns a signed JSON object that can the be used again.
 
-1. Submit your claim with supporting documentation to a trusted provider signed with an ETH public / private key pair
+1. Submit your claim with supporting documentation 
+2. Block ID then verifies this information with a to a trusted provider signed with an ETH public / private key pair and X-059 SSL certificate
 2. Add documents to the contract as a claim
 3. Authenticate with compatible services
 
