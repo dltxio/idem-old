@@ -17,11 +17,11 @@ The a private / public key pair is created on the device, using the ECDSA256spk 
 
 Note: PGP/GPG should not be ruled out.
 
-### Step 2: User adds their data
+### Step 3: User adds their data
 
-On the mobile application, a user completes forms such as Data of Birth, Address etc.  This information is stored on the mobile device.  These are claims with a specific taxonomy defined below.
+On the mobile application or site the new can choose certain types of claims that which to verify, such as Data of Birth, Address etc.  This information is stored on the mobile device.  These are claims with a specific taxonomy defined below.
 
-### Step 3:
+### Step 4:
 
 A user makes a claim that is substantiated with supporting evidence such as a government issued document, utilities bill or such.
 
@@ -29,7 +29,7 @@ A user makes a claim that is substantiated with supporting evidence such as a go
 2. Add documents to the contract as a claim
 3. Authenticate with compatible services
 
-### Step 4:  Onboarding on Third Party Sites
+### Step 5:  Onboarding on Third Party Sites
 
 1. Hash
 2. Sign
