@@ -3,25 +3,12 @@ import Table from "./Table";
 
 // dataField (key) props (value)
 const columnConfig = {
-  ipaddress: {
-    children: "IP Address",
+  type: {
+    children: "Type",
     width: "40%"
   },
-  make: {
-    children: "Make"
-  },
-  model: {
-    children: "Model"
-  },
-  status: {
-    children: "Status",
-    width: "15%"
-  },
-  hash: {
-    children: "Hash"
-  },
-  temperature: {
-    children: "Temperature"
+  name: {
+    children: "Name"
   }
 };
 

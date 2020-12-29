@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import controller from "../apis/controller";
+import controller from "../apis/claims";
 
 const defaultOptions = { useSecureApi: false };
 
