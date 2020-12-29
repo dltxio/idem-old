@@ -1,6 +1,6 @@
 # Blockchain ID
 
-Using EIP 820 for ID claims.
+Using EIP 1820 for ID claims.
 
 ## Overview
 
