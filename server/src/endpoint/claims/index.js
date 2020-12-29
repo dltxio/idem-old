@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const schema = require("./schema");
+// const schema = require("./schema");
 
 router.get("/claims", async (request, response) => {
   //const { error, value } = schema.validate(request.body);
 
-  const sendRequestError = () => {
-    sendRequestError();
-  };
+  // const sendRequestError = () => {
+  //   sendRequestError();
+  // };
 
   const claim = {
     name: "18+",
