@@ -9,8 +9,7 @@ const _Nav = ({ links, noBrand = true, activeTab }) => {
       { label: "Home", onClick: () => history.push("/") },
       { label: "Claims", onClick: () => history.push("/claims") },
       { label: "Sites", onClick: () => history.push("/sites") },
-      { label: "Blockchain", onClick: () => history.push("/blockchain") },
-      { label: "Account", onClick: () => history.push("/account") },
+      { label: "Blockchain", onClick: () => history.push("/blockchain") }
     ];
 
   const renderBrand = () => (

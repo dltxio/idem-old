@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import controller from "../apis/claims";
+import dltx from "../apis/dltx";
 
 const defaultOptions = { useSecureApi: false };
 
-export default function useResource(url, defaultData = {}, _options) {
+const useResource = (url, defaultData = {}, _options) => {
   const options = { ...defaultOptions, ..._options };
-  const api = options.useSecureApi ? controller.secure : controller.open;
+  const api = options.useSecureApi ? dltx.secure : dltx.open;
   
   const [data, setData] = useState(defaultData);
   const [error, setError] = useState(null);
@@ -29,3 +29,5 @@ export default function useResource(url, defaultData = {}, _options) {
   }, [url, toggle, api]);
   return [url ? data : defaultData, error, isLoading, refresh];
 }
+
+export default useResource;
