@@ -37,6 +37,11 @@ A user makes a claim that is substantiated with supporting evidence such as a go
 3. Share
 
 ## Appendix
+
+### Registration Schema
+When Block ID ..
+
+
 ### Claims based ID
 
 List of claims
