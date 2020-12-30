@@ -26,9 +26,9 @@ On the mobile application or site the new can choose certain types of claims tha
 A user makes a claim that is substantiated with supporting evidence such as a government issued document, utilities bill or such.   These claims are then verified by a third party, who returns a signed JSON object that can the be used again.
 
 1. Submit your claim with supporting documentation 
-2. Block ID then verifies this information with a to a trusted provider signed with an ETH public / private key pair and X-059 SSL certificate
-2. Add documents to the contract as a claim
-3. Authenticate with compatible services
+2. Block ID then verifies this information with a trusted provider signed with an ETH public / private key pair and X-059 SSL certificate
+3. Add the hash of the signed documents to the contract as a claim
+4. Authenticate with compatible services
 
 ### Step 5:  Onboarding on Third Party Sites
 

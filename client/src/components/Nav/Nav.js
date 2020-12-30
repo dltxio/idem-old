@@ -6,7 +6,8 @@ const _Nav = ({ links, noBrand = true, activeTab }) => {
   // Set default links
   if (!links)
     links = [
-      { label: "Claims", onClick: () => history.push("/") },
+      { label: "Home", onClick: () => history.push("/") },
+      { label: "Claims", onClick: () => history.push("/claims") },
       { label: "Sites", onClick: () => history.push("/sites") },
       { label: "Blockchain", onClick: () => history.push("/blockchain") },
       { label: "Account", onClick: () => history.push("/account") },
