@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const claims = require("./endpoint/claims");
+const documents = require("./endpoint/documents");
 const cors = require("cors");
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 
 // Register endpoints.
 app.use("/api", claims);
+app.use("/api", documents);
 
 app.listen(process.env.PORT);
 console.log(`Server listening on localhost:${process.env.PORT}`);

@@ -7,6 +7,12 @@ import useSWR, { mutate } from "swr";
 
 const ClaimsPage = () => {
 
+  const mocks = [{ 
+    type: "18+",
+    name: "18+",
+    verified: true
+  }];
+
   const { data, error } = useSWR("/api/claims/");
   const isLoading = !data && !error;
 
@@ -20,7 +26,7 @@ const ClaimsPage = () => {
           Claims
         </h1>
 
-        <ClaimsTable data={data} />
+        <ClaimsTable data={mocks} />
       </div>
     </Layout>
   );

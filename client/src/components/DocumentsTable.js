@@ -3,20 +3,18 @@ import Table from "./Table";
 
 // dataField (key) props (value)
 const columnConfig = {
-  type: {
-    children: "Type",
-    width: "40%"
-  },
   name: {
-    children: "Name"
+    children: "File Name"
   },
-  verified: {
-    children: "Verified"
+  hash: {
+    children: "Hash"
+  },
+  date: {
+    children: "Date Submitted",
+    width: "15%"
   }
 };
 
-const ClaimsTable = ({ data, ...props }) => (
+const DocumentsTable = ({ data, ...props }) => (
   <Table data={data} columnConfig={columnConfig} keyField="id" {...props} />
 );
-
-export default ClaimsTable;

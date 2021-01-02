@@ -32,11 +32,12 @@ const AccountForm = ({
       {({ isSubmitting, errors }) => (
         <Form className="account-form">
           <Input
-            label="ETH"
+            label="Ethereum Account"
             name="eth"
             disabled={getDisabled("eth")}
           />
           <Input label="Email" name="email" disabled={getDisabled("email")} />
+          <Input label="Save hash to the blockchain" name="blockchain"></Input>
           <ErrorMessage error={errors.hidden} />
           <button
             className="btn btn-primary btn-block relative d-flex justify-content-center"
