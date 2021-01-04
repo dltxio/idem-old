@@ -354,3 +354,5 @@ client/.env
 client/build/
 
 server/.env
+
+client/src/.env
