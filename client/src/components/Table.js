@@ -7,7 +7,7 @@ const Table = ({ columnConfig = {}, hidden = [], data = [], ...props }) => (
     striped
     hover
     version="4"
-    pagination
+    //pagination
     tableContainerClass="table-responsive"
     {...props}
   >

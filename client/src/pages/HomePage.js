@@ -4,15 +4,18 @@ import Loader from "../components/Loader";
 import AccountForm from "../components/Forms/AccountForm";
 import Card from "../components/Card";
 import ClaimsTable from "../components/ClaimsTable";
+import DocumentsTable from "../components/DocumentsTable";
+import SitesTable from "../components/SitesTable";
 
 import useSWR, { mutate } from "swr";
 
 const HomePage = () => {
   
-  const { claimsData, error } = useSWR("/api/claims/");
-  const isLoading = !claimsData && !error;
+  const { data, error } = useSWR("/api/claims/");
+  const isLoading = !data && !error;
 
-  console.log(claimsData);
+  console.log("claims data");
+  console.log(data);
 
   return (
     <Layout>
@@ -22,20 +25,21 @@ const HomePage = () => {
             <Card>
               <Loader loading={isLoading} />
               <h2>Claims</h2>
-              <ClaimsTable data={claimsData}></ClaimsTable>
+              <p>A list of common claims to verify.</p>
+              <ClaimsTable data={data}></ClaimsTable>
+            </Card>
+            <Card>
+              <h2>Documents</h2>
+            </Card>
+          </div>
+          <div className="col">
+            <Card>
+              <h2>Sites</h2>
+              <SitesTable></SitesTable>
             </Card>
             <Card>
               <h2>Account</h2>
               <AccountForm submitText="Save"></AccountForm>
-            </Card>
-            <Card></Card>
-          </div>
-          <div className="col">
-            <Card>
-              <p>Logins</p>
-            </Card>
-            <Card>
-              <p>Data</p>
             </Card>
           </div>
         </div>
