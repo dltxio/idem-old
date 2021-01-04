@@ -30,6 +30,7 @@ const HomePage = () => {
             </Card>
             <Card>
               <h2>Documents</h2>
+              <DocumentsTable></DocumentsTable>
             </Card>
           </div>
           <div className="col">
