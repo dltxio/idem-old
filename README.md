@@ -2,11 +2,11 @@
 
 Using EIP 1820 for ID claims.
 
-## Overview
+## Abstract
+
+This paper defines a protocol using standard cryptography and reputable KYC providers to assert claims such as Proof of Age, for the re-use at online websites that require KYC.
 
 Everytime an exchange calls an ID provider to KYC documents, they incure an expense.  Futhermore, users are required every time provide KYC information instead of a portable verification.  By locally storing users information verified information, we can increase the customer onboarding expirence and reduce the costs to the exchanges and other services.
-
-This paper defines a protocol using standard cryptography and reputable KYC providers, to assert claims such as Proof of Age.
 
 ## Process
 
