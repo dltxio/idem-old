@@ -8,11 +8,13 @@ This paper defines a protocol using standard cryptography and reputable KYC prov
 
 Everytime an exchange calls an ID provider to KYC documents, they incure an expense.  Futhermore, users are required every time provide KYC information instead of a portable verification.  By locally storing users information verified information, we can increase the customer onboarding expirence and reduce the costs to the exchanges and other services.
 
-## Process
+## User onboarding
+
+The following defines the work flow for a new users to use the id app.
 
 ### Step 1: New registration
 
-User onboards to the app via Email or Mobile number.
+User onboards to the app via their Mobile number.
 
 ### Step 2: Create new Key Pair
 The a private / public key pair is created on the device, using the ECDSA256spk algorithim.  This will be used to sign messages to third parties.
@@ -23,7 +25,7 @@ Note: PGP/GPG should not be ruled out.
 
 On the mobile application or site the new can choose certain types of claims that which to verify, such as Data of Birth, Address etc.  This information is stored on the mobile device.  These are claims with a specific taxonomy defined below.
 
-### Step 4:
+### Step 4:  Add evidence towards a claim
 
 A user makes a claim that is substantiated with supporting evidence such as a government issued document, utilities bill or such.   These claims are then verified by a third party, who returns a signed JSON object that can the be used again.
 
@@ -32,11 +34,20 @@ A user makes a claim that is substantiated with supporting evidence such as a go
 3. Add the hash of the signed documents to the contract as a claim
 4. Authenticate with compatible services
 
-### Step 5:  Onboarding on Third Party Sites
 
-1. Hash
-2. Sign
-3. Share
+## Implmentation on third party sites
+### Step 1:  Onboarding on Third Party Sites
+
+The exchange creates a unique URL with the mime `id://` with the claims the exchange requires for 
+
+* Call back URL (mandatory)
+* Nonce as UUID (mandatory)
+* A list of claims required
+
+Eg: `id://`
+
+### Step 2:  Posting the signed data
+The user will then receive confirmation aleart on the
 
 ## Appendix
 
