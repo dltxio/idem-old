@@ -356,3 +356,6 @@ client/build/
 server/.env
 
 client/src/.env
+
+# JetBrains
+.idea/
