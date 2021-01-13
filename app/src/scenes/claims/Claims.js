@@ -14,24 +14,57 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: colors.lightGrayPurple,
   },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
+  claimRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    minWidth: 400,
+    marginBottom: 5,
   },
+  title: {
+    fontSize: 36,
+    marginBottom: 60,
+  },
+  claimContainer: {
+    flex: 1,
+  },
+  claimLabel: {
+    fontSize: 22,
+    textAlign: "left",
+  },
+  claimValue: {
+    fontSize: 18,
+    textAlign: "right",
+  }
 });
+
+const Claim = ({ label }) => (
+  <View style={styles.claimRow}>
+    <View style={styles.claimContainer}>
+      <Text style={styles.claimLabel}>{ label }</Text>
+    </View>
+    <View style={styles.claimContainer}>
+      <Button
+        style={styles.claimValue}
+        title="Upload documents"
+        color="white"
+        backgroundColor={colors.lightPurple}
+        onPress={() => { }}
+      />
+    </View>
+  </View>
+);
 
 const Claims = ({ navigation }) => (
   <View style={styles.root}>
     <StatusBar barStyle="light-content" />
     <Text style={styles.title}>Claims</Text>
-    <Button
-      title="Go to Settings"
-      color="white"
-      backgroundColor={colors.lightPurple}
-      onPress={() => {
-        navigation.navigate("Settings", { from: "Claims" });
-      }}
-    />
+    <Claim label={"18+"} />
+    <Claim label={"DOB"} />
+    <Claim label={"Full Name"} />
+    <Claim label={"Email"} />
+    <Claim label={"Mobile"} />
+    <Claim label={"Address"} />
   </View>
 );
 
