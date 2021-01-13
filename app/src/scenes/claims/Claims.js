@@ -22,20 +22,16 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   title: {
-    fontSize: 36,
+    fontSize: 24,
     marginBottom: 60,
   },
   claimContainer: {
     flex: 1,
   },
   claimLabel: {
-    fontSize: 22,
+    fontSize: 16,
     textAlign: "left",
   },
-  claimValue: {
-    fontSize: 18,
-    textAlign: "right",
-  }
 });
 
 const Claim = ({ label }) => (
@@ -45,7 +41,6 @@ const Claim = ({ label }) => (
     </View>
     <View style={styles.claimContainer}>
       <Button
-        style={styles.claimValue}
         title="Upload documents"
         color="white"
         backgroundColor={colors.lightPurple}

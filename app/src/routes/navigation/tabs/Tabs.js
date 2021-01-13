@@ -6,6 +6,7 @@ import { colors } from "theme";
 
 // stack navigators
 import { ClaimsNavigator } from "../stacks";
+import {SettingsNavigator, VendorsNavigator} from "../stacks/Stacks";
 
 const Tab = createBottomTabNavigator();
 
@@ -14,19 +15,20 @@ const TabNavigator = () => (
     screenOptions={({ route }) => ({
       // eslint-disable-next-line react/prop-types
       tabBarIcon: ({ focused }) => {
-        switch (route.name) {
-          case "Claims":
-            return (
-              <FontIcon
-                name="address-book"
-                color={focused ? colors.lightPurple : colors.gray}
-                size={20}
-                solid
-              />
-            );
-          default:
-            return <View />;
-        }
+        const iconFromRouteName = {
+          "Claims": "address-book",
+          "3rd Parties": "university",
+          "Settings": "cog",
+        };
+
+        return (
+          <FontIcon
+            name={iconFromRouteName[route.name] ?? "square"}
+            color={focused ? colors.lightPurple : colors.gray}
+            size={20}
+            solid
+          />
+        );
       },
     })}
     tabBarOptions={{
@@ -44,6 +46,8 @@ const TabNavigator = () => (
     swipeEnabled={false}
   >
     <Tab.Screen name="Claims" component={ClaimsNavigator} />
+    <Tab.Screen name="3rd Parties" component={VendorsNavigator} />
+    <Tab.Screen name="Settings" component={SettingsNavigator} />
   </Tab.Navigator>
 );
 
