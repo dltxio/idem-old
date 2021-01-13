@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  StyleSheet, Text, View, StatusBar,
+  StyleSheet, Text, View, StatusBar, FlatList, Dimensions,
 } from "react-native";
 import Button from "components/Button";
 import { colors } from "theme";
@@ -14,52 +14,47 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: colors.lightGrayPurple,
   },
-  claimRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    minWidth: 400,
-    marginBottom: 5,
-  },
   title: {
     fontSize: 24,
-    marginBottom: 60,
+    marginBottom: 8,
+    marginTop: 16,
   },
-  claimContainer: {
-    flex: 1,
+  claimRow: {
+    borderBottomColor: "#cecece",
+    borderBottomWidth: 1,
+    width: Dimensions.get("window").width,
   },
-  claimLabel: {
-    fontSize: 16,
+  claim: {
+    fontSize: 18,
+    height: 44,
+    paddingTop: 25,
+    marginBottom: 25,
+    paddingLeft: 80,
+    paddingRight: 80,
     textAlign: "left",
   },
 });
 
-const Claim = ({ label }) => (
+const Claim = ({ name }) => (
   <View style={styles.claimRow}>
-    <View style={styles.claimContainer}>
-      <Text style={styles.claimLabel}>{ label }</Text>
-    </View>
-    <View style={styles.claimContainer}>
-      <Button
-        title="Upload documents"
-        color="white"
-        backgroundColor={colors.lightPurple}
-        onPress={() => { }}
-      />
-    </View>
+    <Text style={styles.claim}>{name}</Text>
   </View>
 );
 
 const Claims = ({ navigation }) => (
   <View style={styles.root}>
-    <StatusBar barStyle="light-content" />
-    <Text style={styles.title}>Claims</Text>
-    <Claim label={"18+"} />
-    <Claim label={"DOB"} />
-    <Claim label={"Full Name"} />
-    <Claim label={"Email"} />
-    <Claim label={"Mobile"} />
-    <Claim label={"Address"} />
+    <StatusBar barStyle ="light-content" />
+    <FlatList
+      data={[
+        {key: "18+"},
+        {key: "DOB"},
+        {key: "Full Name"},
+        {key: "Email"},
+        {key: "Mobile"},
+        {key: "Address"},
+      ]}
+      renderItem={({item}) => <Claim name={item.key} />}
+    />
   </View>
 );
 
