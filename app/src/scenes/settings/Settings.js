@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    marginBottom: 20,
+    marginBottom: 60,
   },
 });
 
@@ -24,14 +24,6 @@ const Settings = ({ navigation }) => (
   <View style={styles.root}>
     <StatusBar barStyle="light-content" />
     <Text style={styles.title}>Settings</Text>
-    <Button
-      title="Go to Claims"
-      color="white"
-      backgroundColor={colors.lightPurple}
-      onPress={() => {
-        navigation.navigate("Claims", { from: "Settings" });
-      }}
-    />
   </View>
 );
 

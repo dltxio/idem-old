@@ -16,27 +16,20 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    marginBottom: 20,
+    marginBottom: 60,
   },
 });
 
-const Details = ({ route, navigation }) => {
-  const from = route?.params?.from;
+const Vendors = ({ route, navigation }) => {
   return (
     <View style={styles.root}>
       <StatusBar barStyle="light-content" />
-      <Text style={styles.title}>{`Details (from ${from})`}</Text>
-      <Button
-        title="Go Back"
-        color="white"
-        backgroundColor={colors.pink}
-        onPress={navigation.goBack}
-      />
+      <Text style={styles.title}>3rd Parties</Text>
     </View>
   );
 };
 
-Details.propTypes = {
+Vendors.propTypes = {
   route: PropTypes.shape({
     params: PropTypes.shape({ from: PropTypes.string }),
   }),
@@ -45,9 +38,9 @@ Details.propTypes = {
   }),
 };
 
-Details.defaultProps = {
+Vendors.defaultProps = {
   route: { params: { from: "" } },
   navigation: { goBack: () => null },
 };
 
-export default Details;
+export default Vendors;
