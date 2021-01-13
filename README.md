@@ -16,14 +16,26 @@ The following defines the work flow for a new users to use the id app.
 
 User onboards to the app via their Mobile number.
 
-### Step 2: Create a new private key.
-A 256 bit private key will be created on the device.  This will be used to sign messages to third parties.
+### Step 2: New private key
+The app will automatically create a 256 bit private key will be created on the device.  This will be used to sign messages to third parties.
 
 Note: PGP/GPG should not be ruled out.
 
 ### Step 3: Upload data
 
-On the mobile application the user can choose certain types of claims that which to verify, such as Data of Birth or Address.  The user is then required to substantiated any of those claims with supporting evidence such as a government issued document, utilities bill or such. The documents are stored in the local storage of the device along with a SHA hash.  
+On the mobile application the user can choose certain types of claims that which to verify, such as Data of Birth or Address.  The user is then required to substantiated any of those claims with supporting evidence such as a government issued document, utilities bill or such. The documents are stored in the local storage of the device along with a keccak 256 hash.
+
+Meta data is stored in a JSON object
+
+```json
+[
+	claims: [
+		key: "0x02",
+		type: "dob",
+		value: 1979-04-29
+	]
+]
+```
 
 ### Step 4:  Verify these claims
 These claims are then verified by a third party who returns an X-509 SSL certificate signed JSON object that can the be used again.
@@ -37,10 +49,14 @@ The exchange creates a unique URL with the mime `id://` with the claims the exch
 * Nonce as UUID (mandatory)
 * A list of claims required
 
-Eg: `id://`
+Eg: `id://callback=myexchange.com.au/register?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3`
 
 ### Step 2:  Posting the signed data
-The user will then receive confirmation aleart on the
+The user will then receive confirmation alert on the ...
+
+```json
+
+```
 
 ## Appendix
 
@@ -50,13 +66,20 @@ When Block ID ..
 
 ### Claims based ID
 
-List of claims
+Table of claims
 
-| Key | Subject | Format | Description |
-|---|---|---|---|
-| 0x00 | Full Name |  | Clients Full Name |
-| 0x01 | Birth Year | YYYY | ISO 8601 |
-| 0x02 | Date of Birth | YYYY-MM-DD | ISO 8601 |
+| Key | Subject | Mnemonic | Standard | Description |
+|---|---|---|---|---|
+| 0x00 | Full Name | fullname | | Clients Full Name |
+| 0x01 | Birth Year | birthyear | YYYY ISO 8601 | Clients Year of Birth |
+| 0x02 | Date of Birth | dob | YYYY-MM-DD ISO 8601 | Clients Date of Birth | 
+
+Table of documents
+
+| Key | Document | Details
+| --- | --- | ---
+| 0x00 | Australian birth certificate | A full birth certificate in your name or former name issued by Births, Deaths and Marriages. We can’t accept birth extracts or birth cards.
+| 0x01 | Australian driver licence | A current driver licence with your photo issued in your name. This includes physical and digital driver licences, current learner permits and provisional licences. 
 
 ### Trusted ID verification providers
 
@@ -76,10 +99,6 @@ struct ID {
 Issuer: The ID provider.  This could be Blockchain Australia
 Subject:  See table
 
-| Key | Document | Details
-| --- | --- | ---
-| 0x00 | Australian birth certificate | A full birth certificate in your name or former name issued by Births, Deaths and Marriages. We can’t accept birth extracts or birth cards.
-| 0x01 | Australian driver licence | A current driver licence with your photo issued in your name. This includes physical and digital driver licences, current learner permits and provisional licences. 
 
 
 ### ERC 780 Example
