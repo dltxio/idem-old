@@ -22,18 +22,18 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   title: {
-    fontSize: 36,
+    fontSize: 24,
     marginBottom: 60,
   },
   claimContainer: {
     flex: 1,
   },
   claimLabel: {
-    fontSize: 22,
+    fontSize: 16,
     textAlign: "left",
   },
   claimValue: {
-    fontSize: 18,
+    fontSize: 16,
     textAlign: "right",
   }
 });
