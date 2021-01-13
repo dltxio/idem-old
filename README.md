@@ -8,35 +8,57 @@ This paper defines a protocol using standard cryptography and reputable KYC prov
 
 Everytime an exchange calls an ID provider to KYC documents, they incure an expense.  Futhermore, users are required every time provide KYC information instead of a portable verification.  By locally storing users information verified information, we can increase the customer onboarding expirence and reduce the costs to the exchanges and other services.
 
-## Process
+## User onboarding
+
+The following defines the work flow for a new users to use the id app.
 
 ### Step 1: New registration
 
-User onboards to the app via Email or Mobile number.
+User onboards to the app via their Mobile number.
 
-### Step 2: Create new Key Pair
-The a private / public key pair is created on the device, using the ECDSA256spk algorithim.  This will be used to sign messages to third parties.
+### Step 2: New private key
+The app will automatically create a 256 bit private key will be created on the device.  This will be used to sign messages to third parties.
 
 Note: PGP/GPG should not be ruled out.
 
-### Step 3: User adds their data
+### Step 3: Upload data
 
-On the mobile application or site the new can choose certain types of claims that which to verify, such as Data of Birth, Address etc.  This information is stored on the mobile device.  These are claims with a specific taxonomy defined below.
+On the mobile application the user can choose certain types of claims that which to verify, such as Data of Birth or Address.  The user is then required to substantiated any of those claims with supporting evidence such as a government issued document, utilities bill or such. The documents are stored in the local storage of the device along with a keccak 256 hash.
 
-### Step 4:
+Meta data is stored in a JSON object
 
-A user makes a claim that is substantiated with supporting evidence such as a government issued document, utilities bill or such.   These claims are then verified by a third party, who returns a signed JSON object that can the be used again.
+```json
+[
+	claims: [
+		key: "0x02",
+		type: "dob",
+		value: 1979-04-29
+	]
+]
+```
 
-1. Submit your claim with supporting documentation 
-2. Block ID then verifies this information with a trusted provider signed with an ETH public / private key pair and X-059 SSL certificate
-3. Add the hash of the signed documents to the contract as a claim
-4. Authenticate with compatible services
+## Verify these claims
+These claims are then verified by a third party KYC vendors who return an X-509 SSL certificate signed JSON object that can the be used again.  Each vendor has a different process
 
-### Step 5:  Onboarding on Third Party Sites
+Table of vendors
 
-1. Hash
-2. Sign
-3. Share
+## Implmentation on third party sites
+### Step 1:  Onboarding on Third Party Sites
+
+The exchange creates a unique URL with the mime `id://` with the claims the exchange requires for 
+
+* Call back URL (mandatory)
+* Nonce as UUID (mandatory)
+* A list of claims required
+
+Eg: `id://callback=myexchange.com.au/register?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3`
+
+### Step 2:  Posting the signed data
+The user will then receive confirmation alert on the ...
+
+```json
+
+```
 
 ## Appendix
 
@@ -46,13 +68,20 @@ When Block ID ..
 
 ### Claims based ID
 
-List of claims
+Table of claims
 
-| Key | Subject | Format | Description |
-|---|---|---|---|
-| 0x00 | Full Name |  | Clients Full Name |
-| 0x01 | Birth Year | YYYY | ISO 8601 |
-| 0x02 | Date of Birth | YYYY-MM-DD | ISO 8601 |
+| Key | Subject | Mnemonic | Standard | Description |
+|---|---|---|---|---|
+| 0x00 | Full Name | fullname | | Clients Full Name |
+| 0x01 | Birth Year | birthyear | YYYY ISO 8601 | Clients Year of Birth |
+| 0x02 | Date of Birth | dob | YYYY-MM-DD ISO 8601 | Clients Date of Birth | 
+
+Table of documents
+
+| Key | Document | Details
+| --- | --- | ---
+| 0x00 | Australian birth certificate | A full birth certificate in your name or former name issued by Births, Deaths and Marriages. We can’t accept birth extracts or birth cards.
+| 0x01 | Australian driver licence | A current driver licence with your photo issued in your name. This includes physical and digital driver licences, current learner permits and provisional licences. 
 
 ### Trusted ID verification providers
 
@@ -72,10 +101,6 @@ struct ID {
 Issuer: The ID provider.  This could be Blockchain Australia
 Subject:  See table
 
-| Key | Document | Details
-| --- | --- | ---
-| 0x00 | Australian birth certificate | A full birth certificate in your name or former name issued by Births, Deaths and Marriages. We can’t accept birth extracts or birth cards.
-| 0x01 | Australian driver licence | A current driver licence with your photo issued in your name. This includes physical and digital driver licences, current learner permits and provisional licences. 
 
 
 ### ERC 780 Example
