@@ -37,8 +37,10 @@ Meta data is stored in a JSON object
 ]
 ```
 
-### Step 4:  Verify these claims
-These claims are then verified by a third party who returns an X-509 SSL certificate signed JSON object that can the be used again.
+## Verify these claims
+These claims are then verified by a third party who returns an X-509 SSL certificate signed JSON object that can the be used again.  Each vendor has a different process
+
+Table of vendors
 
 ## Implmentation on third party sites
 ### Step 1:  Onboarding on Third Party Sites
