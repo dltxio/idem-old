@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  StyleSheet, Text, View, StatusBar, FlatList,
+  StyleSheet, Text, View, StatusBar, FlatList, Dimensions,
 } from "react-native";
 import Button from "components/Button";
 import { colors } from "theme";
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   claimRow: {
     borderBottomColor: "#cecece",
     borderBottomWidth: 1,
-    width: "100vw",
+    width: Dimensions.get("window").width,
   },
   claim: {
     fontSize: 18,
