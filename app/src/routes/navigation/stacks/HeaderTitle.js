@@ -1,15 +1,17 @@
 import React from "react";
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { images } from "theme";
 
 const styles = StyleSheet.create({
   logo: {
-    width: 32,
-    height: 32,
+    fontSize: 22,
+    color: "#ffffff",
   },
 });
 
-const HeaderTitle = () => <Image source={images.logo_sm} style={styles.logo} />;
+const HeaderTitle = () => (
+  <Text style={styles.logo}>Blockchain ID</Text>
+);
 
 HeaderTitle.propTypes = {};
 HeaderTitle.defaultProps = {};
