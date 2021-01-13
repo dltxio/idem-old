@@ -38,7 +38,7 @@ Meta data is stored in a JSON object
 ```
 
 ## Verify these claims
-These claims are then verified by a third party who returns an X-509 SSL certificate signed JSON object that can the be used again.  Each vendor has a different process
+These claims are then verified by a third party KYC vendors who return an X-509 SSL certificate signed JSON object that can the be used again.  Each vendor has a different process
 
 Table of vendors
 
