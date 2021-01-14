@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Text } from "react-native";
-import Connector from "utils/connector";
 import Main from "./navigation";
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
+import {createAction as createAuthenticateAction} from "../../store/user/actions/authenticate";
 
-const Routes = ({ actions, checked, loggedIn }) => {
+const Routes = ({ authenticate, user }) => {
   useEffect(() => {
-    actions.authenticate();
+    authenticate();
   }, []);
 
-  // TODO: switch router by loggedIn state
-  console.log("[##] loggedIn", loggedIn);
-
-  // rendering
-  if (!checked) return <Text>Loading...</Text>;
+  if (!user.isAuthenticated)
+    return <Text>Authenticating...</Text>;
+  
   return <Main />;
 };
 
@@ -33,10 +33,15 @@ Routes.defaultProps = {
   loggedIn: false,
 };
 
-export default (props) => (
-  <Connector>
-    {({ actions, state: { app } }) => (
-      <Routes actions={actions.app} {...app} {...props} />
-    )}
-  </Connector>
-);
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  authenticate: bindActionCreators(createAuthenticateAction, dispatch),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Routes);

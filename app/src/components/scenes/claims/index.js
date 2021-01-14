@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import {
   StyleSheet, Text, View, StatusBar, FlatList, Dimensions,
 } from "react-native";
-import Button from "components/ui/Button";
 import { colors } from "theme";
+import {bindActionCreators} from "redux";
+import {createAction as createKeyAction} from "../../../store/user/actions/createKey";
+import {connect} from "react-redux";
 
 const styles = StyleSheet.create({
   root: {
@@ -41,9 +43,10 @@ const Claim = ({ name }) => (
   </View>
 );
 
-const Claims = ({ navigation }) => (
-  <View style={styles.root}>
-    <StatusBar barStyle ="light-content" />
+const Claims = ({ navigation, user }) => {
+  console.log("claims - user: ", user);
+  return <View style={styles.root}>
+    <StatusBar barStyle="light-content"/>
     <FlatList
       data={[
         {key: "18+"},
@@ -53,10 +56,10 @@ const Claims = ({ navigation }) => (
         {key: "Mobile"},
         {key: "Address"},
       ]}
-      renderItem={({item}) => <Claim name={item.key} />}
+      renderItem={({item}) => <Claim name={item.key}/>}
     />
   </View>
-);
+};
 
 Claims.propTypes = {
   navigation: PropTypes.shape({
@@ -68,4 +71,15 @@ Claims.defaultProps = {
   navigation: { navigate: () => null },
 };
 
-export default Claims;
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  createKey: bindActionCreators(createKeyAction, dispatch),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Claims);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Dimensions } from "react-native";
 import { Provider } from "react-redux";
-import store from "utils/store";
+import store from "./store";
 
 // Assets.
 import { imageAssets } from "theme/images";
@@ -36,7 +36,9 @@ const App = () => {
     handleLoadAssets();
   }, []);
 
-  if (!didLoad) return <View />;
+  if (!didLoad)
+    return <View />;
+  
   return (
     <Provider store={store}>
       <Router />
