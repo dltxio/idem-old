@@ -1,1 +1,26 @@
-
+[
+  {
+    "type": "18+",
+    "key": "0x00"
+  },
+  {
+    "type": "DOB",
+    "key": "0x01"
+  },
+  {
+    "type": "Full Name",
+    "key": "0x02"
+  },
+  {
+    "type": "Email",
+    "key": "0x03"
+  },
+  {
+    "type": "Mobile",
+    "key": "0x04"
+  },
+  {
+    "type": "Address",
+    "key": "0x05"
+  }
+]
