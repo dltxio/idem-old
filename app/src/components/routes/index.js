@@ -1,36 +1,44 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { Text } from "react-native";
+import React, {useEffect, useState} from "react";
+import {Dimensions, Text} from "react-native";
 import Main from "./navigation";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import {createAction as createAuthenticateAction} from "../../store/user/actions/authenticate";
+import {
+  createAction as createAuthenticateAction
+} from "../../store/user/actions/authenticate";
+import {
+  createAction as createSetWindowDimensionsAction
+} from "../../store/app/actions/setWindowDimensions";
 
-const Routes = ({ authenticate, user }) => {
+// Dimensions.
+const window = Dimensions.get("window");
+
+const Routes = ({ authenticate, setWindowDimensions, user }) => {
+  const [dimensions, setDimensions] = useState({ window });
+
+  useEffect(() => {
+    const onChange = ({ window }) => {
+      setDimensions({ window });
+    };
+    
+    Dimensions.addEventListener("change", onChange);
+    return () => {
+      Dimensions.removeEventListener("change", onChange);
+    };
+  }, []);
+  
   useEffect(() => {
     authenticate();
   }, []);
+
+  useEffect(() => {
+    setWindowDimensions(dimensions.window.width, dimensions.window.height);
+  }, [dimensions])
 
   if (!user.isAuthenticated)
     return <Text>Authenticating...</Text>;
   
   return <Main />;
-};
-
-Routes.propTypes = {
-  actions: PropTypes.shape({
-    authenticate: PropTypes.func,
-  }),
-  checked: PropTypes.bool,
-  loggedIn: PropTypes.bool,
-};
-
-Routes.defaultProps = {
-  actions: {
-    authenticate: () => null,
-  },
-  checked: false,
-  loggedIn: false,
 };
 
 const mapStateToProps = (state) => ({
@@ -39,6 +47,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   authenticate: bindActionCreators(createAuthenticateAction, dispatch),
+  setWindowDimensions: bindActionCreators(createSetWindowDimensionsAction, dispatch),
 });
 
 export default connect(

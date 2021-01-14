@@ -2,18 +2,16 @@
 
 export const createAction = (width, height) => ({
   type: ActionType,
-  dimensions: {
-    width,
-    height,
-  },
+  width,
+  height,
 });
 
 export const Reducer = (state, action) => {
   return {
     ...state,
     window: {
-      width: action.dimensions.width,
-      height: action.dimensions.height,
+      width: action.width,
+      height: action.height,
     },
   }
 };
