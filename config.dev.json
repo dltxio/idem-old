@@ -1,0 +1,15 @@
+﻿{
+  "claims": [{
+    "name": "18+"
+  }, {
+    "name": "DOB"
+  }, {
+    "name": "Full Name"
+  }, {
+    "name": "Email"
+  }, {
+    "name": "Mobile"
+  }, {
+    "name": "Address"
+  }]
+}
