@@ -6,7 +6,7 @@ import store from "utils/store";
 // Assets.
 import { imageAssets } from "theme/images";
 import { fontAssets } from "theme/fonts";
-import Router from "./routes";
+import Router from "./components/routes";
 
 // Dimensions.
 const window = Dimensions.get("window");

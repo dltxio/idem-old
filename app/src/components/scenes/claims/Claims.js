@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {
   StyleSheet, Text, View, StatusBar, FlatList, Dimensions,
 } from "react-native";
-import Button from "components/Button";
+import Button from "components/ui/Button";
 import { colors } from "theme";
 
 const styles = StyleSheet.create({

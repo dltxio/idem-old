@@ -1,9 +1,9 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { colors } from "theme";
-import Claims from "scenes/claims";
-import Settings from "scenes/settings";
-import Vendors from "scenes/vendors";
+import Claims from "components/scenes/claims";
+import Settings from "components/scenes/settings";
+import Vendors from "components/scenes/vendors";
 import HeaderLeft from "./HeaderLeft";
 import HeaderTitle from "./HeaderTitle";
 
