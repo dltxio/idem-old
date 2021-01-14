@@ -1,11 +1,12 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { colors } from "theme";
+import HeaderLeft from "./HeaderLeft";
+import HeaderTitle from "./HeaderTitle";
 import Claims from "components/scenes/claims";
 import Settings from "components/scenes/settings";
 import Vendors from "components/scenes/vendors";
-import HeaderLeft from "./HeaderLeft";
-import HeaderTitle from "./HeaderTitle";
+import Claim from "components/scenes/claim";
 
 const Stack = createStackNavigator();
 
@@ -39,7 +40,7 @@ export const AppNavigator = ({ initialRoute }) => (
       options={({ navigation }) => ({
         title: "Claims",
         headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <HeaderTitle />,
+        headerTitle: () => <HeaderTitle navigation={navigation} />,
       })}
     />
     <Stack.Screen
@@ -56,6 +57,15 @@ export const AppNavigator = ({ initialRoute }) => (
       component={Settings}
       options={({ navigation }) => ({
         title: "Settings",
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <HeaderTitle />,
+      })}
+    />
+    <Stack.Screen
+      name="Claim"
+      component={Claim}
+      options={({ navigation }) => ({
+        title: "Claim",
         headerLeft: () => <HeaderLeft navigation={navigation} />,
         headerTitle: () => <HeaderTitle />,
       })}
