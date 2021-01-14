@@ -13,7 +13,7 @@ export const Reducer = (state, action) => {
       width: action.width,
       height: action.height,
     },
-  }
+  };
 };
 
 export default { ActionType, Reducer, createAction };
