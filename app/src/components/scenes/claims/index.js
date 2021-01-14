@@ -1,15 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import {
-  StyleSheet, Text, View, StatusBar, FlatList, Dimensions,
+  StyleSheet, Text, View, StatusBar, FlatList, TouchableOpacity,
 } from "react-native";
 import { colors } from "theme";
 import {bindActionCreators} from "redux";
-import {createAction as createKeyAction} from "../../../store/user/actions/createKey";
+import {
+  createAction as createSetNavigationAction
+} from "../../../store/app/actions/setNavigation";
+import {
+  createAction as createSelectClaimAction
+} from "../../../store/app/actions/selectClaim";
 import {connect} from "react-redux";
-import config from "../../../../../config.json";
-
-const claimList = config.claims;
+import config from "../../../../config.json";
 
 const styles = StyleSheet.create({
   root: {
@@ -41,34 +44,56 @@ const claimRowStyle = (window) => ({
   width: window.width,
 });
 
-const Claim = ({ window, name }) => (
-  <View style={claimRowStyle(window)}>
+const Claim = ({ onPress, window, name }) => (
+  <TouchableOpacity style={claimRowStyle(window)} onPress={onPress}>
     <Text style={styles.claim}>{name}</Text>
-  </View>
+  </TouchableOpacity>
 );
 
-const Claims = ({ navigation, user, app }) => (
-  <View style={styles.root}>
-    <StatusBar barStyle="light-content"/>
-    <FlatList
-      data={claimList}
-      renderItem={({item}) =>
-        <Claim
-          {...item}
-          window={app.window}
-        />
-      }
-    />
-  </View>
-);
+const ClaimSelector = ({
+  navigation,
+  app,
+  selectClaim,
+  setNavigation,
+}) => {
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      setNavigation({
+        canGoBack: false,
+      });
+    });
+  }, [navigation]);
+  
+  return (
+    <View style={styles.root}>
+      <StatusBar barStyle="light-content"/>
+      <FlatList
+        data={config.claims}
+        renderItem={({item}) =>
+          <Claim
+            {...item}
+            window={app.window}
+            onPress={() => {
+              selectClaim(item);
+              setNavigation({
+                canGoBack: true,
+              });
+              navigation.navigate("Claim");
+            }}
+          />
+        }
+      />
+    </View>
+  );
+};
 
-Claims.propTypes = {
+ClaimSelector.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }),
 };
 
-Claims.defaultProps = {
+ClaimSelector.defaultProps = {
   navigation: { navigate: () => null },
 };
 
@@ -78,10 +103,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  createKey: bindActionCreators(createKeyAction, dispatch),
+  setNavigation: bindActionCreators(createSetNavigationAction, dispatch),
+  selectClaim: bindActionCreators(createSelectClaimAction, dispatch),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Claims);
+)(ClaimSelector);
