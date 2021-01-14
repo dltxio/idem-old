@@ -7,7 +7,7 @@ import Vendors from "components/scenes/vendors";
 import HeaderLeft from "./HeaderLeft";
 import HeaderTitle from "./HeaderTitle";
 
-// // ------------------------------------
+// ------------------------------------
 // Constants
 // ------------------------------------
 
