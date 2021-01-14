@@ -1,4 +1,4 @@
-# Blockchain ID
+# Idem
 
 Using EIP 1820 for ID claims.
 
