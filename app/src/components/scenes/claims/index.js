@@ -21,11 +21,6 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     marginTop: 16,
   },
-  claimRow: {
-    borderBottomColor: "#cecece",
-    borderBottomWidth: 1,
-    width: Dimensions.get("window").width,
-  },
   claim: {
     fontSize: 18,
     height: 44,
@@ -37,15 +32,20 @@ const styles = StyleSheet.create({
   },
 });
 
-const Claim = ({ name }) => (
-  <View style={styles.claimRow}>
+const claimRowStyle = (window) => ({
+  borderBottomColor: "#cecece",
+  borderBottomWidth: 1,
+  width: window.width,
+});
+
+const Claim = ({ window, name }) => (
+  <View style={claimRowStyle(window)}>
     <Text style={styles.claim}>{name}</Text>
   </View>
 );
 
-const Claims = ({ navigation, user }) => {
-  console.log("claims - user: ", user);
-  return <View style={styles.root}>
+const Claims = ({ navigation, user, app }) => (
+  <View style={styles.root}>
     <StatusBar barStyle="light-content"/>
     <FlatList
       data={[
@@ -56,10 +56,15 @@ const Claims = ({ navigation, user }) => {
         {key: "Mobile"},
         {key: "Address"},
       ]}
-      renderItem={({item}) => <Claim name={item.key}/>}
+      renderItem={({item}) =>
+        <Claim
+          name={item.key}
+          window={app.window}
+        />
+      }
     />
   </View>
-};
+);
 
 Claims.propTypes = {
   navigation: PropTypes.shape({
@@ -73,6 +78,7 @@ Claims.defaultProps = {
 
 const mapStateToProps = (state) => ({
   user: state.user,
+  app: state.app,
 });
 
 const mapDispatchToProps = (dispatch) => ({
