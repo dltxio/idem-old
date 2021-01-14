@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
-import { images } from "theme";
+import PropTypes from "prop-types";
+import {useRoute} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   logo: {
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
 });
 
 const HeaderTitle = () => (
-  <Text style={styles.logo}>Blockchain ID</Text>
+  <Text style={styles.logo}>{ useRoute().name }</Text>
 );
 
 HeaderTitle.propTypes = {};

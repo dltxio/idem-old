@@ -1,7 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import FontIcon from "react-native-vector-icons/FontAwesome5";
+import {bindActionCreators} from "redux";
+import {
+  createAction as createSetNavigationAction
+} from "../../../../store/app/actions/setNavigation";
+import {connect} from "react-redux";
 
 const styles = StyleSheet.create({
   button: {
@@ -9,26 +14,43 @@ const styles = StyleSheet.create({
   },
 });
 
-const HeaderLeft = ({ navigation }) => (
-  <FontIcon.Button
-    name="bars"
-    color="white"
-    backgroundColor="transparent"
-    onPress={() => {
-      navigation.openDrawer();
-    }}
-    style={styles.button}
-  />
-);
+const HeaderLeft = ({ navigation, canGoBack, setNavigation }) => {
+  if (!canGoBack)
+    return <View />;
+  
+  return (
+    <FontIcon.Button
+      name="arrow-left"
+      color="white"
+      backgroundColor="transparent"
+      onPress={() => {
+        navigation.goBack();
+      }}
+      style={styles.button}
+    />
+  );
+};
 
 HeaderLeft.propTypes = {
   navigation: PropTypes.shape({
     openDrawer: PropTypes.func,
   }),
+  lastScene: PropTypes.string,
 };
 
 HeaderLeft.defaultProps = {
   navigation: { openDrawer: () => null },
 };
 
-export default HeaderLeft;
+const mapStateToProps = (state) => ({
+  canGoBack: state.app.navigation.canGoBack,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setNavigation: bindActionCreators(createSetNavigationAction, dispatch),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HeaderLeft);

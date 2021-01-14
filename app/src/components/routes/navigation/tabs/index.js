@@ -1,9 +1,8 @@
 import React from "react";
-import { View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import FontIcon from "react-native-vector-icons/FontAwesome5";
 import { colors } from "theme";
-import {ClaimsNavigator, SettingsNavigator, VendorsNavigator} from "../stacks";
+import {ClaimsNavigator,VendorsNavigator,SettingsNavigator} from "../stacks";
 
 const Tab = createBottomTabNavigator();
 

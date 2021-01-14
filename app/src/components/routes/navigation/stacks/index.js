@@ -1,15 +1,12 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { colors } from "theme";
+import HeaderLeft from "./HeaderLeft";
+import HeaderTitle from "./HeaderTitle";
 import Claims from "components/scenes/claims";
 import Settings from "components/scenes/settings";
 import Vendors from "components/scenes/vendors";
-import HeaderLeft from "./HeaderLeft";
-import HeaderTitle from "./HeaderTitle";
-
-// ------------------------------------
-// Constants
-// ------------------------------------
+import Claim from "components/scenes/claim";
 
 const Stack = createStackNavigator();
 
@@ -19,13 +16,21 @@ const navigationProps = {
   headerTitleStyle: { fontSize: 18 },
 };
 
-// ------------------------------------
-// Navigators
-// ------------------------------------
-
 export const ClaimsNavigator = () => (
+  <AppNavigator initialRoute="Claims" />
+);
+
+export const VendorsNavigator = () => (
+  <AppNavigator initialRoute="3rd Parties" />
+);
+
+export const SettingsNavigator = () => (
+  <AppNavigator initialRoute="Settings" />
+);
+
+export const AppNavigator = ({ initialRoute }) => (
   <Stack.Navigator
-    initialRouteName="Claims"
+    initialRouteName={initialRoute}
     headerMode="screen"
     screenOptions={navigationProps}
   >
@@ -35,7 +40,7 @@ export const ClaimsNavigator = () => (
       options={({ navigation }) => ({
         title: "Claims",
         headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <HeaderTitle />,
+        headerTitle: () => <HeaderTitle navigation={navigation} />,
       })}
     />
     <Stack.Screen
@@ -56,74 +61,11 @@ export const ClaimsNavigator = () => (
         headerTitle: () => <HeaderTitle />,
       })}
     />
-  </Stack.Navigator>
-);
-
-export const VendorsNavigator = () => (
-  <Stack.Navigator
-    initialRouteName="Vendors"
-    headerMode="screen"
-    screenOptions={navigationProps}
-  >
     <Stack.Screen
-      name="Vendors"
-      component={Vendors}
+      name="Claim"
+      component={Claim}
       options={({ navigation }) => ({
-        title: "3rd Parties",
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <HeaderTitle />,
-      })}
-    />
-    <Stack.Screen
-      name="Claims"
-      component={Claims}
-      options={({ navigation }) => ({
-        title: "Claims",
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <HeaderTitle />,
-      })}
-    />
-    <Stack.Screen
-      name="Settings"
-      component={Settings}
-      options={({ navigation }) => ({
-        title: "Settings",
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <HeaderTitle />,
-      })}
-    />
-  </Stack.Navigator>
-);
-
-export const SettingsNavigator = () => (
-  <Stack.Navigator
-    initialRouteName="Settings"
-    headerMode="screen"
-    screenOptions={navigationProps}
-  >
-    <Stack.Screen
-      name="Settings"
-      component={Settings}
-      options={({ navigation }) => ({
-        title: "Settings",
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <HeaderTitle />,
-      })}
-    />
-    <Stack.Screen
-      name="Vendors"
-      component={Vendors}
-      options={({ navigation }) => ({
-        title: "3rd Parties",
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <HeaderTitle />,
-      })}
-    />
-    <Stack.Screen
-      name="Claims"
-      component={Claims}
-      options={({ navigation }) => ({
-        title: "Claims",
+        title: "Claim",
         headerLeft: () => <HeaderLeft navigation={navigation} />,
         headerTitle: () => <HeaderTitle />,
       })}
