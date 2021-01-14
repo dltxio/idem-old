@@ -7,6 +7,9 @@ import { colors } from "theme";
 import {bindActionCreators} from "redux";
 import {createAction as createKeyAction} from "../../../store/user/actions/createKey";
 import {connect} from "react-redux";
+import config from "../../../../../config.json";
+
+const claimList = config.claims;
 
 const styles = StyleSheet.create({
   root: {
@@ -48,17 +51,10 @@ const Claims = ({ navigation, user, app }) => (
   <View style={styles.root}>
     <StatusBar barStyle="light-content"/>
     <FlatList
-      data={[
-        {key: "18+"},
-        {key: "DOB"},
-        {key: "Full Name"},
-        {key: "Email"},
-        {key: "Mobile"},
-        {key: "Address"},
-      ]}
+      data={claimList}
       renderItem={({item}) =>
         <Claim
-          name={item.key}
+          {...item}
           window={app.window}
         />
       }
