@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {
   StyleSheet, Text, View, StatusBar,
 } from "react-native";
-import { colors } from "theme";
+import { colors } from "../../../styles/theme";
 
 const styles = StyleSheet.create({
   root: {

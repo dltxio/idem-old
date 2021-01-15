@@ -1,6 +1,6 @@
 import { Asset } from "expo-asset";
-import LogoSvg from "../../assets/images/logo.svg";
-import LogoPng from "../../assets/images/logo.png";
+import LogoSvg from "../../../assets/images/logo.svg";
+import LogoPng from "../../../assets/images/logo.png";
 
 export const svgs = {
   logo: LogoSvg,

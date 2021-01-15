@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {
   StyleSheet, Text, View, TextInput,
 } from "react-native";
-import { colors } from "theme";
+import { colors } from "../../../styles/theme";
 import {connect} from "react-redux";
 import Button from "../../ui/Button";
 

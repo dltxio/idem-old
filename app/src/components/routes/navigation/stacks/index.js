@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { colors } from "theme";
+import { colors } from "../../../../styles/theme";
 import HeaderLeft from "./HeaderLeft";
 import HeaderTitle from "./HeaderTitle";
 import Claims from "components/scenes/claims";

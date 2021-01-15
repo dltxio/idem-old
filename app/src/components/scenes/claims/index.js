@@ -1,9 +1,8 @@
 import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import {
-  StyleSheet, Text, View, StatusBar, FlatList, TouchableOpacity,
+  Text, View, StatusBar, FlatList, TouchableOpacity,
 } from "react-native";
-import { colors } from "theme";
 import {bindActionCreators} from "redux";
 import {
   createAction as createSetNavigationAction
@@ -16,40 +15,11 @@ import {
 } from "../../../store/app/actions/loadAsset";
 import {connect} from "react-redux";
 import assets from "../../../lib/assets";
+import styles from "../../../styles";
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: colors.lightGrayPurple,
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 8,
-    marginTop: 16,
-  },
-  claim: {
-    fontSize: 18,
-    height: 44,
-    paddingTop: 25,
-    marginBottom: 25,
-    paddingLeft: 80,
-    paddingRight: 80,
-    textAlign: "left",
-  },
-});
-
-const claimRowStyle = (window) => ({
-  borderBottomColor: "#cecece",
-  borderBottomWidth: 1,
-  width: window.width,
-});
-
-const Claim = ({ onPress, window, type }) => (
-  <TouchableOpacity style={claimRowStyle(window)} onPress={onPress}>
-    <Text style={styles.claim}>{type}</Text>
+const ClaimListItem = ({ onPress, window, type }) => (
+  <TouchableOpacity style={styles.list.itemWrapper(window)} onPress={onPress}>
+    <Text style={styles.list.itemName}>{type}</Text>
   </TouchableOpacity>
 );
 
@@ -77,18 +47,19 @@ const ClaimSelector = ({
   
   if (app.assets.claims == null)
     return (
-      <View style={styles.root}>
+      <View style={styles.list.root}>
         <Text>Loading...</Text>
       </View>
     );
   
   return (
-    <View style={styles.root}>
+    <View style={styles.list.root}>
       <StatusBar barStyle="light-content"/>
       <FlatList
         data={app.assets.claims}
+        style={{width: app.window.width}}
         renderItem={({item}) =>
-          <Claim
+          <ClaimListItem
             {...item}
             window={app.window}
             onPress={() => {
