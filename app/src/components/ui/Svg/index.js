@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View } from "react-native";
-import { svgs } from "theme/images";
+import { svgs } from "styles/theme/images";
 
 const Svg = ({ name, width, height, style }) => {
   const Icon = svgs[name];

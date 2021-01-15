@@ -2,6 +2,7 @@
 import setWindowDimensions from "./actions/setWindowDimensions";
 import setScene from "./actions/setNavigation";
 import selectClaim from "./actions/selectClaim";
+import selectVendor from "./actions/selectVendor";
 import loadAsset from "./actions/loadAsset";
 
 const initialState = {
@@ -9,6 +10,9 @@ const initialState = {
     canGoBack: false,
   },
   claims: {
+    selected: null,
+  },
+  vendors: {
     selected: null,
   },
   assets: {
@@ -27,6 +31,7 @@ export default ReducerHandler(
     setWindowDimensions,
     setScene,
     selectClaim,
+    selectVendor,
     loadAsset,
   ]
 );

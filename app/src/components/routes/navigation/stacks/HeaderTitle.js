@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
-import PropTypes from "prop-types";
 import {useRoute} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
