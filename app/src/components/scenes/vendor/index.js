@@ -1,9 +1,7 @@
-﻿import {FlatList} from "react-native-web";
-
-﻿﻿import React from "react";
+﻿﻿﻿import React from "react";
 import PropTypes from "prop-types";
 import {
-  Text, View,
+  Text, View, FlatList,
 } from "react-native";
 import {connect} from "react-redux";
 import styles from "../../../styles";
