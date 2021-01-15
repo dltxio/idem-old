@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 const Claim = ({ navigation, window, claim }) => {
   return (
     <View style={styles.root}>
-      <Text style={styles.title}>{claim?.name}</Text>
+      <Text style={styles.title}>{claim?.type}</Text>
       <Text style={styles.label}>Value of claim</Text>
       <TextInput style={{
         ...styles.input,

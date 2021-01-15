@@ -1,8 +1,8 @@
-﻿import selectClaim from "./actions/selectClaim";
-
-﻿import ReducerHandler from "../handler";
+﻿﻿import ReducerHandler from "../handler";
 import setWindowDimensions from "./actions/setWindowDimensions";
 import setScene from "./actions/setNavigation";
+import selectClaim from "./actions/selectClaim";
+import loadAsset from "./actions/loadAsset";
 
 const initialState = {
   navigation: {
@@ -10,6 +10,10 @@ const initialState = {
   },
   claims: {
     selected: null,
+  },
+  assets: {
+    claims: null,
+    vendors: null,
   },
   window: {
     width: 0,
@@ -23,5 +27,6 @@ export default ReducerHandler(
     setWindowDimensions,
     setScene,
     selectClaim,
+    loadAsset,
   ]
 );

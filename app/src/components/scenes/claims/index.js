@@ -11,8 +11,11 @@ import {
 import {
   createAction as createSelectClaimAction
 } from "../../../store/app/actions/selectClaim";
+import {
+  createAction as createLoadAssetAction
+} from "../../../store/app/actions/loadAsset";
 import {connect} from "react-redux";
-import config from "../../../../config.json";
+import assets from "../../../lib/assets";
 
 const styles = StyleSheet.create({
   root: {
@@ -44,9 +47,9 @@ const claimRowStyle = (window) => ({
   width: window.width,
 });
 
-const Claim = ({ onPress, window, name }) => (
+const Claim = ({ onPress, window, type }) => (
   <TouchableOpacity style={claimRowStyle(window)} onPress={onPress}>
-    <Text style={styles.claim}>{name}</Text>
+    <Text style={styles.claim}>{type}</Text>
   </TouchableOpacity>
 );
 
@@ -55,7 +58,15 @@ const ClaimSelector = ({
   app,
   selectClaim,
   setNavigation,
+  loadAsset,
 }) => {
+  useEffect(() => {
+    (async () => {
+      const claims = await assets.fetch(assets.Type.Claims);
+      loadAsset(assets.Type.Claims, claims);
+    })();
+  }, []);
+  
   useEffect(() => {
     navigation.addListener("focus", () => {
       setNavigation({
@@ -64,11 +75,18 @@ const ClaimSelector = ({
     });
   }, [navigation]);
   
+  if (app.assets.claims == null)
+    return (
+      <View style={styles.root}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  
   return (
     <View style={styles.root}>
       <StatusBar barStyle="light-content"/>
       <FlatList
-        data={config.claims}
+        data={app.assets.claims}
         renderItem={({item}) =>
           <Claim
             {...item}
@@ -105,6 +123,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setNavigation: bindActionCreators(createSetNavigationAction, dispatch),
   selectClaim: bindActionCreators(createSelectClaimAction, dispatch),
+  loadAsset: bindActionCreators(createLoadAssetAction, dispatch),
 });
 
 export default connect(
