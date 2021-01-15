@@ -1,12 +1,11 @@
-﻿import Button from "../../ui/Button";
-
-﻿﻿import React from "react";
+﻿﻿﻿import React from "react";
 import PropTypes from "prop-types";
 import {
   StyleSheet, Text, View, TextInput,
 } from "react-native";
 import { colors } from "theme";
 import {connect} from "react-redux";
+import Button from "../../ui/Button";
 
 const styles = StyleSheet.create({
   root: {
