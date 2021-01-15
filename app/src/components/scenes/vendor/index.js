@@ -1,4 +1,6 @@
-﻿﻿﻿import React from "react";
+﻿import {FlatList} from "react-native-web";
+
+﻿﻿import React from "react";
 import PropTypes from "prop-types";
 import {
   Text, View,
@@ -14,6 +16,18 @@ const Vendor = ({ navigation, window, vendor }) => {
     <View style={styles.vendor.root}>
       <Text style={styles.vendor.title}>{vendor.name}</Text>
       <Text style={styles.vendor.url}>{vendor.url}</Text>
+      <Text style={styles.vendor.description}>{vendor.description}</Text>
+      <View style={styles.vendor.claimsWrapper(window)}>
+        <Text style={styles.vendor.claimsTitle}>Claims requested</Text>
+        <FlatList
+          data={vendor.claims}
+          renderItem={({ item }) =>
+            <Text style={styles.vendor.claimValue}>
+              { Object.keys(item)[0] }
+            </Text>
+          }
+        />
+      </View>
     </View>
   );
 };
