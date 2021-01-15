@@ -10,6 +10,7 @@
     "test": "node_modules/.bin/jest --passWithNoTests"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.13.2",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.2",
     "@react-navigation/drawer": "^5.11.4",
@@ -22,6 +23,7 @@
     "expo-font": "~8.4.0",
     "global": "^4.4.0",
     "moment": "^2.24.0",
+    "noble-secp256k1": "^1.1.1",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",

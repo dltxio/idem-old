@@ -16,6 +16,7 @@ import {
 } from "../../../store/app/actions/loadAsset";
 import {connect} from "react-redux";
 import assets from "../../../lib/assets";
+import keyPair from "../../../lib/eth/keyPair";
 
 const styles = StyleSheet.create({
   root: {
@@ -60,6 +61,14 @@ const ClaimSelector = ({
   setNavigation,
   loadAsset,
 }) => {
+  (async () => {
+    const pair = await keyPair.getFromStorage(
+      "encrypted_pair",
+      "asdhisdaohadhasdadijsioadsasdedw"
+    );
+    console.log("pair: ", pair);
+  })();
+  
   useEffect(() => {
     (async () => {
       const claims = await assets.fetch(assets.Type.Claims);
