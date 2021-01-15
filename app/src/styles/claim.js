@@ -24,8 +24,12 @@ export default {
   uploadButtonWrapper: {
     marginVertical: 12,
   },
-  verifyButtonWrapper: {
+  verifyButton: {
     position: "absolute",
-      bottom: 30,
+    bottom: 30,
+    height: 50,
+    justifyContent: "center",
+    left: 10,
+    right: 10,
   },
 };

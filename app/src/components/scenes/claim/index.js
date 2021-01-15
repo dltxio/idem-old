@@ -20,9 +20,10 @@ const Claim = ({ navigation, window, claim }) => {
       <View style={styles.claim.uploadButtonWrapper}>
         <Button title="Select Supporting Document" />
       </View>
-      <View style={styles.claim.verifyButtonWrapper}>
-        <Button title="Verify" />
-      </View>
+      <Button
+        title="Verify"
+        style={styles.claim.verifyButton}
+      />
     </View>
   );
 };
