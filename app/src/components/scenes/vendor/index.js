@@ -5,6 +5,8 @@ import {
 } from "react-native";
 import {connect} from "react-redux";
 import styles from "../../../styles";
+import Button from "../../ui/Button";
+import vendorRegister from "../../../lib/vendor/register";
 
 const Vendor = ({ navigation, window, vendor }) => {
   if (vendor == null)
@@ -26,6 +28,11 @@ const Vendor = ({ navigation, window, vendor }) => {
           }
         />
       </View>
+      <Button
+        title="Register"
+        style={styles.vendor.registerButton}
+        onPress={() => vendorRegister(vendor)}
+      />
     </View>
   );
 };

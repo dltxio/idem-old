@@ -37,4 +37,12 @@ export default {
     paddingVertical: 10,
     textAlign: "center",
   },
+  registerButton: {
+    position: "absolute",
+    bottom: 30,
+    height: 50,
+    justifyContent: "center",
+    left: 10,
+    right: 10,
+  },
 };

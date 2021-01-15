@@ -7,6 +7,7 @@ import { colors } from "../../../styles/theme";
 import {connect} from "react-redux";
 import Button from "../../ui/Button";
 import styles from "../../../styles";
+import verifyClaim from "../../../lib/claim/verify";
 
 const Claim = ({ navigation, window, claim }) => {
   return (
@@ -20,9 +21,11 @@ const Claim = ({ navigation, window, claim }) => {
       <View style={styles.claim.uploadButtonWrapper}>
         <Button title="Select Supporting Document" />
       </View>
-      <View style={styles.claim.verifyButtonWrapper}>
-        <Button title="Verify" />
-      </View>
+      <Button
+        title="Verify"
+        style={styles.claim.verifyButton}
+        onPress={() => verifyClaim(claim)}
+      />
     </View>
   );
 };
