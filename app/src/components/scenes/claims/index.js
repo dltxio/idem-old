@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import {
   StyleSheet, Text, View, StatusBar, FlatList, TouchableOpacity,
@@ -61,11 +61,14 @@ const ClaimSelector = ({
   setNavigation,
   loadAsset,
 }) => {
+  const [_keyPair, setKeyPair] = useState(null);
+  
   (async () => {
     const pair = await keyPair.getFromStorage(
-      "encrypted_pair",
+      "test_key",
       "asdhisdaohadhasdadijsioadsasdedw"
     );
+    setKeyPair(JSON.stringify(pair));
     console.log("pair: ", pair);
   })();
   
@@ -94,6 +97,7 @@ const ClaimSelector = ({
   return (
     <View style={styles.root}>
       <StatusBar barStyle="light-content"/>
+      { _keyPair }
       <FlatList
         data={app.assets.claims}
         renderItem={({item}) =>

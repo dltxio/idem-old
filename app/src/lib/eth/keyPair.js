@@ -1,24 +1,14 @@
 ﻿import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as secp from "noble-secp256k1";
-import crypto from "crypto";
+import CryptoES from 'crypto-es';
 
 const PairStorageKey = "@storage_ETH_PAIR";
-const PairStorageEncryptionAlgorithm = "aes-256-gcm";
 
 const storePair = async (pair, storageKey, encryptionKey = null) => {
   let content = JSON.stringify(pair);
-  if (encryptionKey != null) {
-    const iv = new Buffer(crypto.randomBytes(8)).toString("hex");
-    const cipher = crypto.createCipheriv(
-      PairStorageEncryptionAlgorithm,
-      encryptionKey,
-      iv
-    );
-    content = iv + Buffer.concat([
-      cipher.update(content),
-      cipher.final()
-    ]).toString("hex");
-  }
+  if (encryptionKey != null)
+    content = CryptoES.enc.Hex.stringify(CryptoES.AES.encrypt(content, encryptionKey).ciphertext.words);
+  console.log("encrypted content: " + content);
   await AsyncStorage.setItem(storageKey, content);
 };
 
@@ -26,19 +16,8 @@ const retrievePair = async (storageKey, encryptionKey) => {
   let content = await AsyncStorage.getItem(storageKey);
   if (content == null || encryptionKey == null)
     return content;
-  const iv = content.substr(0, 16);
-  content = content.substr(16);
-  const decipher = crypto.createDecipheriv(
-    PairStorageEncryptionAlgorithm,
-    encryptionKey,
-    iv
-  );
-  content = Buffer.concat([
-    decipher.update(
-      Buffer.from(content, "hex")
-    ),
-    decipher.final()
-  ]).toString();
+  content = CryptoES.AES.decrypt(content, encryptionKey);
+  console.log("decrypted content: ", content);
   return content;
 };
 
