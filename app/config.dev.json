@@ -1,15 +1,7 @@
 ﻿{
-  "claims": [{
-    "name": "18+"
-  }, {
-    "name": "DOB"
-  }, {
-    "name": "Full Name"
-  }, {
-    "name": "Email"
-  }, {
-    "name": "Mobile"
-  }, {
-    "name": "Address"
-  }]
+  "assets": {
+    "endpoint": "https://raw.githubusercontent.com/dltxio/blockchain-id/master/",
+    "claims": "assets/claims.json",
+    "vendors": "assets/sites.json"
+  }
 }
