@@ -77,6 +77,7 @@ When Block ID ..
 | 0x04 | Address | address | Physical Address |  | 
 
 ### Table of claims data types
+
 | Name | Value |
 | --- | --- |
 | decimal | |
