@@ -1,26 +1,38 @@
 [
   {
     "type": "18+",
-    "key": "0x00"
+    "key": "0x00",
+    "nnemonic": "eighteen",
+    "description": ""
   },
   {
     "type": "DOB",
-    "key": "0x01"
+    "key": "0x01",
+    "nnemonic": "dateofbirth",
+    "description": ""
   },
   {
     "type": "Full Name",
-    "key": "0x02"
+    "key": "0x02",
+    "nnemonic": "fullname",
+    "description": ""
   },
   {
     "type": "Email",
-    "key": "0x03"
+    "key": "0x03",
+    "nnemonic": "email",
+    "description": ""
   },
   {
     "type": "Mobile",
-    "key": "0x04"
+    "key": "0x04",
+    "nnemonic": "mobile",
+    "description": ""
   },
   {
     "type": "Address",
-    "key": "0x05"
+    "key": "0x05",
+    "nnemonic": "address",
+    "description": ""
   }
 ]

@@ -38,9 +38,7 @@ Meta data is stored in a JSON object
 ```
 
 ## Verify these claims
-These claims are then verified by a third party KYC vendors who return an X-509 SSL certificate signed JSON object that can the be used again.  Each vendor has a different process
-
-Table of vendors
+These claims are then verified by a third party KYC vendors who return an X-509 SSL certificate signed JSON object that can the be used again.  Each vendor has a different process for onboarding and the app will maintin these different business requirements.
 
 ## Implmentation on third party sites
 ### Step 1:  Onboarding on Third Party Sites
@@ -51,7 +49,7 @@ The exchange creates a unique URL with the mime `id://` with the claims the exch
 * Nonce as UUID (mandatory)
 * A list of claims required
 
-Eg: `id://callback=myexchange.com.au/register?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3`
+Eg: `idem://callback=myexchange.com.au/register?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3`
 
 ### Step 2:  Posting the signed data
 The user will then receive confirmation alert on the ...

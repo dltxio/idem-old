@@ -13,13 +13,14 @@ const Claim = ({ navigation, window, claim }) => {
   return (
     <View style={styles.claim.root}>
       <Text style={styles.claim.title} type='date'>{claim?.type}</Text>
+      <Text style={styles.claim.label} type='date'>{claim?.description}</Text>
       <Text style={styles.claim.label}>Value of claim</Text>
       <TextInput style={{
         ...styles.claim.input,
         width: Math.floor(window.width)
       }}/>
       <Button
-        title="Select Supporting Document"
+        title="Add Supporting Document From Device"
         style={styles.claim.uploadButton}
       />
       <Button
