@@ -21,8 +21,13 @@ export default {
       borderWidth: 1,
       padding: 12,
   },
-  uploadButtonWrapper: {
-    marginVertical: 12,
+  uploadButton: {
+    position: "absolute",
+    bottom: 90,
+    height: 50,
+    justifyContent: "center",
+    left: 10,
+    right: 10
   },
   verifyButton: {
     position: "absolute",
@@ -30,6 +35,6 @@ export default {
     height: 50,
     justifyContent: "center",
     left: 10,
-    right: 10,
+    right: 10
   },
 };

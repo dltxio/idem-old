@@ -66,17 +66,27 @@ The user will then receive confirmation alert on the ...
 When Block ID ..
 
 
-### Claims based ID
-
-Table of claims
+### Table of claims
 
 | Key | Subject | Mnemonic | Standard | Description |
 |---|---|---|---|---|
 | 0x00 | Full Name | fullname | | Clients Full Name |
 | 0x01 | Birth Year | birthyear | YYYY ISO 8601 | Clients Year of Birth |
 | 0x02 | Date of Birth | dob | YYYY-MM-DD ISO 8601 | Clients Date of Birth | 
+| 0x03 | Email | email | email |  | 
+| 0x04 | Address | address | Physical Address |  | 
 
-Table of documents
+### Table of claims data types
+| Name | Value |
+| --- | --- |
+| decimal | |
+| boolean | |
+| integer | |
+| email | |
+| date | |
+| datetime |
+
+### Table of documents
 
 | Key | Document | Details
 | --- | --- | ---

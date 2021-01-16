@@ -12,15 +12,16 @@ import verifyClaim from "../../../lib/claim/verify";
 const Claim = ({ navigation, window, claim }) => {
   return (
     <View style={styles.claim.root}>
-      <Text style={styles.claim.title}>{claim?.type}</Text>
+      <Text style={styles.claim.title} type='date'>{claim?.type}</Text>
       <Text style={styles.claim.label}>Value of claim</Text>
       <TextInput style={{
         ...styles.claim.input,
-        width: Math.floor(window.width * 0.5)
-      }} />
-      <View style={styles.claim.uploadButtonWrapper}>
-        <Button title="Select Supporting Document" />
-      </View>
+        width: Math.floor(window.width)
+      }}/>
+      <Button
+        title="Select Supporting Document"
+        style={styles.claim.uploadButton}
+      />
       <Button
         title="Verify"
         style={styles.claim.verifyButton}
