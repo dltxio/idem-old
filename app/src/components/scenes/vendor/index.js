@@ -6,7 +6,7 @@ import {
 import {connect} from "react-redux";
 import styles from "../../../styles";
 import Button from "../../ui/Button";
-import vendorRegister from "../../../lib/vendor/register";
+import vendorRegister from "../../../lib/site/register";
 
 const Vendor = ({ navigation, window, vendor }) => {
   if (vendor == null)
