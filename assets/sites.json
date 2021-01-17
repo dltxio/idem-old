@@ -9,5 +9,11 @@
                 "email": true
             }
         ]
+    },
+    {
+        "name": "Digital Surge",
+        "url": "https://www.digitalsurge.com.au",
+        "description": "Lorem ipsum dolor sit amet",
+        "registration": "https://digitalsurge.com.au/api/registration/sign-up/"
     }
 ]
