@@ -4,28 +4,28 @@ Using EIP 1820 for ID claims.
 
 ## Abstract
 
-This paper defines a protocol using standard cryptography and reputable KYC providers to assert claims such as Proof of Age, for the re-use at online websites that require KYC.
+This paper defines a protocol using standard cryptography and reputable KYC providers to assert claims such as Proof of Age, DoB, Address etc for re-use at online websites that require KYC.
 
-Everytime an exchange calls an ID provider to KYC documents, they incure an expense.  Futhermore, users are required every time provide KYC information instead of a portable verification.  By locally storing users information verified information, we can increase the customer onboarding expirence and reduce the costs to the exchanges and other services.
+Every time an exchange calls an ID provider to KYC documents, they incur an expense.  Further, users are required to provide KYC information and have it verified for each and every onboarding, instead of a portable, reusable verification from a trusted provider.  By locally storing user's verified information, we can enhance the customer onboarding experience and reduce costs incurred by Vendors.
 
 ## User onboarding
 
-The following defines the work flow for a new users to use the id app.
+The following defines the workflow for a new users to use the id app.
 
 ### Step 1: New registration
 
 User onboards to the app via their Mobile number.
 
 ### Step 2: New private key
-The app will automatically create a 256 bit private key will be created on the device.  This will be used to sign messages to third parties.
+The app will automatically create a 256-bit private key on the device.  This will be used to sign messages to third parties.
 
-Note: PGP/GPG should not be ruled out.
+Note: PGP/GPG possible in future iterations.
 
 ### Step 3: Upload data
 
-On the mobile application the user can choose certain types of claims that which to verify, such as Data of Birth or Address.  The user is then required to substantiated any of those claims with supporting evidence such as a government issued document, utilities bill or such. The documents are stored in the local storage of the device along with a keccak 256 hash.
+On the mobile application the user can choose certain types of claims to verify, such as 18+, Date of Birth or Address.  The user is then required to substantiate any of those claims with supporting evidence such as a government issued document, utilities bill or such. The documents are stored in the local storage of the device along with a keccak 256 hash.
 
-Meta data is stored in a JSON object
+Meta data is stored in a JSON object:
 
 ```json
 [
@@ -38,10 +38,10 @@ Meta data is stored in a JSON object
 ```
 
 ## Verify these claims
-These claims are then verified by a third party KYC vendors who return an X-509 SSL certificate signed JSON object that can the be used again.  Each vendor has a different process for onboarding and the app will maintin these different business requirements.
+These claims are then verified by a third-party KYC vendors who return an X-509 SSL certificate signed JSON object that can then be used again.  Each vendor has a different process for onboarding and the app will maintain these different business requirements.
 
-## Implmentation on third party sites
-### Step 1:  Onboarding on Third Party Sites
+## Implementation on Third-Party sites
+### Step 1:  Onboarding on Third-Party Sites
 
 The exchange creates a unique URL with the mime `id://` with the claims the exchange requires for 
 
@@ -89,8 +89,8 @@ When Block ID ..
 
 | Key | Document | Details
 | --- | --- | ---
-| 0x00 | Australian birth certificate | A full birth certificate in your name or former name issued by Births, Deaths and Marriages. We can’t accept birth extracts or birth cards.
-| 0x01 | Australian driver licence | A current driver licence with your photo issued in your name. This includes physical and digital driver licences, current learner permits and provisional licences. 
+| 0x00 | Australian birth certificate | A full birth certificate in your name or former name issued by State Authority of Births, Deaths and Marriages. We cannot accept birth extracts or birth cards.
+| 0x01 | Australian driver licence | A current driver licence with your photo issued in your name. This includes physical and digital driver licences, current learner permits, and provisional licences. 
 
 ### Trusted ID verification providers
 
@@ -153,9 +153,9 @@ contract EthereumClaimsRegistry {
 }
 ```
 
-# Verfication
+# Verification
 
-Once the user has verified their identity, a third party service such as a crypto exchange may want to verifiy their users identity.  Put simply, "is this person who they say they are?"
+Once the user has verified their identity, a third-party service such as a crypto exchange may want to verify a user's identity.  Put simply, "Is this User who they say they are?"
 
 ## JWTs
 
