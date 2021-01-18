@@ -9,7 +9,7 @@
     "type": "DOB",
     "key": "0x01",
     "nnemonic": "dateofbirth",
-    "description": ""
+    "description": "Your date of birth"
   },
   {
     "type": "Full Name",
