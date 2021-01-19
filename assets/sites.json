@@ -16,5 +16,12 @@
         "description": "Lorem ipsum dolor sit amet",
         "registration": "https://digitalsurge.com.au/api/registration/sign-up/",
         "affiliation": "HT7LT"
+    },
+    {
+        "name": "CoinTree",
+        "url": "https://cointree.com.au",
+        "description": "Lorem ipsum dolor sit amet",
+        "registration": "https://digitalsurge.com.au/api/registration/sign-up/",
+        "affiliation": "https://www.cointree.com?r=33Y8v9n4DsXm"
     }
 ]
