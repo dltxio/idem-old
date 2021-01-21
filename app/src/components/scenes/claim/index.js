@@ -1,24 +1,64 @@
-﻿﻿﻿import React from "react";
+﻿﻿import React, { useState } from "react";
 import PropTypes from "prop-types";
 import {
-  StyleSheet, Text, View, TextInput,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback,
+  Platform,
 } from "react-native";
 import { colors } from "../../../styles/theme";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import Button from "../../ui/Button";
 import styles from "../../../styles";
 import verifyClaim from "../../../lib/claim/verify";
+import DatePick from "../../ui/DatePick/DatePick";
 
 const Claim = ({ navigation, window, claim }) => {
+  const [showDate, setShowDate] = useState(false);
+  const [date, setDate] = useState();
   return (
     <View style={styles.claim.root}>
-      <Text style={styles.claim.title} type='date'>{claim?.type}</Text>
-      <Text style={styles.claim.label} type='date'>{claim?.description}</Text>
+      <Text style={styles.claim.title} type="date">
+        {claim?.type}
+      </Text>
+      <Text style={styles.claim.label} type="date">
+        {claim?.description}
+      </Text>
       <Text style={styles.claim.label}>Value of claim</Text>
-      <TextInput style={{
-        ...styles.claim.input,
-        width: Math.floor(window.width)
-      }}/>
+      {claim?.type === "DOB" ? (
+        <>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss()}>
+            <TextInput
+              style={{
+                ...styles.claim.input,
+                width: Math.floor(window.width),
+              }}
+              onFocus={() => {
+                setShowDate(true);
+              }}
+              value={date}
+            />
+          </TouchableWithoutFeedback>
+          <DatePick
+            show={showDate}
+            handleDateChange={(value, selectedDate) => {
+              setDate(new Date(selectedDate).toLocaleDateString());
+              setShowDate(Platform.OS === "ios");
+            }}
+          />
+        </>
+      ) : (
+        <TextInput
+          style={{
+            ...styles.claim.input,
+            width: Math.floor(window.width),
+          }}
+        />
+      )}
+
       <Button
         title="Add Supporting Document From Device"
         style={styles.claim.uploadButton}
@@ -38,8 +78,8 @@ Claim.propTypes = {
   }),
   window: PropTypes.shape({
     width: PropTypes.number,
-    height: PropTypes.number
-  })
+    height: PropTypes.number,
+  }),
 };
 
 const mapStateToProps = (state) => ({
@@ -47,7 +87,4 @@ const mapStateToProps = (state) => ({
   claim: state.app.claims.selected,
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(Claim);
+export default connect(mapStateToProps, null)(Claim);
