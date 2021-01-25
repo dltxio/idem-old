@@ -17,9 +17,10 @@ import {connect} from "react-redux";
 import assets from "../../../lib/assets";
 import styles from "../../../styles";
 
-const ClaimListItem = ({ onPress, window, type }) => (
+const ClaimListItem = ({ onPress, window, type, description }) => (
   <TouchableOpacity style={styles.list.itemWrapper(window)} onPress={onPress}>
     <Text style={styles.list.itemName}>{type}</Text>
+    <Text style={{ color: "#707070" }}>{description}</Text>
   </TouchableOpacity>
 );
 

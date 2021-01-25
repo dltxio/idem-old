@@ -73,6 +73,7 @@ const Claim = ({ navigation, window, claim }) => {
       <Button
         title="Verify"
         style={styles.claim.verifyButton}
+        disabled={true}
         onPress={() => verifyClaim(claim)}
       />
     </View>
