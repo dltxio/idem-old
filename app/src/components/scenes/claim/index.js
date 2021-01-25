@@ -52,9 +52,9 @@ const Claim = ({ navigation, window, claim }) => {
           />
         </>
       )}
-      {claim?.type === "Email" ? (
-        <EmailClaim window={window} />
-      ) : (
+      {claim?.type === "Email" && <EmailClaim window={window} />}
+
+      {claim?.type !== "Email" && claim?.type !== "DOB" && (
         <TextInput
           style={{
             ...styles.claim.input,
