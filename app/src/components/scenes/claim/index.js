@@ -44,9 +44,12 @@ const Claim = ({ navigation, window, claim }) => {
           </TouchableWithoutFeedback>
           <DatePick
             show={showDate}
-            handleDateChange={(value, selectedDate) => {
-              setDate(new Date(selectedDate).toLocaleDateString());
-              setShowDate(Platform.OS === "ios");
+            handleColseDate={() => {
+              setShowDate(false);
+            }}
+            handleDateChange={(value) => {
+              setDate(new Date(value).toLocaleDateString());
+              setShowDate(false);
             }}
           />
         </>

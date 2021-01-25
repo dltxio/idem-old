@@ -1,21 +1,18 @@
 import React, { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { View } from "react-native";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-const DatePick = ({ show, handleDateChange }) => {
+const DatePick = ({ show, handleDateChange, handleColseDate }) => {
   return (
     <View>
-      {show && (
-        <DateTimePicker
-          value={new Date()}
-          mode="date"
-          display="calendar"
-          is24Hour={true}
-          onChange={handleDateChange}
-        />
-      )}
+      <DateTimePickerModal
+        isVisible={show}
+        mode="date"
+        onConfirm={handleDateChange}
+        onCancel={handleColseDate}
+      />
     </View>
   );
 };
-
 export default DatePick;
