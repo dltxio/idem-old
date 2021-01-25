@@ -23,7 +23,7 @@ const EmailClaim = ({ window }) => {
             setError("");
             try {
               await AsyncStorage.setItem("@email", email);
-              //console.log(await AsyncStorage.getItem("@email")); get item email from storage for test
+              console.log(await AsyncStorage.getItem("@email"));
             } catch (error) {
               setError(error);
             }
