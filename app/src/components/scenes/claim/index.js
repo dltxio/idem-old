@@ -15,6 +15,7 @@ import Button from "../../ui/Button";
 import styles from "../../../styles";
 import verifyClaim from "../../../lib/claim/verify";
 import DatePick from "../../ui/DatePick/DatePick";
+import EmailClaim from "./EmailClaim";
 
 const Claim = ({ navigation, window, claim }) => {
   const [showDate, setShowDate] = useState(false);
@@ -28,7 +29,7 @@ const Claim = ({ navigation, window, claim }) => {
         {claim?.description}
       </Text>
       <Text style={styles.claim.label}>Value of claim</Text>
-      {claim?.type === "DOB" ? (
+      {claim?.type === "DOB" && (
         <>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss()}>
             <TextInput
@@ -53,7 +54,10 @@ const Claim = ({ navigation, window, claim }) => {
             }}
           />
         </>
-      ) : (
+      )}
+      {claim?.type === "Email" && <EmailClaim window={window} />}
+
+      {claim?.type !== "Email" && claim?.type !== "DOB" && (
         <TextInput
           style={{
             ...styles.claim.input,
