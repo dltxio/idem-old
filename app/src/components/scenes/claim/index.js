@@ -16,10 +16,17 @@ import styles from "../../../styles";
 import verifyClaim from "../../../lib/claim/verify";
 import DatePick from "../../ui/DatePick/DatePick";
 import EmailClaim from "./EmailClaim";
+import * as DocumentPicker from "expo-document-picker";
 
 const Claim = ({ navigation, window, claim }) => {
   const [showDate, setShowDate] = useState(false);
   const [date, setDate] = useState();
+
+  const uploadFile = async () => {
+    const res = await DocumentPicker.getDocumentAsync({});
+    console.log(res);
+    //TODO choose files to upload and save to local storage or local database
+  };
   return (
     <View style={styles.claim.root}>
       <Text style={styles.claim.title} type="date">
@@ -69,6 +76,7 @@ const Claim = ({ navigation, window, claim }) => {
       <Button
         title="Add Supporting Document From Device"
         style={styles.claim.uploadButton}
+        onPress={uploadFile}
       />
       <Button
         title="Verify"
