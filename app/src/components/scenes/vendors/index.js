@@ -59,6 +59,7 @@ const VendorSelector = ({
       <FlatList
         data={app.assets.vendors}
         style={{width: app.window.width}}
+        keyExtractor={(item) => item.url}
         renderItem={({item}) =>
           <VendorListItem
             key={item.url}
