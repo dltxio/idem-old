@@ -24,7 +24,9 @@ export const useRootStore = () => {
 export const RootStoreProvider: React.FunctionComponent = ({
   children,
 }: any) => {
-  const store = useLocalObservable(RootStore.create);
+  const store = useLocalObservable(() =>
+    RootStore.create({ UI: UIStore.create(), Assets: AssetStore.create() }),
+  );
   return (
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
   );

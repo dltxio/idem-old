@@ -50,15 +50,7 @@ const TabNavigator = () => (
   >
     <Tab.Screen name="Claims" component={ClaimsStackNavigator} />
     <Tab.Screen name="3rd Parties" component={VendorsStackNavigator} />
-    <Tab.Screen
-      name="Settings"
-      component={Settings}
-      options={({ navigation }) => ({
-        title: "Settings",
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <HeaderTitle />,
-      })}
-    />
+    <Tab.Screen name="Settings" component={Settings} />
   </Tab.Navigator>
 );
 

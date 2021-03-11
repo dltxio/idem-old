@@ -3,8 +3,8 @@ import { Claim, Vendor } from "./assetStore";
 
 export const UIStore = types
   .model({
-    selectedClaim: Claim,
-    selectedVendor: Vendor,
+    selectedClaim: types.maybe(Claim),
+    selectedVendor: types.maybe(Vendor),
   })
   .actions((self) => ({
     update(values: Partial<typeof self>) {

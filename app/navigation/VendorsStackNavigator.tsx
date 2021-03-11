@@ -14,18 +14,16 @@ const VendorsStackNavigator = () => {
         name="3rd Party List"
         component={Vendors}
         options={({ navigation }) => ({
-          title: "3rd Parties",
           headerLeft: () => <HeaderLeft navigation={navigation} />,
-          headerTitle: () => <HeaderTitle />,
+          headerTitle: () => <HeaderTitle title="3rd Parties" />,
         })}
       />
       <Stack.Screen
         name="Vendor"
         component={Vendor}
         options={({ navigation }) => ({
-          title: "Vendor",
           headerLeft: () => <HeaderLeft navigation={navigation} />,
-          headerTitle: () => <HeaderTitle />,
+          headerTitle: () => <HeaderTitle title="Vendor" />,
         })}
       />
     </Stack.Navigator>

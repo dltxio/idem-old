@@ -1,4 +1,4 @@
-import { types, Instance } from "mobx-state-tree";
+import { types, Instance, flow } from "mobx-state-tree";
 import { AssetType, fetchAssets } from "../helpers/assets";
 
 export const Claim = types
@@ -31,12 +31,12 @@ export const AssetStore = types
     vendors: types.array(Vendor),
   })
   .actions((self) => ({
-    loadClaims: async () => {
-      const claims = await fetchAssets(AssetType.Claims);
+    loadClaims: flow(function* () {
+      const claims = yield fetchAssets(AssetType.Claims);
       self.claims = claims;
-    },
-    loadVendors: async () => {
-      const vendors = await fetchAssets(AssetType.Vendors);
+    }),
+    loadVendors: flow(function* () {
+      const vendors = yield fetchAssets(AssetType.Vendors);
       self.vendors = vendors;
-    },
+    }),
   }));
