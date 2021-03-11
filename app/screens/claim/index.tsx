@@ -7,15 +7,16 @@ import {
   TouchableWithoutFeedback,
   ViewStyle,
 } from "react-native";
-import { connect } from "react-redux";
 import Button from "../../components/Button";
 import styles from "../../styles";
 import verifyClaim from "../../helpers/claim/verify";
 import DatePick from "../../components/DatePick";
 import EmailClaim from "./EmailClaim";
 import * as DocumentPicker from "expo-document-picker";
+import { useRootStore } from "../../store/rootStore";
+import { observer } from "mobx-react-lite";
 
-const Claim = ({ claim }: { claim: any }) => {
+const Claim = () => {
   const [showDate, setShowDate] = useState(false);
   const [date, setDate] = useState(undefined as string | undefined);
 
@@ -24,6 +25,9 @@ const Claim = ({ claim }: { claim: any }) => {
     console.log(res);
     //TODO choose files to upload and save to local storage or local database
   };
+  const rootStore = useRootStore();
+  const claim = rootStore.UI.selectedClaim;
+
   return (
     <View style={styles.claim.root}>
       <Text style={styles.claim.title}>{claim?.type}</Text>
@@ -81,8 +85,4 @@ const Claim = ({ claim }: { claim: any }) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  claim: state.app.claims.selected,
-});
-
-export default connect(mapStateToProps, null)(Claim);
+export default observer(Claim);

@@ -4,9 +4,10 @@ import FontIcon from "react-native-vector-icons/FontAwesome5";
 import { colors } from "../styles/theme";
 import HeaderLeft from "../components/HeaderLeft";
 import HeaderTitle from "../components/HeaderTitle";
-import Claims from "../screens/claims";
 import Vendors from "../screens/vendors";
 import Settings from "../screens/settings";
+import ClaimsStackNavigator from "./ClaimsStackNavigator";
+import VendorsStackNavigator from "./VendorsStackNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -47,24 +48,8 @@ const TabNavigator = () => (
     }}
     initialRouteName="Claims"
   >
-    <Tab.Screen
-      name="Claims"
-      component={Claims}
-      options={({ navigation }) => ({
-        title: "Claims",
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <HeaderTitle />,
-      })}
-    />
-    <Tab.Screen
-      name="3rd Parties"
-      component={Vendors}
-      options={({ navigation }) => ({
-        title: "3rd Parties",
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <HeaderTitle />,
-      })}
-    />
+    <Tab.Screen name="Claims" component={ClaimsStackNavigator} />
+    <Tab.Screen name="3rd Parties" component={VendorsStackNavigator} />
     <Tab.Screen
       name="Settings"
       component={Settings}
@@ -76,27 +61,5 @@ const TabNavigator = () => (
     />
   </Tab.Navigator>
 );
-
-// TODO: MAKE A CLAIMS STACK
-{
-  /* <Stack.Screen
-name="Claim"
-component={Claim}
-options={({ navigation }) => ({
-  title: "Claim",
-  headerLeft: () => <HeaderLeft navigation={navigation} />,
-  headerTitle: () => <HeaderTitle />,
-})}
-/>
-<Stack.Screen
-name="Vendor"
-component={Vendor}
-options={({ navigation }) => ({
-  title: "Vendor",
-  headerLeft: () => <HeaderLeft navigation={navigation} />,
-  headerTitle: () => <HeaderTitle />,
-})}
-/> */
-}
 
 export default TabNavigator;

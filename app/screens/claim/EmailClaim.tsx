@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AsyncStorage from "@react-native-community/async-storage";
 import isEmail from "validator/lib/isEmail";
-import { Text, View, TextInput, Button } from "react-native";
+import { Text, View, TextInput } from "react-native";
 import styles from "../../styles";
 
 const EmailClaim = () => {
@@ -19,7 +19,7 @@ const EmailClaim = () => {
           setEmail(value);
         }}
         onBlur={async () => {
-          if (isEmail(email)) {
+          if (email && isEmail(email)) {
             setError("");
             try {
               await AsyncStorage.setItem("@email", email);

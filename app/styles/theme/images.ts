@@ -1,12 +1,13 @@
 import { Asset } from "expo-asset";
 import LogoSvg from "../../assets/images/logo.svg";
 import LogoPng from "../../assets/images/logo.png";
+import ObjectType from "../../types/objectType";
 
-export const svgs = {
+export const svgs: ObjectType = {
   logo: LogoSvg,
 };
 
-export const images = {
+export const images: ObjectType = {
   logo: LogoPng,
 };
 

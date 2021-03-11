@@ -10,12 +10,10 @@ export enum AssetType {
  * @param {Type} "claims"|"vendors"
  * @returns {Promise<Object>}
  */
-const fetch = async (assetType: AssetType) => {
+export const fetchAssets = async (assetType: AssetType) => {
   const endpoint = `${config.assets.endpoint}${config.assets[assetType]}`;
   const response = await axios.get(endpoint);
   if (response.data == null)
     throw new Error(`Could not fetch asset data from endpoint "${endpoint}"`);
   return response.data;
 };
-
-export default { fetch, AssetType };

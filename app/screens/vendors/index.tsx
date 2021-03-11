@@ -13,32 +13,32 @@ import { useRootStore } from "../../store/rootStore";
 import { cast } from "mobx-state-tree";
 import { observer } from "mobx-react-lite";
 
-type ClaimsListItemProps = {
+type VenderItemProps = {
   onPress: () => void;
-  type: string;
-  description: string;
+  name: string;
+  url: string;
 };
 
-const ClaimListItem = ({ onPress, type, description }: ClaimsListItemProps) => (
+const VendorListItem = ({ onPress, name, url }: VenderItemProps) => (
   <TouchableOpacity
     style={styles.list.itemWrapper(styles.layout.window)}
     onPress={onPress}
   >
-    <Text style={styles.list.itemName}>{type}</Text>
-    <Text style={{ color: "#707070" }}>{description}</Text>
+    <Text style={styles.list.itemName}>{name}</Text>
+    <Text style={{ color: "#707070" }}>{url}</Text>
   </TouchableOpacity>
 );
 
-const ClaimSelector = () => {
+const VendorSelector = () => {
   const navigation = useNavigation();
   const rootStore = useRootStore();
-  const assetStore = rootStore.Assets;
+  const vendors = rootStore.Assets.vendors;
 
   useEffect(() => {
-    const claims = assetStore.loadClaims();
+    rootStore.Assets.loadVendors();
   }, []);
 
-  if (assetStore.claims == null)
+  if (vendors == null)
     return (
       <View style={styles.list.root as ViewStyle}>
         <Text>Loading...</Text>
@@ -49,16 +49,18 @@ const ClaimSelector = () => {
     <View style={styles.list.root as ViewStyle}>
       <StatusBar barStyle="light-content" />
       <FlatList
-        data={assetStore.claims}
+        data={vendors}
         style={{ width: styles.layout.window.width }}
+        keyExtractor={(item) => item.url}
         renderItem={({ item }) => (
-          <ClaimListItem
-            type={item.type}
-            description={item.description}
+          <VendorListItem
+            key={item.url}
             onPress={() => {
-              rootStore.UI.update({ selectedClaim: cast(item) });
-              navigation.navigate("Claim");
+              rootStore.UI.update({ selectedVendor: cast(item) });
+              navigation.navigate("Vendor");
             }}
+            name={item.name}
+            url={item.url}
           />
         )}
       />
@@ -66,4 +68,4 @@ const ClaimSelector = () => {
   );
 };
 
-export default observer(ClaimSelector);
+export default observer(VendorSelector);

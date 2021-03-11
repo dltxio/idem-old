@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { StyleSheet, Text, View, StatusBar } from "react-native";
 import { colors } from "../../styles/theme";
 
@@ -17,19 +16,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const Settings = ({ navigation }) => (
+const Settings = () => (
   <View style={styles.root}>
     <StatusBar barStyle="light-content" />
     <Text style={styles.title}>Settings</Text>
   </View>
 );
-
-Settings.propTypes = {
-  navigation: PropTypes.shape({ navigate: PropTypes.func }),
-};
-
-Settings.defaultProps = {
-  navigation: { navigate: () => null },
-};
 
 export default Settings;

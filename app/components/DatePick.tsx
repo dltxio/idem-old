@@ -4,7 +4,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 type DatePickProps = {
   show: boolean;
-  handleDateChange: (value) => void;
+  handleDateChange: (value: any) => void;
   handleCloseDate: () => void;
 };
 

@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { View } from "react-native";
-import { Provider } from "react-redux";
-import store from "./store";
 import { imageAssets } from "./styles/theme/images";
 import { fontAssets } from "./styles/theme/fonts";
-import Navigation from "./navigation";
+import navRef from "./navigation/navRef";
+import { NavigationContainer } from "@react-navigation/native";
+import { Asset } from "expo-asset";
+import DrawerNavigator from "./navigation/DrawerNavigator";
+import { RootStoreProvider } from "./store/rootStore";
 
 const App = () => {
   const [didLoad, setDidLoad] = useState(false);
 
   const handleLoadAssets = async () => {
     // Asset preloading.
-    await Promise.all([...imageAssets, ...fontAssets]);
+    await Promise.all<void | Asset>([...imageAssets, ...fontAssets]);
     setDidLoad(true);
   };
 
@@ -22,9 +24,11 @@ const App = () => {
   if (!didLoad) return <View />;
 
   return (
-    <Provider store={store}>
-      <Navigation />
-    </Provider>
+    <RootStoreProvider>
+      <NavigationContainer ref={navRef}>
+        <DrawerNavigator />
+      </NavigationContainer>
+    </RootStoreProvider>
   );
 };
 

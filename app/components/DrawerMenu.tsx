@@ -6,7 +6,7 @@ import { DrawerActions } from "@react-navigation/native";
 import FontIcon from "react-native-vector-icons/FontAwesome5";
 import { colors } from "../styles/theme";
 
-const DrawerMenu = (props) => (
+const DrawerMenu = (props: { navigation: any }) => (
   <SafeAreaView
     style={{ flex: 1, flexDirection: "column", paddingHorizontal: 10 }}
   >
@@ -33,17 +33,5 @@ const DrawerMenu = (props) => (
     </View>
   </SafeAreaView>
 );
-
-DrawerMenu.propTypes = {
-  navigation: PropTypes.shape({
-    dispatch: PropTypes.func,
-  }),
-};
-
-DrawerMenu.defaultProps = {
-  navigation: {
-    dispatch: () => null,
-  },
-};
 
 export default DrawerMenu;

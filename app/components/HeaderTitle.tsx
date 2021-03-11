@@ -13,7 +13,4 @@ const HeaderTitle = () => (
   </Text>
 );
 
-HeaderTitle.propTypes = {};
-HeaderTitle.defaultProps = {};
-
 export default HeaderTitle;
