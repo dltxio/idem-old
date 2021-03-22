@@ -1,5 +1,5 @@
 const basicAuth = require("express-basic-auth");
-let middlware = null;
+let middleware = null;
 
 const getUsers = () => {
   const userStrings = process.env.API_USERS?.split(",") ?? [];
@@ -12,14 +12,14 @@ const getUsers = () => {
 };
 
 const setMiddleware = () => {
-  middlware = basicAuth({
+  middleware = basicAuth({
     challenge: true,
     users: getUsers(),
   });
 };
 
 module.exports = () => {
-  if (middlware == null)
+  if (middleware == null)
     setMiddleware();
-  return middlware;
+  return middleware;
 };
