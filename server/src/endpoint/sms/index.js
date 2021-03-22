@@ -4,15 +4,15 @@ const schema = require("./schema");
 const message = require("./message");
 
 router.put("/sms", async (request, response) => {
-  const { schemaError, value } = schema.validate(request.body);
+  const { error, value } = schema.validate(request.body);
   
   const sendError = (code, error) => {
     response.status(code);
     response.send({ error });
   };
   
-  if (schemaError != null)
-    return sendError(400, schemaError);
+  if (error != null)
+    return sendError(400, error);
   
   try {
     await message.sendVerification(value.number);
