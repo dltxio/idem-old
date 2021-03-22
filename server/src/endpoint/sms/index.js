@@ -3,7 +3,6 @@ const router = express.Router();
 const schema = require("./schema");
 const message = require("./message");
 const { log } = require("../../logger")("/api/sms");
-const basicAuth = require("../../getAuthMiddleware")();
 
 const requestCode = async (request, response) => {
   const { error, value } = schema.put.validate(request.body);
@@ -49,7 +48,6 @@ const verifyCode = async (request, response) => {
   });
 };
 
-router.use(basicAuth);
 router.put("/sms", requestCode);
 router.post("/sms", verifyCode);
 
