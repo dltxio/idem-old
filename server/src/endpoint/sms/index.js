@@ -2,6 +2,7 @@
 const router = express.Router();
 const schema = require("./schema");
 const message = require("./message");
+const { log } = require("../../logger")("/api/sms");
 
 router.put("/sms", async (request, response) => {
   const { error, value } = schema.validate(request.body);
@@ -15,7 +16,8 @@ router.put("/sms", async (request, response) => {
     return sendError(400, error);
   
   try {
-    await message.sendVerification(value.number);
+    const data = await message.sendVerification(value.number);
+    log(`received SMS verification request for ${value.number} -- code:`, data.code);
   } catch(smsError) {
     return sendError(500, smsError);
   }
