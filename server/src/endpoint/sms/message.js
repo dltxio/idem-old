@@ -1,6 +1,6 @@
 ﻿const messagebird = require("messagebird")(process.env.MESSAGEBIRD_KEY);
 const { sms } = require("../../../config.json");
-const { promisify } = require("utils");
+const { promisify } = require("util");
 const crypto = require("crypto");
 
 const createMessage = promisify(messagebird.messages.create);
