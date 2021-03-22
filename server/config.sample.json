@@ -7,11 +7,5 @@
             "prefix": "Your IDEM verification code is ",
             "suffix": ""
         }
-    },
-    "basicAuth": {
-        "challenge": true,
-        "users": {
-            "admin": "password"
-        }
     }
 }

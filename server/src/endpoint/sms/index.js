@@ -3,8 +3,7 @@ const router = express.Router();
 const schema = require("./schema");
 const message = require("./message");
 const { log } = require("../../logger")("/api/sms");
-const config = require("../../../config.json");
-const basicAuth = require("express-basic-auth")(config.basicAuth);
+const basicAuth = require("../../getAuthMiddleware")();
 
 const requestCode = async (request, response) => {
   const { error, value } = schema.put.validate(request.body);
