@@ -1,0 +1,10 @@
+﻿{
+    "sms": {
+        "codeLength": 6,
+        "message": {
+            "originator": "IDEM",
+            "prefix": "Your IDEM verification code is ",
+            "suffix": ""
+        }
+    }
+}
