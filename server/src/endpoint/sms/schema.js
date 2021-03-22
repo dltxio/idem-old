@@ -1,7 +1,15 @@
 ﻿const Joi = require("joi");
 
-const schema = Joi.object({
+const put = Joi.object({
   number: Joi.string().required(),
 });
 
-module.exports = schema;
+const post = Joi.object({
+  number: Joi.string().required(),
+  code: Joi.string().required(),
+});
+
+module.exports = {
+  put,
+  post
+};
