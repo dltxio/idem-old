@@ -6067,6 +6067,14 @@ merge-stream@^2.0.0:
   resolved "https://registry.yarnpkg.com/merge-stream/-/merge-stream-2.0.0.tgz#52823629a14dd00c9770fb6ad47dc6310f2c1f60"
   integrity sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==
 
+messagebird@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/messagebird/-/messagebird-3.6.0.tgz#0497a735fb3a9f08de59141478ac7936325b25a9"
+  integrity sha512-UFA4zOYawZm/e6FglINmEHsKdopVvcX/35PMOc1sGj00BPfVWA7ZlarYGnz/1Uxj9I86MhemdRCJAC/qCpvwqQ==
+  dependencies:
+    safe-buffer "^5.1.2"
+    scmp "^2.0.0"
+
 metro-babel-register@0.59.0:
   version "0.59.0"
   resolved "https://registry.yarnpkg.com/metro-babel-register/-/metro-babel-register-0.59.0.tgz#2bcff65641b36794cf083ba732fbc46cf870fb43"
@@ -7750,6 +7758,11 @@ scheduler@^0.17.0:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
+
+scmp@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/scmp/-/scmp-2.1.0.tgz#37b8e197c425bdeb570ab91cc356b311a11f9c9a"
+  integrity sha512-o/mRQGk9Rcer/jEEw/yw4mwo3EU/NvYvp577/Btqrym9Qy5/MdWGBqipbALgd2lrdWTJ5/gqDusxfnQBxOxT2Q==
 
 "semver@2 || 3 || 4 || 5", semver@^5.1.0, semver@^5.4.1, semver@^5.5.0, semver@^5.6.0:
   version "5.7.1"
