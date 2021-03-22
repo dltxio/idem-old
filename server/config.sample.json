@@ -1,6 +1,7 @@
 ﻿{
     "sms": {
         "codeLength": 6,
+        "expirySeconds": 600,
         "message": {
             "originator": "IDEM",
             "prefix": "Your IDEM verification code is ",

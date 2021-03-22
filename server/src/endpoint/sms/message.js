@@ -5,7 +5,7 @@ const crypto = require("crypto");
 
 const createMessage = promisify(messagebird.messages.create);
 
-/** @type {Object.<string, string>}
+/** @type {Object.<string, { code: string, date: number }>}
  * Dictionary to store SMS verification codes by number.
  * Only stores one value per phone number, therefore the last
  * code is the only valid code.
@@ -25,7 +25,10 @@ const generateVerificationCode = (number) => {
   let code = crypto.randomBytes(bytes).toString("hex").toUpperCase();
   if (!evenLength)
     code = code.substr(0, code.length - 1);
-  verificationCodes[number] = code;
+  verificationCodes[number] = {
+    code,
+    date: Date.now()
+  };
   return code;
 };
 
@@ -51,9 +54,14 @@ module.exports.sendVerification = async (number) => {
  * @param {boolean} [invalidate] Whether to invalidate the verification code if code input is valid.
  */
 module.exports.checkVerification = (number, code, invalidate = true) => {
+  if (code == null || verificationCodes[number] == null)
+    return false;
+  const isExpired = (
+    Date.now() > verificationCodes[number].date + (sms.expirySeconds * 1000)
+  );
   const isValid = (
-    code != null &&
-    verificationCodes[number]?.toUpperCase() === code?.toUpperCase()
+    !isExpired &&
+    verificationCodes[number].code.toUpperCase() === code?.toUpperCase()
   );
   if (isValid && invalidate)
     delete verificationCodes[number];
