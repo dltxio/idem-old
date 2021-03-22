@@ -32,14 +32,16 @@ const generateVerificationCode = (number) => {
 /**
  * Sends a verification code to the given phone number.
  * @param {string} number
+ * @returns {{ code: string, response: Object }}
  */
 module.exports.sendVerification = async (number) => {
   const code = generateVerificationCode(number);
-  return await createMessage({
+  const response = await createMessage({
     originator: sms.message.originator,
     recipients: [number],
     body: `${sms.message.prefix}${code}${sms.message.suffix}`,
   });
+  return { code, response };
 };
 
 /**
