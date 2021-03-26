@@ -10,13 +10,15 @@ Idem has two workflows, one for onboarding and one for onboarded users who have 
 
 ## User Story 1:  As a potential customer, I want to onboard via the Ideam app, so that I don't have to re-supply all my information.
 
-Given a user who has downloaded the app,
-And has verified their claims,
-When the visit exchange.com,
-And they scan the QR code via the app,
-And the click OK,
-Then they are registered and ID verfied,
-And taken to the exchange home page.
+```text
+Given a user who has downloaded the app,  
+And has verified their claims,  
+When the visit exchange.com,  
+And they scan the QR code via the app,  
+And the click OK,  
+Then they are registered and ID verfied,  
+And taken to the exchange home page.  
+```
 
 ### Step 1: New registration
 
