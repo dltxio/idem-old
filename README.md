@@ -6,7 +6,7 @@ Using EIP 1820 for ID claims.
 
 This paper defines a protocol using standard cryptography and reputable KYC providers to assert claims such as Proof of Age, DoB, Address etc for re-use at online websites that require KYC.
 
-Every time an exchange calls an ID provider to KYC documents, they incur an expense.  Further, users are required to provide KYC information and have it verified for each and every onboarding, instead of a portable, reusable verification from a trusted provider.  By locally storing user's verified information, we can enhance the customer onboarding experience and reduce costs incurred by Vendors.
+Each time an exchange requests an ID verifycation from a provider they incur a fee.  Further, users are required to provide KYC information and have it verified for each and every onboarding, instead of a portable, reusable verification from a trusted provider.  By locally storing user's verified information, we can enhance the customer onboarding experience and reduce costs incurred by Vendors.
 
 ## User onboarding
 
