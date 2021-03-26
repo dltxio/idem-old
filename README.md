@@ -1,6 +1,4 @@
-# Idem
-
-Using EIP 1820 for ID claims.
+# Idem https://idem.com.au
 
 ## Abstract
 
@@ -8,9 +6,17 @@ This paper defines a protocol using standard cryptography and reputable KYC prov
 
 Each time an exchange requests an ID verifycation from a provider they incur a fee.  Further, users are required to provide KYC information and have it verified for each and every onboarding, instead of a portable, reusable verification from a trusted provider.  By locally storing user's verified information, we can enhance the customer onboarding experience and reduce costs incurred by Vendors.
 
-## User onboarding
+Idem has two workflows, one for onboarding and one for onboarded users who have not completed any verification.
 
-The following defines the workflow for a new users to use the id app.
+## User Story 1:  As a potential customer, I want to onboard via the Ideam app, so that I don't have to re-supply all my information.
+
+Given a user who has downloaded the app,
+And has verified their claims,
+When the visit exchange.com,
+And they scan the QR code via the app,
+And the click OK,
+Then they are registered and ID verfied,
+And taken to the exchange home page.
 
 ### Step 1: New registration
 
