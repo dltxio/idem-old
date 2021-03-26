@@ -15,7 +15,7 @@ Given a user who has downloaded the app,
 And has verified their claims,  
 When the visit exchange.com,  
 And they scan the QR code via the app,  
-And the click OK,  
+And Ok on the app,  
 Then they are registered and ID verfied,  
 And taken to the exchange home page.  
 ```
