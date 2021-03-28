@@ -119,7 +119,6 @@ Issuer: The ID provider.  This could be Blockchain Australia
 Subject:  See table
 
 
-
 ### ERC 780 Example
 ```
 contract EthereumClaimsRegistry {
