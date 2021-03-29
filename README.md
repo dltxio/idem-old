@@ -8,7 +8,7 @@ Each time an exchange requests an ID verifycation from a provider they incur a f
 
 Idem has two workflows, one for onboarding and one for onboarded users who have not completed any verification.
 
-## User Story 1:  As a potential customer, I want to onboard via the Ideam app, so that I don't have to re-supply all my information.
+## User Story 1:  As a potential customer, I want to onboard via the Idem app, so that I don't have to re-supply all my information.
 
 ```text
 Given a user who has downloaded the app,  
