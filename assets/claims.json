@@ -3,7 +3,7 @@
     "type": "18+",
     "key": "0x00",
     "nnemonic": "eighteen",
-    "description": ""
+    "description": "Older than 18"
   },
   {
     "type": "DOB",
@@ -15,24 +15,24 @@
     "type": "Full Name",
     "key": "0x02",
     "nnemonic": "fullname",
-    "description": ""
+    "description": "Your full name"
   },
   {
     "type": "Email",
     "key": "0x03",
     "nnemonic": "email",
-    "description": ""
+    "description": "Your email address"
   },
   {
     "type": "Mobile",
     "key": "0x04",
     "nnemonic": "mobile",
-    "description": ""
+    "description": "Your mobile number"
   },
   {
     "type": "Address",
     "key": "0x05",
     "nnemonic": "address",
-    "description": ""
+    "description": "Your physical address"
   }
 ]
