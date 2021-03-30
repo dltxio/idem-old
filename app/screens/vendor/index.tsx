@@ -1,5 +1,5 @@
 ﻿﻿﻿import React from "react";
-import { Text, View, FlatList, ViewStyle } from "react-native";
+import { Text, View, ViewStyle } from "react-native";
 import styles from "../../styles";
 import Button from "../../components/Button";
 import vendorRegister from "../../helpers/site/register";
@@ -21,12 +21,13 @@ const Vendor = () => {
       <Text style={styles.vendor.description}>{vendor.description}</Text>
       <View style={styles.vendor.claimsWrapper(styles.layout.window)}>
         <Text style={styles.vendor.claimsTitle}>Claims requested</Text>
-        <FlatList
-          data={claims}
-          renderItem={({ item }) => (
-            <Text style={styles.vendor.claimValue}>{Object.keys(item)[0]}</Text>
-          )}
-        />
+        {claims.map((item, index) => {
+          return (
+            <Text style={styles.vendor.claimValue} key={index}>
+              {Object.keys(item)[0]}
+            </Text>
+          );
+        })}
       </View>
       <Button
         title="Register"
