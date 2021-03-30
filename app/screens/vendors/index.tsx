@@ -3,7 +3,6 @@ import {
   Text,
   View,
   StatusBar,
-  FlatList,
   TouchableOpacity,
   ViewStyle,
 } from "react-native";
@@ -48,22 +47,21 @@ const VendorSelector = () => {
   return (
     <View style={styles.list.root as ViewStyle}>
       <StatusBar barStyle="light-content" />
-      <FlatList
-        data={vendors}
-        style={{ width: styles.layout.window.width }}
-        keyExtractor={(item) => item.url}
-        renderItem={({ item }) => (
-          <VendorListItem
-            key={item.url}
-            onPress={() => {
-              rootStore.UI.update({ selectedVendor: cast(item) });
-              navigation.navigate("Vendor");
-            }}
-            name={item.name}
-            url={item.url}
-          />
-        )}
-      />
+      <View style={{ flex: 1, width: "100%" }}>
+        {vendors.map((item) => {
+          return (
+            <VendorListItem
+              key={item.url}
+              onPress={() => {
+                rootStore.UI.update({ selectedVendor: cast(item) });
+                navigation.navigate("Vendor");
+              }}
+              name={item.name}
+              url={item.url}
+            />
+          );
+        })}
+      </View>
     </View>
   );
 };

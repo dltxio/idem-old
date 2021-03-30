@@ -3,7 +3,6 @@ import {
   Text,
   View,
   StatusBar,
-  FlatList,
   TouchableOpacity,
   ViewStyle,
 } from "react-native";
@@ -48,20 +47,21 @@ const ClaimSelector = () => {
   return (
     <View style={styles.list.root as ViewStyle}>
       <StatusBar barStyle="light-content" />
-      <FlatList
-        data={assetStore.claims}
-        style={{ width: styles.layout.window.width }}
-        renderItem={({ item }) => (
-          <ClaimListItem
-            type={item.type}
-            description={item.description}
-            onPress={() => {
-              rootStore.UI.update({ selectedClaim: cast(item) });
-              navigation.navigate("Claim");
-            }}
-          />
-        )}
-      />
+      <View style={{ flex: 1, width: "100%" }}>
+        {assetStore.claims.map((item, index) => {
+          return (
+            <ClaimListItem
+              key={index}
+              type={item.type}
+              description={item.description}
+              onPress={() => {
+                rootStore.UI.update({ selectedClaim: cast(item) });
+                navigation.navigate("Claim");
+              }}
+            />
+          );
+        })}
+      </View>
     </View>
   );
 };
