@@ -15,11 +15,12 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
           ...styles.claim.input,
           width: styles.layout.window.width,
         }}
+        keyboardType="email-address"
         onChangeText={(value) => {
           setEmail(value);
         }}
         onBlur={async () => {
-          if (email && isEmail(email)) {
+          if (!!email && isEmail(email)) {
             setError("");
             try {
               item.update({ value: email });
@@ -31,7 +32,7 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
           }
         }}
       />
-      {error && <Text style={styles.claim.errorMessage}>{error}</Text>}
+      {!!error && <Text style={styles.claim.errorMessage}>{error}</Text>}
     </View>
   );
 };
