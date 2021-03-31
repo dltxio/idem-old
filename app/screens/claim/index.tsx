@@ -28,6 +28,10 @@ const Claim = () => {
   const rootStore = useRootStore();
   const claim = rootStore.Assets.selectedClaim;
 
+  if (!claim) {
+    return <View>{/* TODO: error handling for this case */}</View>;
+  }
+
   const renderClaim = (type: string) => {
     switch (type) {
       case "DOB":
@@ -58,7 +62,7 @@ const Claim = () => {
           </View>
         );
       case "Email":
-        return <EmailClaim />;
+        return <EmailClaim item={claim} />;
       default:
         return (
           <TextInput
@@ -75,7 +79,7 @@ const Claim = () => {
     <View style={styles.claim.root}>
       <Text style={styles.claim.title}>{claim?.type}</Text>
       <Text style={styles.claim.label}>{claim?.description}</Text>
-      {renderClaim(claim?.type || "")}
+      {renderClaim(claim.type || "")}
 
       <Button
         title="Add Supporting Document From Device"
