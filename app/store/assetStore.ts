@@ -6,14 +6,11 @@ export const Claim = types
     key: types.identifier,
     type: types.string,
     description: types.string,
-    value: types.optional(
-      types.union(types.string, types.number, types.Date),
-      "",
-    ),
+    value: types.union(types.string, types.number, types.Date, types.undefined),
   })
   .actions((self) => ({
-    update(values: Partial<typeof self>) {
-      self = { ...self, ...values };
+    setValue(value: any) {
+      self.value = value;
     },
   }));
 export interface IClaim extends Instance<typeof Claim> {}

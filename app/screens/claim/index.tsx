@@ -1,25 +1,17 @@
-﻿﻿import React, { useState } from "react";
-import {
-  Text,
-  View,
-  TextInput,
-  Keyboard,
-  TouchableWithoutFeedback,
-  ViewStyle,
-} from "react-native";
+﻿﻿import React from "react";
+import { Text, View, ViewStyle } from "react-native";
 import Button from "../../components/Button";
 import styles from "../../styles";
 import verifyClaim from "../../helpers/claim/verify";
-import DatePick from "../../components/DatePick";
 import EmailClaim from "./EmailClaim";
 import * as DocumentPicker from "expo-document-picker";
 import { useRootStore } from "../../store/rootStore";
 import { observer } from "mobx-react-lite";
+import DateClaim from "./DateClaim";
+import OtherClaim from "./OtherClaim";
+import MobileClaim from "./MobileClaim";
 
 const Claim = () => {
-  const [showDate, setShowDate] = useState(false);
-  const [date, setDate] = useState(undefined as string | undefined);
-
   const uploadFile = async () => {
     const res = await DocumentPicker.getDocumentAsync({});
     console.log(res);
@@ -35,43 +27,13 @@ const Claim = () => {
   const renderClaim = (type: string) => {
     switch (type) {
       case "DOB":
-        return (
-          <View>
-            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-              <TextInput
-                style={{
-                  ...styles.claim.input,
-                  width: styles.layout.window.width,
-                }}
-                onFocus={() => {
-                  setShowDate(true);
-                }}
-                value={date}
-              />
-            </TouchableWithoutFeedback>
-            <DatePick
-              show={showDate}
-              handleCloseDate={() => {
-                setShowDate(false);
-              }}
-              handleDateChange={(value) => {
-                setDate(new Date(value).toLocaleDateString());
-                setShowDate(false);
-              }}
-            />
-          </View>
-        );
+        return <DateClaim item={claim} />;
       case "Email":
         return <EmailClaim item={claim} />;
+      case "Mobile":
+        return <MobileClaim item={claim} />;
       default:
-        return (
-          <TextInput
-            style={{
-              ...styles.claim.input,
-              width: styles.layout.window.width,
-            }}
-          />
-        );
+        return <OtherClaim item={claim} />;
     }
   };
 
