@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import AsyncStorage from "@react-native-community/async-storage";
 import isEmail from "validator/lib/isEmail";
 import { Text, View, TextInput } from "react-native";
 import styles from "../../styles";
+import { IClaim } from "../../store/assetStore";
 
-const EmailClaim = () => {
+const EmailClaim = ({ item }: { item: IClaim }) => {
   const [email, setEmail] = useState(undefined as undefined | string);
   const [error, setError] = useState(undefined as undefined | string);
 
@@ -22,9 +22,7 @@ const EmailClaim = () => {
           if (email && isEmail(email)) {
             setError("");
             try {
-              await AsyncStorage.setItem("@email", email);
-              //for testing console log email from storage
-              console.log(await AsyncStorage.getItem("@email"));
+              item.update({ value: email });
             } catch (error) {
               setError(error);
             }
