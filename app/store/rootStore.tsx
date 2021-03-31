@@ -1,11 +1,9 @@
 import React from "react";
 import { types, Instance } from "mobx-state-tree";
 import { useLocalObservable } from "mobx-react-lite";
-import { UIStore } from "./UIStore";
 import { AssetStore } from "./assetStore";
 
 const RootStore = types.model({
-  UI: UIStore,
   Assets: AssetStore,
 });
 
@@ -25,7 +23,7 @@ export const RootStoreProvider: React.FunctionComponent = ({
   children,
 }: any) => {
   const store = useLocalObservable(() =>
-    RootStore.create({ UI: UIStore.create(), Assets: AssetStore.create() }),
+    RootStore.create({ Assets: AssetStore.create() }),
   );
   return (
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>

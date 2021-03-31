@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import isEmail from "validator/lib/isEmail";
 import { Text, View, TextInput } from "react-native";
 import styles from "../../styles";
 import { IClaim } from "../../store/assetStore";
 import { observer } from "mobx-react-lite";
 
-const EmailClaim = ({ item }: { item: IClaim }) => {
-  const [email, setEmail] = useState(undefined as undefined | string);
+const MobileClaim = ({ item }: { item: IClaim }) => {
+  const [mobile, setMobile] = useState(undefined as undefined | string);
   const [error, setError] = useState(undefined as undefined | string);
+
+  const isMobile = (value: string) => {
+    return (
+      value.length < 13 &&
+      !!value.replace(/\s*/g, "").match(/(\+[0-9]{2}|0|[0-9]{2})[0-9]{9}/)
+    );
+  };
 
   return (
     <View>
@@ -16,22 +22,24 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
           ...styles.claim.input,
           width: styles.layout.window.width,
         }}
-        value={email !== undefined ? email : (item.value as undefined | string)}
-        keyboardType="email-address"
-        placeholder="Please enter your email address..."
+        value={
+          mobile !== undefined ? mobile : (item.value as undefined | string)
+        }
+        placeholder="Please enter your mobile number..."
+        keyboardType="phone-pad"
         onChangeText={(value) => {
-          setEmail(value);
+          setMobile(value);
         }}
         onBlur={async () => {
-          if (!!email && isEmail(email)) {
+          if (!!mobile && isMobile(mobile)) {
             setError("");
             try {
-              item.setValue(email);
+              item.setValue(mobile);
             } catch (error) {
               setError(error);
             }
           } else {
-            setError("Please enter a valid email");
+            setError("Please enter a valid mobile number");
           }
         }}
       />
@@ -40,4 +48,4 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
   );
 };
 
-export default observer(EmailClaim);
+export default observer(MobileClaim);
