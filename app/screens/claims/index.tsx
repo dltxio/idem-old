@@ -9,7 +9,6 @@ import {
 import styles from "../../styles";
 import { useNavigation } from "@react-navigation/core";
 import { useRootStore } from "../../store/rootStore";
-import { cast } from "mobx-state-tree";
 import { observer } from "mobx-react-lite";
 
 type ClaimsListItemProps = {
@@ -34,7 +33,7 @@ const ClaimSelector = () => {
   const assetStore = rootStore.Assets;
 
   useEffect(() => {
-    const claims = assetStore.loadClaims();
+    assetStore.loadClaims();
   }, []);
 
   if (assetStore.claims == null)
@@ -55,7 +54,7 @@ const ClaimSelector = () => {
               type={item.type}
               description={item.description}
               onPress={() => {
-                rootStore.UI.update({ selectedClaim: cast(item) });
+                rootStore.Assets.setClaimKey(item.key);
                 navigation.navigate("Claim");
               }}
             />

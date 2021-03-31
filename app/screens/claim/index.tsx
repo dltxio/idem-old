@@ -26,49 +26,56 @@ const Claim = () => {
     //TODO choose files to upload and save to local storage or local database
   };
   const rootStore = useRootStore();
-  const claim = rootStore.UI.selectedClaim;
+  const claim = rootStore.Assets.selectedClaim;
+
+  const renderClaim = (type: string) => {
+    switch (type) {
+      case "DOB":
+        return (
+          <View>
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+              <TextInput
+                style={{
+                  ...styles.claim.input,
+                  width: styles.layout.window.width,
+                }}
+                onFocus={() => {
+                  setShowDate(true);
+                }}
+                value={date}
+              />
+            </TouchableWithoutFeedback>
+            <DatePick
+              show={showDate}
+              handleCloseDate={() => {
+                setShowDate(false);
+              }}
+              handleDateChange={(value) => {
+                setDate(new Date(value).toLocaleDateString());
+                setShowDate(false);
+              }}
+            />
+          </View>
+        );
+      case "Email":
+        return <EmailClaim />;
+      default:
+        return (
+          <TextInput
+            style={{
+              ...styles.claim.input,
+              width: styles.layout.window.width,
+            }}
+          />
+        );
+    }
+  };
 
   return (
     <View style={styles.claim.root}>
       <Text style={styles.claim.title}>{claim?.type}</Text>
       <Text style={styles.claim.label}>{claim?.description}</Text>
-      <Text style={styles.claim.label}>Value of claim</Text>
-      {claim?.type === "DOB" && (
-        <>
-          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-            <TextInput
-              style={{
-                ...styles.claim.input,
-                width: styles.layout.window.width,
-              }}
-              onFocus={() => {
-                setShowDate(true);
-              }}
-              value={date}
-            />
-          </TouchableWithoutFeedback>
-          <DatePick
-            show={showDate}
-            handleCloseDate={() => {
-              setShowDate(false);
-            }}
-            handleDateChange={(value) => {
-              setDate(new Date(value).toLocaleDateString());
-              setShowDate(false);
-            }}
-          />
-        </>
-      )}
-      {claim?.type === "Email" && <EmailClaim />}
-
-      {claim?.type !== "Email" && claim?.type !== "DOB" && (
-        <TextInput
-          style={{
-            ...styles.claim.input,
-            width: styles.layout.window.width,
-          }}
-        />
-      )}
+      {renderClaim(claim?.type || "")}
 
       <Button
         title="Add Supporting Document From Device"
