@@ -4,7 +4,7 @@ import styles from "../../styles";
 import { IClaim } from "../../store/assetStore";
 import { observer } from "mobx-react-lite";
 
-const EmailClaim = ({ item }: { item: IClaim }) => {
+const OtherClaim = ({ item }: { item: IClaim }) => {
   return (
     <View>
       <TextInput
@@ -22,4 +22,4 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
   );
 };
 
-export default observer(EmailClaim);
+export default observer(OtherClaim);
