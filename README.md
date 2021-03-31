@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This paper defines a protocol using standard cryptography and reputable KYC providers to assert claims such as Proof of Age, DoB, Address etc for re-use at online websites that require KYC.
+Idem is a mobile application based on the DID protocol.
 
 Each time an exchange requests an ID verifycation from a user, the provider charges the exchange a fee.  Further, users are required to provide KYC information and have it verified for each and every onboarding, instead of a portable, reusable verification from a trusted provider.  By locally storing user's verified information, we can enhance the customer onboarding experience and reduce costs incurred by Vendors.
 
