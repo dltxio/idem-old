@@ -9,7 +9,6 @@ import {
 import styles from "../../styles";
 import { useNavigation } from "@react-navigation/core";
 import { useRootStore } from "../../store/rootStore";
-import { cast } from "mobx-state-tree";
 import { observer } from "mobx-react-lite";
 
 type VenderItemProps = {
@@ -53,7 +52,7 @@ const VendorSelector = () => {
             <VendorListItem
               key={item.url}
               onPress={() => {
-                rootStore.UI.update({ selectedVendor: cast(item) });
+                rootStore.Assets.setVendorKey(item.key);
                 navigation.navigate("Vendor");
               }}
               name={item.name}

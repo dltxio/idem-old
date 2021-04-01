@@ -7,6 +7,7 @@ export const Claim = types
     type: types.string,
     description: types.string,
     value: types.union(types.string, types.number, types.Date, types.undefined),
+    verifiedBy: types.array(types.string),
   })
   .actions((self) => ({
     setValue(value: any) {
@@ -15,18 +16,18 @@ export const Claim = types
   }));
 export interface IClaim extends Instance<typeof Claim> {}
 
-export const Vendor = types
-  .model({
-    key: types.identifier,
-    url: types.string,
-    name: types.string,
-    description: types.string,
-  })
-  .actions((self) => ({
-    update(values: Partial<typeof self>) {
-      self = { ...self, ...values };
-    },
-  }));
+export const Vendor = types.model({
+  // TODO: make this non optional once vendor keys exist
+  key: types.optional(
+    types.identifier,
+    `${Math.floor(Math.random() * 100000)}`,
+  ),
+  url: types.string,
+  name: types.string,
+  description: types.string,
+  registration: types.string,
+  affiliation: types.maybe(types.string),
+});
 
 export const AssetStore = types
   .model({
@@ -35,15 +36,29 @@ export const AssetStore = types
   })
   .volatile((self) => ({
     selectedClaimKey: "",
+    selectedVendorKey: "",
   }))
   .views((self) => ({
     get selectedClaim() {
       return self.claims.find((claim) => claim.key === self.selectedClaimKey);
     },
+    get selectedVendor() {
+      return self.vendors.find(
+        (vendor) => vendor.key === self.selectedVendorKey,
+      );
+    },
+    get selectedVendorClaims() {
+      return self.claims.filter((claim) =>
+        claim.verifiedBy.includes(self.selectedVendorKey),
+      );
+    },
   }))
   .actions((self) => ({
     setClaimKey: (key: string) => {
       self.selectedClaimKey = key;
+    },
+    setVendorKey: (key: string) => {
+      self.selectedVendorKey = key;
     },
     loadClaims: flow(function* () {
       self.claims = yield fetchAssets(AssetType.Claims);

@@ -8,9 +8,7 @@ import { observer } from "mobx-react-lite";
 
 const Vendor = () => {
   const rootStore = useRootStore();
-  const vendor = rootStore.UI.selectedVendor;
-  // const claims = rootStore.Assets.claims.filter(claim=> claim.vendorId == vendor.id)
-  const claims: any[] = [];
+  const vendor = rootStore.Assets.selectedVendor;
 
   if (vendor == null) return null;
 
@@ -21,7 +19,7 @@ const Vendor = () => {
       <Text style={styles.vendor.description}>{vendor.description}</Text>
       <View style={styles.vendor.claimsWrapper(styles.layout.window)}>
         <Text style={styles.vendor.claimsTitle}>Claims requested</Text>
-        {claims.map((item, index) => {
+        {rootStore.Assets.selectedVendorClaims.map((item, index) => {
           return (
             <Text style={styles.vendor.claimValue} key={index}>
               {Object.keys(item)[0]}
