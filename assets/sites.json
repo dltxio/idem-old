@@ -1,5 +1,6 @@
 [
     {
+        "key": "1x00",
         "name": "Get Paid In Bitcoin",
         "url": "https://www.getpaidinbitcoin.com.au",
         "description": "Easiest way to get bitcoin",
@@ -11,6 +12,7 @@
         ]
     },
     {
+        "key": "1x01",
         "name": "Digital Surge",
         "url": "https://www.digitalsurge.com.au",
         "description": "Lorem ipsum dolor sit amet",
@@ -18,6 +20,7 @@
         "affiliation": "HT7LT"
     },
     {
+        "key": "1x02",
         "name": "CoinTree",
         "url": "https://cointree.com.au",
         "description": "Lorem ipsum dolor sit amet",

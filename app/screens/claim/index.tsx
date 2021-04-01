@@ -10,6 +10,7 @@ import { observer } from "mobx-react-lite";
 import DateClaim from "./DateClaim";
 import OtherClaim from "./OtherClaim";
 import MobileClaim from "./MobileClaim";
+import SelectClaim from "./SelectClaim";
 
 const Claim = () => {
   const uploadFile = async () => {
@@ -32,6 +33,16 @@ const Claim = () => {
         return <EmailClaim item={claim} />;
       case "Mobile":
         return <MobileClaim item={claim} />;
+      case "18+":
+        return (
+          <SelectClaim
+            item={claim}
+            options={[
+              { label: "yes", value: "true" },
+              { label: "no", value: "false" },
+            ]}
+          />
+        );
       default:
         return <OtherClaim item={claim} />;
     }
