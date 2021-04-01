@@ -6,7 +6,7 @@ export const Claim = types
     key: types.identifier,
     type: types.string,
     description: types.string,
-    value: types.union(types.string, types.number, types.Date, types.undefined),
+    value: types.maybe(types.string),
     verifiedBy: types.array(types.string),
   })
   .actions((self) => ({
