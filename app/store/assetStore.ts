@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-community/async-storage";
 import { types, Instance, flow } from "mobx-state-tree";
 import { AssetType, fetchAssets } from "../helpers/assets";
 
@@ -10,18 +11,20 @@ export const Claim = types
     verifiedBy: types.array(types.string),
   })
   .actions((self) => ({
-    setValue(value: any) {
+    setValue: flow(function* (value: any) {
       self.value = value;
-    },
+      const claimDataString: string | null = yield AsyncStorage.getItem(
+        self.key,
+      );
+      let claimData = JSON.parse(claimDataString || "{}");
+      claimData.value = value;
+      yield AsyncStorage.setItem(self.key, JSON.stringify(claimData));
+    }),
   }));
 export interface IClaim extends Instance<typeof Claim> {}
 
 export const Vendor = types.model({
-  // TODO: make this non optional once vendor keys exist
-  key: types.optional(
-    types.identifier,
-    `${Math.floor(Math.random() * 100000)}`,
-  ),
+  key: types.identifier,
   url: types.string,
   name: types.string,
   description: types.string,
@@ -61,7 +64,13 @@ export const AssetStore = types
       self.selectedVendorKey = key;
     },
     loadClaims: flow(function* () {
-      self.claims = yield fetchAssets(AssetType.Claims);
+      const claims: any[] = yield fetchAssets(AssetType.Claims);
+      self.claims = yield Promise.all(
+        claims.map(async (claim) => {
+          const claimDataString = await AsyncStorage.getItem(claim.key);
+          return { ...claim, ...JSON.parse(claimDataString || "{}") };
+        }),
+      );
     }),
     loadVendors: flow(function* () {
       const vendors = yield fetchAssets(AssetType.Vendors);
