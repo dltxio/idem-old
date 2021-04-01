@@ -10,6 +10,12 @@ export const Claim = types
     value: types.maybe(types.string),
     verifiedBy: types.array(types.string),
   })
+  .views((self) => ({
+    get isVerified() {
+      // TODO: figure out how this should work
+      return true;
+    },
+  }))
   .actions((self) => ({
     setValue: flow(function* (value: any) {
       self.value = value;
