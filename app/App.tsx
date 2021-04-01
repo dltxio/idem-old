@@ -7,7 +7,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Asset } from "expo-asset";
 import DrawerNavigator from "./navigation/DrawerNavigator";
 import { RootStoreProvider } from "./store/rootStore";
-import { AssetType, fetchAssets } from "./helpers/assets";
 
 const App = () => {
   const [didLoad, setDidLoad] = useState(false);
