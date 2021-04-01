@@ -10,20 +10,50 @@ import styles from "../../styles";
 import { useNavigation } from "@react-navigation/core";
 import { useRootStore } from "../../store/rootStore";
 import { observer } from "mobx-react-lite";
+import { IClaim } from "../../store/assetStore";
+import { colors } from "../../styles/theme";
 
 type ClaimsListItemProps = {
   onPress: () => void;
-  type: string;
-  description: string;
+  item: IClaim;
 };
 
-const ClaimListItem = ({ onPress, type, description }: ClaimsListItemProps) => (
+const ClaimListItem = ({ onPress, item }: ClaimsListItemProps) => (
   <TouchableOpacity
     style={styles.list.itemWrapper(styles.layout.window)}
     onPress={onPress}
   >
-    <Text style={styles.list.itemName}>{type}</Text>
-    <Text style={{ color: "#707070" }}>{description}</Text>
+    <Text style={styles.list.itemName}>{item.type}</Text>
+    <Text style={{ color: colors.gray }}>{item.description}</Text>
+    {!item.value ? (
+      <View
+        style={{
+          padding: 5,
+          borderRadius: 5,
+          borderColor: colors.gray,
+          position: "absolute",
+          right: 30,
+          top: 30,
+          borderWidth: 1,
+        }}
+      >
+        <Text>Not Supplied</Text>
+      </View>
+    ) : !item.isVerified ? (
+      <View
+        style={{
+          padding: 5,
+          borderRadius: 5,
+          borderColor: colors.gray,
+          position: "absolute",
+          right: 30,
+          top: 30,
+          borderWidth: 1,
+        }}
+      >
+        <Text>Not Verified</Text>
+      </View>
+    ) : null}
   </TouchableOpacity>
 );
 
@@ -51,8 +81,7 @@ const ClaimSelector = () => {
           return (
             <ClaimListItem
               key={index}
-              type={item.type}
-              description={item.description}
+              item={item}
               onPress={() => {
                 rootStore.Assets.setClaimKey(item.key);
                 navigation.navigate("Claim");
