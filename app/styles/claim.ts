@@ -44,6 +44,6 @@ export default {
   button: {
     height: 50,
     justifyContent: "center",
-    marginVertical: 10,
+    marginVertical: 20,
   },
 };

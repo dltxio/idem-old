@@ -11,6 +11,7 @@ const MobileClaim = ({ item }: { item: IClaim }) => {
   const [mobile, setMobile] = useState(undefined as undefined | string);
   const [error, setError] = useState(undefined as undefined | string);
   const [modalOpen, setModalOpen] = useState(false);
+  const [codeSent, setCodeSent] = useState(false);
   const [code, setCode] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -40,10 +41,13 @@ const MobileClaim = ({ item }: { item: IClaim }) => {
         `Would you like to send a verification code to ${item.value}?`,
         [
           {
-            text: "Proceed",
-            onPress: async () => await sendMobileCode(item.value!),
+            text: "Yes",
+            onPress: async () => {
+              // await sendMobileCode(item.value!);
+              setCodeSent(true);
+            },
           },
-          { text: "Cancel", onPress: () => setModalOpen(false) },
+          { text: "No", onPress: () => {} },
         ],
       );
       // TODO: SuccessToast
@@ -85,19 +89,13 @@ const MobileClaim = ({ item }: { item: IClaim }) => {
       />
       {!!error && <Text style={styles.claim.errorMessage}>{error}</Text>}
       <Button
-        title="Verify"
+        title={!codeSent ? "Send verification code" : "Verify"}
         style={styles.claim.verifyButton as ViewStyle}
         disabled={submitting}
-        onPress={() => setModalOpen(true)}
+        onPress={!codeSent ? sendCode : () => setModalOpen(true)}
       />
       <Bodal open={modalOpen} onClose={() => setModalOpen(false)}>
-        <View style={{ width: "100%", minHeight: 200 }}>
-          <Button
-            title="Send verification code"
-            onPress={() => !!item.value && isMobile(item.value) && sendCode()}
-            disabled={submitting}
-            style={styles.claim.button as ViewStyle}
-          />
+        <View style={{ width: "100%", padding: 10 }}>
           <TextInput
             style={{
               ...styles.claim.input,
