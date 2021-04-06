@@ -1,4 +1,8 @@
-import { generateValidationCodes, generateVerificationCode } from "./message";
+import {
+  checkVerification,
+  generateValidationCodes,
+  generateVerificationCode
+} from "./message";
 
 describe("message.ts", () => {
   const number = "0412345678";
@@ -30,6 +34,18 @@ describe("message.ts", () => {
       const code = generateVerificationCode(number);
       const secondCode = generateVerificationCode(number);
       expect(code).toBe(secondCode);
+    });
+  });
+  describe("checkVerification", () => {
+    it("should return true for the correct code number pair", () => {
+      const code = generateVerificationCode(number);
+      const result = checkVerification(number, code);
+      expect(result).toBe(true);
+    });
+    it("should return false for an invalid number code pair", () => {
+      const code = generateVerificationCode(number);
+      const result = checkVerification(otherNumber, code);
+      expect(result).toBe(false);
     });
   });
 });
