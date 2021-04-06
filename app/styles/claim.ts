@@ -41,4 +41,9 @@ export default {
   errorMessage: {
     color: "red",
   },
+  button: {
+    height: 50,
+    justifyContent: "center",
+    marginVertical: 10,
+  },
 };

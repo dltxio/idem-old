@@ -1,16 +1,24 @@
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
-import { TouchableOpacity, View, Text } from "react-native";
+import { TouchableOpacity, View, Text, ViewStyle } from "react-native";
 import DatePick from "../../components/DatePick";
 import { IClaim } from "../../store/assetStore";
 import styles from "../../styles";
 import { colors } from "../../styles/theme";
+import verifyClaim from "../../helpers/claim/verify";
+import Button from "../../components/Button";
 
-const DateClaim = ({ item }: { item: IClaim }) => {
+const DateClaim = ({
+  item,
+  uploadFile,
+}: {
+  item: IClaim;
+  uploadFile: () => void;
+}) => {
   const [showDate, setShowDate] = useState(false);
   console.log(item);
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <TouchableOpacity
         onPress={() => setShowDate(!showDate)}
         style={{
@@ -31,6 +39,17 @@ const DateClaim = ({ item }: { item: IClaim }) => {
           item.setValue(value.toLocaleDateString());
           setShowDate(false);
         }}
+      />
+      <Button
+        title="Add Supporting Document From Device"
+        style={styles.claim.uploadButton as ViewStyle}
+        onPress={uploadFile}
+      />
+      <Button
+        title="Verify"
+        style={styles.claim.verifyButton as ViewStyle}
+        disabled={true}
+        onPress={() => verifyClaim(item)}
       />
     </View>
   );
