@@ -9,6 +9,7 @@ import DateClaim from "./DateClaim";
 import OtherClaim from "./OtherClaim";
 import MobileClaim from "./MobileClaim";
 import SelectClaim from "./SelectClaim";
+import { useRoute } from "@react-navigation/native";
 
 const Claim = () => {
   const uploadFile = async () => {
@@ -18,6 +19,12 @@ const Claim = () => {
   };
   const rootStore = useRootStore();
   const claim = rootStore.Assets.selectedClaim;
+  const params = useRoute().params as any;
+  React.useEffect(() => {
+    if (params?.claimKey) {
+      rootStore.Assets.setClaimKey(params.claimKey);
+    }
+  }, [params]);
 
   if (!claim) {
     return <View>{/* TODO: error handling for this case */}</View>;

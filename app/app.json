@@ -1,34 +1,23 @@
 {
   "expo": {
-    "name": "blockchain-id",
-    "slug": "blockchain-id",
+    "name": "idem",
+    "slug": "idem",
+    "scheme": "idem",
     "privacy": "public",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "packagerOpts": {
       "config": "metro.config.js",
-      "sourceExts": [
-        "js",
-        "jsx",
-        "svg",
-        "ts",
-        "tsx"
-      ]
+      "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
     },
     "description": ""
   }
