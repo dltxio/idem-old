@@ -1,6 +1,5 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-// const schema = require("./schema");
 
 router.get("/documents", async (request, response) => {
   const document = {
@@ -15,4 +14,4 @@ router.get("/documents", async (request, response) => {
   response.send(documents);
 });
 
-module.exports = router;
+export default router;

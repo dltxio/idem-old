@@ -1,10 +1,12 @@
-require("dotenv").config();
-const express = require("express");
-const claims = require("./endpoint/claims");
-const documents = require("./endpoint/documents");
-const sms = require("./endpoint/sms");
+import * as dotenv from "dotenv";
+import express from "express";
+import claims from "./endpoint/claims/index";
+import documents from "./endpoint/documents/index";
+import sms from "./endpoint/sms/index";
 const cors = require("cors");
 const { log } = require("./logger")("server");
+
+dotenv.config();
 
 const app = express();
 
