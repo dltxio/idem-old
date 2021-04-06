@@ -1,8 +1,8 @@
-const Joi = require("joi");
+import Joi from "joi";
 
 const schema = Joi.object({
   name: Joi.string().required(),
   type: Joi.string().required()
 }).unknown(true);
 
-module.exports = schema;
+export default schema;

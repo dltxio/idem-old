@@ -3,5 +3,8 @@
     "endpoint": "https://raw.githubusercontent.com/dltxio/idem/master/",
     "claims": "assets/claims.json",
     "vendors": "assets/sites.json"
+  },
+  "mobile": {
+    "endpoint": ""
   }
 }

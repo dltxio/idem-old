@@ -1,7 +1,7 @@
-const express = require("express");
-const router = express.Router();
+import express from "express";
+import crypto from "crypto";
 
-const crypto = require("crypto");
+const router = express.Router();
 const { createECDH, ECDH } = require("crypto");
 // const schema = require("./schema");
 
@@ -40,7 +40,7 @@ router.post("/claims", async (request, response) => {
     "hex"
   );
   //const privateKey = ecdh.getPrivateKey();
-  console.log(privateKey.toString("hex"));
+  console.log(privateKey.toString());
 
   const sign = crypto.createSign("SHA256");
   console.log(JSON.stringify(request.body));
@@ -54,4 +54,4 @@ router.post("/claims", async (request, response) => {
   response.send(request.body);
 });
 
-module.exports = router;
+export default router;
