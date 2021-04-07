@@ -5,11 +5,29 @@ import styles from "../../styles";
 import { IClaim } from "../../store/assetStore";
 import { observer } from "mobx-react-lite";
 import Button from "../../components/Button";
-import verifyClaim from "../../helpers/claim/verify";
+import { sendEmailVerificationEmail } from "../../helpers/claim/email";
 
 const EmailClaim = ({ item }: { item: IClaim }) => {
-  const [email, setEmail] = useState(undefined as undefined | string);
-  const [error, setError] = useState(undefined as undefined | string);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [email, setEmail] = useState<string | undefined>(undefined);
+  const [error, setError] = useState<string | undefined>(undefined);
+
+  const onVerifyPress = async () => {
+    if (!item.value) {
+      // this should never happen because button should be disabled
+      return;
+    }
+    setLoading(true);
+
+    try {
+      await sendEmailVerificationEmail(item.value);
+    } catch (x) {
+      // todo - display error user.
+      console.log(x);
+    }
+
+    setLoading(false);
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -41,8 +59,8 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
       <Button
         title="Verify"
         style={styles.claim.verifyButton as ViewStyle}
-        disabled={true}
-        onPress={() => verifyClaim(item)}
+        disabled={!item.value}
+        onPress={onVerifyPress}
       />
     </View>
   );
