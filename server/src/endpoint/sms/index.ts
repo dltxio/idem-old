@@ -2,7 +2,7 @@
 const schema = require("./schema");
 const message = require("./message");
 const { log } = require("../../logger")("/api/sms");
-import sendError from "../../utils/sendError";
+import sendError from "../../utils/send-error";
 
 const router = express.Router();
 
