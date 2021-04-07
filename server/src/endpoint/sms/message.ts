@@ -3,6 +3,7 @@ import config from "../../../config.json";
 import { promisify } from "util";
 import crypto from "crypto";
 import moment from "moment";
+import generateVerificationCode from "../../utils/generate-verification-code";
 
 const createMessage = promisify(
   messagebird(process.env.MESSAGEBIRD_KEY || "").messages.create
@@ -28,23 +29,6 @@ export const generateValidationCodes = (number: string) => {
     const result = cipher.digest("hex");
     return result.slice(0, config.sms.codeLength);
   });
-};
-
-/**
- * Generates a code based off of a given number.
- *
- * @param {string} number
- * @returns {string} code
- */
-export const generateVerificationCode = (number: string) => {
-  const today = moment().startOf("day");
-  const cipher = crypto.createHmac(
-    "sha256",
-    process.env.CIPHER_SECRET + today.toString()
-  );
-  cipher.update(number);
-  const result = cipher.digest("hex");
-  return result.slice(0, config.sms.codeLength);
 };
 
 /**
