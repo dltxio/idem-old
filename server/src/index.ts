@@ -1,8 +1,9 @@
 import * as dotenv from "dotenv";
 import express from "express";
-import claims from "./endpoint/claims/index";
-import documents from "./endpoint/documents/index";
-import sms from "./endpoint/sms/index";
+import claims from "./endpoint/claims";
+import documents from "./endpoint/documents";
+import sms from "./endpoint/sms";
+import emails from "./endpoint/emails";
 const cors = require("cors");
 const { log } = require("./logger")("server");
 
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use("/api", claims);
 app.use("/api", documents);
 app.use("/api", sms);
+app.use("/api", emails);
 
 app.listen(process.env.PORT);
 log(`listening on localhost:${process.env.PORT}`);
