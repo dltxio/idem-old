@@ -1,18 +1,20 @@
 import nodemailer from "nodemailer";
-import emailVerificationTemplate, { VerifyEmailTemplateData } from './templates/email-verification-template'
+import emailVerificationTemplate, {
+  VerifyEmailTemplateData
+} from "./templates/email-verification-template";
 
 type EmailTemplate = "emailVerification";
 
 type EmailTemplateGenerators = { [k in EmailTemplate]: Function };
 
 type SendEmailData<T> = {
-  to: string,
-  data: T
+  to: string;
+  data: T;
 };
 
 const mailer = nodemailer.createTransport({
   pool: true,
-  host: 'outlook.office365.com',
+  host: "outlook.office365.com",
   port: 587,
   secure: false, // use TLS
   auth: {
@@ -23,13 +25,18 @@ const mailer = nodemailer.createTransport({
 
 const templateGenerators: EmailTemplateGenerators = {
   emailVerification: emailVerificationTemplate
-}
+};
 
-const sendEmail = <T>({ to, subject, template, data }: {
-  to: string,
-  subject: string,
-  template: EmailTemplate
-  data: T
+const sendEmail = <T>({
+  to,
+  subject,
+  template,
+  data
+}: {
+  to: string;
+  subject: string;
+  template: EmailTemplate;
+  data: T;
 }) => {
   return mailer.sendMail({
     from: process.env.EMAIL_USER,
@@ -40,11 +47,10 @@ const sendEmail = <T>({ to, subject, template, data }: {
 };
 
 export default {
-  sendEmailVerificationEmail: (data: SendEmailData<VerifyEmailTemplateData>) => sendEmail({
-    template: 'emailVerification',
-    subject: 'Email verification',
-    ...data,
-  })
-}
-
-
+  sendEmailVerificationEmail: (data: SendEmailData<VerifyEmailTemplateData>) =>
+    sendEmail({
+      template: "emailVerification",
+      subject: "Email verification",
+      ...data
+    })
+};
