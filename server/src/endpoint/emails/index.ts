@@ -1,7 +1,7 @@
 import express from "express";
 import schema from "./schema";
 import emailService from "../../services/email";
-import generateVerificationCode from "../../utils/generate-verification-code";
+import { generateVerificationCode } from "../../utils/verification-codes";
 import sendError from "../../utils/send-error";
 const { log } = require("../../logger")("/api/email");
 

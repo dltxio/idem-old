@@ -1,35 +1,14 @@
 import messagebird from "messagebird";
 import config from "../../../config.json";
 import { promisify } from "util";
-import crypto from "crypto";
-import moment from "moment";
-import generateVerificationCode from "../../utils/generate-verification-code";
+import {
+  generateVerificationCode,
+  generateValidationCodes
+} from "../../utils/verification-codes";
 
 const createMessage = promisify(
   messagebird(process.env.MESSAGEBIRD_KEY || "").messages.create
 );
-
-/**
- * Generates a range of acceptable codes based off of a given number.
- * These are deterministic but complex enough that it should not pose a security risk.
- * @param {string} number
- * @returns {string[]} codes
- */
-export const generateValidationCodes = (number: string) => {
-  const today = moment().startOf("day");
-  const ciphers = [
-    crypto.createHmac("sha256", process.env.CIPHER_SECRET + today.toString()),
-    crypto.createHmac(
-      "sha256",
-      process.env.CIPHER_SECRET + today.subtract(1, "day").toString()
-    )
-  ];
-  return ciphers.map(cipher => {
-    cipher.update(number);
-    const result = cipher.digest("hex");
-    return result.slice(0, config.sms.codeLength);
-  });
-};
 
 /**
  * Sends a verification code to the given phone number.
