@@ -3,6 +3,7 @@ import schema from "./schema";
 import emailService from "../../services/email";
 import generateVerificationCode from "../../utils/generate-verification-code";
 import sendError from "../../utils/send-error";
+const { log } = require("../../logger")("/api/email");
 
 const router = express.Router();
 
@@ -27,7 +28,7 @@ const sendEmailVerificationEmail = async (request: any, response: any) => {
       success: true
     });
   } catch (e) {
-    console.log(e);
+    log(e);
     return sendError(response, 500, e);
   }
 };
