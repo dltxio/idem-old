@@ -1,13 +1,35 @@
-const express = require("express");
-const { log } = require("../../logger")("/api/emails");
+import express from "express";
+import schema from "./schema";
+import emailService from "../../services/email";
+import generateVerificationCode from "../../utils/generate-verification-code";
+import sendError from "../../utils/send-error";
 
 const router = express.Router();
 
-const sendEmailVerificationEmail = async (_request: any, response: any) => {
-  response.send({
-    success: true,
-    error: null
-  });
+const sendEmailVerificationEmail = async (request: any, response: any) => {
+  const { error, value: body } = schema.sendEmailVerificationEmailBody.validate(
+    request.body
+  );
+
+  if (error != null) return sendError(response, 400, error);
+
+  const verificationCode = generateVerificationCode(body.email);
+
+  try {
+    await emailService.sendEmailVerificationEmail({
+      to: body.email,
+      data: {
+        verificationCode
+      }
+    });
+
+    response.send({
+      success: true
+    });
+  } catch (e) {
+    console.log(e);
+    return sendError(response, 500, e);
+  }
 };
 
 router.put("/emails", sendEmailVerificationEmail);
