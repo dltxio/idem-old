@@ -1,17 +1,17 @@
 type Config = {
   port: number;
-  messageBird: {
-    accessKey: string;
-  };
   email: {
     support: {
       address: string;
       password: string;
     };
   };
-  phoneNumberVerification: {
-    codeLength: number;
+  sms: {
+    messageBird: {
+      accessKey: string;
+    };
     originator: string;
-    smsMessage: (code: string) => string;
+    phoneNumberVerificationMessage: (code: string) => string;
   };
+  verificationCodeLength: number;
 };

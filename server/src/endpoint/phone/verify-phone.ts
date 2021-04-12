@@ -1,8 +1,8 @@
 import Joi from "joi";
-import * as message from "./message";
 import { RequestHandler } from "../request-handler-wrapper";
 import { badRequest, validationBadRequest } from "../../utils/errors";
 import { validate, ValidationSchema } from "../../utils/validate";
+import { checkVerification } from "../../utils/verification-codes";
 const { log } = require("../../logger")("/api/phone");
 
 const bodyValidation: ValidationSchema<server.VerifyPhoneRequestBody> = {
@@ -15,7 +15,7 @@ const requestPhoneVerificationSMS: RequestHandler<
   void,
   server.VerifyPhoneRequestBody,
   server.SuccessResponse
-> = async ({ body }) => {
+> = async ({ body, config }) => {
   const bodyValidationResult = await validate<server.VerifyPhoneRequestBody>(
     body,
     bodyValidation
@@ -25,7 +25,11 @@ const requestPhoneVerificationSMS: RequestHandler<
     return validationBadRequest(bodyValidationResult.errors);
   }
 
-  const isValid = message.checkVerification(body.number, body.code);
+  const isValid = checkVerification(
+    body.number,
+    body.code,
+    config.verificationCodeLength
+  );
   log(
     `received SMS verification for ${body.number} with input code ${body.code} [` +
       (!isValid ? "IN" : "") +
