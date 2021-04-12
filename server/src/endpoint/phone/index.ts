@@ -1,11 +1,23 @@
 import express from "express";
+import { SetupRouterFunction } from "../../typings/setup-router";
 import requestHandlerWrapper from "../request-handler-wrapper";
 import requestPhoneVerificationSMS from "./request-phone-verification-sms";
 import verifyPhone from "./verify-phone";
 
-const router = express.Router();
+const setupPhoneRouter: SetupRouterFunction = (
+  config: Config,
+  services: Services
+) => {
+  const router = express.Router();
 
-router.put("/phone", requestHandlerWrapper(requestPhoneVerificationSMS));
-router.post("/phone", requestHandlerWrapper(verifyPhone));
+  router.put(
+    "/phone",
+    requestHandlerWrapper(requestPhoneVerificationSMS, config, services)
+  );
 
-export default router;
+  router.post("/phone", requestHandlerWrapper(verifyPhone, config, services));
+
+  return router;
+};
+
+export default setupPhoneRouter;
