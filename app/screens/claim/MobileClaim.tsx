@@ -24,7 +24,10 @@ const MobileClaim = ({ item }: { item: IClaim }) => {
   const verifyMobile = async () => {
     setSubmitting(true);
     try {
-      verifyMobileCode(item.value!, code);
+      verifyMobileCode({
+        number: item.value!,
+        code,
+      });
     } catch (e) {
       console.log(e);
     } finally {
@@ -41,7 +44,11 @@ const MobileClaim = ({ item }: { item: IClaim }) => {
         [
           {
             text: "Proceed",
-            onPress: async () => await sendMobileCode(item.value!),
+            onPress: () => {
+              sendMobileCode({
+                number: item.value!,
+              });
+            },
           },
           { text: "Cancel", onPress: () => setModalOpen(false) },
         ],
