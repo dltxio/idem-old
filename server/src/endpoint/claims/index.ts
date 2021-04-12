@@ -1,11 +1,22 @@
 import express from "express";
+import { SetupRouterFunction } from "../../typings/setup-router";
 import requestHandlerWrapper from "../request-handler-wrapper";
 import getClaims from "./get-claims";
 import validateClaim from "./validate-claim";
 
-const router = express.Router();
+const setupClaimsRouter: SetupRouterFunction = (
+  config: Config,
+  services: Services
+) => {
+  const router = express.Router();
 
-router.get("/claims", requestHandlerWrapper(getClaims));
-router.post("/claims", requestHandlerWrapper(validateClaim));
+  router.get("/claims", requestHandlerWrapper(getClaims, config, services));
+  router.post(
+    "/claims",
+    requestHandlerWrapper(validateClaim, config, services)
+  );
 
-export default router;
+  return router;
+};
+
+export default setupClaimsRouter;

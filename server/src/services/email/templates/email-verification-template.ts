@@ -1,8 +1,6 @@
-export type VerifyEmailTemplateData = {
-  verificationCode: string
-};
-
-const emailVerificationTemplate = (data: VerifyEmailTemplateData) => {
+const emailVerificationTemplate = (
+  data: emailService.VerifyEmailTemplateData
+) => {
   return `
     <!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN” “https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd”>
     

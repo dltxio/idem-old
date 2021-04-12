@@ -1,10 +1,12 @@
-import * as dotenv from "dotenv";
 import express from "express";
-import endpoints from "./endpoint";
+import setupEndpoints from "./endpoint";
 import cors from "cors";
+import getConfig from "./config";
+import initServices from "./services";
 const { log } = require("./logger")("server");
 
-dotenv.config();
+const config = getConfig();
+const services = initServices(config);
 
 const app = express();
 
@@ -15,7 +17,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use("/api", endpoints);
+app.use("/api", setupEndpoints(config, services));
 
-app.listen(process.env.PORT);
-log(`listening on localhost:${process.env.PORT}`);
+app.listen(config.port);
+log(`listening on localhost:${config.port}`);

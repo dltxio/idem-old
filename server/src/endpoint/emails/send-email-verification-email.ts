@@ -1,5 +1,4 @@
 import Joi from "joi";
-import emailService from "../../services/email";
 import { RequestHandler } from "../request-handler-wrapper";
 import { validationBadRequest } from "../../utils/errors";
 import { validate, ValidationSchema } from "../../utils/validate";
@@ -14,7 +13,7 @@ const sendEmailVerificationEmail: RequestHandler<
   void,
   server.SendEmailVerificationEmailRequestBody,
   server.SuccessResponse
-> = async ({ body }) => {
+> = async ({ body, services }) => {
   const bodyValidationResult = await validate(body, bodyValidation);
 
   if (bodyValidationResult.isInvalid) {
@@ -23,7 +22,7 @@ const sendEmailVerificationEmail: RequestHandler<
 
   const verificationCode = generateVerificationCode(body.email);
 
-  await emailService.sendEmailVerificationEmail({
+  await services.email.sendEmailVerificationEmail({
     to: body.email,
     data: {
       verificationCode
