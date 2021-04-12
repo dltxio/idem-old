@@ -1,10 +1,7 @@
 import * as dotenv from "dotenv";
 import express from "express";
-import claims from "./endpoint/claims";
-import documents from "./endpoint/documents";
-import sms from "./endpoint/sms";
-import emails from "./endpoint/emails";
-const cors = require("cors");
+import endpoints from "./endpoint";
+import cors from "cors";
 const { log } = require("./logger")("server");
 
 dotenv.config();
@@ -18,11 +15,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Register endpoints.
-app.use("/api", claims);
-app.use("/api", documents);
-app.use("/api", sms);
-app.use("/api", emails);
+app.use("/api", endpoints);
 
 app.listen(process.env.PORT);
 log(`listening on localhost:${process.env.PORT}`);

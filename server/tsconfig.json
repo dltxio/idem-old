@@ -1,12 +1,16 @@
 {
-    "compilerOptions": {
-      "target": "es6",
-      "module": "commonjs",    
-      "rootDir": "./",
-      "outDir": "./build",
-      "esModuleInterop": true,
-      "moduleResolution": "node",
-      "strict": true,
-      "resolveJsonModule": true
-    }
-  }
+  "extends": "../tsconfig.json",
+  "composite": true,
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "./build"
+  },
+  "references": [
+    { "path": "../server-interfaces" }
+  ],
+  "include": [
+    "./src",
+    "../server-interfaces/src/**/*.d.ts",
+    "./config.json"
+  ],
+}

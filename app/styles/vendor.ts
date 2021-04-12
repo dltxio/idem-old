@@ -23,7 +23,8 @@ export default {
     paddingBottom: 18,
     color: "#151515",
   },
-  claimsWrapper: (window) => ({
+  // todo - provide the type for window. Fixing build error.
+  claimsWrapper: (window: any) => ({
     width: window.width,
     backgroundColor: "rgba(0,0,0,0.05)",
     marginVertical: 20,

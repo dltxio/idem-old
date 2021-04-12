@@ -20,10 +20,17 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
     setLoading(true);
 
     try {
-      await sendEmailVerificationEmail(item.value);
-    } catch (x) {
-      // todo - display error user.
-      console.log(x);
+      await sendEmailVerificationEmail({ email: item.value });
+    } catch (e) {
+      console.log(e);
+      const error = e as server.ErrorResponse;
+      if (error.reason === "bad_request") {
+        // do something
+      }
+
+      if (error.reason === "not_found") {
+        // do something different
+      }
     }
 
     setLoading(false);

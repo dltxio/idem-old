@@ -1,13 +1,13 @@
 {
+  "extends": "../tsconfig.json",
+  "composite": true,
   "compilerOptions": {
+    "rootDir": "./",
+    "outDir": "./build",
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
-    "lib": ["dom", "esnext"],
-    "moduleResolution": "node",
-    "noEmit": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "strict": true,
-    "target": "ES6"
-  }
+    "lib": ["dom", "esnext"]
+  },
+  "references": [{ "path": "../server-interfaces" }],
+  "include": ["./", "../server-interfaces/src/**/*.d.ts", "./config.dev.json"]
 }

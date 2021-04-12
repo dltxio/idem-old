@@ -1,0 +1,12 @@
+{
+  "name": "idem",
+  "version": "1.0.0",
+  "repository": "https://github.com/dltxio/idem.git",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
+}

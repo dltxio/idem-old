@@ -1,8 +1,8 @@
 import {
-  checkVerification,
   generateValidationCodes,
   generateVerificationCode
-} from "./message";
+} from "../../utils/verification-codes";
+import { checkVerification } from "./message";
 
 describe("message.ts", () => {
   const number = "0412345678";
