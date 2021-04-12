@@ -18,3 +18,5 @@ const columnConfig = {
 const DocumentsTable = ({ data, ...props }) => (
   <Table data={data} columnConfig={columnConfig} keyField="id" {...props} />
 );
+
+export default DocumentsTable;

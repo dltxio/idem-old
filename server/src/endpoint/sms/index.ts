@@ -2,24 +2,20 @@
 const schema = require("./schema");
 const message = require("./message");
 const { log } = require("../../logger")("/api/sms");
+import sendError from "../../utils/send-error";
 
 const router = express.Router();
 
 const requestCode = async (request: any, response: any) => {
   const { error, value } = schema.put.validate(request.body);
 
-  const sendError = (code: number, error: Error) => {
-    response.status(code);
-    response.send({ error });
-  };
-
-  if (error != null) return sendError(400, error);
+  if (error != null) return sendError(response, 400, error);
 
   try {
     const data = await message.sendVerification(value.number);
     log(`received SMS request for ${value.number} -- code:`, data.code);
   } catch (smsError) {
-    return sendError(500, smsError);
+    return sendError(response, 500, smsError);
   }
 
   response.send({ success: true, error: null });
@@ -28,12 +24,7 @@ const requestCode = async (request: any, response: any) => {
 const verifyCode = async (request: any, response: any) => {
   const { error, value } = schema.post.validate(request.body);
 
-  const sendError = (code: number, error: Error) => {
-    response.status(code);
-    response.send({ error });
-  };
-
-  if (error != null) return sendError(400, error);
+  if (error != null) return sendError(response, 400, error);
 
   const isValid = message.checkVerification(value.number, value.code);
   log(
