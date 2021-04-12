@@ -1,3 +1,7 @@
+# TypeScript
+build/
+*.tsbuildinfo
+
 # Production files
 config.json
 

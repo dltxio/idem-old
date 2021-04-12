@@ -14,7 +14,8 @@ export default {
     marginBottom: 8,
     marginTop: 16,
   },
-  itemWrapper: (window) => ({
+  // todo - provide the type for window. Fixing build error.
+  itemWrapper: (window: any) => ({
     paddingVertical: window.height * 0.03,
     paddingHorizontal: window.width * 0.1,
     borderBottomColor: "#cecece",
