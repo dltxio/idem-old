@@ -5,20 +5,21 @@ dotenv.config();
 const getConfig = () => {
   const config: Config = {
     port: getEnvVariable("PORT"),
-    messageBird: {
-      accessKey: getEnvVariable("MESSAGEBIRD_KEY")
-    },
     email: {
       support: {
         address: getEnvVariable("SUPPORT_EMAIL_ADDRESS"),
         password: getEnvVariable("SUPPORT_EMAIL_PASSWORD")
       }
     },
-    phoneNumberVerification: {
-      codeLength: 6,
+    sms: {
       originator: "IDEM",
-      smsMessage: (code: string) => `Your IDEM verification code is ${code}`
-    }
+      messageBird: {
+        accessKey: getEnvVariable("MESSAGEBIRD_KEY")
+      },
+      phoneNumberVerificationMessage: (code: string) =>
+        `Your IDEM verification code is ${code}`
+    },
+    verificationCodeLength: 6
   };
 
   return config;

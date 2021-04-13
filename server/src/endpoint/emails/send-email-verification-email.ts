@@ -13,14 +13,17 @@ const sendEmailVerificationEmail: RequestHandler<
   void,
   server.SendEmailVerificationEmailRequestBody,
   server.SuccessResponse
-> = async ({ body, services }) => {
+> = async ({ body, services, config }) => {
   const bodyValidationResult = await validate(body, bodyValidation);
 
   if (bodyValidationResult.isInvalid) {
     return validationBadRequest(bodyValidationResult.errors);
   }
 
-  const verificationCode = generateVerificationCode(body.email);
+  const verificationCode = generateVerificationCode(
+    body.email,
+    config.verificationCodeLength
+  );
 
   await services.email.sendEmailVerificationEmail({
     to: body.email,
