@@ -9,6 +9,7 @@ import {
   sendEmailVerificationEmail,
   verifyEmailCode,
 } from "../../helpers/claim/email";
+import { async } from "q";
 
 const EmailClaim = ({ item }: { item: IClaim }) => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -18,6 +19,24 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
   const [isEmailSent, setIsEmailSent] = useState<boolean>(false);
   const [isVerifySuccess, setIsVerifySuccess] = useState<boolean>(false);
 
+  const onVerify = async () => {
+    try {
+      await verifyEmailCode({ email: item.value, code: code });
+    } catch (e) {
+      console.log(e);
+      const error = e as server.ErrorResponse;
+      if (error.reason === "bad_request") {
+        // do something
+      }
+
+      if (error.reason === "not_found") {
+        // do something different
+      }
+      return;
+    }
+    setIsVerifySuccess(true);
+  };
+
   const onVerifyPress = async () => {
     if (!item.value) {
       // this should never happen because button should be disabled
@@ -26,21 +45,7 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
     setLoading(true);
 
     if (code) {
-      try {
-        await verifyEmailCode({ email: item.value, code: code });
-      } catch (e) {
-        console.log(e);
-        const error = e as server.ErrorResponse;
-        if (error.reason === "bad_request") {
-          // do something
-        }
-
-        if (error.reason === "not_found") {
-          // do something different
-        }
-        return;
-      }
-      setIsVerifySuccess(true);
+      onVerify();
     } else {
       try {
         await sendEmailVerificationEmail({ email: item.value });
