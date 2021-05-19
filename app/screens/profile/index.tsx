@@ -25,7 +25,12 @@ const saveEmailToStorage = async (): Promise<void> => {
     return undefined;
   }
 
-  return AsyncStorage.setItem(emailKey.key, "anthony.hinchliff@gmail.com");
+  return AsyncStorage.setItem(
+    emailKey.key,
+    JSON.stringify({
+      email: "anthony.hinchliff@gmail.com",
+    }),
+  );
 };
 
 const styles = StyleSheet.create({
