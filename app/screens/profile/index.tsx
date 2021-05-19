@@ -2,6 +2,11 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { Avatar } from "react-native-elements";
 
+import AsyncStorage from "@react-native-community/async-storage";
+import claims from "../../../assets/claims.json";
+const emailKey = claims.find(x => x.type === "Email");
+const getEmailFromStorage: () => string | '' =  () => AsyncStorage.getItem(emailKey?.key);
+
 const styles = StyleSheet.create({
 
   userRow: {
@@ -31,6 +36,7 @@ const Profile = () => (
           fontSize: 16,
         }}
       >
+        {getEmailFromStorage()}
         ronaldo.effertz@gmail.com
       </Text>
     </View>
