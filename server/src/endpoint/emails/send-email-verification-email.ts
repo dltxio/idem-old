@@ -25,12 +25,7 @@ const sendEmailVerificationEmail: RequestHandler<
     config.verificationCodeLength
   );
 
-  await services.email.sendEmailVerificationEmail({
-    to: body.email,
-    data: {
-      verificationCode
-    }
-  });
+  console.log(verificationCode);
 
   return { success: true };
 };
