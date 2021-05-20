@@ -25,14 +25,14 @@ const createClaim: RequestHandler<
 
   const privateKeyArmored = `-----BEGIN PGP PRIVATE KEY BLOCK-----`;
 
-  // privateKeys: privateKeyArmored, // for signing
-  // openpgp.armor: true
-  
-  const signature = await openpgp.sign({
-      message: JSON.stringify(body)
+  const unsignedMessage = await openpgp.createCleartextMessage({
+    text: "Hello, World!"
   });
 
-  
+  const signature = await openpgp.sign({
+    message: unsignedMessage
+  });
+
   console.log(signature);
 
   return {
