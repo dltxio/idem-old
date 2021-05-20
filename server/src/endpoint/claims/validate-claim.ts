@@ -3,7 +3,6 @@ import crypto, { createECDH } from "crypto";
 import { RequestHandler } from "../request-handler-wrapper";
 import { validationBadRequest } from "../../utils/errors";
 import { validate, ValidationSchema } from "../../utils/validate";
-import getConfig from "../../config";
 
 const bodyValidation: ValidationSchema<server.Claim> = {
   type: Joi.string().required(),
@@ -16,7 +15,7 @@ const createClaim: RequestHandler<
   void,
   server.Claim,
   server.ClaimValidated
-> = async ({ body }) => {
+> = async ({ body, config }) => {
   console.log(body);
   const bodyValidationResult = await validate(body, bodyValidation);
 
@@ -30,7 +29,6 @@ const createClaim: RequestHandler<
     namedCurve: "secp256k1"
   });
 
-  const config = getConfig();
   ecdh.setPrivateKey(
     config.ethKey,
     "hex"
