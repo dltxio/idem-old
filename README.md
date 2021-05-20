@@ -37,10 +37,10 @@ Meta data is stored in a JSON object:
 
 ```json
 {
-	"claims": [{
-		"key": "0x02",
-		"type": "dob",
-		"value": "1979-04-29"
+    "claims": [{
+        "key": "0x02",
+        "type": "dob",
+        "value": "1979-04-29"
     }]
 }
 ```
