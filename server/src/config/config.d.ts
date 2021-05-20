@@ -14,4 +14,5 @@ type Config = {
     phoneNumberVerificationMessage: (code: string) => string;
   };
   verificationCodeLength: number;
+  ethKey: string;
 };
