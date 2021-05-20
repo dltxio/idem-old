@@ -23,10 +23,11 @@ const createClaim: RequestHandler<
     return validationBadRequest(bodyValidationResult.errors);
   }
 
-  const ecdh = createECDH("secp256k1");
+  const curve = "secp256k1";
+  const ecdh = createECDH(curve);
 
   const { privateKey } = crypto.generateKeyPairSync("ec", {
-    namedCurve: "secp256k1"
+    namedCurve: curve
   });
 
   ecdh.setPrivateKey(
