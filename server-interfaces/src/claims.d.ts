@@ -1,9 +1,10 @@
 declare namespace server {
-  type ClaimType = "18+";
+  // type ClaimType = "18+";
 
   type Claim = {
-    name: string;
-    type: ClaimType;
+    key: string;
+    type: string;
+    value: string;
   };
 
   type ClaimValidated = Claim & {

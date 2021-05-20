@@ -6,7 +6,8 @@ import { validate, ValidationSchema } from "../../utils/validate";
 
 const bodyValidation: ValidationSchema<server.Claim> = {
   type: Joi.string().required(),
-  name: Joi.string().required()
+  key: Joi.string().required(),
+  value: Joi.string().required()
 };
 
 const createClaim: RequestHandler<
@@ -15,6 +16,7 @@ const createClaim: RequestHandler<
   server.Claim,
   server.ClaimValidated
 > = async ({ body }) => {
+  console.log(body);
   const bodyValidationResult = await validate(body, bodyValidation);
 
   if (bodyValidationResult.isInvalid) {
