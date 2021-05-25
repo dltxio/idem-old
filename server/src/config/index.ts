@@ -19,7 +19,8 @@ const getConfig = () => {
       phoneNumberVerificationMessage: (code: string) =>
         `Your IDEM verification code is ${code}`
     },
-    verificationCodeLength: 6
+    verificationCodeLength: 6,
+    ethKey: getEnvVariable("ETH_PRIVATE_KEY")
   };
 
   return config;
