@@ -27,7 +27,7 @@ const DateClaim = ({
         }}
       >
         <Text style={{ color: item.value ? undefined : colors.gray }}>{`${
-          moment(item.value).format('DD/MM/YY') || "Please enter the specific date..."
+          moment(item.value).format('DD/MM/YYYY') || "Please enter the specific date..."
         }`}</Text>
       </TouchableOpacity>
       <DatePick
