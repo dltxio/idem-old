@@ -6,7 +6,8 @@ import { validate, ValidationSchema } from "../../utils/validate";
 
 const bodyValidation: ValidationSchema<server.Claim> = {
   type: Joi.string().required(),
-  name: Joi.string().required()
+  key: Joi.string().required(),
+  value: Joi.string().required()
 };
 
 const createClaim: RequestHandler<
@@ -14,23 +15,23 @@ const createClaim: RequestHandler<
   void,
   server.Claim,
   server.ClaimValidated
-> = async ({ body }) => {
+> = async ({ body, config }) => {
+  console.log(body);
   const bodyValidationResult = await validate(body, bodyValidation);
 
   if (bodyValidationResult.isInvalid) {
     return validationBadRequest(bodyValidationResult.errors);
   }
 
-  const ecdh = createECDH("secp256k1");
+  const curve = "secp256k1";
+  const ecdh = createECDH(curve);
 
   const { privateKey } = crypto.generateKeyPairSync("ec", {
-    namedCurve: "secp256k1"
+    namedCurve: curve
   });
 
-  // cream olive tissue below crunch convince blame helmet mistake achieve blanket talent
-  // address : 0x5601A219C88aDBdbBcf620AA07B5B91eDDf593Ec
   ecdh.setPrivateKey(
-    "32740a305605a59964aeed912389dcc93e5ba657f00979480b093fee2b753356",
+    config.ethKey,
     "hex"
   );
 
