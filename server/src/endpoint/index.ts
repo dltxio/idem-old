@@ -1,12 +1,16 @@
 import express from "express";
 import claims from "./claims";
 import documents from "./documents";
-import sms from "./sms";
+import phone from "./phone";
 import emails from "./emails";
+import { SetupRouterFunction } from "../typings/setup-router";
 
-const router = express.Router();
-router.use(claims);
-router.use(documents);
-router.use(sms);
-router.use(emails);
-export default router;
+export default (config: Config, services: Services): express.Router => {
+  const router = express.Router();
+
+  const subRouters: SetupRouterFunction[] = [claims, documents, phone, emails];
+
+  subRouters.forEach(sr => router.use(sr(config, services)));
+
+  return router;
+};

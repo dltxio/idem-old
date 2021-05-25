@@ -1,17 +1,20 @@
 import express from "express";
-const router = express.Router();
+import { SetupRouterFunction } from "../../typings/setup-router";
+import requestHandlerWrapper from "../request-handler-wrapper";
+import getDocuments from "./get-documents";
 
-router.get("/documents", async (request, response) => {
-  const document = {
-    name: "DL Scan.pdf",
-    hash: "34ba703fb51601686640e7fca185dba7a04a1a50cc59a72e47a088e51e4a6786",
-    created: new Date(2021, 1, 1)
-  };
+const setupDocumentsRouter: SetupRouterFunction = (
+  config: Config,
+  services: Services
+) => {
+  const router = express.Router();
 
-  const documents = [];
-  documents.push(document);
+  router.get(
+    "/documents",
+    requestHandlerWrapper(getDocuments, config, services)
+  );
 
-  response.send(documents);
-});
+  return router;
+};
 
-export default router;
+export default setupDocumentsRouter;

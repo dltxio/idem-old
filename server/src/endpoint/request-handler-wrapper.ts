@@ -4,16 +4,19 @@ export type HandlerPayload<Params = {}, QueryString = {}, Body = {}> = {
   params: Params;
   queryString: QueryString;
   body: Body;
+  config: Config;
+  services: Services;
 };
 
 export type RequestHandler<Params, QueryString, Body, Result> = (
   payload: HandlerPayload<Params, QueryString, Body>
 ) => Promise<Result | server.ErrorResponse>;
 
-export default (fn: RequestHandler<any, any, any, any>) => async (
-  request: express.Request,
-  response: express.Response
-) => {
+export default (
+  fn: RequestHandler<any, any, any, any>,
+  config: Config,
+  services: Services
+) => async (request: express.Request, response: express.Response) => {
   const start = Date.now();
   console.log(`----> ${request.method} ${request.url}`);
   let responseStatus: number;
@@ -22,7 +25,9 @@ export default (fn: RequestHandler<any, any, any, any>) => async (
   const payload: HandlerPayload = {
     params: request.params,
     queryString: request.query,
-    body: request.body || {}
+    body: request.body || {},
+    config,
+    services
   };
 
   try {

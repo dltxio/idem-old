@@ -3,15 +3,16 @@ import { RequestHandler } from "../request-handler-wrapper";
 import { validationBadRequest } from "../../utils/errors";
 import { validate, ValidationSchema } from "../../utils/validate";
 import { generateVerificationCode } from "../../utils/verification-codes";
+const { log } = require("../../logger")("/api/phone");
 
-const bodyValidation: ValidationSchema<server.SendEmailVerificationEmailRequestBody> = {
-  email: Joi.string().required()
+const bodyValidation: ValidationSchema<server.RequestPhoneVerificationSMSRequestBody> = {
+  number: Joi.string().required()
 };
 
-const sendEmailVerificationEmail: RequestHandler<
+const requestPhoneVerificationSMS: RequestHandler<
   void,
   void,
-  server.SendEmailVerificationEmailRequestBody,
+  server.RequestPhoneVerificationSMSRequestBody,
   server.SuccessResponse
 > = async ({ body, services, config }) => {
   const bodyValidationResult = await validate(body, bodyValidation);
@@ -20,14 +21,16 @@ const sendEmailVerificationEmail: RequestHandler<
     return validationBadRequest(bodyValidationResult.errors);
   }
 
-  const verificationCode = generateVerificationCode(
-    body.email,
+  const code = generateVerificationCode(
+    body.number,
     config.verificationCodeLength
   );
 
-  console.log(verificationCode);
+  await services.sms.sendPhoneVerificationSMS(body.number, code);
+
+  log(`received SMS request for ${body.number} -- code:`, code);
 
   return { success: true };
 };
 
-export default sendEmailVerificationEmail;
+export default requestPhoneVerificationSMS;
