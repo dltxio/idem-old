@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+react-native-image-picker@^3.8.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-3.8.1.tgz#6e830e9b69c882ad5f1160e10592a84963a7f2c9"
+  integrity sha512-Q7qaJ7Zkt8ipIkkF+7UcuRbI0cxaNwsHBcnDLZdlpHnxuMaLhS/xp6v/om/kBYhMg6BeT+NcncynZQoKz7dQqw==
+
 typescript@^4.2.3:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.4.tgz#8610b59747de028fda898a8aef0e103f156d0961"

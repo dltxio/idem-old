@@ -29,10 +29,8 @@ const SelectClaim = ({
       <View
         style={{
           ...styles.claim.input,
+          ...styles.claim.switchButtonAlign as ViewStyle,
           width: styles.layout.window.width,
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "flex-start"
         }}
       >
       <Switch

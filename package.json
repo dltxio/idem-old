@@ -8,5 +8,8 @@
   },
   "devDependencies": {
     "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "react-native-image-picker": "^3.8.1"
   }
 }
