@@ -28,6 +28,7 @@ const sendEmailVerificationEmail: RequestHandler<
 
   await services.email.sendEmailVerificationEmail({
     to: body.email,
+    from: config.email.support.address, //process.env.SUPPORT_EMAIL_ADDRESS, //todo: change to config
     data: {
       verificationCode,
     }

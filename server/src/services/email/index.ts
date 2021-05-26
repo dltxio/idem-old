@@ -1,3 +1,4 @@
+import { format } from "node:path";
 import nodemailer, { Transporter } from "nodemailer";
 import emailVerificationTemplate from "./templates/email-verification-template";
 
@@ -34,17 +35,19 @@ export default class Office365EmailService
 
   private sendEmail = <T>({
     to,
+    from,
     subject,
     template,
     data
   }: {
     to: string;
+    from: string;
     subject: string;
     template: emailService.EmailTemplate;
     data: T;
   }) => {
     return this.mailer.sendMail({
-      from: process.env.SUPPORT_EMAIL_ADDRESS, //todo: change to config
+      from,
       to,
       subject,
       html: templateGenerators[template](data)
