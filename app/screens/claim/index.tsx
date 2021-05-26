@@ -35,10 +35,6 @@ const Claim = () => {
         return (
           <SelectClaim
             item={claim}
-            options={[
-              { label: "yes", value: "true" },
-              { label: "no", value: "false" },
-            ]}
             uploadFile={uploadFile}
           />
         );
