@@ -7,6 +7,7 @@ import styles from "../../styles";
 import { colors } from "../../styles/theme";
 import verifyClaim from "../../helpers/claim/verify";
 import Button from "../../components/Button";
+import moment from "moment";
 
 const DateClaim = ({
   item,
@@ -16,7 +17,6 @@ const DateClaim = ({
   uploadFile: () => void;
 }) => {
   const [showDate, setShowDate] = useState(false);
-  console.log(item);
   return (
     <View style={{ flex: 1 }}>
       <TouchableOpacity
@@ -27,7 +27,7 @@ const DateClaim = ({
         }}
       >
         <Text style={{ color: item.value ? undefined : colors.gray }}>{`${
-          item.value || "Please enter the specific date..."
+          moment(item.value).format('DD/MM/YYYY') || "Please enter the specific date..."
         }`}</Text>
       </TouchableOpacity>
       <DatePick
