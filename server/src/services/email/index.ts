@@ -44,7 +44,7 @@ export default class Office365EmailService
     data: T;
   }) => {
     return this.mailer.sendMail({
-      from: process.env.EMAIL_USER,
+      from: process.env.SUPPORT_EMAIL_ADDRESS, //todo: change to config
       to,
       subject,
       html: templateGenerators[template](data)
