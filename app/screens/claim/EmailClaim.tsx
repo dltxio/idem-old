@@ -9,7 +9,7 @@ import {
   sendEmailVerificationEmail,
   verifyEmailCode,
 } from "../../helpers/claim/email";
-import { async } from "q";
+// import { async } from "q";
 
 const EmailClaim = ({ item }: { item: IClaim }) => {
   const [loading, setLoading] = useState<boolean>(false);

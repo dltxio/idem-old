@@ -20,10 +20,18 @@ const sendEmailVerificationEmail: RequestHandler<
     return validationBadRequest(bodyValidationResult.errors);
   }
 
+  console.log(body.email);
   const verificationCode = generateVerificationCode(
     body.email,
     config.verificationCodeLength
   );
+
+  await services.email.sendEmailVerificationEmail({
+    to: body.email,
+    data: {
+      verificationCode,
+    }
+  })
 
   console.log(verificationCode);
 
