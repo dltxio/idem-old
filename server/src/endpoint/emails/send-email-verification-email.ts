@@ -33,8 +33,6 @@ const sendEmailVerificationEmail: RequestHandler<
     }
   })
 
-  console.log(verificationCode);
-
   return { success: true };
 };
 
