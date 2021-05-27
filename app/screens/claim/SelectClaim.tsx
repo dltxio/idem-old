@@ -8,10 +8,12 @@ import verifyClaim from "../../helpers/claim/verify";
 
 const SelectClaim = ({
   item,
-  uploadFile,
+  uploadFileFromBrowser,
+  uploadPhotoFromLibrary,
 }: {
   item: IClaim;
-  uploadFile: () => void;
+  uploadFileFromBrowser: () => void;
+  uploadPhotoFromLibrary: () => void;
 }) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => {
@@ -40,13 +42,18 @@ const SelectClaim = ({
         thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
         ios_backgroundColor="#3e3e3e"
         onValueChange={toggleSwitch}
-        value={item.value === 'true' ? true: false}
+        value={item.value === "true" ? true: false}
       /> 
       </View>
       <Button
-        title="Add Supporting Document From Device"
+        title="Upload a document"
         style={styles.claim.uploadButton as ViewStyle}
-        onPress={uploadFile}
+        onPress={uploadFileFromBrowser}
+      />
+      <Button
+        title="Add a photo from library"
+        style={styles.claim.libraryUploadButton as ViewStyle}
+        onPress={uploadPhotoFromLibrary}
       />
       <Button
         title="Verify"
