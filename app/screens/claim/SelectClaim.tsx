@@ -9,10 +9,12 @@ import verifyClaim from "../../helpers/claim/verify";
 const SelectClaim = ({
   item,
   uploadFile,
+  uploadPhotoFromCamera,
   uploadPhotoFromLibrary,
 }: {
   item: IClaim;
   uploadFile: () => void;
+  uploadPhotoFromCamera: () => void;
   uploadPhotoFromLibrary: () => void;
 }) => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -45,6 +47,11 @@ const SelectClaim = ({
         value={item.value === 'true' ? true: false}
       /> 
       </View>
+      <Button
+        title="Take a photo"
+        style={styles.claim.cameraUploadButton as ViewStyle}
+        onPress={uploadPhotoFromCamera}
+      />
       <Button
         title="Upload a document"
         style={styles.claim.uploadButton as ViewStyle}
