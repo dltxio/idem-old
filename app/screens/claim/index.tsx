@@ -79,7 +79,7 @@ const Claim = () => {
   const renderClaim = (type: string) => {
     switch (type) {
       case "DOB":
-        return <DateClaim item={claim} uploadFile={uploadFileFromBrowser} />;
+        return <DateClaim item={claim} uploadFileFromBrowser={uploadFileFromBrowser} />;
       case "Email":
         return <EmailClaim item={claim} />;
       case "Mobile":
@@ -89,13 +89,13 @@ const Claim = () => {
           <>
           <SelectClaim
             item={claim}
-            uploadFile={uploadFileFromBrowser}
+            uploadFileFromBrowser={uploadFileFromBrowser}
             uploadPhotoFromLibrary={uploadPhotoFromLibrary}
           />
           </>
         );
       default:
-        return <OtherClaim item={claim} uploadFile={uploadFileFromBrowser} />;
+        return <OtherClaim item={claim} uploadFileFromBrowser={uploadFileFromBrowser} />;
     }
   };
 

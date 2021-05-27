@@ -8,10 +8,10 @@ import verifyClaim from "../../helpers/claim/verify";
 
 const OtherClaim = ({
   item,
-  uploadFile,
+  uploadFileFromBrowser,
 }: {
   item: IClaim;
-  uploadFile: () => void;
+  uploadFileFromBrowser: () => void;
 }) => {
   return (
     <View style={{ flex: 1 }}>
@@ -29,7 +29,7 @@ const OtherClaim = ({
       <Button
         title="Add Supporting Document From Device"
         style={styles.claim.uploadButton as ViewStyle}
-        onPress={uploadFile}
+        onPress={uploadFileFromBrowser}
       />
       <Button
         title="Verify"
