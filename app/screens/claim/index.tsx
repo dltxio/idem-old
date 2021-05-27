@@ -24,15 +24,22 @@ const Claim = () => {
     })();
   }, []);
 
-  const uploadFile = async () => {
+  const uploadFileFromBrowser = async () => {
     try {
-      let result = await DocumentPicker.getDocumentAsync({
-        type: "*/*"
-      });
-   
-      if (result.type === "success") {
-        await AsyncStorage.setItem("document_url", result.uri);
+      const libraryUrl = await AsyncStorage.getItem("library_url");
+      if(libraryUrl !== null) {
+        let result = await DocumentPicker.getDocumentAsync({
+          type: "*/*"
+        });
+     
+        if (result.type === "success") {
+          console.log('result.uri', result.uri);
+          await AsyncStorage.setItem("document_url", result.uri);
+        }
+      } else {
+        console.log("You can select one document at a time");
       }
+      
     } catch(err) {
       console.log("err", err);
     }
@@ -41,16 +48,22 @@ const Claim = () => {
 
   const uploadPhotoFromLibrary = async () => {
     try {
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: false,
-        aspect: [4, 3],
-        quality: 1,
-      })
-      console.log(result)
-      if (!result.cancelled) {
-        await AsyncStorage.setItem("library_url", result.uri);
+      const documentUrl = await AsyncStorage.getItem("document_url");
+      if(documentUrl !== null) {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: false,
+          aspect: [4, 3],
+          quality: 1,
+        })
+        console.log(result)
+        if (!result.cancelled) {
+          await AsyncStorage.setItem("library_url", result.uri);
+        }
+      }else {
+        console.log("You can select one document at a time");
       }
+
     } catch(err) {
       console.log("err", err);
     }
@@ -66,7 +79,7 @@ const Claim = () => {
   const renderClaim = (type: string) => {
     switch (type) {
       case "DOB":
-        return <DateClaim item={claim} uploadFile={uploadFile} />;
+        return <DateClaim item={claim} uploadFile={uploadFileFromBrowser} />;
       case "Email":
         return <EmailClaim item={claim} />;
       case "Mobile":
@@ -76,13 +89,13 @@ const Claim = () => {
           <>
           <SelectClaim
             item={claim}
-            uploadFile={uploadFile}
+            uploadFile={uploadFileFromBrowser}
             uploadPhotoFromLibrary={uploadPhotoFromLibrary}
           />
           </>
         );
       default:
-        return <OtherClaim item={claim} uploadFile={uploadFile} />;
+        return <OtherClaim item={claim} uploadFile={uploadFileFromBrowser} />;
     }
   };
 
