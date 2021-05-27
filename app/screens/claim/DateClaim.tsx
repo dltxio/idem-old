@@ -11,10 +11,10 @@ import moment from "moment";
 
 const DateClaim = ({
   item,
-  uploadFile,
+  uploadFileFromBrowser,
 }: {
   item: IClaim;
-  uploadFile: () => void;
+  uploadFileFromBrowser: () => void;
 }) => {
   const [showDate, setShowDate] = useState(false);
   return (
@@ -43,7 +43,7 @@ const DateClaim = ({
       <Button
         title="Add Supporting Document From Device"
         style={styles.claim.uploadButton as ViewStyle}
-        onPress={uploadFile}
+        onPress={uploadFileFromBrowser}
       />
       <Button
         title="Verify"
