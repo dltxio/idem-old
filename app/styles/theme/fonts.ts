@@ -32,9 +32,6 @@ export const fontsAll = [
     openSans_bold_italic: require("../../assets/fonts/OpenSans-BoldItalic.ttf"),
   },
   {
-    FontAwesome5_Regular: require("../../assets/fonts/FontAwesome5_Regular.ttf"),
-  },
-  {
     FontAwesome5_Solid: require("../../assets/fonts/FontAwesome5_Solid.ttf"),
   },
 ];
