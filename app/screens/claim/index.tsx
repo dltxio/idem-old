@@ -13,7 +13,6 @@ import * as DocumentPicker from "expo-document-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Claim = () => {
-  const [image, setImage] = useState<any | null>(null);
   useEffect(() => {
     (async () => {
       if (Platform.OS !== 'web') {
@@ -50,7 +49,6 @@ const Claim = () => {
       })
       console.log(result)
       if (!result.cancelled) {
-        setImage(result.uri);
         await AsyncStorage.setItem('library_url', result.uri);
       }
     } catch(err) {
@@ -81,7 +79,6 @@ const Claim = () => {
             uploadFile={uploadFile}
             uploadPhotoFromLibrary={uploadPhotoFromLibrary}
           />
-          {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
           </>
         );
       default:
