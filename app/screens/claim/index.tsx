@@ -1,21 +1,63 @@
-﻿﻿import React from "react";
-import { Text, View } from "react-native";
+﻿﻿import React, {useState, useEffect} from "react";
+import { Text, View, Platform, Image } from "react-native";
 import styles from "../../styles";
 import EmailClaim from "./EmailClaim";
-import * as DocumentPicker from "expo-document-picker";
 import { useRootStore } from "../../store/rootStore";
 import { observer } from "mobx-react-lite";
 import DateClaim from "./DateClaim";
 import OtherClaim from "./OtherClaim";
 import MobileClaim from "./MobileClaim";
 import SelectClaim from "./SelectClaim";
+import * as ImagePicker from 'expo-image-picker';
+import * as DocumentPicker from "expo-document-picker";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Claim = () => {
+  const [image, setImage] = useState<any | null>(null);
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== 'web') {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!');
+        }
+      }
+    })();
+  }, []);
+
   const uploadFile = async () => {
-    const res = await DocumentPicker.getDocumentAsync({});
-    console.log(res);
-    //TODO choose files to upload and save to local storage or local database
+    try {
+      let result = await DocumentPicker.getDocumentAsync({
+        type: '*/*'
+      });
+   
+      if (result.type === 'success') {
+        await AsyncStorage.setItem('document_url', result.uri);
+      }
+    } catch(err) {
+      console.log('err', err);
+    }
+    
   };
+
+  const uploadPhotoFromLibrary = async () => {
+    try {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: false,
+        aspect: [4, 3],
+        quality: 1,
+      })
+      console.log(result)
+      if (!result.cancelled) {
+        setImage(result.uri);
+        await AsyncStorage.setItem('library_url', result.uri);
+      }
+    } catch(err) {
+      console.log('err', err);
+    }
+  };
+
   const rootStore = useRootStore();
   const claim = rootStore.Assets.selectedClaim;
 
@@ -33,10 +75,14 @@ const Claim = () => {
         return <MobileClaim item={claim} />;
       case "18+":
         return (
+          <>
           <SelectClaim
             item={claim}
             uploadFile={uploadFile}
+            uploadPhotoFromLibrary={uploadPhotoFromLibrary}
           />
+          {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+          </>
         );
       default:
         return <OtherClaim item={claim} uploadFile={uploadFile} />;
