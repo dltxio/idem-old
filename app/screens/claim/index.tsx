@@ -77,7 +77,6 @@ const Claim = () => {
       }
       const result = await ImagePicker.launchCameraAsync();
       // Explore the result
-      console.log(result);
       if (!result.cancelled) {
         await AsyncStorage.setItem("camera_url", result.uri);
       }
