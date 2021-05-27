@@ -33,11 +33,10 @@ const Claim = () => {
         });
      
         if (result.type === "success") {
-          console.log('result.uri', result.uri);
           await AsyncStorage.setItem("document_url", result.uri);
         }
       } else {
-        console.log("You can select one document at a time");
+        // TODO waiting for message
       }
       
     } catch(err) {
@@ -56,12 +55,11 @@ const Claim = () => {
           aspect: [4, 3],
           quality: 1,
         })
-        console.log(result)
         if (!result.cancelled) {
           await AsyncStorage.setItem("library_url", result.uri);
         }
       }else {
-        console.log("You can select one document at a time");
+        // TODO waiting for message
       }
 
     } catch(err) {
