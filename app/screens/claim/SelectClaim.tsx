@@ -42,7 +42,7 @@ const SelectClaim = ({
         thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
         ios_backgroundColor="#3e3e3e"
         onValueChange={toggleSwitch}
-        value={item.value === 'true' ? true: false}
+        value={item.value === "true" ? true: false}
       /> 
       </View>
       <Button
