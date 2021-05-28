@@ -2,12 +2,19 @@
 # yarn lockfile v1
 
 
-react-native-image-picker@^3.8.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-3.8.1.tgz#6e830e9b69c882ad5f1160e10592a84963a7f2c9"
-  integrity sha512-Q7qaJ7Zkt8ipIkkF+7UcuRbI0cxaNwsHBcnDLZdlpHnxuMaLhS/xp6v/om/kBYhMg6BeT+NcncynZQoKz7dQqw==
+nodejs-nodemailer-outlook@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/nodejs-nodemailer-outlook/-/nodejs-nodemailer-outlook-1.2.4.tgz#73aa4c8db74f3049aea889ec313de457443b2ca4"
+  integrity sha512-+AGxGRsMAwsXJNfm46/ELfNaj5tuMeoHV/3dR4C9TyAh54eYz2ZNNMHCICm7B3eTFdVtIHqIUsYNYg1Bju6J6A==
+  dependencies:
+    nodemailer "^6.4.16"
+
+nodemailer@^6.4.16:
+  version "6.6.1"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.6.1.tgz#2a05fbf205b897d71bf43884167b5d4d3bd01b99"
+  integrity sha512-1xzFN3gqv+/qJ6YRyxBxfTYstLNt0FCtZaFRvf4Sg9wxNGWbwFmGXVpfSi6ThGK6aRxAo+KjHtYSW8NvCsNSAg==
 
 typescript@^4.2.3:
-  version "4.2.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.4.tgz#8610b59747de028fda898a8aef0e103f156d0961"
-  integrity sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.2.tgz#399ab18aac45802d6f2498de5054fcbbe716a805"
+  integrity sha512-zZ4hShnmnoVnAHpVHWpTcxdv7dWP60S2FsydQLV8V5PbS3FifjWFFRiHSWpDJahly88PRyV5teTSLoq4eG7mKw==

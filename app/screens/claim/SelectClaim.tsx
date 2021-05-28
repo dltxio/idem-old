@@ -8,10 +8,12 @@ import verifyClaim from "../../helpers/claim/verify";
 
 const SelectClaim = ({
   item,
-  uploadFile,
+  uploadFileFromBrowser,
+  uploadPhotoFromLibrary,
 }: {
   item: IClaim;
-  uploadFile: () => void;
+  uploadFileFromBrowser: () => void;
+  uploadPhotoFromLibrary: () => void;
 }) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => {
@@ -22,6 +24,7 @@ const SelectClaim = ({
   useEffect(() => {
     if(item.value === "undefined") {
       item.value = "true"
+
     }
   }, []);
   return (
@@ -29,22 +32,29 @@ const SelectClaim = ({
       <View
         style={{
           ...styles.claim.input,
-          ...styles.claim.switchButtonAlign as ViewStyle,
           width: styles.layout.window.width,
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "flex-start"
         }}
       >
-      <Switch
+      {/* <Switch
         trackColor={{ false: "#767577", true: "#81b0ff" }}
-        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+        thumbColor={isOnLargeToggleSwitch ? "#f5dd4b" : "#f4f3f4"}
         ios_backgroundColor="#3e3e3e"
         onValueChange={toggleSwitch}
-        value={item.value === 'true' ? true: false}
-      /> 
+        value={item.value === "true" ? true: false}
+      /> */}
       </View>
       <Button
-        title="Add Supporting Document From Device"
+        title="Upload a document"
         style={styles.claim.uploadButton as ViewStyle}
-        onPress={uploadFile}
+        onPress={uploadFileFromBrowser}
+      />
+      <Button
+        title="Add a photo from library"
+        style={styles.claim.libraryUploadButton as ViewStyle}
+        onPress={uploadPhotoFromLibrary}
       />
       <Button
         title="Verify"

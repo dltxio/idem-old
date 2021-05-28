@@ -1,6 +1,5 @@
 import crypto from "crypto";
 import moment from "moment";
-import config from "../../config.json";
 
 // Generates a code based off of a given input.
 export const generateVerificationCode = (

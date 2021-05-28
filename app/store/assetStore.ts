@@ -1,4 +1,4 @@
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { types, Instance, flow } from "mobx-state-tree";
 import { AssetType, fetchAssets } from "../helpers/assets";
 
