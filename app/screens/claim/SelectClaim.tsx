@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useState, useEffect} from "react";
-import { View, ViewStyle, Switch, StyleSheet, Text } from "react-native";
+import { View, ViewStyle, Switch, StyleSheet } from "react-native";
 import { IClaim } from "../../store/assetStore";
 import styles from "../../styles";
 import Button from "../../components/Button";
