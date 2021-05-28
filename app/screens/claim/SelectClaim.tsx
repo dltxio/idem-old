@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useState, useEffect} from "react";
-import { View, ViewStyle, Switch } from "react-native";
+import { View, ViewStyle, Switch, StyleSheet, Text } from "react-native";
 import { IClaim } from "../../store/assetStore";
 import styles from "../../styles";
 import Button from "../../components/Button";
@@ -22,9 +22,8 @@ const SelectClaim = ({
     item.setValue(convertBoolToString)
   }
   useEffect(() => {
-    if(item.value === "undefined") {
-      item.value = "true"
-
+    if(item.value === undefined) {
+      toggleSwitch();
     }
   }, []);
   return (
@@ -35,16 +34,19 @@ const SelectClaim = ({
           width: styles.layout.window.width,
           flex: 1,
           alignItems: "center",
-          justifyContent: "flex-start"
+          justifyContent: "flex-start",
+          
         }}
       >
-      {/* <Switch
-        trackColor={{ false: "#767577", true: "#81b0ff" }}
-        thumbColor={isOnLargeToggleSwitch ? "#f5dd4b" : "#f4f3f4"}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
-        value={item.value === "true" ? true: false}
-      /> */}
+      <View style={item.value === 'true' ? styless.toggleTrueStyle : styless.toggleFalseStyle }>
+        <Switch
+            trackColor={{ false: "#767577", true: "#81b0ff" }}
+            thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={item.value === "true" ? true: false}
+          />
+      </View>
       </View>
       <Button
         title="Upload a document"
@@ -65,5 +67,16 @@ const SelectClaim = ({
     </View>
   );
 };
+
+const styless = StyleSheet.create({
+  toggleFalseStyle: {
+    backgroundColor: '#767577',
+    borderRadius: 50
+  },
+  toggleTrueStyle: {
+    backgroundColor: '#81b0ff', 
+    borderRadius: 50
+  }
+});
 
 export default observer(SelectClaim);
