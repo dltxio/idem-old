@@ -38,7 +38,7 @@ const SelectClaim = ({
           
         }}
       >
-      <View style={item.value === 'true' ? styless.toggleTrueStyle : styless.toggleFalseStyle }>
+      <View style={item.value === "true" ? styless.toggleTrueStyle : styless.toggleFalseStyle }>
         <Switch
             trackColor={{ false: "#767577", true: "#81b0ff" }}
             thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
@@ -70,11 +70,11 @@ const SelectClaim = ({
 
 const styless = StyleSheet.create({
   toggleFalseStyle: {
-    backgroundColor: '#767577',
+    backgroundColor: "#767577",
     borderRadius: 50
   },
   toggleTrueStyle: {
-    backgroundColor: '#81b0ff', 
+    backgroundColor: "#81b0ff", 
     borderRadius: 50
   }
 });
