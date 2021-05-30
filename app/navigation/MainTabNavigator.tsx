@@ -8,6 +8,7 @@ import Vendors from "../screens/vendors";
 import Settings from "../screens/settings";
 import ClaimsStackNavigator from "./ClaimsStackNavigator";
 import VendorsStackNavigator from "./VendorsStackNavigator";
+import Login from "../screens/auth";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,6 +24,7 @@ const TabNavigator = () => (
           Claims: "address-book",
           "3rd Parties": "university",
           Settings: "cog",
+          Login: "user",
         };
 
         return (
@@ -51,6 +53,8 @@ const TabNavigator = () => (
     <Tab.Screen name="Claims" component={ClaimsStackNavigator} />
     <Tab.Screen name="3rd Parties" component={VendorsStackNavigator} />
     <Tab.Screen name="Settings" component={Settings} />
+    <Tab.Screen name="Login" component={Login} />
+    
   </Tab.Navigator>
 );
 
