@@ -66,6 +66,24 @@ const Claim = () => {
       console.log("err", err);
     }
   };
+  
+  const uploadPhotoFromCamera = async () => {
+    try {
+      // Ask the user for the permission to access the camera
+      const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+      if (permissionResult.granted === false) {
+        alert("You've refused to allow this app to access your camera!");
+        return;
+      }
+      const result = await ImagePicker.launchCameraAsync();
+      // Explore the result
+      if (!result.cancelled) {
+        await AsyncStorage.setItem("camera_url", result.uri);
+      }
+    } catch(err) {
+      console.log("err", err);
+    }
+  };
 
   const rootStore = useRootStore();
   const claim = rootStore.Assets.selectedClaim;
@@ -87,6 +105,7 @@ const Claim = () => {
           <>
           <SelectClaim
             item={claim}
+            uploadPhotoFromCamera={uploadPhotoFromCamera}
             uploadFileFromBrowser={uploadFileFromBrowser}
             uploadPhotoFromLibrary={uploadPhotoFromLibrary}
           />
