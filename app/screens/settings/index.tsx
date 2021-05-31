@@ -1,6 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View, StatusBar } from "react-native";
 import { colors } from "../../styles/theme";
+import Qrcode  from "../qrcode"
+import { useRootStore } from "../../store/rootStore";
+
 
 const styles = StyleSheet.create({
   root: {
@@ -16,11 +19,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const Settings = () => (
-  <View style={styles.root}>
-    <StatusBar barStyle="light-content" />
-    <Text style={styles.title}>Settings</Text>
-  </View>
-);
+const Settings = () => {
+  const rootStore = useRootStore();
+  const assetStore = rootStore.Assets;
+  return(
+    <View style={styles.root}>
+      <StatusBar barStyle="light-content" />
+      <Text style={styles.title}>Settings</Text>
+      <View>
+        {assetStore.claims[0] &&<Qrcode claim={assetStore.claims.find((c => c.key === "0x02"))!} />}
+      </View>
+    </View>
+  )
+};
 
 export default Settings;
