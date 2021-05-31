@@ -8,10 +8,12 @@ import verifyClaim from "../../helpers/claim/verify";
 
 const SelectClaim = ({
   item,
+  uploadPhotoFromCamera,
   uploadFileFromBrowser,
   uploadPhotoFromLibrary,
 }: {
   item: IClaim;
+  uploadPhotoFromCamera: () => void;
   uploadFileFromBrowser: () => void;
   uploadPhotoFromLibrary: () => void;
 }) => {
@@ -48,6 +50,11 @@ const SelectClaim = ({
           />
       </View>
       </View>
+      <Button
+        title="Take a photo"
+        style={styles.claim.cameraUploadButton as ViewStyle}
+        onPress={uploadPhotoFromCamera}
+      />
       <Button
         title="Upload a document"
         style={styles.claim.uploadButton as ViewStyle}
