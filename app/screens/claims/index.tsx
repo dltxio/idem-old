@@ -12,6 +12,8 @@ import { useRootStore } from "../../store/rootStore";
 import { observer } from "mobx-react-lite";
 import { IClaim } from "../../store/assetStore";
 import { colors } from "../../styles/theme";
+import Profile from "../profile";
+
 
 type ClaimsListItemProps = {
   onPress: () => void;
@@ -76,9 +78,11 @@ const ClaimSelector = () => {
   return (
     <View style={styles.list.root as ViewStyle}>
       <StatusBar barStyle="light-content" />
+      {assetStore.claims[0] && <Profile fullName={assetStore.claims.find((c => c.key === "0x02"))!} emailAddress={assetStore.claims.find((c => c.key === "0x03"))!} />}
       <View style={{ flex: 1, width: "100%" }}>
         {assetStore.claims.map((item, index) => {
           return (
+            <>
             <ClaimListItem
               key={index}
               item={item}
@@ -87,6 +91,7 @@ const ClaimSelector = () => {
                 navigation.navigate("Claim");
               }}
             />
+            </>
           );
         })}
       </View>
