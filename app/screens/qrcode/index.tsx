@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 
 const Qrcode : React.FC<{claim: IClaim}> = ({ claim }) => {
   return (
-    <SvgQRCode value={`did://google.com/${claim.value}`} />
+    <SvgQRCode value={`https://google.com/${claim.value}`} />
   );
 };
 
