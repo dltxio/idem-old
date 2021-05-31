@@ -26,13 +26,7 @@ const Settings = () => {
     <View style={styles.root}>
       <StatusBar barStyle="light-content" />
       <Text style={styles.title}>Settings</Text>
-      <View  
-        style={{
-          width: '100%',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-        }}>
+      <View>
         {assetStore.claims[0] &&<Qrcode claim={assetStore.claims.find((c => c.key === "0x02"))!} />}
       </View>
     </View>
