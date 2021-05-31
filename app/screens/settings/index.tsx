@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, StatusBar } from "react-native";
 import { colors } from "../../styles/theme";
+import Qrcode  from "../qrcode"
+
 
 const styles = StyleSheet.create({
   root: {
@@ -20,6 +22,15 @@ const Settings = () => (
   <View style={styles.root}>
     <StatusBar barStyle="light-content" />
     <Text style={styles.title}>Settings</Text>
+    <View  
+      style={{
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+      }}>
+      <Qrcode />
+    </View>
   </View>
 );
 
