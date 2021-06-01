@@ -20,11 +20,7 @@ const SelectClaim = ({
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => {
     setIsEnabled(previousState => !previousState);
-    if(item.value === "false") {
-      item.setValue("true");
-    } else {
-      item.setValue("false");
-    }
+    item.value === "false" ? item.setValue("true") : item.setValue("false");
   }
   useEffect(() => {
     if(item.value === undefined) {
