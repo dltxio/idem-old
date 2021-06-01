@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useState, useEffect} from "react";
-import { View, ViewStyle, Switch, StyleSheet } from "react-native";
+import { View, ViewStyle, Switch, StyleSheet, Text } from "react-native";
 import { IClaim } from "../../store/assetStore";
 import styles from "../../styles";
 import Button from "../../components/Button";
@@ -20,8 +20,11 @@ const SelectClaim = ({
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => {
     setIsEnabled(previousState => !previousState);
-    const convertBoolToString: string = String(isEnabled);
-    item.setValue(convertBoolToString)
+    if(item.value === "false") {
+      item.setValue("true");
+    } else {
+      item.setValue("false");
+    }
   }
   useEffect(() => {
     if(item.value === undefined) {
@@ -43,7 +46,7 @@ const SelectClaim = ({
       <View style={item.value === "true" ? styless.toggleTrueStyle : styless.toggleFalseStyle }>
         <Switch
             trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+            thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
             ios_backgroundColor="#3e3e3e"
             onValueChange={toggleSwitch}
             value={item.value === "true" ? true: false}
