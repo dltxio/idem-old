@@ -4,10 +4,16 @@ import { RequestHandler } from "../request-handler-wrapper";
 import { validationBadRequest } from "../../utils/errors";
 import { validate, ValidationSchema } from "../../utils/validate";
 
+const evidence = Joi.object().keys({
+  name: Joi.string().required(),
+  sha256: Joi.string().required()
+});
+
 const bodyValidation: ValidationSchema<server.Claim> = {
   type: Joi.string().required(),
   key: Joi.string().required(),
-  value: Joi.string().required()
+  value: Joi.string().required(),
+  evidence: Joi.array().ordered(evidence)
 };
 
 const createClaim: RequestHandler<

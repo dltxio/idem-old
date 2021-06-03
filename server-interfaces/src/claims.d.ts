@@ -3,6 +3,7 @@ declare namespace server {
     key: string;
     type: string;
     value: string;
+    evidence: string[];
   };
 
   type ClaimValidated = Claim & {
