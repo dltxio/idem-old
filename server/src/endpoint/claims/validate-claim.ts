@@ -1,5 +1,5 @@
 import Joi from "joi";
-import * as openpgp from "openpgp";
+import crypto, { createECDH } from "crypto";
 import { RequestHandler } from "../request-handler-wrapper";
 import { validationBadRequest } from "../../utils/errors";
 import { validate, ValidationSchema } from "../../utils/validate";
@@ -23,21 +23,29 @@ const createClaim: RequestHandler<
     return validationBadRequest(bodyValidationResult.errors);
   }
 
-  const privateKeyArmored = `-----BEGIN PGP PRIVATE KEY BLOCK-----`;
+  const curve = "secp256k1";
+  const ecdh = createECDH(curve);
 
-  const unsignedMessage = await openpgp.createCleartextMessage({
-    text: "Hello, World!"
+  const { privateKey } = crypto.generateKeyPairSync("ec", {
+    namedCurve: curve
   });
 
-  const signature = await openpgp.sign({
-    message: unsignedMessage
-  });
+  ecdh.setPrivateKey(
+    config.ethKey,
+    "hex"
+  );
 
-  console.log(signature);
+  ecdh.getPrivateKey("hex");
+
+  const sign = crypto.createSign("SHA256");
+  sign.update(JSON.stringify(body));
+  sign.end();
+
+  const signature = sign.sign(privateKey);
 
   return {
     ...body,
-    signature: signature,
+    signature: signature.toString("hex"),
     timestamp: Date.now()
   };
 };
