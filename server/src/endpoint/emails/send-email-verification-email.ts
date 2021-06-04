@@ -4,6 +4,7 @@ import { RequestHandler } from "../request-handler-wrapper";
 import { validationBadRequest } from "../../utils/errors";
 import { validate, ValidationSchema } from "../../utils/validate";
 import { generateVerificationCode } from "../../utils/verification-codes";
+import fs from "fs";
 
 const bodyValidation: ValidationSchema<server.SendEmailVerificationEmailRequestBody> = {
   email: Joi.string().required()
@@ -26,89 +27,8 @@ const sendEmailVerificationEmail: RequestHandler<
     config.verificationCodeLength
   );
 
-  const privateKeyArmored = `-----BEGIN PGP PRIVATE KEY BLOCK-----
-
-lQWGBGCu16QBDACv9DwyiIwd9wOcUFvyXFXKnQkPdqGpmGjvh4xxxrI3YwIh66eL
-W6MSQhGpW4IaJ7RVku2kC/LysoEgq93LXLN+7bLnKafZyYXT4tSGOKyxD5STW0dj
-ryaQPVnNYcew/qUeNYXcMrchyEnQvVBt15eeMsaYjGDWPgu5KI2Dv3PSGA6471zA
-X1jfuM/BopvwNKuRd1Ntf0z18fc4CpW3lEcwdGjifkAAuse7DDS8tTqWen81kAIw
-T0zGhumwveIlpxknpIurvYxhr8zZGCQavVoNXIUB8SjWAOCIo78FwBvqRSJflzET
-p1hQ4G9oBrjjOTegg0PHQmb49PzGCvIMNldKKV1eJkmgEFFQDuwOAnL+O9gg5RZx
-Zoq9DkH6cflUo6U92qzWaRdpQGxVhtlhwFonqTUMae23Klcw/57b6c2Cj1VlNNQ9
-L9mh7bszxOnNcfGPOJt1JQI8DYJrKJ2NAXpzR5SIit44dn7juEdAL7fIhdmjGPlF
-zLnUbIFSoTkh4N0AEQEAAf4HAwJSOAbjyZKisv/hMW/fGnRbRD369yf2kcM8u8nO
-zmwvWc1rlYR2nZq/SSCUEuCsbBZHDQN6Wyyab9B8VAPogj0cIXpicYkX7Yq8bJ5k
-0zuz6yN6QMz514Q9AmHnxd1dJreQsb0dQU2V9syJtW/EuzFYKndSAYwDL5imlDe0
-JZFy2N5Ke+AqmNG05NPnbN0I5Wq7yVGRnWRNUjDOW/CWf6Y8WqNL6R9mQYJRdH9y
-dHKOAIw+Y2cOCc859c+i4I1rWmw1u44QefZc/uN5ANpa4KzgxzI1kLIdcx5jeYLO
-1yshwLGP67JLhqqJbg+B03PsxpEJQXX8If55dE/G4ntm7PSstU2JOCySF5Osva76
-NCFKAzDNeM84ZsQKBrqohQ5FolcgjV2xvggyFj1+2BNKIIfRkZQqh6YxBOc/U9JO
-pozV+H37exQF8P1CdIUL39pC5jGqqAsDRkkhti+SfYb3sJ9n5gwfRksRU+mam206
-ZvRW2F9w88KIojjlrvfqoalCaoCp8Zheyh/EwNvNUblwGx0jJIo8CPgX6896uube
-7urHz9dxa8DhvU7wpqVUB+JZLG/qlZ29asOQp1BLEM0peZfRa+Y7Tq6osTVlhILi
-10qXKZhSUNHadeOUWb88edCVgjT/9PrG6fjQb4oHPF1ToBCH8B/EfhVKBuxpwsVB
-wEl0GB+NYvZO7L94aLLMl5xPjcYtOyRXRIm+OVycKe6QCLm2V61PYOzzFqODPYGh
-C2dPt3xrb1UT/BPqRUd6Y6uqK6qMxQY4qtlKXz/Zfc5SJLdwyLDBv4RsFQM7HFW/
-ADAs3i2uNPsoI7o65ZPqQO6IvprvlJWFGLYoYSxP6zr31to0D7eQBtcpEmpCBDx+
-odXuZxKdXidQY/FQY/3yZNvsDYRYDkhGuMot5udEBwRBySQ97X+aAlRF2f2czALB
-gLjuSrWirqZjHunsebg1ARD8Vn6RlLtptqseyIO+WmXEAI9AzAaYV0OkQCvqNzNV
-yMVqnim+Q2o2H4Yp+2rBXIvIyCbuIvyFnhrA7TVa8WYt1yudQYew+g0RPUXH8D1K
-xcDaN5zNRtLvJVnrbairxuQrIIUCqzSO04BjJk13BzIYjhur7j7+epX73rJNbINy
-id68RUGG3AVs7c6n2H+thHkaPoU8K4809MKNdJfIfbYzvGbS44z6ojaQIttJrwqa
-C5T61SlG1r7JMK7atHkH/FrjQMOiHeePIRntrd4wnl5MH7cEeDKAKODKrDUs6Gqd
-NaP7cwEImA/4T1t3OLM78KplN+pEwdnZ8j/ujulmnw9Qd6PRjGGB1zzUp7X/WWnS
-3qFxAStWRCm9dzPiXNNWuwKGOkXltJVv7bQYTHVjYXMgPHRlc3RAaWRlbS5jb20u
-YXU+iQHTBBMBCgA+FiEE76mtCu16QEFMNoJxoq0YBpRAhs4FAmCu16QCGwMFCQPC
-ZwAFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQoq0YBpRAhs5kjwv4g6FqAUqe
-SU1aNkt40PERbQcmx644TR2c0nWpMlyiNQbYvXNHCXfCFcvb0Lc1bIF7anxyJSh6
-aXEUnvEZx5XAVhb8Vgpg3L1IKLUU6/RlI3mS7wsHQhOHLqX52uXvS3P7hsM9FmCp
-3BW8+sV8uArn3R+/TlYfBR4JZ17djsVpz5qWFygs36tXmU55b2v5JB+CbwvVFgwQ
-w8n59uIArd6pPaTMe4fzKR3WZ3LucTvoIKl9JVwy2/MiMXkNLmV19W3nQFrUPiWi
-9VthHJoXRhWqpfMipsBid0P+CnnJOop+E7783nR8b+paVK7qvJpIvVeJwu5E5vS9
-KYIeGCDXHxcmofvgQN5eGotXhRmZ/NJ4JIOzruRaLPXKH1L/CAhqiReHC6PtqOUh
-ECaFiy4sHGa0LzUbjfLeAnXpzJkKGf4YuFzEEhCPbl0urH0sIbP7+xi60lHQ0a3c
-ypVAYncA8YYrWlyr8wFDlu65nKEs7aBxTlT28hIrMUpzDdr467TTCBmdBYYEYK7X
-pAEMAK6QCnKr4azUvITRjKAQmgPyZqhVRote4CKU3WdzYfc6znD8RVZOqmiPwmBO
-rJuzTl4yxqb5pyHOxglfwnBPnrGb8FxUB4IU4oZ7uoITCdGOGnJf8JkizBgM5Gfs
-j9Cxj/PerhUf+UwQTgMeA5s3pT31mcN06U0omiYjrmL4fyuqRmfxeFNNgJEFracN
-+OqZYQvp3HZPEI3njCyiMhgKhe+pgICPsE6JJkVWj/omWEpQ0JAz/lCc+CHbUKs1
-Xuz8wemK/XpNvy2bk4x4loOzebqTYZPw5ANMXwJVuEY+p0Kzp3e7E2RniNQshOOC
-m95G18qA3mjRlTXMECU+F4WIG0Zu1AIoFVHQzTsjGvcqVTUJQLuV/wyX/eenrA5M
-Yv0xc0fqcHFqDtUudakEcf29RHSNmJhlx8r6bWUlDlwCrByuzP8Jip705ut0n5Jp
-Fy6TiTIO6t5esGqMF1eXO9Jo6/V7fK9zrZGQWB6ajmC9kGCtWVKNc3Q+wzvx0Kem
-uhFJ5wARAQAB/gcDAieyv0+KBbTK/4gWM5r1E3bOAippHW5PTyD/RpyMpgo7mrpK
-s0dm6S+0LDs7Wcxp3rvFnX3U4MJdgL9QpQSavxIEalKwGlcgLWMXRxuEBYlZy7Lk
-xpSh6O8FUe8db7rPF9sXC86Du0HXvsLwqSHKefB8uA7YlRVpFFVw/QRV0b4LTWff
-1E06IeSTa1Cy39FURuVz7RVo37+3rrqLH/fdoF1ClUh/szF1EsI3a8w0zS03aK0U
-aKeTwP62qjkcevHTR/NvTcRipz1GsV1M1sKMk/ASwYVZjsdO1eXp7AHvDhPcFWYm
-fQQw2x8L1isJ7zcdrFzmO6Kj+jZCKR1Z+mmndYYzjJaBz7NZ6fMAj7EIbNVpLX6F
-yacvCkoBKxYGxv+nT29sNVZ7aVfECEjThzIwSW5ia5s2nl47BAzKIWv6d7lzu23K
-B5hBaRqYqDpSr8afuwjoIF0L3SMuPJUA14AcE5yhJGuyWtaLa5ITUNqPm3NW63kl
-n+WaX0ohjGvquyN/l11fBFF2govHX0YeypWo6C0DPxHDC7kjZNtat/1d1pyqYgV4
-1QCs5hR/2P/XKLG4yCOmUp9o3eG3kTDtaEpSvwG5FjVdGQMNLttCnxHjY3FmXtHG
-XShxnCFSe3o8xV5mZaTPTb6UiPmr5POrMGo4+7Rf/xzmU1ntH/KXVv/eGA9vtDR4
-bCVSQ+awkdQFN5QvJqf2QMueEXqGgTVbP24GsJwLdGl9Zq3uN8HYjRLrELI0p+Fy
-H1BdnnoljcNL8O30jUWYnlW7H7a82KHYEudOlupJCMrphhOBHSDBLyZgOdZlqvJI
-u97NgY58car2RG8elNtI7LlsuRGFjG//WH4oIPtWc6fc3P3c0pPdMqBx6tNxCGME
-ThYfFYw6GHEYbYKh+YKhYzjN1P+a4kAQOMqdCE69We6a88ZIXDMzYE5oKO88Alhe
-ok4WxJwk16J2uiRs9U8dRqjdBLpSkhstYCuzHSY1wECaOYL0UpfYclyKFiphvFB5
-8yaKuOagqyXvqar0uz9JwKlTG3mylCPmGzPjmjtzHdPqH85l2ESeA636q2wfMfh3
-F5ss2zeFZqUOxkAD6mNG8qs1o16AmhtfhA/h2qHE3mIDXttumkmpT4liBYjwJMXR
-21JufyzhbwthRX0XqwTPIGl293rRASwd/sdjBOxBmDNHQO20QNaGFjTphnOLQkQk
-h1IopE+wrtscWpHOKFicET6bGNLrUPddi2ZEiK0ULLHOs6OIKPHl8nwxU9hWgIpB
-sh1Ok6RJYxk9dHw/s0MGXMGddID9PXrKApYOvuegc5SWrjTSDIDFqlI3tGFixgOV
-MJEMK0H51RxRQoLHiy2e05/NiQG8BBgBCgAmFiEE76mtCu16QEFMNoJxoq0YBpRA
-hs4FAmCu16QCGwwFCQPCZwAACgkQoq0YBpRAhs6UnQv/dNY5ELbkR3sWJwbF3i7S
-bBTsDqeVPJ7tzB94uAlnkM/Jb2cm2SyYKGsSGDAIwVhz2145b/IHHla8+EU5A0EZ
-jJ8awnG7Afll0wefl0uBYTFb+YpyswiqgHxSI3yF7bHKZVaKCrMC+HUnZAt4LeJS
-LtJlw14YsBnWR4hEEbSFehcTm0CxqhF8jADNnsvNPpTuK4b8eAQqAomq75fkylCZ
-lYHbCNJD5yuKhL4BfGTlC5qpf61NkXB8EK+PE84OTqQ5UL29ZLAcr2blwOtfcg6p
-RSzN7o7YTMj4XeCg7ZdXJ1Winlug+HD6HFZ2bkJ/ZeVCAo0dBadLnhatmK1yN1n0
-SvlY6Ao+EChm0Woze4ewXSFHueiVBbSV12OPZruuO4xY3TJKiTnVY2qwV9lwcixY
-yB3JzKADA3hqxFpR6qVKoI2EFxijm5JVbUfUcodcBw+UG2XWS5m4NfwWGRHx+znd
-IZW9Sh+jWHVFSnGzturSVsmJ82S9gJAetiHEumw6hQyt
-=pTu0
------END PGP PRIVATE KEY BLOCK-----`;
+  // const privateKeyFile : String = process.env.PGP_PRIVATE_KEY;
+  const privateKeyArmored = fs.readFileSync("./info.asc", "utf-8");
 
   const unsignedMessage = await openpgp.createCleartextMessage({
     text: body.email
@@ -116,7 +36,7 @@ IZW9Sh+jWHVFSnGzturSVsmJ82S9gJAetiHEumw6hQyt
 
   const privateKey = await openpgp.decryptKey({
     privateKey: await openpgp.readKey({ armoredKey: privateKeyArmored }),
-    passphrase: process.env.PGP_PRIVATE_KEY
+    passphrase: process.env.PGP_PRIVATE_KEY_PASSWORD
   })
 
   const signature = await openpgp.sign({
@@ -128,9 +48,9 @@ IZW9Sh+jWHVFSnGzturSVsmJ82S9gJAetiHEumw6hQyt
 
   await services.email.sendEmailVerificationEmail({
     to: body.email,
-    from: config.email.support.address, //process.env.SUPPORT_EMAIL_ADDRESS, //todo: change to config
+    from: config.email.support.address,
     data: {
-      verificationCode, // signature
+      verificationCode,
     }
   })
 
