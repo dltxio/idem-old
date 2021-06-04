@@ -13,7 +13,7 @@ const bodyValidation: ValidationSchema<server.Claim> = {
   type: Joi.string().required(),
   key: Joi.string().required(),
   value: Joi.string().required(),
-  evidence: Joi.array().ordered(evidence)
+  evidence: Joi.array().items(evidence).min(1)
 };
 
 const createClaim: RequestHandler<
