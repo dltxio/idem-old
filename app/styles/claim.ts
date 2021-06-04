@@ -24,6 +24,22 @@ export default {
   },
   uploadButton: {
     position: "absolute" as FlexStyle["position"],
+    bottom: 150,
+    height: 50,
+    justifyContent: "center" as FlexAlignType,
+    left: 10,
+    right: 10,
+  },
+  cameraUploadButton: {
+    position: "absolute" as FlexStyle["position"],
+    bottom: 210,
+    height: 50,
+    justifyContent: "center" as FlexAlignType,
+    left: 10,
+    right: 10,
+  },
+  libraryUploadButton: {
+    position: "absolute" as FlexStyle["position"],
     bottom: 90,
     height: 50,
     justifyContent: "center" as FlexAlignType,
@@ -45,5 +61,10 @@ export default {
     height: 50,
     justifyContent: "center",
     marginVertical: 10,
+  },
+  switchButtonAlign: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "flex-start",
   },
 };

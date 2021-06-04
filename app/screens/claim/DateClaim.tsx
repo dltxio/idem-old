@@ -11,10 +11,10 @@ import moment from "moment";
 
 const DateClaim = ({
   item,
-  uploadFile,
+  uploadFileFromBrowser,
 }: {
   item: IClaim;
-  uploadFile: () => void;
+  uploadFileFromBrowser: () => void;
 }) => {
   const [showDate, setShowDate] = useState(false);
   return (
@@ -27,7 +27,7 @@ const DateClaim = ({
         }}
       >
         <Text style={{ color: item.value ? undefined : colors.gray }}>{`${
-          moment(item.value).format('DD/MM/YYYY') || "Please enter the specific date..."
+          moment(item.value).format("DD/MM/YYYY") || "Please enter the specific date..."
         }`}</Text>
       </TouchableOpacity>
       <DatePick
@@ -35,15 +35,15 @@ const DateClaim = ({
         handleCloseDate={() => {
           setShowDate(false);
         }}
-        handleDateChange={(value) => {
-          item.setValue(value.toLocaleDateString());
+        handleDateChange={(value: Date) => {
+          item.setValue(value.toISOString());
           setShowDate(false);
         }}
       />
       <Button
         title="Add Supporting Document From Device"
         style={styles.claim.uploadButton as ViewStyle}
-        onPress={uploadFile}
+        onPress={uploadFileFromBrowser}
       />
       <Button
         title="Verify"
