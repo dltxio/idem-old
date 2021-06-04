@@ -5,7 +5,7 @@ const HeaderTitle = ({ title }: { title: string }) => (
   <Text
     style={{
       fontSize: 22,
-      color: "#ffffff",
+      color: "black",
     }}
   >
     {title}

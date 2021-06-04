@@ -62,4 +62,9 @@ export default {
     justifyContent: "center",
     marginVertical: 10,
   },
+  switchButtonAlign: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
 };
