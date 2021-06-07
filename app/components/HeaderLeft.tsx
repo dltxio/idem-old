@@ -5,7 +5,7 @@ const HeaderLeft = ({ navigation }: { navigation: any }) => {
   return (
     <FontIcon.Button
       name="arrow-left"
-      color="white"
+      color="black"
       backgroundColor="transparent"
       onPress={() => {
         navigation.goBack();
