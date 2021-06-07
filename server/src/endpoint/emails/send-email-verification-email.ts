@@ -43,7 +43,6 @@ const sendEmailVerificationEmail: RequestHandler<
     privateKeys: privateKey 
   });
 
-  console.log(signature);
 
   await services.email.sendEmailVerificationEmail({
     to: body.email,
