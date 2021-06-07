@@ -35,6 +35,7 @@ const Claim = () => {
         }
       } else {
         // TODO waiting for message
+        alert('You have already selected one document');
       }
       
     } catch(err) {
@@ -58,6 +59,7 @@ const Claim = () => {
         }
       }else {
         // TODO waiting for message
+        alert('You have already selected one document');
       }
 
     } catch(err) {
