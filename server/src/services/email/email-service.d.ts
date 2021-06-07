@@ -4,6 +4,7 @@ declare namespace emailService {
   type EmailTemplateGenerators = { [k in EmailTemplate]: Function };
 
   type SendEmailData<T> = {
+    from: string;
     to: string;
     data: T;
   };
