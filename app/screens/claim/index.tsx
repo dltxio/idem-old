@@ -27,16 +27,15 @@ const Claim = () => {
   const uploadFileFromBrowser = async () => {
     try {
       const libraryUrl = await AsyncStorage.getItem("library_url");
-      if(libraryUrl !== null) {
-        let result = await DocumentPicker.getDocumentAsync({
-          type: "*/*"
-        });
+      if(libraryUrl === null) {
+        let result = await DocumentPicker.getDocumentAsync();
      
         if (result.type === "success") {
           await AsyncStorage.setItem("document_url", result.uri);
         }
       } else {
         // TODO waiting for message
+        alert('You have already selected one document');
       }
       
     } catch(err) {
@@ -48,7 +47,7 @@ const Claim = () => {
   const uploadPhotoFromLibrary = async () => {
     try {
       const documentUrl = await AsyncStorage.getItem("document_url");
-      if(documentUrl !== null) {
+      if(documentUrl === null) {
         let result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.All,
           allowsEditing: false,
@@ -60,6 +59,7 @@ const Claim = () => {
         }
       }else {
         // TODO waiting for message
+        alert('You have already selected one document');
       }
 
     } catch(err) {
