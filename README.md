@@ -13,7 +13,7 @@ Idem has two workflows, one for onboarding and one for onboarded users who have 
 ```text
 Given a user who has downloaded the app,  
 And has verified their claims,  
-When the visit exchange.com,  
+When they visit exchange.com,  
 And they scan the QR code via the app,  
 And Ok on the app,  
 Then they are registered and ID verfied,  
@@ -45,19 +45,30 @@ Meta data is stored in a JSON object:
 }
 ```
 
+## User Story 2:  As an existing customer, I want to verify my KYC requirements via IDEM, so that I don't need to complete yet another KYC process.
+
+```text
+Given a user who has downloaded the app,  
+And has verified their claims,  
+When they visit exchange.com,  
+And they scan the QR code via the app,  
+And Ok on the app,  
+Then their ID is confirmed on exchange.com
+```
+
 ## Verify these claims
 These claims are then verified by a third-party KYC vendors who return an X-509 SSL certificate signed JSON object that can then be used again.  Each vendor has a different process for onboarding and the app will maintain these different business requirements.
 
 ## Implementation on Third-Party sites
 ### Step 1:  Onboarding on Third-Party Sites
 
-The exchange creates a unique URL with the mime `id://` with the claims the exchange requires for 
+The exchange creates a unique URL with the url schema `did://` with the claims the exchange requires for 
 
 * Call back URL (mandatory)
 * Nonce as UUID (mandatory)
 * A list of claims required
 
-Eg: `idem://callback=myexchange.com.au/register?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3`
+Eg: `did://callback=myexchange.com.au/register?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3`
 
 ### Step 2:  Posting the signed data
 The user will then receive confirmation alert on the ...
@@ -79,8 +90,9 @@ When Block ID ..
 | 0x00 | Full Name | fullname | | Clients Full Name |
 | 0x01 | Birth Year | birthyear | YYYY ISO 8601 | Clients Year of Birth |
 | 0x02 | Date of Birth | dob | YYYY-MM-DD ISO 8601 | Clients Date of Birth | 
-| 0x03 | Email | email | email |  | 
-| 0x04 | Address | address | Physical Address |  | 
+| 0x03 | Email | email | email | Clients email address  | 
+| 0x04 | Address | address | Physical Address | Clients pyhsical address | 
+| 0x05 | Mobile Number | mobilenumber | Mobile Number | Clients mobile number | 
 
 ### Table of claims data types
 
