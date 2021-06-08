@@ -52,8 +52,8 @@ Given a user who has downloaded the app,
 And has verified their claims,  
 When they visit exchange.com,  
 And they scan the QR code via the app,  
-And Ok on the app,  
-Then their ID is confirmed on exchange.com
+And OK on the app,  
+Then their ID is confirmed on exchange.com.
 ```
 
 ## Verify these claims
@@ -62,16 +62,18 @@ These claims are then verified by a third-party KYC vendors who return an X-509 
 ## Implementation on Third-Party sites
 ### Step 1:  Onboarding on Third-Party Sites
 
-The exchange creates a unique URL with the url schema `did://` with the claims the exchange requires for 
+The exchange creates a unique URL with the url schema `did://` with the claims the exchange requires for:
 
 * Call back URL (mandatory)
 * Nonce as UUID (mandatory)
 * A list of claims required
 
-Eg: `did://callback=myexchange.com.au/register?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3`
+Eg: `did://callback=myexchange.com.au/verify?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3`
 
-### Step 2:  Posting the signed data
-The user will then receive confirmation alert on the ...
+### Step 2:  Posting the signed data to the exchange
+The user will then receive confirmation alert on the device with the claims the exchange is requesting.
+
+The app will the post the claims in the following schema.
 
 ```json
 
@@ -93,6 +95,7 @@ When Block ID ..
 | 0x03 | Email | email | email | Clients email address  | 
 | 0x04 | Address | address | Physical Address | Clients pyhsical address | 
 | 0x05 | Mobile Number | mobilenumber | Mobile Number | Clients mobile number | 
+| 0x06 | 18+ | eighteenplus | 18 Plus | 18 Plus | 
 
 ### Table of claims data types
 
