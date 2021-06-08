@@ -62,13 +62,13 @@ These claims are then verified by a third-party KYC vendors who return an X-509 
 ## Implementation on Third-Party sites
 ### Step 1:  Onboarding on Third-Party Sites
 
-The exchange creates a unique URL with the url schema `did://` with the claims the exchange requires for:
+The exchange "exchange.com" creates a unique URL with the url schema `did://` with the claims the exchange requires for:
 
 * Call back URL (mandatory)
 * Nonce as UUID (mandatory)
 * A list of claims required
 
-Eg: `did://callback=myexchange.com.au/verify?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3`
+Eg: `did://verify=exchange.com/verify?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3`
 
 ### Step 2:  Posting the signed data to the exchange
 The user will then receive confirmation alert on the device with the claims the exchange is requesting.
