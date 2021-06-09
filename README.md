@@ -1,4 +1,5 @@
-# Idem https://idem.com.au
+# Idem 
+https://idem.com.au
 
 ## Abstract
 
@@ -7,6 +8,8 @@ Idem is a mobile application based on the DID protocol.
 Each time an exchange requests an ID verifycation from a user, the provider charges the exchange a fee.  Further, users are required to provide KYC information and have it verified for each and every onboarding, instead of a portable, reusable verification from a trusted provider.  By locally storing user's verified information, we can enhance the customer onboarding experience and reduce costs incurred by Vendors.
 
 Idem has two workflows, one for onboarding and one for onboarded users who have not completed any verification.
+
+Kovan transactions will be signed with the ETH account `0xE4ed9ceF6989CFE9da7c1Eec8c2299141dD9e7cC`
 
 ## User Story 1:  As a potential customer, I want to onboard via the Idem app, so that I don't have to re-supply all my information.
 
