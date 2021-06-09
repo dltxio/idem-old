@@ -11,7 +11,14 @@ Idem has two workflows, one for onboarding and one for onboarded users who have 
 
 Kovan transactions will be signed with the ETH account `0xE4ed9ceF6989CFE9da7c1Eec8c2299141dD9e7cC`
 
-## User Story 1:  As a potential customer, I want to onboard via the Idem app, so that I don't have to re-supply all my information.
+## User Story 1:  
+
+```
+As a potential customer, 
+I want to onboard via the Idem app, 
+so that I don't have to re-supply all my information.
+
+```
 
 ```text
 Given a user who has downloaded the app,  
