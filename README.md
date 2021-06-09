@@ -189,8 +189,5 @@ contract EthereumClaimsRegistry {
 
 Once the user has verified their identity, a third-party service such as a crypto exchange may want to verify a user's identity.  Put simply, "Is this User who they say they are?"
 
-## JWTs
-
-
 ## References
 https://www.servicesaustralia.gov.au/individuals/topics/confirm-your-identity/29166
