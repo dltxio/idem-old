@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useState, useEffect} from "react";
-import { View, ViewStyle, Switch, StyleSheet } from "react-native";
+import { View, ViewStyle, Switch, StyleSheet, Text } from "react-native";
 import { IClaim } from "../../store/assetStore";
 import styles from "../../styles";
 import Button from "../../components/Button";
@@ -8,11 +8,15 @@ import verifyClaim from "../../helpers/claim/verify";
 
 const SelectClaim = ({
   item,
+  imageInfo,
+  displayFileName,
   uploadPhotoFromCamera,
   uploadFileFromBrowser,
   uploadPhotoFromLibrary,
 }: {
   item: IClaim;
+  imageInfo: any,
+  displayFileName: boolean,
   uploadPhotoFromCamera: () => void;
   uploadFileFromBrowser: () => void;
   uploadPhotoFromLibrary: () => void;
@@ -41,14 +45,15 @@ const SelectClaim = ({
       >
       <View style={item.value === "true" ? styless.toggleTrueStyle : styless.toggleFalseStyle }>
         <Switch
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={item.value === "true" ? true: false}
-          />
+          trackColor={{ false: "#767577", true: "#81b0ff" }}
+          thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={item.value === "true" ? true: false}
+        />
       </View>
       </View>
+      { displayFileName ? <Text style={{bottom: 280, textAlign: "center"}}>{imageInfo.name}</Text> : false } 
       <Button
         title="Take a photo"
         style={styles.claim.cameraUploadButton as ViewStyle}

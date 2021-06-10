@@ -15,7 +15,9 @@ import * as FileSystem from 'expo-file-system';
 
 const Claim = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [displayFileName, setDisplayFileName] = useState(false)
   const [image, setImage] = useState(String);
+  const [imageInfo, setImageInfo] = useState(Object);
   const [libraryName, setLibraryName] = useState(String)
 
   useEffect(() => {
@@ -33,8 +35,8 @@ const Claim = () => {
     try {
       let result = await DocumentPicker.getDocumentAsync();
       if (result.type === "success") {
-        console.log('result', result.name)
         const base64Img = await FileSystem.readAsStringAsync(result.uri, { encoding: 'base64' });
+        setImageInfo(result);
         setModalVisible(true);
         setImage(base64Img);
         setLibraryName('browser');
@@ -55,7 +57,6 @@ const Claim = () => {
         })
         if (!result.cancelled) {
           const base64Img = await FileSystem.readAsStringAsync(result.uri, { encoding: 'base64' });
-          console.log('result.uri',base64Img)
           setModalVisible(true);
           setImage(base64Img);
           setLibraryName('gallery');
@@ -78,7 +79,6 @@ const Claim = () => {
       // Explore the result
       if (!result.cancelled) {
         const base64Img = await FileSystem.readAsStringAsync(result.uri, { encoding: 'base64' });
-        console.log('result.uri',base64Img)
         setModalVisible(true);
         setImage(base64Img);
         setLibraryName('camera');
@@ -90,10 +90,10 @@ const Claim = () => {
 
   const claimsDocuments =  async () => {
     if(image) {
-      console.log('libraryName', libraryName);
       if(libraryName === "browser") {await AsyncStorage.setItem("document_url", image);}
       if(libraryName === "gallery") {await AsyncStorage.setItem("library_url", image);}
       if(libraryName === "camera") {await AsyncStorage.setItem("camera_url", image);}
+      setDisplayFileName(true);
       setModalVisible(false);
     }
   }
@@ -120,6 +120,8 @@ const Claim = () => {
             uploadPhotoFromCamera={uploadPhotoFromCamera}
             uploadFileFromBrowser={uploadFileFromBrowser}
             uploadPhotoFromLibrary={uploadPhotoFromLibrary}
+            imageInfo={imageInfo}
+            displayFileName={displayFileName}
           />
           </>
         );
