@@ -11,6 +11,7 @@ import SelectClaim from "./SelectClaim";
 import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as FileSystem from 'expo-file-system';
 
 const Claim = () => {
   useEffect(() => {
@@ -26,17 +27,13 @@ const Claim = () => {
 
   const uploadFileFromBrowser = async () => {
     try {
-      const libraryUrl = await AsyncStorage.getItem("library_url");
-      if(libraryUrl === null) {
         let result = await DocumentPicker.getDocumentAsync();
      
         if (result.type === "success") {
-          await AsyncStorage.setItem("document_url", result.uri);
+          const base64 = await FileSystem.readAsStringAsync(result.uri, { encoding: 'base64' });
+          console.log(base64);
+          await AsyncStorage.setItem("document_url", base64);
         }
-      } else {
-        // TODO waiting for message
-        alert('You have already selected one document');
-      }
       
     } catch(err) {
       console.log("err", err);
@@ -46,21 +43,18 @@ const Claim = () => {
 
   const uploadPhotoFromLibrary = async () => {
     try {
-      const documentUrl = await AsyncStorage.getItem("document_url");
-      if(documentUrl === null) {
-        let result = await ImagePicker.launchImageLibraryAsync({
+       let result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.All,
           allowsEditing: false,
           aspect: [4, 3],
           quality: 1,
+          base64: true
         })
         if (!result.cancelled) {
-          await AsyncStorage.setItem("library_url", result.uri);
+          const base64 = await FileSystem.readAsStringAsync(result.uri, { encoding: 'base64' });
+          console.log('result.uri',base64)
+          await AsyncStorage.setItem("library_url", base64);
         }
-      }else {
-        // TODO waiting for message
-        alert('You have already selected one document');
-      }
 
     } catch(err) {
       console.log("err", err);
@@ -78,7 +72,9 @@ const Claim = () => {
       const result = await ImagePicker.launchCameraAsync();
       // Explore the result
       if (!result.cancelled) {
-        await AsyncStorage.setItem("camera_url", result.uri);
+        const base64 = await FileSystem.readAsStringAsync(result.uri, { encoding: 'base64' });
+        console.log('result.uri',base64)
+        await AsyncStorage.setItem("camera_url", base64);
       }
     } catch(err) {
       console.log("err", err);
