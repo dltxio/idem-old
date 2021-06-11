@@ -19,7 +19,7 @@ import { colors } from "../../styles/theme";
 import Profile from "../profile";
 import * as Linking from "expo-linking";
 
-// const  prefix = Linking.makeUrl("/");
+const  prefix = Linking.makeUrl("");
 type ClaimsListItemProps = {
   onPress: () => void;
   item: IClaim;
@@ -72,32 +72,28 @@ const ClaimSelector = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [data, setData] = useState<any | null>(null);
 
-  // const linking = {
-  //   prefixes: [prefix],
-  // };
-  // console.log('linking========>S', linking);
+  const linking = {
+    prefixes: [prefix],
+  };
+  console.log('linking========>S', linking);
   const handleDeepLink = (event: any) => {
     console.log('event', event);
     const data = Linking.parse(event.url);
     console.log('data', data)
+    setModalVisible(true);
     setData(data);
   }
 
   useEffect(() => {
     assetStore.loadClaims();
-    // const  getInitialUrl = async () => {
-    //   const initialUrl = await Linking.getInitialURL();
-    //   console.log('initialUrl', initialUrl);
-    //   if(initialUrl) setData(Linking.parse(initialUrl));
-    // }
-    var NativeLinking=require("../../node_modules/react-native/Libraries/Linking/NativeLinking").default
-    NativeLinking.getInitialURL().then((url: any) => {
-      console.log('Initial url is: ' + url);
-      setData(Linking.parse(url))
-    }).catch((err:any) => {console.error('An error occurred', err)});
+    const  getInitialUrl = async () => {
+      const initialUrl = await Linking.getInitialURL();
+      console.log('initialUrl', initialUrl);
+      if(initialUrl) setData(Linking.parse(initialUrl));
+    }
     Linking .addEventListener("url", handleDeepLink);
     if(!data) {
-      // getInitialUrl();
+      getInitialUrl();
       setModalVisible(true);
     } else {
     }
