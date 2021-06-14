@@ -10,6 +10,7 @@ import MobileClaim from "./MobileClaim";
 import SelectClaim from "./SelectClaim";
 import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
+import * as Crypto from 'expo-crypto';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Claim = () => {
@@ -29,9 +30,16 @@ const Claim = () => {
       const libraryUrl = await AsyncStorage.getItem("library_url");
       if(libraryUrl === null) {
         let result = await DocumentPicker.getDocumentAsync();
-     
         if (result.type === "success") {
-          await AsyncStorage.setItem("document_url", result.uri);
+          const hashKey = await Crypto.digestStringAsync(
+            Crypto.CryptoDigestAlgorithm.SHA256,
+            result.uri
+          );
+          const data = {
+            'hash': hashKey,
+            'base64Url': result.uri
+          }
+          await AsyncStorage.setItem("document_url", JSON.stringify(data));
         }
       } else {
         // TODO waiting for message
@@ -55,7 +63,15 @@ const Claim = () => {
           quality: 1,
         })
         if (!result.cancelled) {
-          await AsyncStorage.setItem("library_url", result.uri);
+          const hashKey = await Crypto.digestStringAsync(
+            Crypto.CryptoDigestAlgorithm.SHA256,
+            result.uri
+          );
+          const data = {
+            'hash': hashKey,
+            'base64Url': result.uri
+          }
+          await AsyncStorage.setItem("library_url", JSON.stringify(data));
         }
       }else {
         // TODO waiting for message
@@ -78,7 +94,15 @@ const Claim = () => {
       const result = await ImagePicker.launchCameraAsync();
       // Explore the result
       if (!result.cancelled) {
-        await AsyncStorage.setItem("camera_url", result.uri);
+        const hashKey = await Crypto.digestStringAsync(
+          Crypto.CryptoDigestAlgorithm.SHA256,
+          result.uri
+        );
+        const data = {
+          'hash': hashKey,
+          'base64Url': result.uri
+        }
+        await AsyncStorage.setItem("camera_url", JSON.stringify(data));
       }
     } catch(err) {
       console.log("err", err);
