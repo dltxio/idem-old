@@ -10,7 +10,7 @@ import MobileClaim from "./MobileClaim";
 import SelectClaim from "./SelectClaim";
 import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
-import * as Crypto from 'expo-crypto';
+import * as Crypto from "expo-crypto";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Claim = () => {
