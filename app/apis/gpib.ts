@@ -1,7 +1,7 @@
+import config from "../../app/config.dev.json";
 import axios from "axios";
-import { REACT_APP_GPIB_URL } from "@env";
 const open = axios.create({
-  baseURL: REACT_APP_GPIB_URL,
+  baseURL: config.REACT_APP_GPIB_URL.endpoint,
   headers: {
     "Cache-Control": "no-store",
   },
