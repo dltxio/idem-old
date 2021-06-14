@@ -25,21 +25,21 @@ const Claim = () => {
     })();
   }, []);
 
+  const getData = async (result: any) => ({
+    hash: await Crypto.digestStringAsync(
+      Crypto.CryptoDigestAlgorithm.SHA256,
+      result.uri
+    ),
+    base64Url: result.uri
+  });
+
   const uploadFileFromBrowser = async () => {
     try {
       const libraryUrl = await AsyncStorage.getItem("library_url");
       if(libraryUrl === null) {
         let result = await DocumentPicker.getDocumentAsync();
         if (result.type === "success") {
-          const hashKey = await Crypto.digestStringAsync(
-            Crypto.CryptoDigestAlgorithm.SHA256,
-            result.uri
-          );
-          const data = {
-            'hash': hashKey,
-            'base64Url': result.uri
-          }
-          await AsyncStorage.setItem("document_url", JSON.stringify(data));
+          await AsyncStorage.setItem("document_url", JSON.stringify(await getData(result)));
         }
       } else {
         // TODO waiting for message
@@ -63,15 +63,7 @@ const Claim = () => {
           quality: 1,
         })
         if (!result.cancelled) {
-          const hashKey = await Crypto.digestStringAsync(
-            Crypto.CryptoDigestAlgorithm.SHA256,
-            result.uri
-          );
-          const data = {
-            'hash': hashKey,
-            'base64Url': result.uri
-          }
-          await AsyncStorage.setItem("library_url", JSON.stringify(data));
+          await AsyncStorage.setItem("library_url", JSON.stringify(await getData(result)));
         }
       }else {
         // TODO waiting for message
@@ -94,15 +86,7 @@ const Claim = () => {
       const result = await ImagePicker.launchCameraAsync();
       // Explore the result
       if (!result.cancelled) {
-        const hashKey = await Crypto.digestStringAsync(
-          Crypto.CryptoDigestAlgorithm.SHA256,
-          result.uri
-        );
-        const data = {
-          'hash': hashKey,
-          'base64Url': result.uri
-        }
-        await AsyncStorage.setItem("camera_url", JSON.stringify(data));
+        await AsyncStorage.setItem("camera_url", JSON.stringify(await getData(result)));
       }
     } catch(err) {
       console.log("err", err);
