@@ -1,5 +1,5 @@
 ﻿﻿import React, { useEffect } from "react";
-import { Text, View, Platform, Image } from "react-native";
+import { Text, View, Platform, Image, Alert } from "react-native";
 import styles from "../../styles";
 import EmailClaim from "./EmailClaim";
 import { useRootStore } from "../../store/rootStore";
@@ -12,6 +12,7 @@ import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
 import * as Crypto from "expo-crypto";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import idem from "../../apis/idem";
 
 const Claim = () => {
   useEffect(() => {
@@ -33,6 +34,15 @@ const Claim = () => {
     base64Url: result.uri
   });
 
+  const parseVerifyValues = () => ({
+    "phoneNumber": "0422893444",
+    "email": "test@gmail.com",
+    "userID": "490f8964-7084-4f66-a245-77f99042738c",
+    "phoneNumberVerified": true,
+    "emailVerified": true,
+    "idVerified": true
+  });
+
   const uploadFileFromBrowser = async () => {
     try {
       const libraryUrl = await AsyncStorage.getItem("library_url");
@@ -41,6 +51,26 @@ const Claim = () => {
         if (result.type === "success") {
           await AsyncStorage.setItem("document_url", JSON.stringify(await getData(result)));
         }
+        // Just for demo purpose, we are calling fake account verify endpoint //
+        const parsedValues = parseVerifyValues();
+        await idem.open.post("/User/idem/verify", parsedValues).then((res: any) => {
+          if(res.status) {
+            Alert.alert(
+              "Title",
+              "Account verify successfully",
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => console.log("Cancel Pressed"),
+                  style: "cancel"
+                },
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+              ],
+              { cancelable: false }
+            );
+          }
+        });
+      // end function //
       } else {
         // TODO waiting for message
         alert('You have already selected one document');
