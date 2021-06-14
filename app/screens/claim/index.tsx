@@ -12,7 +12,7 @@ import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
 import * as Crypto from "expo-crypto";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import idem from "../../apis/idem";
+import idem from "../../apis/gpib";
 
 const Claim = () => {
   useEffect(() => {
