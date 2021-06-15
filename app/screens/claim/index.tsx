@@ -54,14 +54,6 @@ const Claim = () => {
 
         }
       ]
-    
-    
-    // "phoneNumber": assetStore.claims.find((c => c.key === "0x04"))?.value,
-    // "email": assetStore.claims.find((c => c.key === "0x03"))?.value,
-    // "userID": "490f8964-7084-4f66-a245-77f99042738c", // I am unable to access userID bcoz deep link not working, thats why we are using static usedID // 
-    // "phoneNumberVerified": true,
-    // "emailVerified": true,
-    // "idVerified": true
   });
 
   const uploadFileFromBrowser = async () => {
