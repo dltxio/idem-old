@@ -126,7 +126,6 @@ const Claim = () => {
   const rootStore = useRootStore();
   const claim = rootStore.Assets.selectedClaim;
   const assetStore = rootStore.Assets;
-  console.log('assetStore=====>', assetStore.claims);
   if (!claim) {
     return <View>{/* TODO: error handling for this case */}</View>;
   }
