@@ -9,8 +9,5 @@
   },
   "email": {
     "endpoint": "http://localhost:3000/api/emails"
-  },
-  "REACT_APP_GPIB_URL": {
-    "endpoint": "https://testapi.getpaidinbitcoin.com.au"
   }
 }
