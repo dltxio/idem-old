@@ -36,6 +36,7 @@ Meta data is stored in a JSON object:
     }]
 }
 ```
+Note:  See the Microsoft claims class for .net https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-5.0
 
 ## User Story 1:  Onboarding a new user
 
