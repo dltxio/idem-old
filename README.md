@@ -14,13 +14,12 @@ Idem has two workflows,
 
 Kovan transactions will be signed with the ETH account `0xE4ed9ceF6989CFE9da7c1Eec8c2299141dD9e7cC`
 
-## User Story 1:  
+## User Story 1:  Onboarding a new user
 
 ```
-As a potential customer, 
+As a frustrated customer, 
 I want to onboard via the Idem app, 
-so that I don't have to re-supply all my information.
-
+So that I don't have to re-supply all my information.
 ```
 
 ```text
@@ -58,15 +57,23 @@ Meta data is stored in a JSON object:
 }
 ```
 
-## User Story 2:  As an existing customer, I want to verify my KYC requirements via IDEM, so that I don't need to complete yet another KYC process.
+## User Story 2:  Verify an already registered user
+
+```text
+As an existing unverfied customer of exchange.com,
+I want to verify my KYC requirements via IDEM,
+So that I don't need to complete yet another KYC process.
+```
 
 ```text
 Given a user who has downloaded the app,  
-And has verified their claims,  
+And has already verified their claims,  
 When they visit exchange.com,  
 And they scan the QR code via the app,  
-And OK on the app,  
-Then their ID is confirmed on exchange.com.
+And OK to sharing data on the app to exchange.com,  
+Then their ID is posted from the app to exchange.com's API
+And their Idem signature is vefified,
+And their persona data is updated at exchange.com
 ```
 
 ## Verify these claims
@@ -187,10 +194,6 @@ contract EthereumClaimsRegistry {
     }
 }
 ```
-
-# Verification
-
-Once the user has verified their identity, a third-party service such as a crypto exchange may want to verify a user's identity.  Put simply, "Is this User who they say they are?"
 
 ## References
 
