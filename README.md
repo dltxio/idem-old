@@ -9,10 +9,33 @@ Each time an exchange requests an ID verifycation from a user, the provider char
 
 Idem has two workflows, 
 
-1. Onboarding / Registering new users 
-2. Onboarded users who have not completed any verification
+1. Onboarding / Registering new users (user story 1)
+2. Onboarded users who have not completed any verification (user story 2)
 
 Kovan transactions will be signed with the ETH account `0xE4ed9ceF6989CFE9da7c1Eec8c2299141dD9e7cC`
+
+### Step 1: New IDEM registration
+
+User onboards to the app via their Mobile number.
+
+### Step 2: New private key
+The app will automatically create a 256-bit private key on the device.  This will be used to sign messages using ESDCA to third parties.
+
+### Step 3: Upload data
+
+On the mobile application the user can choose certain types of claims to verify, such as 18+, Date of Birth or Address.  The user is then required to substantiate any of those claims with supporting evidence such as a government issued document, utilities bill or such. The documents are stored in the local storage of the device along with a keccak 256 hash.
+
+Meta data is stored in a JSON object:
+
+```json
+{
+    "claims": [{
+        "key": "0x02",
+        "type": "dob",
+        "value": "1979-04-29"
+    }]
+}
+```
 
 ## User Story 1:  Onboarding a new user
 
@@ -30,31 +53,6 @@ And they scan the QR code via the app,
 And Ok on the app,  
 Then they are registered and ID verfied,  
 And taken to the exchange home page.  
-```
-
-### Step 1: New registration
-
-User onboards to the app via their Mobile number.
-
-### Step 2: New private key
-The app will automatically create a 256-bit private key on the device.  This will be used to sign messages to third parties.
-
-Note: PGP/GPG possible in future iterations.
-
-### Step 3: Upload data
-
-On the mobile application the user can choose certain types of claims to verify, such as 18+, Date of Birth or Address.  The user is then required to substantiate any of those claims with supporting evidence such as a government issued document, utilities bill or such. The documents are stored in the local storage of the device along with a keccak 256 hash.
-
-Meta data is stored in a JSON object:
-
-```json
-{
-    "claims": [{
-        "key": "0x02",
-        "type": "dob",
-        "value": "1979-04-29"
-    }]
-}
 ```
 
 ## User Story 2:  Verify an already registered user
@@ -88,7 +86,7 @@ The exchange "exchange.com" creates a unique URL with the url schema `did://` wi
 * Nonce as UUID (mandatory)
 * A list of claims required
 
-Eg: `did://verify=exchange.com/verify?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3`
+Eg: `did://callback=exchange.com/verify?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3&claims=0x01`
 
 ### Step 2:  Posting the signed data to the exchange
 The user will then receive confirmation alert on the device with the claims the exchange is requesting.
