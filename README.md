@@ -3,7 +3,7 @@ https://idem.com.au
 
 ## Abstract
 
-Idem is a open source cross platform mobile application based on the DID protocol.
+Idem is a open source cross platform mobile application based on the Decentrlaized Identity Foundations DID protocol.
 
 Each time an exchange requests an ID verifycation from a user, the provider charges the exchange a fee.  Further, users are required to provide KYC information and have it verified for each and every onboarding, instead of a portable, reusable verification from a trusted provider.  By locally storing user's verified information, we can enhance the customer onboarding experience and reduce costs incurred by Vendors.
 
@@ -14,7 +14,7 @@ Idem has two workflows,
 
 Kovan transactions will be signed with the ETH account `0xE4ed9ceF6989CFE9da7c1Eec8c2299141dD9e7cC`
 
-### Step 1: New IDEM registration
+### Step 1: New Idem registration
 
 User onboards to the app via their Mobile number.
 
