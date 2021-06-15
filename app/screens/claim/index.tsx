@@ -13,6 +13,7 @@ import * as DocumentPicker from "expo-document-picker";
 import * as Crypto from "expo-crypto";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import idem from "../../apis/gpib";
+import sites from "../../assets/sites.json";
 
 const Claim = () => {
   useEffect(() => {
@@ -34,13 +35,33 @@ const Claim = () => {
     base64Url: result.uri
   });
 
-  const parseVerifyValues = () => ({
-    "phoneNumber": assetStore.claims.find((c => c.key === "0x04"))?.value,
-    "email": assetStore.claims.find((c => c.key === "0x03"))?.value,
-    "userID": "490f8964-7084-4f66-a245-77f99042738c", // I am unable to access userID bcoz deep link not working, thats why we are using static usedID // 
-    "phoneNumberVerified": true,
-    "emailVerified": true,
-    "idVerified": true
+  const parseVerifyValues = (email: any, phoneNumber: any) => ({
+      "signature": "0x00",
+      "timeStamp": new Date(),
+      "claims": [
+        {
+          "subject": {
+            "type": "email",
+            "value": email
+          },
+
+        },
+        {
+          "subject": {
+            "type": "phoneNumber",
+            "value": phoneNumber
+          },
+
+        }
+      ]
+    
+    
+    // "phoneNumber": assetStore.claims.find((c => c.key === "0x04"))?.value,
+    // "email": assetStore.claims.find((c => c.key === "0x03"))?.value,
+    // "userID": "490f8964-7084-4f66-a245-77f99042738c", // I am unable to access userID bcoz deep link not working, thats why we are using static usedID // 
+    // "phoneNumberVerified": true,
+    // "emailVerified": true,
+    // "idVerified": true
   });
 
   const uploadFileFromBrowser = async () => {
@@ -52,8 +73,16 @@ const Claim = () => {
           await AsyncStorage.setItem("document_url", JSON.stringify(await getData(result)));
         }
         // Just for demo purpose, we are calling fake account verify endpoint //
-        const parsedValues = parseVerifyValues();
-        await idem.open.post("/User/idem/verify", parsedValues).then((res: any) => {
+
+        const value = sites.find((c => c.key === "1x00"))
+        const claimsNameObject = assetStore.claims.find((c => c.key === "0x02"))
+        const claimsEmailObject = assetStore.claims.find((c => c.key === "0x03"))
+        const claimsMobileObject = assetStore.claims.find((c => c.key === "0x04"))
+        const email = value?.claims![0].email === claimsEmailObject?.verify ? claimsEmailObject?.value : '';
+        const phoneNumber = value?.claims![0].phoneNumber === claimsMobileObject?.verify ? claimsEmailObject?.value : '';
+
+        const parsedValues = parseVerifyValues(email, phoneNumber);
+        await idem.open.post(value?.registration!, parsedValues).then((res: any) => {
           if(res.status) {
             Alert.alert(
               "Title",
