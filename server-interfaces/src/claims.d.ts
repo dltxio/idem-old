@@ -6,7 +6,8 @@ declare namespace server {
     evidence: string[];
   };
 
-  type ClaimValidated = Claim & {
+  type ClaimValidated = {
+    hash: string;
     signature: string;
     timestamp: number;
   };

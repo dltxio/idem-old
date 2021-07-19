@@ -4,7 +4,7 @@
         "name": "Get Paid In Bitcoin",
         "url": "https://www.getpaidinbitcoin.com.au",
         "description": "Easiest way to get bitcoin",
-        "registration": "https://api.getpaidinbitcoin.com.au/user/registration",
+        "registration": "https://testapi.getpaidinbitcoin.com.au/user/verifyid",
         "claims": [
             {
                 "email": true
