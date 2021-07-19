@@ -77,7 +77,7 @@ const ClaimSelector = () => {
   return (
     <View style={styles.list.root as ViewStyle}>
       <StatusBar barStyle="light-content" />
-      {assetStore.claims[0] && (
+      {assetStore.claims && assetStore.claims.length > 0 && (
         <Profile
           fullName={assetStore.claims.find((c) => c.key === "0x02")!}
           emailAddress={assetStore.claims.find((c) => c.key === "0x03")!}
