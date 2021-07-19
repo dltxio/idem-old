@@ -4,7 +4,10 @@
   "repository": "https://github.com/dltxio/idem.git",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --build"
+    "build": "tsc --build",
+    "yarn-sub-projects": "cd ../server && cd ../server-interfaces && yarn && cd ../",
+    "prepare-backend-for-production": "cp package.json yarn.lock ./build && cp ./server/package.json ./server/yarn.lock ./build/server && cd ./build && yarn --ignore-scripts && yarn yarn-sub-projects"
+  
   },
   "devDependencies": {
     "typescript": "^4.2.3"
