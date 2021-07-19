@@ -100,8 +100,9 @@ The app will the post the claims in the following schema.
 
 ## Appendix
 
+### Routes
+
 ### Registration Schema
-When Block ID ..
 
 
 ### Table of claims
