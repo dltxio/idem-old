@@ -15,15 +15,17 @@ COPY ./server-interfaces/src ./src
 
 # copy across files from root project, yarn in all projects and build all projects
 WORKDIR /home
-COPY ./package.json ./yarn.lock ./tsconfig.json ./
+COPY ./yarn.lock ./tsconfig.json ./
+
+WORKDIR /home/server
 
 RUN yarn
 RUN yarn build
 
 # yarn in build project
-RUN yarn prepare-backend-for-production
+# RUN yarn prepare-server-for-production
 
-WORKDIR /home/build/server
+WORKDIR /home/server/build
 
 EXPOSE 3001
 CMD [ "node", "src/index.js" ]

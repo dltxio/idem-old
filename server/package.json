@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only ./src/index.ts",
     "test": "jest ",
-    "build": "tsc --project ./"
+    "build": "tsc --build"
   },
   "dependencies": {
     "cors": "^2.8.5",
