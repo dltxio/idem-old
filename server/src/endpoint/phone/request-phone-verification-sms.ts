@@ -5,9 +5,10 @@ import { validate, ValidationSchema } from "../../utils/validate";
 import { generateVerificationCode } from "../../utils/verification-codes";
 const { log } = require("../../logger")("/api/phone");
 
-const bodyValidation: ValidationSchema<server.RequestPhoneVerificationSMSRequestBody> = {
-  number: Joi.string().required()
-};
+const bodyValidation: ValidationSchema<server.RequestPhoneVerificationSMSRequestBody> =
+  {
+    number: Joi.string().required()
+  };
 
 const requestPhoneVerificationSMS: RequestHandler<
   void,
