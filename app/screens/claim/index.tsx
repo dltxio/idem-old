@@ -52,7 +52,7 @@ const Claim = () => {
 
   const uploadFileFromBrowser = async () => {
     try {
-      let result = await DocumentPicker.getDocumentAsync();
+      const result = await DocumentPicker.getDocumentAsync();
       if (result.type === "success") {
         const base64Img = await FileSystem.readAsStringAsync(result.uri, {
           encoding: "base64",
@@ -69,7 +69,7 @@ const Claim = () => {
 
   const uploadPhotoFromLibrary = async () => {
     try {
-      let result = await ImagePicker.launchImageLibraryAsync({
+      const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
         allowsEditing: false,
         aspect: [4, 3],
@@ -150,16 +150,14 @@ const Claim = () => {
         return <MobileClaim item={claim} />;
       case "18+":
         return (
-          <>
-            <SelectClaim
-              item={claim}
-              uploadPhotoFromCamera={uploadPhotoFromCamera}
-              uploadFileFromBrowser={uploadFileFromBrowser}
-              uploadPhotoFromLibrary={uploadPhotoFromLibrary}
-              imageInfo={imageInfo}
-              displayFileName={displayFileName}
-            />
-          </>
+          <SelectClaim
+            item={claim}
+            uploadPhotoFromCamera={uploadPhotoFromCamera}
+            uploadFileFromBrowser={uploadFileFromBrowser}
+            uploadPhotoFromLibrary={uploadPhotoFromLibrary}
+            imageInfo={imageInfo}
+            displayFileName={displayFileName}
+          />
         );
       default:
         return (
@@ -179,7 +177,7 @@ const Claim = () => {
         {renderClaim(claim.type || "")}
       </View>
 
-      {modalVisible ? (
+      {modalVisible && (
         <View style={styless.centeredView}>
           <Modal
             animationType="slide"
@@ -199,7 +197,7 @@ const Claim = () => {
                 <View style={{ display: "flex", flexDirection: "row" }}>
                   <Pressable
                     style={[styless.button, styless.buttonClose]}
-                    onPress={() => claimsDocuments()}
+                    onPress={claimsDocuments}
                   >
                     <Text style={styless.textStyle}>Yes</Text>
                   </Pressable>
@@ -214,8 +212,6 @@ const Claim = () => {
             </View>
           </Modal>
         </View>
-      ) : (
-        false
       )}
     </>
   );
