@@ -1,14 +1,5 @@
 ﻿﻿import React, { useEffect, useState } from "react";
-import {
-  Text,
-  View,
-  Platform,
-  Modal,
-  StyleSheet,
-  Pressable,
-  Alert,
-  Button,
-} from "react-native";
+import { Text, View, Platform, Modal, Pressable, Alert } from "react-native";
 import styles from "../../styles";
 import EmailClaim from "./EmailClaim";
 import { useRootStore } from "../../store/rootStore";
@@ -22,6 +13,7 @@ import * as DocumentPicker from "expo-document-picker";
 import * as Crypto from "expo-crypto";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as FileSystem from "expo-file-system";
+import styless from "./Styless";
 
 const Claim = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -218,46 +210,3 @@ const Claim = () => {
 };
 
 export default observer(Claim);
-
-const styless = StyleSheet.create({
-  centeredView: {
-    top: 250,
-  },
-  modalView: {
-    width: 350,
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    width: 80,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
-});
