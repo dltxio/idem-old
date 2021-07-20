@@ -20,6 +20,7 @@ Run docker from home root
 ```bash
 docker-compse up
 docker-compose down
+```
 
 ## End Points
 
