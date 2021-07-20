@@ -78,7 +78,7 @@ And their persona data is updated at exchange.com
 ## Verify these claims
 These claims are then verified by a third-party KYC vendors who return an X-509 SSL certificate signed JSON object that can then be used again.  Each vendor has a different process for onboarding and the app will maintain these different business requirements.
 
-![Verification Sequence](/assets/did.verification.squence.svg)
+![Verification Sequence](/assets/did.verification.sequence.svg)
 
 ## Implementation on Third-Party sites
 ### Step 1:  Onboarding on Third-Party Sites
