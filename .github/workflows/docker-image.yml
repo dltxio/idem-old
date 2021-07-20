@@ -1,0 +1,24 @@
+name: deploy-docker
+
+on:
+  push:
+    branches: [ development ]
+  pull_request:
+    branches: [ development ]
+
+jobs:
+  build:
+
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+      - name: Checkout repository
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: "${{ secrets.DO_DEPLOY_IP }}"
+          username: "${{ secrets.DO_DEPLOY_USERNAME }}"
+          key: "${{ secrets.DO_DEPLOY_KEY }}"
