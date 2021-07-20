@@ -1,13 +1,19 @@
 import Joi from "joi";
-import * as openpgp from "openpgp";
+import crypto, { createECDH } from "crypto";
 import { RequestHandler } from "../request-handler-wrapper";
 import { validationBadRequest } from "../../utils/errors";
 import { validate, ValidationSchema } from "../../utils/validate";
 
+const evidence = Joi.object().keys({
+  name: Joi.string().required(),
+  sha256: Joi.string().required()
+});
+
 const bodyValidation: ValidationSchema<server.Claim> = {
   type: Joi.string().required(),
   key: Joi.string().required(),
-  value: Joi.string().required()
+  value: Joi.string().required(),
+  evidence: Joi.array().items(evidence).min(1)
 };
 
 const createClaim: RequestHandler<
@@ -23,21 +29,33 @@ const createClaim: RequestHandler<
     return validationBadRequest(bodyValidationResult.errors);
   }
 
-  const privateKeyArmored = `-----BEGIN PGP PRIVATE KEY BLOCK-----`;
+  const curve = "secp256k1";
+  const ecdh = createECDH(curve);
 
-  const unsignedMessage = await openpgp.createCleartextMessage({
-    text: "Hello, World!"
+  const { privateKey } = crypto.generateKeyPairSync("ec", {
+    namedCurve: curve
   });
 
-  const signature = await openpgp.sign({
-    message: unsignedMessage
-  });
+  ecdh.setPrivateKey(
+    config.ethKey,
+    "hex"
+  );
 
-  console.log(signature);
+  ecdh.getPrivateKey("hex");
+
+  const sign = crypto.createSign("SHA256");
+  sign.update(JSON.stringify(body));
+  sign.end();
+
+  const signature = sign.sign(privateKey);
+
+  const hash = crypto.createHash("SHA256")
+    .update(JSON.stringify(body))
+    .digest("hex");
 
   return {
-    ...body,
-    signature: signature,
+    hash: hash,
+    signature: signature.toString("hex"),
     timestamp: Date.now()
   };
 };

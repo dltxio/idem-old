@@ -3,9 +3,11 @@ declare namespace server {
     key: string;
     type: string;
     value: string;
+    evidence: string[];
   };
 
-  type ClaimValidated = Claim & {
+  type ClaimValidated = {
+    hash: string;
     signature: string;
     timestamp: number;
   };
