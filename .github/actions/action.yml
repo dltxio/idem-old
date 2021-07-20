@@ -1,0 +1,12 @@
+name: "Build Project"
+description: "Build Idem App and API"
+
+runs: 
+  using: "composite"
+  steps:
+    - name: Install Dependencies
+      run: yarn
+      shell: bash
+    - name: "Build Project"
+      run: yarn build
+      shell: bash
