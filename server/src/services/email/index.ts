@@ -40,7 +40,9 @@ export default class Office365EmailService
     return this.sendEmail({
       template: "emailVerification",
       subject: "Email verification",
+      plainText: true,
       ...data
+      
     });
   };
 
@@ -66,7 +68,7 @@ export default class Office365EmailService
       from,
       to,
       subject,
-      ...(plainText ? { text: content } : {html: content})
+      ...(plainText ? { text: content } : { html: content })
     });
   };
 }
