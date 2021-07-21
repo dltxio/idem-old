@@ -1,5 +1,5 @@
 declare namespace emailService {
-  type EmailTemplate = "emailVerification";
+  type EmailTemplate = "emailVerification" | "signedEmailVerification";
 
   type EmailTemplateGenerators = { [k in EmailTemplate]: Function };
 
@@ -13,11 +13,16 @@ declare namespace emailService {
     verificationCode: string;
   };
 
-  type EmailTemplate = "emailVerification";
+  type SignedVerifyEmailTemplateData = VerifyEmailTemplateData & {
+    signedMessage: string;
+  };
 
   interface EmailService {
     sendEmailVerificationEmail: (
       data: emailService.SendEmailData<emailService.VerifyEmailTemplateData>
+    ) => Promise<void>;
+    sendSignedEmailVerificationEmail: (
+      data: emailService.SendEmailData<emailService.SignedVerifyEmailTemplateData>
     ) => Promise<void>;
   }
 }
