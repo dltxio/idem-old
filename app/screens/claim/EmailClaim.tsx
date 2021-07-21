@@ -19,6 +19,14 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
   const [isVerifySuccess, setIsVerifySuccess] = useState<boolean>(false);
 
   const onVerify = async () => {
+    if (!item.value) {
+      setError("Email can not be empty");
+      return;
+    }
+    if (!code) {
+      setError("Code can not be empty");
+      return;
+    }
     try {
       await verifyEmailCode({ email: item.value, code: code });
     } catch (e) {

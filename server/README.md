@@ -17,15 +17,30 @@ yarn install
 yarn start
 ```
 
+Run docker from home root
+```bash
+docker-compse up
+docker-compose down
+```
+
 ## End Points
 
-
-/claims
+### Claims
+/api/claims
 
 ```json
 {
     "key": "0x02",
     "type": "dob",
     "value": "1979-04-29"
+}
+```
+
+### Emails
+/api/emails PUT
+
+```json
+{
+    "email": "lucas@dltx.io"
 }
 ```

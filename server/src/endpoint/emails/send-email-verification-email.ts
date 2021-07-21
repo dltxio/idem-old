@@ -27,7 +27,7 @@ const sendEmailVerificationEmail: RequestHandler<
     config.verificationCodeLength
   );
 
-  const privateKeyArmored = fs.readFileSync("./info.asc", "utf-8");
+  const privateKeyArmored = fs.readFileSync("./src/info.private.key", "utf-8");
 
   const unsignedMessage = await openpgp.createCleartextMessage({
     text: body.email

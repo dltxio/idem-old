@@ -49,8 +49,12 @@ const createClaim: RequestHandler<
 
   const signature = sign.sign(privateKey);
 
+  const hash = crypto.createHash("SHA256")
+    .update(JSON.stringify(body))
+    .digest("hex");
+
   return {
-    ...body,
+    hash: hash,
     signature: signature.toString("hex"),
     timestamp: Date.now()
   };
