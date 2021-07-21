@@ -6,9 +6,10 @@ import { validate, ValidationSchema } from "../../utils/validate";
 import { generateVerificationCode } from "../../utils/verification-codes";
 import fs from "fs";
 
-const bodyValidation: ValidationSchema<server.SendEmailVerificationEmailRequestBody> = {
-  email: Joi.string().required()
-};
+const bodyValidation: ValidationSchema<server.SendEmailVerificationEmailRequestBody> =
+  {
+    email: Joi.string().required()
+  };
 
 const sendEmailVerificationEmail: RequestHandler<
   void,
@@ -30,29 +31,33 @@ const sendEmailVerificationEmail: RequestHandler<
   const privateKeyArmored = fs.readFileSync("./src/info.private.key", "utf-8");
 
   const unsignedMessage = await openpgp.createCleartextMessage({
-    text: body.email
+    text: `Verification code: ${verificationCode}`
   });
 
   const privateKey = await openpgp.decryptKey({
     privateKey: await openpgp.readKey({ armoredKey: privateKeyArmored }),
     passphrase: process.env.PGP_PRIVATE_KEY_PASSWORD
-  })
-
-  const signature = await openpgp.sign({
-    message: unsignedMessage,
-    privateKeys: privateKey 
   });
 
+  const signedMessage = await openpgp.sign({
+    message: unsignedMessage,
+    privateKeys: privateKey
+  });
 
-  await services.email.sendEmailVerificationEmail({
+  await services.email.sendSignedEmailVerificationEmail({
     to: body.email,
     from: config.email.support.address,
     data: {
       verificationCode,
+      signedMessage
     }
-  })
+  });
 
-  return { success: true };
+  return {
+    success: true,
+    verificationCode,
+    signedMessage
+  };
 };
 
 export default sendEmailVerificationEmail;

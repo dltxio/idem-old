@@ -1,9 +1,10 @@
-import { format } from "node:path";
 import nodemailer, { Transporter } from "nodemailer";
 import emailVerificationTemplate from "./templates/email-verification-template";
+import signedEmailVerificationTemplate from "./templates/signed-email-verification-template";
 
 const templateGenerators: emailService.EmailTemplateGenerators = {
-  emailVerification: emailVerificationTemplate
+  emailVerification: emailVerificationTemplate,
+  signedEmailVerification: signedEmailVerificationTemplate
 };
 
 export default class Office365EmailService
@@ -33,24 +34,41 @@ export default class Office365EmailService
     });
   };
 
+  public sendSignedEmailVerificationEmail = async (
+    data: emailService.SendEmailData<emailService.SignedVerifyEmailTemplateData>
+  ) => {
+    return this.sendEmail({
+      template: "emailVerification",
+      subject: "Email verification",
+      plainText: true,
+      ...data
+      
+    });
+  };
+
   private sendEmail = <T>({
     to,
     from,
     subject,
     template,
-    data
+    data,
+    plainText
   }: {
     to: string;
     from: string;
     subject: string;
     template: emailService.EmailTemplate;
     data: T;
+    plainText?: boolean
   }) => {
+
+    const content = templateGenerators[template](data);
+
     return this.mailer.sendMail({
       from,
       to,
       subject,
-      html: templateGenerators[template](data)
+      ...(plainText ? { text: content } : { html: content })
     });
   };
 }
