@@ -25,7 +25,7 @@ export default class ThirdPartyService
     let credentials: Array<server.Credential> = [];
     let evidences: Array<server.Evidence> = [];
 
-    for (const claim of claims) {
+    for (let claim of claims) {
       const credential: server.Credential = {
         key: claim.key,
         type: claim.type,
@@ -56,7 +56,7 @@ export default class ThirdPartyService
       evidences: evidences,
       signature: ""
     };
-    const sendClaims: server.ThirdPartyClaim = {
+    const sendClaims: server.JwtCredentialPayload = {
       verifiableCredential: verifiableCredential,
       subject: "",
       nonce: 0

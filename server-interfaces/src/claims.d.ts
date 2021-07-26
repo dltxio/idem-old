@@ -1,4 +1,9 @@
 declare namespace server {
+  type ThirdPartyAuthorizeRequest = {
+    claims: Claim[];
+    issuer: string;
+  };
+
   type Claim = {
     key: string;
     type: string;
@@ -38,7 +43,7 @@ declare namespace server {
     timeStamp: Date;
   };
 
-  type ThirdPartyClaim = {
+  type JwtCredentialPayload = {
     verifiableCredential: VerifiableCredential;
     subject: string;
     nonce: number;

@@ -6,15 +6,19 @@ import { validate, ValidationSchema } from "../../utils/validate";
 const claim = Joi.object().keys({
   key: Joi.string().required(),
   type: Joi.string().required(),
-  value: Joi.string().required()
+  value: Joi.string().required(),
+  evidence: Joi.array().min(1)
 });
 
-const bodyValidation: ValidationSchema<server.Claim[]> = [claim];
+const bodyValidation: ValidationSchema<server.ThirdPartyAuthorizeRequest> = {
+  claims: Joi.array().items(claim).min(1),
+  issuer: Joi.string().required()
+};
 
 const authorizeThirdParty: RequestHandler<
   void,
   void,
-  server.Claim[],
+  server.ThirdPartyAuthorizeRequest,
   server.SuccessResponse | server.BadRequestGeneralResponse
 > = async ({ body, services }) => {
   const bodyValidationResult = await validate(body, bodyValidation);
@@ -23,8 +27,12 @@ const authorizeThirdParty: RequestHandler<
     return validationBadRequest(bodyValidationResult.errors);
   }
 
-  const response = await services.thirdParty.authorizeGPIB(body);
-  return response;
+  if (body.issuer === "gpib") {
+    const response = await services.thirdParty.authorizeGPIB(body.claims);
+    return response;
+  }
+  //TODO: other third party authorize
+  return { success: false };
 };
 
 export default authorizeThirdParty;
