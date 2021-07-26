@@ -11,4 +11,36 @@ declare namespace server {
     signature: string;
     timestamp: number;
   };
+
+  type VerifiableCredential = {
+    id: string;
+    type: string;
+    issuer: string;
+    issuerDate: Date;
+    credential: Credential[];
+    evidences: Evidence[];
+    signature: string;
+  };
+
+  type Credential = {
+    key: string;
+    type: string;
+    value: string;
+  };
+
+  type Evidence = {
+    key: string;
+    type: string;
+    signature: string;
+    verifier: string;
+    evidenceDocument: string;
+    documentPresence: string;
+    timeStamp: Date;
+  };
+
+  type ThirdPartyClaim = {
+    verifiableCredential: VerifiableCredential;
+    subject: string;
+    nonce: number;
+  };
 }

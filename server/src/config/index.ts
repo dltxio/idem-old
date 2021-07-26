@@ -20,7 +20,8 @@ const getConfig = () => {
         `Your IDEM verification code is ${code}`
     },
     verificationCodeLength: 6,
-    ethKey: getEnvVariable("ETH_PRIVATE_KEY")
+    ethKey: getEnvVariable("ETH_PRIVATE_KEY"),
+    gpib: getEnvVariable("GPIB_API")
   };
 
   return config;

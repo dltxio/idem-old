@@ -1,8 +1,8 @@
 import Joi from "joi";
-import crypto, { createECDH } from "crypto";
 import { RequestHandler } from "../request-handler-wrapper";
 import { validationBadRequest } from "../../utils/errors";
 import { validate, ValidationSchema } from "../../utils/validate";
+import { ethers } from "ethers";
 
 const evidence = Joi.object().keys({
   name: Joi.string().required(),
@@ -22,40 +22,20 @@ const createClaim: RequestHandler<
   server.Claim,
   server.ClaimValidated
 > = async ({ body, config }) => {
-  console.log(body);
+  const wallet = new ethers.Wallet(config.ethKey);
+
   const bodyValidationResult = await validate(body, bodyValidation);
 
   if (bodyValidationResult.isInvalid) {
     return validationBadRequest(bodyValidationResult.errors);
   }
 
-  const curve = "secp256k1";
-  const ecdh = createECDH(curve);
-
-  const { privateKey } = crypto.generateKeyPairSync("ec", {
-    namedCurve: curve
-  });
-
-  ecdh.setPrivateKey(
-    config.ethKey,
-    "hex"
-  );
-
-  ecdh.getPrivateKey("hex");
-
-  const sign = crypto.createSign("SHA256");
-  sign.update(JSON.stringify(body));
-  sign.end();
-
-  const signature = sign.sign(privateKey);
-
-  const hash = crypto.createHash("SHA256")
-    .update(JSON.stringify(body))
-    .digest("hex");
+  const signature = await wallet.signMessage(body.toString());
+  const hash = ethers.utils.keccak256(signature);
 
   return {
     hash: hash,
-    signature: signature.toString("hex"),
+    signature: signature,
     timestamp: Date.now()
   };
 };
