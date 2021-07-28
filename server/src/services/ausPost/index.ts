@@ -79,6 +79,7 @@ export default class AusPostService implements ausPostService.AusPostService {
     ausPostRequst.address = addressObject;
     ausPostRequst.consent = "true";
 
+    //TODO: Got problem with auspost api, need to fix
     const response = this.client.post<server.AusPostResponse>(
       "",
       ausPostRequst
