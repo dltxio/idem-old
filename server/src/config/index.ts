@@ -1,4 +1,5 @@
 import * as dotenv from "dotenv";
+import sites from "../sites.json";
 
 dotenv.config();
 
@@ -21,7 +22,7 @@ const getConfig = () => {
     },
     verificationCodeLength: 6,
     ethKey: getEnvVariable("ETH_PRIVATE_KEY"),
-    gpib: getEnvVariable("GPIB_API")
+    gpib: sites[0].api
   };
 
   return config;

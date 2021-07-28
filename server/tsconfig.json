@@ -11,6 +11,7 @@
   "include": [
     "./src",
     "../server-interfaces/src/**/*.d.ts",
-    "./config.json"
+    "./config.json",
+    "./src/sites.json"
   ],
 }

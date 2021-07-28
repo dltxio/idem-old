@@ -9,5 +9,10 @@
     "lib": ["dom", "esnext"]
   },
   "references": [{ "path": "../server-interfaces" }],
-  "include": ["./", "../server-interfaces/src/**/*.d.ts", "./config.dev.json"]
+  "include": [
+    "./",
+    "../server-interfaces/src/**/*.d.ts",
+    "./config.dev.json",
+    "./assets/sites.json"
+  ]
 }

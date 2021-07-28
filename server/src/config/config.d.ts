@@ -15,5 +15,5 @@ type Config = {
   };
   verificationCodeLength: number;
   ethKey: string;
-  gpib: string;
+  gpib: string | undefined;
 };

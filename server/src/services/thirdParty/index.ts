@@ -22,8 +22,8 @@ export default class ThirdPartyService
       return badRequest("At least have one claim");
     }
 
-    let credentials: Array<server.Credential> = [];
-    let evidences: Array<server.Evidence> = [];
+    const credentials: Array<server.Credential> = [];
+    const evidences: Array<server.Evidence> = [];
 
     for (let claim of claims) {
       const credential: server.Credential = {
