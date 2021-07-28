@@ -22,7 +22,6 @@ const createClaim: RequestHandler<
   server.Claim,
   server.ClaimValidated
 > = async ({ body, config }) => {
-  console.log(body);
   const bodyValidationResult = await validate(body, bodyValidation);
 
   if (bodyValidationResult.isInvalid) {

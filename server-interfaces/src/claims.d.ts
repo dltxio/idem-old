@@ -11,4 +11,8 @@ declare namespace server {
     signature: string;
     timestamp: number;
   };
+
+  type Claims = {
+    claims: Claim[];
+  };
 }

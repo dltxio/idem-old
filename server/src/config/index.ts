@@ -20,7 +20,12 @@ const getConfig = () => {
         `Your IDEM verification code is ${code}`
     },
     verificationCodeLength: 6,
-    ethKey: getEnvVariable("ETH_PRIVATE_KEY")
+    ethKey: getEnvVariable("ETH_PRIVATE_KEY"),
+    ausPost: {
+      clientId: getEnvVariable("AUS_POST_CLIENT_ID"),
+      clientSecret: getEnvVariable("AUS_POST_CLIENT_SECRET"),
+      apiURL: getEnvVariable("AUS_POST_API")
+    }
   };
 
   return config;
