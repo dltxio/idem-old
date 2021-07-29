@@ -13,50 +13,46 @@ const bodyValidation: ValidationSchema<server.Claim> = {
   type: Joi.string().required(),
   key: Joi.string().required(),
   value: Joi.string().required(),
-  evidence: Joi.array().items(evidence).min(1)
+  evidence: Joi.array().items(evidence).min(1),
+  hash: Joi.string().empty(""),
+  signature: Joi.string().empty(""),
+  timestamp: Joi.number().empty("")
 };
 
-const createClaim: RequestHandler<
-  void,
-  void,
-  server.Claim,
-  server.ClaimValidated
-> = async ({ body, config }) => {
-  const bodyValidationResult = await validate(body, bodyValidation);
+const createClaim: RequestHandler<void, void, server.Claim, server.Claim> =
+  async ({ body, config }) => {
+    const bodyValidationResult = await validate(body, bodyValidation);
 
-  if (bodyValidationResult.isInvalid) {
-    return validationBadRequest(bodyValidationResult.errors);
-  }
+    if (bodyValidationResult.isInvalid) {
+      return validationBadRequest(bodyValidationResult.errors);
+    }
 
-  const curve = "secp256k1";
-  const ecdh = createECDH(curve);
+    const curve = "secp256k1";
+    const ecdh = createECDH(curve);
 
-  const { privateKey } = crypto.generateKeyPairSync("ec", {
-    namedCurve: curve
-  });
+    const { privateKey } = crypto.generateKeyPairSync("ec", {
+      namedCurve: curve
+    });
 
-  ecdh.setPrivateKey(
-    config.ethKey,
-    "hex"
-  );
+    ecdh.setPrivateKey(config.ethKey, "hex");
 
-  ecdh.getPrivateKey("hex");
+    ecdh.getPrivateKey("hex");
 
-  const sign = crypto.createSign("SHA256");
-  sign.update(JSON.stringify(body));
-  sign.end();
+    const sign = crypto.createSign("SHA256");
+    sign.update(JSON.stringify(body));
+    sign.end();
 
-  const signature = sign.sign(privateKey);
+    const signature = sign.sign(privateKey);
 
-  const hash = crypto.createHash("SHA256")
-    .update(JSON.stringify(body))
-    .digest("hex");
+    const hash = crypto
+      .createHash("SHA256")
+      .update(JSON.stringify(body))
+      .digest("hex");
 
-  return {
-    hash: hash,
-    signature: signature.toString("hex"),
-    timestamp: Date.now()
+    body.hash = hash;
+    body.signature = signature.toString("hex");
+    body.timestamp = Date.now();
+    return body;
   };
-};
 
 export default createClaim;

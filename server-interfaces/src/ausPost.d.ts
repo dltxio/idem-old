@@ -9,7 +9,7 @@ declare namespace server {
   };
 
   type Address = {
-    unit_number: string;
+    unit_number: string | undefined;
     street_name: string;
     street_number: string;
     street_type: string;

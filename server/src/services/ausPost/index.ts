@@ -1,6 +1,23 @@
 import axios, { AxiosInstance } from "axios";
 import { Buffer } from "buffer";
 
+const ausPostRequst: server.AusPostRequest = {
+  given_name: "",
+  middle_name: undefined,
+  family_name: "",
+  dob: "",
+  address: {
+    unit_number: "",
+    street_name: "",
+    street_number: "",
+    street_type: "",
+    locality: "",
+    region: "",
+    postal_code: "",
+    country: ""
+  },
+  consent: ""
+};
 export default class AusPostService implements ausPostService.AusPostService {
   private client: AxiosInstance;
   constructor(config: Config) {
@@ -18,74 +35,44 @@ export default class AusPostService implements ausPostService.AusPostService {
   }
 
   public sendVerification = async (
-    data: server.Claims
+    data: server.ClaimRequest
   ): Promise<server.SuccessResponse> => {
-    const claims = data.claims;
-    const address = claims.find(v => v.key === "0x05");
-    const dob = claims.find(v => v.key === "0x01");
-    const fullName = claims.find(v => v.key === "0x02");
-    //TODO mapping claims to body
-    const ausPostRequst: server.AusPostRequest = {
-      given_name: "",
-      middle_name: undefined,
-      family_name: "",
-      dob: "",
-      address: {
-        unit_number: "",
-        street_name: "",
-        street_number: "",
-        street_type: "",
-        locality: "",
-        region: "",
-        postal_code: "",
-        country: ""
-      },
-      consent: ""
-    };
-
-    const fullNames = fullName?.value.split("/"); //TODO using "/" to split address string, we can change it
-    if (fullNames && fullNames.length === 2) {
-      ausPostRequst.given_name = fullNames[0];
-      ausPostRequst.family_name = fullNames[1];
-      ausPostRequst.middle_name = "";
-    } else if (fullNames && fullNames.length === 3) {
-      ausPostRequst.given_name = fullNames[0];
-      ausPostRequst.middle_name = fullNames[1];
-      ausPostRequst.family_name = fullNames[2];
-    }
-    ausPostRequst.dob = dob?.value;
-
-    const addresses = address?.value.split("/");
-    const addressObject: server.Address = {
-      unit_number: "",
-      street_name: "",
-      street_number: "",
-      street_type: "",
-      locality: "",
-      region: "",
-      postal_code: "",
-      country: ""
-    };
-    if (addresses && addresses.length > 0) {
-      addressObject.unit_number = addresses[0];
-      addressObject.street_number = addresses[1];
-      addressObject.street_name = addresses[2];
-      addressObject.street_type = addresses[3];
-      addressObject.locality = addresses[4];
-      addressObject.region = addresses[5];
-      addressObject.postal_code = addresses[6];
-      addressObject.country = addresses[7];
-    }
-    ausPostRequst.address = addressObject;
-    ausPostRequst.consent = "true";
-
+    //Mapping claims to body
+    const ausPostRequest = this.wrapperAusPostRequestBody(data);
     //TODO: Got problem with auspost api, need to fix
-    const response = this.client.post<server.AusPostResponse>(
+    const response = await this.client.post<server.AusPostResponse>(
       "",
-      ausPostRequst
+      ausPostRequest
     );
 
     //TODO: need logic how we gone handle response from aus post
-    return { success: true };
+    if (response.status === 200) {
+      if (response.data.verification_status === "completed") {
+        return { success: true };
+      }
+      return { success: false };
+    } else {
+      return { success: false };
+    }
+  };
+
+  private wrapperAusPostRequestBody = (
+    data: server.ClaimRequest
+  ): server.AusPostRequest => {
+    ausPostRequst.family_name = data.lastName;
+    ausPostRequst.middle_name = data.middleName;
+    ausPostRequst.given_name = data.firstName;
+    ausPostRequst.dob = data.dob;
+    ausPostRequst.address.country = data.country;
+    ausPostRequst.address.locality = data.locality;
+    ausPostRequst.address.postal_code = data.postCode;
+    ausPostRequst.address.region = data.region;
+    ausPostRequst.address.street_name = data.streetName;
+    ausPostRequst.address.street_number = data.streetNumber;
+    ausPostRequst.address.street_type = data.streetType;
+    ausPostRequst.address.unit_number = data.unitNumber;
+    ausPostRequst.consent = "true";
+
+    return ausPostRequst;
   };
 }

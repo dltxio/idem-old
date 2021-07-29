@@ -7,7 +7,10 @@ const getClaims: RequestHandler<void, void, void, server.Claim[]> =
         key: "18+",
         value: "18+",
         type: "18+",
-        evidence: ["18+"]
+        evidence: ["18+"],
+        hash: undefined,
+        signature: undefined,
+        timestamp: undefined
       }
     ];
   };
