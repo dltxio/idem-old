@@ -9,7 +9,7 @@ const setupKeypairRouter: SetupRouterFunction = (
 ) => {
   const router = express.Router();
 
-  router.post("/keypair", requestHandlerWrapper(getKeypair, config, services));
+  router.get("/keypair", requestHandlerWrapper(getKeypair, config, services));
 
   return router;
 };

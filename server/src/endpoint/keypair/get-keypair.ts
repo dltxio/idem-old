@@ -1,5 +1,3 @@
-import { ethers } from "ethers";
-import { ValidationSchema } from "./../../utils/validate";
 import Joi from "joi";
 import { RequestHandler } from "../request-handler-wrapper";
 import { badRequest, validationBadRequest } from "../../utils/errors";
@@ -27,6 +25,7 @@ const requestGetKeypair: RequestHandler<
 
   const walletMnemonic = Wallet.fromMnemonic(body.mnemonicKey);
   const walletPrivateKey = new Wallet(walletMnemonic.privateKey);
+
   if (walletMnemonic.address !== walletPrivateKey.address) {
     return badRequest("Mnemonic is wrong, please try again");
   }
