@@ -35,7 +35,7 @@ declare namespace server {
     found: boolean;
   };
 
-  type FoundSOurces = {
+  type FoundSources = {
     name: string;
     category: string;
   };
