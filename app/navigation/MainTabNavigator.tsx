@@ -5,7 +5,7 @@ import { colors } from "../styles/theme";
 import HeaderLeft from "../components/HeaderLeft";
 import HeaderTitle from "../components/HeaderTitle";
 import Vendors from "../screens/vendors";
-import Settings from "../screens/settings";
+import SettingsStackNavigator from "./SettingsStackNavigator";
 import ClaimsStackNavigator from "./ClaimsStackNavigator";
 import VendorsStackNavigator from "./VendorsStackNavigator";
 
@@ -50,7 +50,7 @@ const TabNavigator = () => (
   >
     <Tab.Screen name="Claims" component={ClaimsStackNavigator} />
     <Tab.Screen name="3rd Parties" component={VendorsStackNavigator} />
-    <Tab.Screen name="Settings" component={Settings} />
+    <Tab.Screen name="Settings" component={SettingsStackNavigator} />
   </Tab.Navigator>
 );
 

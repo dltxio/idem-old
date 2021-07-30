@@ -4,10 +4,11 @@ import axios from "axios";
 export enum AssetType {
   Claims = "claims",
   Vendors = "vendors",
+  Settings = "settings",
 }
 
 /**
- * @param {Type} "claims"|"vendors"
+ * @param {Type} "claims"|"vendors" | "settings"
  * @returns {Promise<Object>}
  */
 export const fetchAssets = async (assetType: AssetType) => {
