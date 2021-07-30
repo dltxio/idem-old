@@ -3,6 +3,7 @@ import { Text, View, Platform, Modal, Pressable, Alert } from "react-native";
 import { useRootStore } from "../../store/rootStore";
 import styles from "../../styles";
 import EthSetting from "./EthSetting";
+import PgpSetting from "./PgpSetting";
 
 const Setting = () => {
   const rootStore = useRootStore();
@@ -17,7 +18,7 @@ const Setting = () => {
       case "1x00":
         return <EthSetting />;
       case "1x01":
-        return;
+        return <PgpSetting />;
     }
   };
   return (
