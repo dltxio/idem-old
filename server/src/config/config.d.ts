@@ -15,4 +15,9 @@ type Config = {
   };
   verificationCodeLength: number;
   ethKey: string;
+  ausPost: {
+    clientId: string;
+    clientSecret: string;
+    apiURL: string;
+  };
 };
