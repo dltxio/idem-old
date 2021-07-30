@@ -3,6 +3,7 @@ import claims from "./claims";
 import documents from "./documents";
 import phone from "./phone";
 import emails from "./emails";
+
 import { SetupRouterFunction } from "../typings/setup-router";
 
 export default (config: Config, services: Services): express.Router => {
