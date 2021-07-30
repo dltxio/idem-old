@@ -33,7 +33,6 @@ const SettingSelector = () => {
   const navigation = useNavigation();
   const settings = rootStore.Assets.settings;
 
-  console.log(settings);
   useEffect(() => {
     rootStore.Assets.loadSettings();
   }, []);

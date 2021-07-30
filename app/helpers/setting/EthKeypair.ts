@@ -5,6 +5,7 @@ export const GetEthKeypair = async (mnemonicKey: string) => {
   const walletPrivateKey = new Wallet(walletMnemonic.privateKey);
 
   if (walletMnemonic.address !== walletPrivateKey.address) {
+    return;
   }
   const address = await walletMnemonic.getAddress();
   const privateKey = walletMnemonic.privateKey;
