@@ -38,14 +38,22 @@ export const Vendor = types.model({
   affiliation: types.maybe(types.string),
 });
 
+export const Setting = types.model({
+  key: types.string,
+  name: types.string,
+  description: types.string,
+});
+
 export const AssetStore = types
   .model({
     claims: types.array(Claim),
     vendors: types.array(Vendor),
+    settings: types.array(Setting),
   })
   .volatile((self) => ({
     selectedClaimKey: "",
     selectedVendorKey: "",
+    selectedSettingKey: "",
   }))
   .views((self) => ({
     get selectedClaim() {
@@ -61,6 +69,11 @@ export const AssetStore = types
         claim.verifiedBy.includes(self.selectedVendorKey),
       );
     },
+    get selectedSetting() {
+      return self.settings.find(
+        (setting) => setting.key === self.selectedSettingKey,
+      );
+    },
   }))
   .actions((self) => ({
     setClaimKey: (key: string) => {
@@ -68,6 +81,9 @@ export const AssetStore = types
     },
     setVendorKey: (key: string) => {
       self.selectedVendorKey = key;
+    },
+    setSettingKey: (key: string) => {
+      self.selectedSettingKey = key;
     },
     loadClaims: flow(function* () {
       const claims: any[] = yield fetchAssets(AssetType.Claims);
@@ -81,5 +97,9 @@ export const AssetStore = types
     loadVendors: flow(function* () {
       const vendors = yield fetchAssets(AssetType.Vendors);
       self.vendors = vendors;
+    }),
+    loadSettings: flow(function* () {
+      const settings = yield fetchAssets(AssetType.Settings);
+      self.settings = settings;
     }),
   }));

@@ -1,36 +1,71 @@
-import React from "react";
-import { StyleSheet, Text, View, StatusBar } from "react-native";
-import { colors } from "../../styles/theme";
-import Qrcode  from "../qrcode"
+import React, { useEffect } from "react";
+import {
+  Text,
+  View,
+  StatusBar,
+  TouchableOpacity,
+  ViewStyle,
+} from "react-native";
 import { useRootStore } from "../../store/rootStore";
+import styles from "../../styles";
+import { useNavigation } from "@react-navigation/core";
+import { observer } from "mobx-react-lite";
 
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: colors.lightGrayPurple,
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 60,
-  },
-});
-
-const Settings = () => {
-  const rootStore = useRootStore();
-  const assetStore = rootStore.Assets;
-  return(
-    <View style={styles.root}>
-      <StatusBar barStyle="light-content" />
-      <Text style={styles.title}>Settings</Text>
-      <View>
-        {assetStore.claims[0] &&<Qrcode claim={assetStore.claims.find((c => c.key === "0x02"))!} />}
-      </View>
-    </View>
-  )
+type SettingItemProps = {
+  onPress: () => void;
+  key: string;
+  name: string;
+  description: string;
 };
 
-export default Settings;
+const SettingListItem = ({ onPress, name, description }: SettingItemProps) => (
+  <TouchableOpacity
+    style={styles.list.itemWrapper(styles.layout.window)}
+    onPress={onPress}
+  >
+    <Text style={styles.list.itemName}>{name}</Text>
+    <Text style={{ color: "#707070" }}>{description}</Text>
+  </TouchableOpacity>
+);
+
+const SettingSelector = () => {
+  const rootStore = useRootStore();
+  const navigation = useNavigation();
+  const settings = rootStore.Assets.settings;
+
+  console.log(settings);
+  useEffect(() => {
+    rootStore.Assets.loadSettings();
+  }, []);
+
+  if (settings === null) {
+    return (
+      <View style={styles.list.root as ViewStyle}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.list.root as ViewStyle}>
+      <StatusBar barStyle="light-content" />
+      <View style={{ flex: 1, width: "100%" }}>
+        {settings.map((setting) => {
+          return (
+            <SettingListItem
+              key={setting.key}
+              onPress={() => {
+                rootStore.Assets.setSettingKey(setting.key);
+                navigation.navigate("Setting");
+              }}
+              name={setting.name}
+              description={setting.description}
+            />
+          );
+        })}
+      </View>
+    </View>
+  );
+};
+
+export default observer(SettingSelector);
