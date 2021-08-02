@@ -58,7 +58,9 @@ And taken to the exchange home page.
 
 ## User Story 2:  Verify an already registered user
 
-Often a site will email users once they have created an account with an email address and password.  At this step, the site could also pass an unsigned url for the users to scan with their Idem app to validate their email and other claims.
+Often a site will email a user once they have created an account with an email address and password.  At this step, the site could also pass an unsigned url for the users to scan with their Idem app to validate their email and other claims.
+
+A QR code deeplink is a URL providing the claims required by site, along with a call back url.  
 
 ```text
 As an existing unverfied customer of exchange.com,
