@@ -31,8 +31,8 @@ const EthSetting = () => {
 
   const onCreateEthKeypairPress = async () => {
     try {
-      const newPhrase = await await Random.getRandomBytesAsync(16);
-      const mnemonic = ethers.utils.entropyToMnemonic(newPhrase);
+      const randomBytes = await await Random.getRandomBytesAsync(16);
+      const mnemonic = ethers.utils.entropyToMnemonic(randomBytes);
       const response = await GetEthKeypair(mnemonic);
       if (response) {
         await AsyncStorage.setItem("eth-keypair", JSON.stringify(response));
