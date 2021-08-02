@@ -58,6 +58,8 @@ And taken to the exchange home page.
 
 ## User Story 2:  Verify an already registered user
 
+Often a site will email users once they have created an account with an email address and password.  At this step, the site could also pass an unsigned url for the users to scan with their Idem app to validate their email and other claims.
+
 ```text
 As an existing unverfied customer of exchange.com,
 I want to verify my KYC requirements via IDEM,
@@ -105,7 +107,6 @@ The app will the post the claims in the following schema.
 ### Routes
 
 ### Registration Schema
-
 
 ### Table of claims
 
