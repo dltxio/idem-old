@@ -3,6 +3,8 @@ import setupEndpoints from "./endpoint";
 import cors from "cors";
 import getConfig from "./config";
 import initServices from "./services";
+import dbConnect from "./db";
+
 const { log } = require("./logger")("server");
 
 const config = getConfig();
@@ -21,3 +23,5 @@ app.use("/api", setupEndpoints(config, services));
 
 app.listen(config.port);
 log(`listening on localhost:${config.port}`);
+
+dbConnect(config);
