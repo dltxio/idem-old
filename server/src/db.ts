@@ -7,7 +7,7 @@ const db = async (config: Config) => {
     await mongoClient.connect();
     const db = mongoClient.db();
     const currentVersion = await db.command({ getVersion: 1 });
-    console.log("connecting to proven db at" + JSON.stringify(currentVersion));
+    console.log("connecting to proven db at " + JSON.stringify(currentVersion));
   } catch (error) {
     console.error(error);
   }
