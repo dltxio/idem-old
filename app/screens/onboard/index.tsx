@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, TextInput } from "react-native";
-import styles from "../../styles";
+import { View, Text, TextInput, StyleSheet } from "react-native";
+import PagerView from "react-native-pager-view";
 
 const Onboard = () => {
   return (
@@ -12,32 +12,34 @@ const Onboard = () => {
         //backgroundColor: "#061121",
       }}
     >
-      <Text>On boarding</Text>
-
-      <View
-        style={{
-          paddingTop: 50,
-        }}
-      >
-        <TextInput
+      <PagerView style={styles.viewPager} initialPage={0}>
+        <View
           style={{
-            ...styles.claim.input,
-            width: styles.layout.window.width,
+            paddingTop: 50,
           }}
-          keyboardType="default"
-          placeholder="Please enter your first and last names"
-        />
-        <TextInput
-          style={{
-            ...styles.claim.input,
-            width: styles.layout.window.width,
-          }}
-          keyboardType="email-address"
-          placeholder="Please enter your email address..."
-        />
-      </View>
+        >
+          <TextInput
+            keyboardType="default"
+            placeholder="Please enter your first and last names"
+          />
+          <TextInput
+            keyboardType="email-address"
+            placeholder="Please enter your email address..."
+          />
+        </View>
+      </PagerView>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  viewPager: {
+    flex: 1,
+  },
+  page: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default Onboard;
