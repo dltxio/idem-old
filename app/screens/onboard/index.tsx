@@ -7,15 +7,32 @@ const Onboard = () => {
     <View
       style={{
         flex: 1,
-        alignItems: "center",
-        top: 60,
-        //backgroundColor: "#061121",
+        flexGrow: 1,
       }}
     >
       <PagerView style={styles.viewPager} initialPage={0}>
         <View
           style={{
             paddingTop: 50,
+            height: 400,
+            backgroundColor: "#061121",
+          }}
+        >
+          <TextInput
+            keyboardType="default"
+            placeholder="Please enter your first and last names"
+          />
+          <TextInput
+            keyboardType="email-address"
+            placeholder="Please enter your email address..."
+          />
+        </View>
+        <View
+          style={{
+            paddingTop: 50,
+            height: 400,
+
+            backgroundColor: "green",
           }}
         >
           <TextInput
@@ -35,6 +52,7 @@ const Onboard = () => {
 const styles = StyleSheet.create({
   viewPager: {
     flex: 1,
+    flexGrow: 1,
   },
   page: {
     justifyContent: "center",
