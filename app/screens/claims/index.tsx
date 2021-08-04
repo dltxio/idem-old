@@ -87,7 +87,6 @@ const ClaimSelector = () => {
       )}
       <View style={{ flex: 1, width: "100%" }}>
         {claims.map((claim, index) => {
-          console.log(assetStore.claims);
           return (
             <ClaimListItem
               key={index}
