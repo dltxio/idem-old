@@ -29,6 +29,7 @@
     "expo-image-picker": "~10.1.4",
     "expo-status-bar": "~1.0.4",
     "formik": "^2.2.9",
+    "expo-random": "^11.2.0",
     "global": "^4.4.0",
     "mobx": "^6.1.8",
     "mobx-react-lite": "^3.2.0",

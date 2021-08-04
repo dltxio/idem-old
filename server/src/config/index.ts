@@ -25,6 +25,10 @@ const getConfig = () => {
       clientId: getEnvVariable("AUS_POST_CLIENT_ID"),
       clientSecret: getEnvVariable("AUS_POST_CLIENT_SECRET"),
       apiURL: getEnvVariable("AUS_POST_API")
+    },
+    provenDb: {
+      apiKey: getEnvVariable("PROVENDB_API_KEY"),
+      uri: getEnvVariable("PROVENDB_URI")
     }
   };
 

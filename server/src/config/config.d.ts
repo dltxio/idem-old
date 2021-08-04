@@ -20,4 +20,8 @@ type Config = {
     clientSecret: string;
     apiURL: string;
   };
+  provenDb: {
+    apiKey: string;
+    uri: string;
+  };
 };
