@@ -7,6 +7,7 @@ declare namespace server {
     hash: string | undefined;
     signature: string | undefined;
     timestamp: number | undefined;
+    description: string;
   };
 
   type ClaimValidated = {

@@ -41,7 +41,8 @@ const verifyClaim: RequestHandler<
     evidence: [""],
     hash: undefined,
     signature: undefined,
-    timestamp: undefined
+    timestamp: undefined,
+    description: "Your full name"
   };
   const fullnameClaimValidated = await services.claim.validateClaim(
     fullNameClaim
@@ -56,7 +57,8 @@ const verifyClaim: RequestHandler<
     evidence: [""],
     hash: undefined,
     signature: undefined,
-    timestamp: undefined
+    timestamp: undefined,
+    description: "Your date of birth"
   };
   const dobClaimValidated = await services.claim.validateClaim(dobClaim);
   claims.push(dobClaimValidated);
@@ -69,7 +71,8 @@ const verifyClaim: RequestHandler<
     evidence: [""],
     hash: undefined,
     signature: undefined,
-    timestamp: undefined
+    timestamp: undefined,
+    description: "Your physical address"
   };
   const addressClaimValidated = await services.claim.validateClaim(
     addressClaim
@@ -83,10 +86,11 @@ const verifyClaim: RequestHandler<
     evidence: [""],
     hash: undefined,
     signature: undefined,
-    timestamp: undefined
+    timestamp: undefined,
+    description: "Your mobile number"
   };
 
-  const mobileClaimValidated = await services.claim.validateClaim(addressClaim);
+  const mobileClaimValidated = await services.claim.validateClaim(mobileClaim);
   claims.push(mobileClaimValidated);
 
   const emailClaim = {
@@ -96,10 +100,11 @@ const verifyClaim: RequestHandler<
     evidence: [""],
     hash: undefined,
     signature: undefined,
-    timestamp: undefined
+    timestamp: undefined,
+    description: "Your email address"
   };
 
-  const emailClaimValidated = await services.claim.validateClaim(addressClaim);
+  const emailClaimValidated = await services.claim.validateClaim(emailClaim);
   claims.push(emailClaimValidated);
   //TODO need logic to handle response
   return claims;
