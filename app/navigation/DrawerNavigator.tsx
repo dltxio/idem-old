@@ -9,6 +9,7 @@ import DrawerMenu from "../components/DrawerMenu";
 import TabNavigator from "./MainTabNavigator";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Onboard from "../screens/onboard";
+import useClaims from "../hooks/useClaims";
 
 const Drawer = createDrawerNavigator();
 
@@ -25,17 +26,7 @@ const DrawerMenuContainer = (props: DrawerContentComponentProps) => {
 };
 
 const DrawerNavigator = () => {
-  const [claims, setClaims] = useState<server.Claim[]>([]);
-
-  useEffect(() => {
-    async () => {
-      const claims = await AsyncStorage.getItem("claims");
-      console.log(claims);
-      if (claims) {
-        setClaims(JSON.parse(claims));
-      }
-    };
-  });
+  const { claims } = useClaims();
 
   return (
     <>

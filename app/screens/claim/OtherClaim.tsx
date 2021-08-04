@@ -4,7 +4,7 @@ import styles from "../../styles";
 import { IClaim } from "../../store/assetStore";
 import { observer } from "mobx-react-lite";
 import Button from "../../components/Button";
-import verifyClaim from "../../helpers/claim/verify";
+import { verifyClaim } from "../../helpers/claim/verify";
 
 const OtherClaim = ({
   item,

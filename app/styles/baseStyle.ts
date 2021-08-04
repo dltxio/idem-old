@@ -1,12 +1,14 @@
-export default {
+import { StyleSheet, FlexStyle } from "react-native";
+
+export default StyleSheet.create({
   viewPager: {
     flex: 1,
     flexGrow: 1,
+    backgroundColor: "white",
   },
   viewPage: {
-    paddingTop: 200,
-    height: 400,
-    backgroundColor: "#061121",
+    paddingTop: 150,
+    backgroundColor: "white",
   },
   page: {
     justifyContent: "center",
@@ -14,37 +16,45 @@ export default {
   },
   baseTextInput: {
     padding: 10,
-    color: "white",
-    margin: 20,
-    borderColor: "#007bff",
+    color: "black",
+    margin: 10,
+    borderColor: "#cecece",
     borderWidth: 1,
     borderRadius: 5,
   },
   dataPick: {
     padding: 10,
     color: "white",
-    margin: 20,
-    borderColor: "#007bff",
+    margin: 10,
+    borderColor: "#cecece",
     borderWidth: 1,
     borderRadius: 5,
     height: 40,
   },
   dataText: {
-    color: "white",
+    color: "black",
     fontSize: 15,
     fontWeight: "500",
   },
   baseText: {
-    color: "white",
+    color: "black",
     fontSize: 15,
     fontWeight: "500",
-    marginLeft: 20,
+    marginLeft: 10,
   },
-  baseTitle: { color: "white", fontSize: 20, fontWeight: "500" },
+  baseTitle: { color: "black", fontSize: 20, fontWeight: "500" },
   baseButton: {
-    paddingTop: 20,
-    borderWidth: 1,
-    borderRadius: 5,
-    color: "#007bff",
+    height: 40,
+    margin: 10,
   },
-};
+  errorMessage: {
+    color: "red",
+    fontSize: 15,
+    fontWeight: "400",
+    marginLeft: 10,
+    marginBottom: 10,
+  },
+  innerView: {
+    flexDirection: "row",
+  },
+});

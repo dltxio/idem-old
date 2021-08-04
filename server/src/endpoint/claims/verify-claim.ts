@@ -5,18 +5,11 @@ import { validationBadRequest } from "../../utils/errors";
 import { validate, ValidationSchema } from "../../utils/validate";
 
 const bodyValidation: ValidationSchema<server.ClaimRequest> = {
-  firstName: Joi.string().required(),
-  middleName: Joi.string().empty(""),
-  lastName: Joi.string().required(),
   dob: Joi.string().required(),
-  unitNumber: Joi.string().empty(""),
-  streetNumber: Joi.string().required(),
-  streetName: Joi.string().required(),
-  streetType: Joi.string().required(),
-  locality: Joi.string().required(),
-  region: Joi.string().required(),
-  postCode: Joi.string().required(),
-  country: Joi.string().required()
+  name: Joi.string().empty(""),
+  email: Joi.string().empty(""),
+  address: Joi.string().empty(""),
+  mobile: Joi.string().empty("")
 };
 
 const verifyClaim: RequestHandler<
@@ -44,7 +37,7 @@ const verifyClaim: RequestHandler<
   const fullNameClaim = {
     type: "Full Name",
     key: "0x02",
-    value: body.firstName + " " + body.middleName + " " + body.lastName,
+    value: body.name,
     evidence: [""],
     hash: undefined,
     signature: undefined,
@@ -72,22 +65,7 @@ const verifyClaim: RequestHandler<
   const addressClaim = {
     type: "Address",
     key: "0x05",
-    value:
-      body.unitNumber +
-      " " +
-      body.streetNumber +
-      " " +
-      body.streetName +
-      " " +
-      body.streetType +
-      " " +
-      body.locality +
-      " " +
-      body.region +
-      " " +
-      body.postCode +
-      " " +
-      body.country,
+    value: body.address,
     evidence: [""],
     hash: undefined,
     signature: undefined,
@@ -98,6 +76,31 @@ const verifyClaim: RequestHandler<
   );
   claims.push(addressClaimValidated);
 
+  const mobileClaim = {
+    type: "Mobile",
+    key: "0x04",
+    value: body.mobile,
+    evidence: [""],
+    hash: undefined,
+    signature: undefined,
+    timestamp: undefined
+  };
+
+  const mobileClaimValidated = await services.claim.validateClaim(addressClaim);
+  claims.push(mobileClaimValidated);
+
+  const emailClaim = {
+    type: "Email",
+    key: "0x03",
+    value: body.email,
+    evidence: [""],
+    hash: undefined,
+    signature: undefined,
+    timestamp: undefined
+  };
+
+  const emailClaimValidated = await services.claim.validateClaim(addressClaim);
+  claims.push(emailClaimValidated);
   //TODO need logic to handle response
   return claims;
 };

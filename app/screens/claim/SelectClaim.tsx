@@ -4,7 +4,7 @@ import { View, ViewStyle, Switch, StyleSheet, Text } from "react-native";
 import { IClaim } from "../../store/assetStore";
 import styles from "../../styles";
 import Button from "../../components/Button";
-import verifyClaim from "../../helpers/claim/verify";
+import { verifyClaim } from "../../helpers/claim/verify";
 
 const SelectClaim = ({
   item,
