@@ -17,8 +17,10 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
 });
-const Profile: React.FC<{fullName: IClaim, emailAddress: IClaim}> = ({ fullName, emailAddress }) => {
-
+const Profile: React.FC<{
+  fullName: server.Claim;
+  emailAddress: server.Claim;
+}> = ({ fullName, emailAddress }) => {
   return (
     <View style={styles.userRow}>
       <View style={styles.userImage}>
@@ -29,14 +31,14 @@ const Profile: React.FC<{fullName: IClaim, emailAddress: IClaim}> = ({ fullName,
         />
       </View>
       <View>
-        <Text style={{ fontSize: 16 }}>{fullName.value}</Text>
+        <Text style={{ fontSize: 16 }}>{fullName?.value}</Text>
         <Text
           style={{
             color: "gray",
             fontSize: 16,
           }}
         >
-          {emailAddress.value}
+          {emailAddress?.value}
         </Text>
       </View>
     </View>

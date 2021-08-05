@@ -7,6 +7,7 @@ declare namespace server {
     hash: string | undefined;
     signature: string | undefined;
     timestamp: number | undefined;
+    description: string;
   };
 
   type ClaimValidated = {
@@ -16,17 +17,10 @@ declare namespace server {
   };
 
   type ClaimRequest = {
-    firstName: string;
-    middleName: string | undefined;
-    lastName: string;
+    name: string;
     dob: string;
-    unitNumber: string | undefined;
-    streetNumber: string;
-    streetName: string;
-    streetType: string;
-    locality: string;
-    region: string;
-    postCode: string;
-    country: string;
+    mobile: string;
+    email: string;
+    address: string;
   };
 }

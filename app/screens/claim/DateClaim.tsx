@@ -5,7 +5,7 @@ import DatePick from "../../components/DatePick";
 import { IClaim } from "../../store/assetStore";
 import styles from "../../styles";
 import { colors } from "../../styles/theme";
-import verifyClaim from "../../helpers/claim/verify";
+import { verifyClaim } from "../../helpers/claim/verify";
 import Button from "../../components/Button";
 import moment from "moment";
 
@@ -27,7 +27,8 @@ const DateClaim = ({
         }}
       >
         <Text style={{ color: item.value ? undefined : colors.gray }}>{`${
-          moment(item.value).format("DD/MM/YYYY") || "Please enter the specific date..."
+          moment(item.value).format("DD/MM/YYYY") ||
+          "Please enter the specific date..."
         }`}</Text>
       </TouchableOpacity>
       <DatePick
