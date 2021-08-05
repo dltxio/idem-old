@@ -34,7 +34,6 @@ const PgpSetting = () => {
         passphrase: passphrase,
       };
       const response = await CreatePGPKeypair(pgpRequest);
-      console.log(response);
       if (response) {
         await AsyncStorage.setItem("pgp-keypair", JSON.stringify(response));
         setMessage("Your PGP keypair has been stored in your device");
