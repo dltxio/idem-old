@@ -18,7 +18,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.idem"
     },
     "packagerOpts": {
       "config": "metro.config.js",
@@ -30,6 +31,9 @@
         "tsx"
       ]
     },
-    "description": ""
+    "description": "",
+    "android": {
+      "package": "com.idem"
+    }
   }
 }
