@@ -6,10 +6,10 @@ import { validate, ValidationSchema } from "../../utils/validate";
 
 const bodyValidation: ValidationSchema<server.ClaimRequest> = {
   dob: Joi.string().required(),
-  name: Joi.string().empty(""),
-  email: Joi.string().empty(""),
   address: Joi.string().empty(""),
-  mobile: Joi.string().empty("")
+  email: Joi.string().empty(""),
+  mobile: Joi.string().empty(""),
+  name: Joi.string().empty("")
 };
 
 const verifyClaim: RequestHandler<

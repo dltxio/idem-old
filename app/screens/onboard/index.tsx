@@ -84,7 +84,7 @@ const Onboard = () => {
               <TextInput
                 style={styles.baseStyle.baseTextInput}
                 keyboardType="email-address"
-                placeholder="Please enter your email address..."
+                placeholder="Please enter your email address"
                 placeholderTextColor="gray"
                 value={values.email}
                 onChangeText={handleChange("email")}
@@ -99,7 +99,7 @@ const Onboard = () => {
               <TextInput
                 style={styles.baseStyle.baseTextInput}
                 keyboardType="default"
-                placeholder="Please enter your mobile number..."
+                placeholder="Please enter your mobile number"
                 placeholderTextColor="gray"
                 value={values.mobile}
                 onChangeText={handleChange("mobile")}
@@ -116,7 +116,7 @@ const Onboard = () => {
                 style={styles.baseStyle.dataPick}
               >
                 <Text style={styles.baseStyle.dataText}>{`${
-                  date || "Please enter the specific date..."
+                  date || "Please enter the specific date"
                 }`}</Text>
               </TouchableOpacity>
               {dateError && (
@@ -136,7 +136,7 @@ const Onboard = () => {
               <TextInput
                 style={styles.baseStyle.baseTextInput}
                 keyboardType="default"
-                placeholder="Please enter your address..."
+                placeholder="Please enter your address"
                 placeholderTextColor="gray"
                 value={values.address}
                 onChangeText={handleChange("address")}
