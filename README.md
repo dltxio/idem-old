@@ -13,7 +13,7 @@ Idem uses a verify of cryptographic protocols to sign and encrypt your data,  PG
 ## Intent
 Idem is designed to be used in two ways with third parties such as crypto exchanges. 
 
-1. Onboarding / Registering new users who do not have an account on a third party (User Story 1)
+1. Onboarding / Registering new users who do not have an account on the third party platform (User Story 1)
 2. Onboarded users who have not completed any verification (User Story 2)
 
 ## Creating a profile on your Idem app
