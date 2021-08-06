@@ -87,7 +87,7 @@ const PgpSetting = () => {
           marginTop: 10,
         }}
         keyboardType="default"
-        placeholder="Please enter your mnemonic key"
+        placeholder="Please enter your mnemonic seed phrase"
         onChangeText={(value) => {
           setPasshrase(value);
         }}
