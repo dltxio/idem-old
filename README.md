@@ -16,7 +16,7 @@ Idem is designed to be used in two ways with third parties such as crypto exchan
 1. Onboarding / Registering new users who do not have an account on a third party (User Story 1)
 2. Onboarded users who have not completed any verification (User Story 2)
 
-## Creating a profile on your Idem app.
+## Creating a profile on your Idem app
 
 ### Step 1: New Idem registration
 
