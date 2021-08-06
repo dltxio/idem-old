@@ -23,7 +23,7 @@ Idem is designed to be used in two ways with third parties such as crypto exchan
 User onboards to the app via their Mobile number.
 
 ### Step 2: New private key
-The app will automatically create a 256-bit private key on the device.  This will be used to sign messages using ESDCA to third parties.
+The app will automatically create a 256-bit private key on the device or allow users to add a mnemonic seed phrase based on the bitcoin BIP39 standard.  This will be used to sign messages using ESDCA to third parties.
 
 ### Step 3: Upload data
 
@@ -210,3 +210,6 @@ contract EthereumClaimsRegistry {
 ## References
 
 https://www.servicesaustralia.gov.au/individuals/topics/confirm-your-identity/29166
+https://en.bitcoin.it/wiki/Seed_phrase
+https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-5.0
+
