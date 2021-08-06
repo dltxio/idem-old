@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   createDrawerNavigator,
   DrawerContentComponentProps,
@@ -7,6 +7,9 @@ import {
 } from "@react-navigation/drawer";
 import DrawerMenu from "../components/DrawerMenu";
 import TabNavigator from "./MainTabNavigator";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Onboard from "../screens/onboard";
+import useClaims from "../hooks/useClaims";
 
 const Drawer = createDrawerNavigator();
 
@@ -22,10 +25,23 @@ const DrawerMenuContainer = (props: DrawerContentComponentProps) => {
   );
 };
 
-const DrawerNavigator = () => (
-  <Drawer.Navigator initialRouteName="Home" drawerContent={DrawerMenuContainer}>
-    <Drawer.Screen name="Home" component={TabNavigator} />
-  </Drawer.Navigator>
-);
+const DrawerNavigator = () => {
+  const { claims } = useClaims();
+
+  return (
+    <>
+      {claims && claims.length > 0 ? (
+        <Drawer.Navigator
+          initialRouteName="Home"
+          drawerContent={DrawerMenuContainer}
+        >
+          <Drawer.Screen name="Home" component={TabNavigator} />
+        </Drawer.Navigator>
+      ) : (
+        <Onboard />
+      )}
+    </>
+  );
+};
 
 export default DrawerNavigator;

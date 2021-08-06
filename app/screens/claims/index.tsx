@@ -10,23 +10,23 @@ import styles from "../../styles";
 import { useNavigation } from "@react-navigation/core";
 import { useRootStore } from "../../store/rootStore";
 import { observer } from "mobx-react-lite";
-import { IClaim } from "../../store/assetStore";
 import { colors } from "../../styles/theme";
 import Profile from "../profile";
+import useClaims from "../../hooks/useClaims";
 
 type ClaimsListItemProps = {
   onPress: () => void;
-  item: IClaim;
+  claim: server.Claim;
 };
 
-const ClaimListItem = ({ onPress, item }: ClaimsListItemProps) => (
+const ClaimListItem = ({ onPress, claim }: ClaimsListItemProps) => (
   <TouchableOpacity
     style={styles.list.itemWrapper(styles.layout.window)}
     onPress={onPress}
   >
-    <Text style={styles.list.itemName}>{item.type}</Text>
-    <Text style={{ color: colors.gray }}>{item.description}</Text>
-    {!item.value ? (
+    <Text style={styles.list.itemName}>{claim.type}</Text>
+    <Text style={{ color: colors.gray }}>{claim.description}</Text>
+    {!claim.value ? (
       <View
         style={{
           padding: 5,
@@ -40,7 +40,7 @@ const ClaimListItem = ({ onPress, item }: ClaimsListItemProps) => (
       >
         <Text>Not Supplied</Text>
       </View>
-    ) : !item.isVerified ? (
+    ) : claim.evidence.length > 0 ? (
       <View
         style={{
           padding: 5,
@@ -60,6 +60,8 @@ const ClaimListItem = ({ onPress, item }: ClaimsListItemProps) => (
 
 const ClaimSelector = () => {
   const navigation = useNavigation();
+  const { claims, isLoading } = useClaims();
+
   const rootStore = useRootStore();
   const assetStore = rootStore.Assets;
 
@@ -67,7 +69,7 @@ const ClaimSelector = () => {
     assetStore.loadClaims();
   }, []);
 
-  if (assetStore.claims == null)
+  if (isLoading)
     return (
       <View style={styles.list.root as ViewStyle}>
         <Text>Loading...</Text>
@@ -77,20 +79,20 @@ const ClaimSelector = () => {
   return (
     <View style={styles.list.root as ViewStyle}>
       <StatusBar barStyle="light-content" />
-      {assetStore?.claims.length > 0 && (
+      {claims.length > 0 && (
         <Profile
-          fullName={assetStore.claims.find((c) => c.key === "0x02")!}
-          emailAddress={assetStore.claims.find((c) => c.key === "0x03")!}
+          fullName={claims.find((c) => c.key === "0x02")!}
+          emailAddress={claims.find((c) => c.key === "0x03")!}
         />
       )}
       <View style={{ flex: 1, width: "100%" }}>
-        {assetStore.claims.map((item, index) => {
+        {claims.map((claim, index) => {
           return (
             <ClaimListItem
               key={index}
-              item={item}
+              claim={claim}
               onPress={() => {
-                rootStore.Assets.setClaimKey(item.key);
+                rootStore.Assets.setClaimKey(claim.key);
                 navigation.navigate("Claim");
               }}
             />

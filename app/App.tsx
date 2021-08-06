@@ -7,6 +7,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Asset } from "expo-asset";
 import DrawerNavigator from "./navigation/DrawerNavigator";
 import { RootStoreProvider } from "./store/rootStore";
+import { StatusBar } from "expo-status-bar";
+import { ClaimProvider } from "./providers/Claim";
 
 const App = () => {
   const [didLoad, setDidLoad] = useState(false);
@@ -25,8 +27,11 @@ const App = () => {
 
   return (
     <RootStoreProvider>
+      <StatusBar style="auto" />
       <NavigationContainer ref={navRef}>
-        <DrawerNavigator />
+        <ClaimProvider>
+          <DrawerNavigator />
+        </ClaimProvider>
       </NavigationContainer>
     </RootStoreProvider>
   );
