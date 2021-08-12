@@ -7,19 +7,23 @@ Idem is a open source cross platform mobile application based on the Decentrlaiz
 
 Each time an exchange requests an ID verifycation from a user, the provider charges the exchange a fee.  Further, users are required to provide KYC information and have it verified for each and every onboarding, instead of a portable, reusable verification from a trusted provider.  By locally storing user's verified information, we can enhance the customer onboarding experience and reduce costs incurred by Vendors.
 
-Idem has two workflows, 
+## The Tech
+Idem uses a verify of cryptographic protocols to sign and encrypt your data,  PGP/GPG encryption is used to securely store data on your device.  Furthermore, Idem uses the Ethereum elliptic curve to sign claims which is inline with the DID foundations verifiable claims schema.  Transactions on the Ethereum Test Network "Kovan" will be signed with the ETH account `0xE4ed9ceF6989CFE9da7c1Eec8c2299141dD9e7cC`
 
-1. Onboarding / Registering new users (user story 1)
-2. Onboarded users who have not completed any verification (user story 2)
+## Intent
+Idem is designed to be used in two ways with third parties such as crypto exchanges. 
 
-Kovan transactions will be signed with the ETH account `0xE4ed9ceF6989CFE9da7c1Eec8c2299141dD9e7cC`
+1. Onboarding / Registering new users who do not have an account on the third party platform (User Story 1)
+2. Onboarded users who have not completed any verification (User Story 2)
+
+## Creating a profile on your Idem app
 
 ### Step 1: New Idem registration
 
 User onboards to the app via their Mobile number.
 
 ### Step 2: New private key
-The app will automatically create a 256-bit private key on the device.  This will be used to sign messages using ESDCA to third parties.
+The app will automatically create a 256-bit private key on the device or allow users to add a mnemonic seed phrase based on the bitcoin BIP39 standard.  This will be used to sign messages using ESDCA to third parties.
 
 ### Step 3: Upload data
 
@@ -36,6 +40,7 @@ Meta data is stored in a JSON object:
     }]
 }
 ```
+
 Note:  See the Microsoft claims class for .net https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-5.0
 
 ## User Story 1:  Onboarding a new user
@@ -47,12 +52,13 @@ So that I don't have to re-supply all my information.
 
 ```text
 Given a user who has downloaded the app,  
-And has verified their claims,  
-When they visit exchange.com,  
+And has verified their claims on the app,  
+When they visit exchange.com registration page,  
 And they scan the QR code via the app,  
 And Ok on the app,  
-Then they are registered and ID verfied,  
-And taken to the exchange home page.  
+Then they are registered on exchange.com 
+And their ID is verfied,  
+And they are redirected to exchange.com's home page.  
 ```
 
 ### Implementation
@@ -204,3 +210,5 @@ contract EthereumClaimsRegistry {
 ## References
 
 https://www.servicesaustralia.gov.au/individuals/topics/confirm-your-identity/29166
+https://en.bitcoin.it/wiki/Seed_phrase
+https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-5.0
