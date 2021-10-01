@@ -20,14 +20,14 @@ Idem is designed to be used in two ways with third parties such as crypto exchan
 
 ### Step 1: New Idem registration
 
-User onboards to the app via their Mobile number.
+User create a new local account on their mobile device using the Idem app, using their email address as a unique identifier.
 
 ### Step 2: New private key
-The app will automatically create a 256-bit private key on the device or allow users to add a mnemonic seed phrase based on the bitcoin BIP39 standard.  This will be used to sign messages using ESDCA to third parties.
+The app will automatically create a 256-bit private key on the device or allow users to import a mnemonic seed phrase based on the bitcoin BIP39 standard.  This will be used to sign and verify requests using ESDCA to third parties.
 
 ### Step 3: Upload data
 
-On the mobile application the user can choose certain types of claims to verify, such as 18+, Date of Birth or Address.  The user is then required to substantiate any of those claims with supporting evidence such as a government issued document, utilities bill or such. The documents are stored in the local storage of the device along with a keccak 256 hash.
+On the mobile app users can choose certain types of claims to verify, such as 18+, Date of Birth or Address.  User are required to substantiate any of those claims with supporting evidence such as a government issued document, utilities bill or such. The documents are cached in the local storage of the device along with a keccak 256 hash and signed by the ESDCA curve.
 
 Meta data is stored in a JSON object:
 
@@ -67,7 +67,7 @@ And they are redirected to exchange.com's home page.
 ### Implementation
 ### Step 1:  Onboarding on Third-Party Sites
 
-The site "exchange.com" creates a unique URL with the url schema `did://` with the claims the exchange requires:
+The site "exchange.com" creates a unique deeplink url with the url schema `did://` along with the claims it requires:
 
 * Domain (mandatory)
 * Call back path (mandatory)
@@ -77,9 +77,7 @@ The site "exchange.com" creates a unique URL with the url schema `did://` with t
 Eg: `did://callback=domain.com&callback=/verify?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3&claims=[0x01]`
 
 ### Step 2:  Posting the signed data to the exchange
-The user will then receive confirmation alert on the device with the claims the exchange is requesting.
-
-The app will the post the claims in the following schema.
+The user will then receive confirmation alert on the device with the claims the exchange is requesting as specified in the deeplink.  Should the user accept that request for claims, the app will the post the claims in the following DID schema.
 
 ```json
 
