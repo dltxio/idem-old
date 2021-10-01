@@ -5,10 +5,10 @@ https://idem.com.au
 
 Idem is a open source cross platform mobile application based on the Decentrlaized Identity Foundations DID protocol.
 
-Each time an exchange requests an ID verifycation from a user, the provider charges the exchange a fee.  Further, users are required to provide KYC information and have it verified for each and every onboarding, instead of a portable, reusable verification from a trusted provider.  By locally storing user's verified information, we can enhance the customer onboarding experience and reduce costs incurred by Vendors.
+Each time an exchange requests a ID from a new user, the KYC provider charges the exchange a fee.  Further, users are required to provide KYC information and have it verified for each and every onboarding, instead of a portable, reusable verification from a trusted provider.  By locally storing user's verified information with a cryptographic signature, we can enhance the customer onboarding experience and reduce costs incurred by vendors.
 
 ## The Tech
-Idem uses a verify of cryptographic protocols to sign and encrypt your data,  PGP/GPG encryption is used to securely store data on your device.  Furthermore, Idem uses the Ethereum elliptic curve to sign claims which is inline with the DID foundations verifiable claims schema.  Transactions on the Ethereum Test Network "Kovan" will be signed with the ETH account `0xE4ed9ceF6989CFE9da7c1Eec8c2299141dD9e7cC`
+Idem uses a number of cryptographic protocols to sign and encrypt your data. PGP/GPG encryption is used to securely store data on your device, while the Ethereum elliptic curve is used to sign claims which conforms to the DID foundations verifiable claims schema.
 
 ## Intent
 Idem is designed to be used in two ways with third parties such as crypto exchanges. 
@@ -215,3 +215,4 @@ contract EthereumClaimsRegistry {
 https://www.servicesaustralia.gov.au/individuals/topics/confirm-your-identity/29166
 https://en.bitcoin.it/wiki/Seed_phrase
 https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-5.0
+Transactions on the Ethereum Test Network "Kovan" will be signed with the ETH account `0xE4ed9ceF6989CFE9da7c1Eec8c2299141dD9e7cC`
