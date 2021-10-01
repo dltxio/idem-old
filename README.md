@@ -44,7 +44,7 @@ Meta data is stored in a JSON object:
 Note:  See the Microsoft claims class for .net https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-5.0
 
 ## User Story 1:  Onboarding a new user
-```
+```text
 As a frustrated customer, 
 I want to onboard via the Idem app, 
 So that I don't have to re-supply all my information.
@@ -58,8 +58,11 @@ And they scan the QR code via the app,
 And Ok on the app,  
 Then they are registered on exchange.com,
 And their ID is verfied,  
-And they are redirected to exchange.com's home page.  
+And they are redirected to exchange.com's home page.
 ```
+
+![Screenshot from 2021-10-01 17-30-42](https://user-images.githubusercontent.com/8411406/135585023-31ff96da-33f6-440d-92f6-e01a965cd0ad.png)
+
 
 ### Implementation
 ### Step 1:  Onboarding on Third-Party Sites
