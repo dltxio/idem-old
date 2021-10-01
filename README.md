@@ -56,7 +56,7 @@ And has verified their claims on the app,
 When they visit exchange.com registration page,  
 And they scan the QR code via the app,  
 And Ok on the app,  
-Then they are registered on exchange.com 
+Then they are registered on exchange.com,
 And their ID is verfied,  
 And they are redirected to exchange.com's home page.  
 ```
@@ -100,9 +100,9 @@ And has already verified their claims,
 When they visit exchange.com,  
 And they scan the QR code via the app,  
 And OK to sharing data on the app to exchange.com,  
-Then their ID is posted from the app to exchange.com's API
+Then their ID is posted from the app to exchange.com's API,
 And their Idem signature is vefified,
-And their persona data is updated at exchange.com
+And their personal data is updated at exchange.com
 ```
 
 ## Verify these claims
