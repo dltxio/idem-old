@@ -45,9 +45,9 @@ Note:  See the Microsoft claims class for .net https://docs.microsoft.com/en-us/
 
 ## User Story 1:  Onboarding a new user
 ```text
-As a frustrated customer, 
-I want to onboard via the Idem app, 
-So that I don't have to re-supply all my information.
+As a frustrated crypto customer, 
+I want to onboard to the exchange via the Idem app, 
+So that I don't have to re-supply all my information again and again and again!
 ```
 
 ```text
