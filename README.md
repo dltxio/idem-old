@@ -46,19 +46,19 @@ Note:  See the Microsoft claims class for .net https://docs.microsoft.com/en-us/
 ## User Story 1:  Onboarding a new user
 ```text
 As a frustrated crypto customer, 
-I want to onboard to the exchange via the Idem app, 
+I want to onboard to the exchange via the Idem app using the integrated QR, 
 So that I don't have to re-supply all my information again and again and again!
 ```
 
 ```text
-Given a user who has downloaded the app,  
-And has verified their claims on the app,  
-When they visit exchange.com registration page,  
-And they scan the QR code via the app,  
-And Ok on the app,  
-Then they are registered on exchange.com,
-And their ID is verfied,  
-And they are redirected to exchange.com's home page.
+Given a user who has downloaded the IDEM app,  
+When they have succesfully verified their claims,  
+and they visit exchange.com registration page,  
+and they scan the QR code via the app,
+and their ID is sufficently verffied according to the exchanges standard,
+Then they are prompeted on the app "Are you signing up for exchange.com? Click 'Yes' or 'No' to proceed" on the app,  
+and they are registered on exchange.com if yes is clicked else cancel the opperation,
+and they are redirected to exchange.com's home page.
 ```
 
 ![Screenshot from 2021-10-01 17-30-42](https://user-images.githubusercontent.com/8411406/135585023-31ff96da-33f6-440d-92f6-e01a965cd0ad.png)
@@ -96,11 +96,10 @@ So that I don't need to complete yet another KYC process.
 ```
 
 ```text
-Given a user who has downloaded the app,  
-And has already verified their claims,  
+Given a user who has downloaded the app and has already verified their claims,  
 When they visit exchange.com,  
 And they scan the QR code via the app,  
-And OK to sharing data on the app to exchange.com,  
+And click 'OK' to sharing data on the app to exchange.com,  
 Then their ID is posted from the app to exchange.com's API,
 And their Idem signature is vefified,
 And their personal data is updated at exchange.com
