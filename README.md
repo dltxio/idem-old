@@ -5,13 +5,13 @@ https://idem.com.au
 
 Idem is a open source cross platform mobile application based on the Decentrlaized Identity Foundations DID protocol.
 
-Each time an exchange requests a ID from a new user, the KYC provider charges the exchange a fee.  Further, users are required to provide KYC information and have it verified for each and every onboarding, instead of a portable, reusable verification from a trusted provider.  By locally storing user's verified information with a cryptographic signature, we can enhance the customer onboarding experience and reduce costs incurred by vendors.
+Each time an exchange requests an ID from a new user, the KYC provider charges the exchange a fee. Users are required to provide KYC information and have it verified for each and every exchange onboarding instead of being able to reuse verification from a trusted provider. By locally storing user's verified information with a cryptographic signature, we can enhance the customer onboarding experience and reduce costs incurred by vendors.
 
 ## The Tech
 Idem uses a number of cryptographic protocols to sign and encrypt your data. PGP/GPG encryption is used to securely store data on your device, while the Ethereum elliptic curve is used to sign claims which conforms to the DID foundations verifiable claims schema.
 
 ## Intent
-Idem is designed to be used in two ways with third parties such as crypto exchanges. 
+Idem is designed to be used by third parties, such as crypto exchanges, in two ways: 
 
 1. Onboarding / Registering new users who do not have an account on the third party platform (User Story 1)
 2. Onboarded users who have not completed any verification (User Story 2)
@@ -23,11 +23,11 @@ Idem is designed to be used in two ways with third parties such as crypto exchan
 User create a new local account on their mobile device using the Idem app, using their email address as a unique identifier.
 
 ### Step 2: New private key
-The app will automatically create a 256-bit private key on the device or allow users to import a mnemonic seed phrase based on the bitcoin BIP39 standard.  This will be used to sign and verify requests using ESDCA to third parties.
+The app will automatically create a 256-bit private key on the device or allow users to import a mnemonic seed phrase based on the bitcoin BIP39 standard. This will be used to sign and verify requests using ESDCA to third parties.
 
 ### Step 3: Upload data
 
-On the mobile app users can choose certain types of claims to verify, such as 18+, Date of Birth or Address.  User are required to substantiate any of those claims with supporting evidence such as a government issued document, utilities bill or such. The documents are cached in the local storage of the device along with a keccak 256 hash and signed by the ESDCA curve.
+On the mobile app users can choose certain types of claims to verify such as 18+, Date of Birth or Address. User are required to substantiate any of those claims with supporting evidence such as a government issued document, utilities bill etc. The documents are cached in the local storage of the device along with a keccak 256 hash and signed by the ESDCA curve.
 
 Meta data is stored in a JSON object:
 
