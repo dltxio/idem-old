@@ -70,11 +70,11 @@ And they are redirected to exchange.com's home page.
 The site "exchange.com" creates a unique deeplink url with the url schema `did://` along with the claims it requires:
 
 * Domain (mandatory)
-* Call back path (mandatory)
+* Call back path
 * Nonce as UUID (mandatory)
 * An array of claims required
 
-Eg: `did://callback=domain.com&callback=/verify?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3&claims=[0x01]`
+Eg: `did://callback=exchange.com&callback=/verify?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3&claims=[0x01]`
 
 ### Step 2:  Posting the signed data to the exchange
 The user will then receive confirmation alert on the device with the claims the exchange is requesting as specified in the deeplink.  Should the user accept that request for claims, the app will the post the claims in the following DID schema.
