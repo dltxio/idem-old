@@ -3,12 +3,12 @@ https://idem.com.au
 
 ## Abstract
 
-Idem is a open source cross platform mobile application based on the Decentrlaized Identity Foundations DID protocol.
+Idem is an open source cross platform mobile application based on the Decentralised Identity Foundations DID protocol.
 
 Each time an exchange requests an ID from a new user, the KYC provider charges the exchange a fee. Users are required to provide KYC information and have it verified for each and every exchange onboarding instead of being able to reuse verification from a trusted provider. By locally storing user's verified information with a cryptographic signature, we can enhance the customer onboarding experience and reduce costs incurred by vendors.
 
 ## The Tech
-Idem uses a number of cryptographic protocols to sign and encrypt your data. PGP/GPG encryption is used to securely store data on your device, while the Ethereum elliptic curve is used to sign claims which conforms to the DID foundations verifiable claims schema.
+Idem uses a number of cryptographic protocols to sign and encrypt your data. PGP/GPG encryption is used to securely store data on your device, while the Ethereum elliptic curve (ECDSA) is used to sign claims which conforms to the DID foundations verifiable claims schema.
 
 ## Intent
 Idem is designed to be used by third parties, such as crypto exchanges, in two ways: 
@@ -19,15 +19,13 @@ Idem is designed to be used by third parties, such as crypto exchanges, in two w
 ## Creating a profile on your Idem app
 
 ### Step 1: New Idem registration
-
-User create a new local account on their mobile device using the Idem app, using their email address as a unique identifier.
+User creates a new local account on their mobile device using the Idem app, using their email address or phone number as a unique identifier.
 
 ### Step 2: New private key
-The app will automatically create a 256-bit private key on the device or allow users to import a mnemonic seed phrase based on the bitcoin BIP39 standard. This will be used to sign and verify requests using ESDCA to third parties.
+The app will automatically create a 256-bit private key on the device or allow users to import a mnemonic seed phrase based on the bitcoin BIP39 standard. This will be used to sign and verify requests using ECDSA to third parties.
 
 ### Step 3: Upload data
-
-On the mobile app users can choose certain types of claims to verify such as 18+, Date of Birth or Address. User are required to substantiate any of those claims with supporting evidence such as a government issued document, utilities bill etc. The documents are cached in the local storage of the device along with a keccak 256 hash and signed by the ESDCA curve.
+On the mobile app users can choose certain types of claims to verify such as 18+, Date of Birth or Address. User are required to substantiate any of those claims with supporting evidence such as a government issued document, utilities bill etc. The documents are cached in the local storage of the device along with a keccak 256 hash and signed by the ECDSA curve.
 
 Meta data is stored in a JSON object:
 
@@ -53,11 +51,11 @@ So that I don't have to re-supply all my information again and again and again!
 ```text
 Given a user who has downloaded the app,  
 And has verified their claims on the app,  
-When they visit exchange.com registration page,  
+When they visit exchange.com (is it "idem.exchange" - and future mentions) registration page,  
 And they scan the QR code via the app,  
 And Ok on the app,  
 Then they are registered on exchange.com,
-And their ID is verfied,  
+And their ID is verified,  
 And they are redirected to exchange.com's home page.
 ```
 
@@ -66,7 +64,6 @@ And they are redirected to exchange.com's home page.
 
 ### Implementation
 ### Step 1:  Onboarding on Third-Party Sites
-
 The site "exchange.com" creates a unique deeplink url with the url schema `did://` along with the claims it requires:
 
 * Domain (mandatory)
@@ -84,13 +81,12 @@ The user will then receive confirmation alert on the device with the claims the 
 ```
 
 ## User Story 2:  Verify an already registered user
-
 Often a site will email a user once they have created an account with an email address and password.  At this step, the site could also pass an unsigned url for the users to scan with their Idem app to validate their email and other claims.
 
 A QR code deeplink is a URL providing the claims required by site, along with a call back url.  
 
 ```text
-As an existing unverfied customer of exchange.com,
+As an existing unverified customer of exchange.com,
 I want to verify my KYC requirements via IDEM,
 So that I don't need to complete yet another KYC process.
 ```
@@ -102,12 +98,12 @@ When they visit exchange.com,
 And they scan the QR code via the app,  
 And OK to sharing data on the app to exchange.com,  
 Then their ID is posted from the app to exchange.com's API,
-And their Idem signature is vefified,
+And their Idem signature is verified,
 And their personal data is updated at exchange.com
 ```
 
 ## Verify these claims
-These claims are then verified by a third-party KYC vendors who return an X-509 SSL certificate signed JSON object that can then be used again.  Each vendor has a different process for onboarding and the app will maintain these different business requirements.
+These claims are then verified by third-party KYC vendors who return an X-509 SSL certificate signed JSON object that can then be used again. Each vendor has a different process for onboarding and the app will maintain these different business requirements.
 
 ![Verification Sequence](/assets/did.verification.sequence.svg)
 
@@ -126,7 +122,7 @@ These claims are then verified by a third-party KYC vendors who return an X-509 
 | 0x01 | Birth Year | birthyear | YYYY ISO 8601 | Clients Year of Birth |
 | 0x02 | Date of Birth | dob | YYYY-MM-DD ISO 8601 | Clients Date of Birth | 
 | 0x03 | Email | email | email | Clients email address  | 
-| 0x04 | Address | address | Physical Address | Clients pyhsical address | 
+| 0x04 | Address | address | Physical Address | Clients physical address | 
 | 0x05 | Mobile Number | mobilenumber | Mobile Number | Clients mobile number | 
 | 0x06 | 18+ | eighteenplus | 18 Plus | 18 Plus | 
 
