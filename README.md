@@ -3,12 +3,12 @@ https://idem.com.au
 
 ## Abstract
 
-Idem is an open source cross platform mobile application based on the Decentralised Identity Foundations DID protocol.
+Idem is an open source cross platform mobile application based on the Decentralised Identity Foundations DID protocol. The mobile application will give individuals control of their digital identities by establishing trust in an interaction between two individuals or entities that do not know each other. For trust to happen, the offering party will present credentials to the receiving parties, which can verify that the credentials are from an issuer that they trust.
 
 Each time an exchange requests an ID from a new user, the KYC provider charges the exchange a fee. Users are required to provide KYC information and have it verified for each and every exchange onboarding instead of being able to reuse verification from a trusted provider. By locally storing user's verified information with a cryptographic signature, we can enhance the customer onboarding experience and reduce costs incurred by vendors.
 
 ## The Tech
-Idem uses a number of cryptographic protocols to sign and encrypt your data. PGP/GPG encryption is used to securely store data on your device, while the Ethereum elliptic curve (ECDSA) is used to sign claims which conforms to the DID foundations verifiable claims schema.
+Idem uses a number of cryptographic protocols to sign and encrypt your data. PGP/GPG encryption is used to securely store data on your device, while the Ethereum elliptic curve (ECDSA) is used to sign claims which conforms to the DID foundations verifiable claims schema. Specifically, anyone can verify that the transaction is valid. The verification doesn't involve the private key.
 
 ## Intent
 Idem is designed to be used by third parties, such as crypto exchanges, in two ways: 
@@ -51,30 +51,45 @@ So that I don't have to re-supply all my information again and again and again!
 ```text
 Given a user who has downloaded the app,  
 And has verified their claims on the app,  
-When they visit exchange.com (is it "idem.exchange" - and future mentions) registration page,  
+When they visit demo.idem.com.au registration page,  
 And they scan the QR code via the app,  
 And Ok on the app,  
-Then they are registered on exchange.com,
+Then they are registered on demo.idem.com.au,
 And their ID is verified,  
-And they are redirected to exchange.com's home page.
+And they are redirected to demo.idem.com.au's home page.
 ```
 <img src="https://user-images.githubusercontent.com/91101134/138626026-94b1a7a8-6581-4ede-9fcc-ca3066afea59.png" width=50% height=50%>
 
-
 <img src="https://user-images.githubusercontent.com/91101134/138625890-0f66e8bf-dfbd-494f-8f96-23ac0e3115b6.png" width=50% height=50%>
 
+## Verification Workflow Diagram
+The flowchart below is a verification workflow diagram for 3rd party developers to integrate their Exchange with Idem. It works as follows:
 
+<img src="https://user-images.githubusercontent.com/92293107/138638763-68e44552-72cf-47f5-9aba-e0957edcfee4.png" width=75% height=75%>
+
+(1) A user with no digital ID visits “demo.idem.com.au” and creates an account by entering their email address and password (a user with a registered ID will scan a QR code and log in directly).
+(2) The “demo.idem.com.au” site will request give access to the user to enter the site. (dashboard)
+(3) A user with a registered ID will scan a QR code and have their claims verified directly.
+A new user will be asked to verify their claims using Idem. Specifically, this means that a user will verify specific information that is requested from them that is considered to be true, such as their name, address, etc. The user will be able to verify using existing (“old” implies already verified however document may have expired or not yet verified) mechanisms which involve uploading KYC documents (driver’s license / passports etc).
+(4) The user scans external QR codes, which requests specific information from the user held in Idem.
+(5) The user checks the information being requested in Idem, approves the claims request and Idem verifies the claim and the user gains access to external site.
+(6) The App posts the API specified in the QR code. Two options are to be made available
+1. The App will post to the Exchange directly - see (7).
+2. The App will use ECDSA to sign the certificates using Idem.
+(7) Provide call back option for ECDSA authentication to validate SSL Certificates over HTTP in Exchange, and option for Exchange to whitelist IP addresses.
+(8) The Exchange verifies the user’s claims and lets Idem know. Webhook needed to tie to the Exchange to let Idem know the results of the verification (eg when the verification is complete, or whether more information is needed etc).
+(9) Sends users to Home Page which displays verified documents.
 
 ### Implementation
 ### Step 1:  Onboarding on Third-Party Sites
-The site "exchange.com" creates a unique deeplink url with the url schema `did://` along with the claims it requires:
+The site "demo.idem.com.au" creates a unique deeplink url with the url schema `did://` along with the claims it requires:
 
 * Domain (mandatory)
 * Call back path
 * Nonce as UUID (mandatory)
 * An array of claims required
 
-Eg: `did://callback=exchange.com&callback=/verify?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3&claims=[0x01]`
+Eg: `did://callback=demo.idem.com.au&callback=/verify?nonce=8b5c66c0-bceb-40b4-b099-d31b127bf7b3&claims=[0x01]`
 
 ### Step 2:  Posting the signed data to the exchange
 The user will then receive confirmation alert on the device with the claims the exchange is requesting as specified in the deeplink.  Should the user accept that request for claims, the app will the post the claims in the following DID schema.
@@ -89,7 +104,7 @@ Often a site will email a user once they have created an account with an email a
 A QR code deeplink is a URL providing the claims required by site, along with a call back url.  
 
 ```text
-As an existing unverified customer of exchange.com,
+As an existing unverified customer of demo.idem.com.au,
 I want to verify my KYC requirements via IDEM,
 So that I don't need to complete yet another KYC process.
 ```
@@ -97,12 +112,12 @@ So that I don't need to complete yet another KYC process.
 ```text
 Given a user who has downloaded the app,  
 And has already verified their claims,  
-When they visit exchange.com,  
+When they visit demo.idem.com.au,  
 And they scan the QR code via the app,  
-And OK to sharing data on the app to exchange.com,  
-Then their ID is posted from the app to exchange.com's API,
+And OK to sharing data on the app to demo.idem.com.au,  
+Then their ID is posted from the app to demo.idem.com.au's API,
 And their Idem signature is verified,
-And their personal data is updated at exchange.com
+And their personal data is updated at demo.idem.com.au
 ```
 
 ## Verify these claims
