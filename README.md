@@ -65,7 +65,7 @@ And they are redirected to demo.idem.com.au's home page.
 ## Verification Workflow Diagram
 The flowchart below is a verification workflow diagram for 3rd party developers to integrate their Exchange with Idem. It works as follows:
 
-<img src="https://user-images.githubusercontent.com/92293107/138638763-68e44552-72cf-47f5-9aba-e0957edcfee4.png" width=75% height=75%>
+<img src="https://user-images.githubusercontent.com/92293107/138644574-c3cb25a1-1e02-4189-b3f4-3f8c4cd2ba7c.JPG" width=75% height=75%>
 
 (1) A user with no digital ID visits “demo.idem.com.au” and creates an account by entering their email address and password (a user with a registered ID will scan a QR code and log in directly).
 (2) The “demo.idem.com.au” site will request give access to the user to enter the site. (dashboard)
