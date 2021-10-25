@@ -58,8 +58,11 @@ Then they are registered on exchange.com,
 And their ID is verified,  
 And they are redirected to exchange.com's home page.
 ```
+![New Exchange Registration](https://user-images.githubusercontent.com/91101134/138626026-94b1a7a8-6581-4ede-9fcc-ca3066afea59.png | width=100)
 
-![Screenshot from 2021-10-01 17-30-42](https://user-images.githubusercontent.com/8411406/135585023-31ff96da-33f6-440d-92f6-e01a965cd0ad.png)
+
+![New Exchange Registration Idem](https://user-images.githubusercontent.com/91101134/138625890-0f66e8bf-dfbd-494f-8f96-23ac0e3115b6.png | width=100)
+
 
 
 ### Implementation
