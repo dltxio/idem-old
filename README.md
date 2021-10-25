@@ -67,18 +67,26 @@ The flowchart below is a verification workflow diagram for 3rd party developers 
 
 <img src="https://user-images.githubusercontent.com/92293107/138644574-c3cb25a1-1e02-4189-b3f4-3f8c4cd2ba7c.JPG" width=75% height=75%>
 
-(1) A user with no digital ID visits “demo.idem.com.au” and creates an account by entering their email address and password (a user with a registered ID will scan a QR code and log in directly).
-(2) The “demo.idem.com.au” site will request give access to the user to enter the site. (dashboard)
-(3) A user with a registered ID will scan a QR code and have their claims verified directly.
-A new user will be asked to verify their claims using Idem. Specifically, this means that a user will verify specific information that is requested from them that is considered to be true, such as their name, address, etc. The user will be able to verify using existing (“old” implies already verified however document may have expired or not yet verified) mechanisms which involve uploading KYC documents (driver’s license / passports etc).
-(4) The user scans external QR codes, which requests specific information from the user held in Idem.
-(5) The user checks the information being requested in Idem, approves the claims request and Idem verifies the claim and the user gains access to external site.
-(6) The App posts the API specified in the QR code. Two options are to be made available
-1. The App will post to the Exchange directly - see (7).
-2. The App will use ECDSA to sign the certificates using Idem.
-(7) Provide call back option for ECDSA authentication to validate SSL Certificates over HTTP in Exchange, and option for Exchange to whitelist IP addresses.
-(8) The Exchange verifies the user’s claims and lets Idem know. Webhook needed to tie to the Exchange to let Idem know the results of the verification (eg when the verification is complete, or whether more information is needed etc).
-(9) Sends users to Home Page which displays verified documents.
+1. A user with no digital ID visits “demo.idem.com.au” and creates an account by entering their email address and password (a user with a registered ID will scan a QR code and log in directly).
+
+2. The “demo.idem.com.au” site will request give access to the user to enter the site. (dashboard)
+
+3. A user with a registered ID will scan a QR code and have their claims verified directly. A new user will be asked to verify their claims using Idem. Specifically, this means that a user will verify specific information that is requested from them that is considered to be true, such as their name, address, etc. The user will be able to verify using existing (“old” implies already verified however document may have expired or not yet verified) mechanisms which involve uploading KYC documents (driver’s license / passports etc).
+
+4. The user scans external QR codes, which requests specific information from the user held in Idem.
+
+5. The user checks the information being requested in Idem, approves the claims request and Idem verifies the claim and the user gains access to external site.
+
+6. The App posts the API specified in the QR code. Two options are to be made available
+
+- The App will post to the Exchange directly - see (7).
+- The App will use ECDSA to sign the certificates using Idem.
+	
+7. Provide call back option for ECDSA authentication to validate SSL Certificates over HTTP in Exchange, and option for Exchange to whitelist IP addresses.
+
+8. The Exchange verifies the user’s claims and lets Idem know. Webhook needed to tie to the Exchange to let Idem know the results of the verification (eg when the verification is complete, or whether more information is needed etc).
+
+9. Sends users to Home Page which displays verified documents.
 
 ### Implementation
 ### Step 1:  Onboarding on Third-Party Sites
