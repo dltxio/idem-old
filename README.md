@@ -80,7 +80,7 @@ i)	Register credentials on the third party website using Idem credentials.
 ii)	Verify documents using Idem authenticated documents.
 
 3.	New User
-A new user will initiate the registration process by entering their email address and a new password in to the participating (third party) website. At this point if the user does not complete the registration process, the new user will be able to return to the website and log in using the QR code displayed on the screen when returning to the same website. Once the New User logs in and is inside the website, the new Idem User will continue with the verification process, uploading the requested documents on the website using the Idem App or on the site itself. Once documents have been submitted and verified, the User will be able to:
+A new user will initiate the registration process by entering their email address and a new password in to the participating (third party) website. At this point if the user does not complete the registration process, the new user will be able to return to the website and log in using the QR code displayed on the screen when returning to the same website. Once the New User logs in and is inside the website, the new Idem User will continue with the verification process, uploading the requested documents on the website using the Idem App. Once documents have been submitted and verified, the User will be able to:
 
 i)	Register credentials on the website using Idem credentials.
 
