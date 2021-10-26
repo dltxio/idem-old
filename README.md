@@ -62,6 +62,33 @@ And they are redirected to demo.idem.com.au's home page.
 
 <img src="https://user-images.githubusercontent.com/91101134/138625890-0f66e8bf-dfbd-494f-8f96-23ac0e3115b6.png" width=50% height=50%>
 
+
+## User Flow Experience - Customer POV
+The flowchart below is a user work flow demonstrating the user experience. Here we present 3 User scenarios.
+1.	Existing Idem User
+An existing Idem User will be able to log in to a participating (third party) website by simply using the Idem App to scan the QR code displayed on the computer screen of the participating website. Once inside the website, the User will be able to:
+
+i)	Register credentials on the website using Idem credentials.
+
+ii)	Verify documents to the participating website using Idem authenticated documents.
+
+2.	Registered (unverified) User
+A registered Idem User that has not yet been verified will be able to log in to a participating (third party) website by simply using the Idem App to scan the QR code displayed on the computer screen of the participating website. Once inside the website, the User will be requested to complete verification process by uploading requested documents. Once documents have been submitted and verified, the User will be able to:
+
+i)	Register credentials on the third party website using Idem credentials.
+
+ii)	Verify documents using Idem authenticated documents.
+
+3.	New User
+A new user will initiate the registration process by entering their email address and a new password in to the participating (third party) website. At this point if the user does not complete the registration process, the new user will be able to return to the website and log in using the QR code displayed on the screen when returning to the same website. Once the New User logs in and is inside the website, the new Idem User will continue with the verification process, uploading the requested documents on the website using the Idem App or on the site itself. Once documents have been submitted and verified, the User will be able to:
+
+i)	Register credentials on the website using Idem credentials.
+
+ii)	Verify documents using Idem authenticated documents.
+
+![Flowchart Experience - Customer POV r1](https://user-images.githubusercontent.com/92293107/138814366-e25e9abc-251f-40ce-8952-fb4b2ee65866.jpg)
+
+
 ## Verification Workflow Diagram
 The flowchart below is a verification workflow diagram for 3rd party developers to integrate their Exchange with Idem. It works as follows:
 
@@ -79,8 +106,8 @@ The flowchart below is a verification workflow diagram for 3rd party developers 
 
 6. The App posts the API specified in the QR code. Two options are to be made available
 
-- The App will post to the Exchange directly - see (7).
-- The App will use ECDSA to sign the certificates using Idem.
+i) The App will post to the Exchange directly - see point 7. below.
+ii) The App will use ECDSA to sign the certificates using Idem.
 	
 7. Provide call back option for ECDSA authentication to validate SSL Certificates over HTTP in Exchange, and option for Exchange to whitelist IP addresses.
 
@@ -113,7 +140,7 @@ A QR code deeplink is a URL providing the claims required by site, along with a 
 
 ```text
 As an existing unverified customer of demo.idem.com.au,
-I want to verify my KYC requirements via IDEM,
+I want to verify my KYC requirements via Idem,
 So that I don't need to complete yet another KYC process.
 ```
 
