@@ -84,7 +84,7 @@ A new user will initiate the registration process by entering their email addres
 
 i)	Register credentials on the website using Idem credentials.
 
-ii)	Verify documents using Idem authenticated documents.
+ii)	Verify documents using Idem verified documents.
 
 ![Flowchart Experience - Customer POV r1](https://user-images.githubusercontent.com/92293107/138814366-e25e9abc-251f-40ce-8952-fb4b2ee65866.jpg)
 
