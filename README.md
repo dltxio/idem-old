@@ -8,7 +8,7 @@ Idem is an open source cross platform mobile application based on the Decentrali
 Each time an exchange requests an ID from a new user, the KYC provider charges the exchange a fee. Users are required to provide KYC information and have it verified for each and every exchange onboarding instead of being able to reuse verification from a trusted provider. By locally storing user's verified information with a cryptographic signature, we can enhance the customer onboarding experience and reduce costs incurred by vendors.
 
 ## The Tech
-Idem uses a number of cryptographic protocols to sign and encrypt your data. PGP/GPG encryption is used to securely store data on your device, while the Ethereum elliptic curve (ECDSA) is used to sign claims which conforms to the DID foundations verifiable claims schema. Specifically, anyone can verify that the transaction is valid. The verification doesn't involve the private key.
+Idem uses a number of cryptographic protocols to sign and encrypt your data. PGP/GPG encryption is used to securely store data on your device, while the Ethereum elliptic curve (ECDSA) is used to sign claims which conforms to the DID foundations verifiable claims schema. Specifically, anyone can verify that the transaction is valid. The verification doesn't involve the users private key and is never known by Idem.
 
 ## Intent
 Idem is designed to be used by third parties, such as crypto exchanges, in two ways: 
@@ -27,7 +27,7 @@ The app will automatically create a 256-bit private key on the device or allow u
 ### Step 3: Upload data
 On the mobile app users can choose certain types of claims to verify such as 18+, Date of Birth or Address. User are required to substantiate any of those claims with supporting evidence such as a government issued document, utilities bill etc. The documents are cached in the local storage of the device along with a keccak 256 hash and signed by the ECDSA curve.
 
-Meta data is stored in a JSON object:
+Claims are stored on the device as a JSON object:
 
 ```json
 {
@@ -58,39 +58,36 @@ Then they are registered on demo.idem.com.au,
 And their ID is verified,  
 And they are redirected to demo.idem.com.au's home page.
 ```
+
 <img src="https://user-images.githubusercontent.com/91101134/138626026-94b1a7a8-6581-4ede-9fcc-ca3066afea59.png" width=50% height=50%>
-
 <img src="https://user-images.githubusercontent.com/91101134/138625890-0f66e8bf-dfbd-494f-8f96-23ac0e3115b6.png" width=50% height=50%>
-
 
 ## User Flow Experience - Customer POV
 The flowchart below is a user work flow demonstrating the user experience. Here we present 3 User scenarios.
-1.	Existing Idem User
-An existing Idem User will be able to log in to a participating (third party) website by simply using the Idem App to scan the QR code displayed on the computer screen of the participating website. Once inside the website, the User will be able to:
 
-i)	Register credentials on the website using Idem credentials.
+### Existing Idem User
+An existing Idem User will be able to log in to a participating (third party) website by simply using the Idem App to scan the QR code displayed on the participating website. Once authenticated, the User will be able to:
 
-ii)	Verify documents to the participating website using Idem authenticated documents.
+i)	Update their claims such as DOB, name and address using the verfied data on the Idem app.
+ii)	Supplied verified evidence in the form of documents to the participating website.
 
-2.	Registered (unverified) User
+### Registered (unverified) User
 A registered Idem User that has not yet been verified will be able to log in to a participating (third party) website by simply using the Idem App to scan the QR code displayed on the computer screen of the participating website. Once inside the website, the User will be requested to complete verification process by uploading requested documents. Once documents have been submitted and verified, the User will be able to:
 
 i)	Register credentials on the third party website using Idem credentials.
-
 ii)	Verify documents using Idem authenticated documents.
 
-3.	New User
+### New User
 A new user will initiate the registration process by entering their email address and a new password in to the participating (third party) website. At this point if the user does not complete the registration process, the new user will be able to return to the website and log in using the QR code displayed on the screen when returning to the same website. Once the New User logs in and is inside the website, the new Idem User will continue with the verification process, uploading the requested documents on the website using the Idem App. Once documents have been submitted and verified, the User will be able to:
 
 i)	Register credentials on the website using Idem credentials.
-
 ii)	Verify documents using Idem verified documents.
 
 ![Flowchart Experience - Customer POV r1](https://user-images.githubusercontent.com/92293107/138814366-e25e9abc-251f-40ce-8952-fb4b2ee65866.jpg)
 
 
 ## Verification Workflow Diagram
-The flowchart below is a verification workflow diagram for 3rd party developers to integrate their Exchange with Idem. It works as follows:
+The flowchart below is a verification workflow diagram for 3rd party developers to integrate their Exchange or website with Idem. It works as follows:
 
 <img src="https://user-images.githubusercontent.com/92293107/138644574-c3cb25a1-1e02-4189-b3f4-3f8c4cd2ba7c.JPG" width=75% height=75%>
 
@@ -130,7 +127,7 @@ Eg: `did://callback=demo.idem.com.au&callback=/verify?nonce=8b5c66c0-bceb-40b4-b
 The user will then receive confirmation alert on the device with the claims the exchange is requesting as specified in the deeplink.  Should the user accept that request for claims, the app will the post the claims in the following DID schema.
 
 ```json
-
+TBA
 ```
 
 ## User Story 2:  Verify an already registered user
