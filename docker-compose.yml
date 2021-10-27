@@ -8,7 +8,7 @@ services:
             context: .
             dockerfile:  ./Dockerfile
         ports: 
-            - "3001:3001"
+            - "3001:3002"
         environment: 
             - PORT=3001
             - MESSAGEBIRD_KEY="x"
@@ -19,3 +19,12 @@ services:
             - PGP_PRIVATE_KEY="./info.asc"
             - PGP_PRIVATE_KEY_PASSWORD="Test1234"
             - CIPHER_SECRET="Test1234"
+            - AUS_POST_CLIENT_ID="ctid0frFNICtT3eRqnvk6WaF3o"
+            - AUS_POST_CLIENT_SECRET="0be79a503e3e0d180227a2ca5d4e6e78"
+            - AUS_POST_API="https://api.digitalid-sandbox.com/products/kyc/1/verification"
+            - PROVENDB_API_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhbmNob3IiLCJleHAiOjE3ODU1ODY3MTEsImp0aSI6ImFna3NwbTM4b280cXRpOGtycGk1eWVndiIsInN1YiI6InVoZ2Qyd3N4MTB3aHE3bWY2dzhkaXk4YiIsInNjb3BlIjoiMCIsInJvbGUiOiJGcmVlIn0.kRKThBsUKqIOTV8QfFQ-UHb_eFuFMTXfjJU5yhHzFJs"
+            - PROVENDB_URI="mongodb://idem-dev:Password!12345@idem-dev.provendb.io/idem-dev?ssl=true"
+            - WS_PORT=3002
+            - WS_SSL_PRIVATE_KEY="ssl-cert/privkey.pem"
+            - WS_SSL_CERTIFICATE="ssl-cert/fullchain.pem"
+
