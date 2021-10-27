@@ -8,6 +8,13 @@ Copy `.env.sample` into `.env`. The following variables must be present:
 | PORT | Server listen port |
 | MESSAGEBIRD_KEY | API Key for MessageBird |
 
+If ssl is set up then the privkey.pem and fullchain.pem files need to be copied into /server/ssl-cert
+certbot saves these files to /etc/letsencrypt/live/{domain name}/
+```bash
+sudo cp /etc/letsencrypt/live/{domain name}/privkey.pem ~/idem/server/ssl-cert
+sudo cp /etc/letsencrypt/live/{domain name}/fullchain.pem ~/idem/server/ssl-cert
+```
+
 ## Starting the API
 
 From the server folder
