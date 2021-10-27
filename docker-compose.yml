@@ -8,7 +8,8 @@ services:
             context: .
             dockerfile:  ./Dockerfile
         ports: 
-            - "3001:3002"
+            - "3001:3001"
+            - "3002:3002"
         environment: 
             - PORT=3001
             - MESSAGEBIRD_KEY="x"
