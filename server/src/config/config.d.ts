@@ -24,4 +24,9 @@ type Config = {
     apiKey: string;
     uri: string;
   };
+  webSocket: {
+    wsPort: number;
+    privateKey: string;
+    certificate: string;
+  };
 };

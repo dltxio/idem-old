@@ -9,7 +9,7 @@
     "endpoint": ""
   },
   "email": {
-    "endpoint": "http://localhost:3000/api/emails"
+    "endpoint": "http://localhost:3001/api/emails"
   },
   "onboard": {
     "endpoint": "http://localhost:3001/api/claims"

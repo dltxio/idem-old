@@ -9,6 +9,7 @@
     "build": "tsc --build"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "ethers": "^5.4.3",
@@ -19,7 +20,8 @@
     "mongodb": "^4.0.1",
     "nodemailer": "^6.5.0",
     "openpgp": "^5.0.0-2",
-    "provendb-sdk-node": "^0.1.0-alpha.3"
+    "provendb-sdk-node": "^0.1.0-alpha.3",
+    "websocket": "^1.0.34"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",
