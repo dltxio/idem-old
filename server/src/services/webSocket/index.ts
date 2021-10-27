@@ -11,8 +11,8 @@ export default class WebSocketService implements webSocketService.WebSocketServi
   constructor(private config: Config["webSocket"]) {
     var server;
     try {
-      const privateKey = fs.readFileSync(config.privateKey, 'utf8');
-      const certificate = fs.readFileSync(config.certificate, 'utf8');
+      const privateKey = fs.readFileSync(config.privateKey, "utf8");
+      const certificate = fs.readFileSync(config.certificate, "utf8");
       const credentials = { key: privateKey, cert: certificate };
       server = https.createServer(credentials);
     } catch (e) {
@@ -52,7 +52,7 @@ export default class WebSocketService implements webSocketService.WebSocketServi
 
   public verifyAllUsers = (id: string) => {
     this.clients.forEach((client) => {
-      client.sendUTF(JSON.stringify({email: "user@idem.com", name: "Mr Idem User", DoB: "25th December, 1984"}));
+      client.sendUTF(JSON.stringify({email: "user@idem.com.au", name: "Mr Idem User", DoB: "1984-12-25"}));
     });
   }
 }
