@@ -9,9 +9,9 @@
     "endpoint": ""
   },
   "email": {
-    "endpoint": "http://api.idem.com.au/api/emails"
+    "endpoint": "http://localhost:3001/api/emails"
   },
   "onboard": {
-    "endpoint": "http://api.idem.com.au/api/claims"
+    "endpoint": "http://localhost:3001/api/claims"
   }
 }
