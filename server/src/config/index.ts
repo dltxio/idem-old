@@ -29,11 +29,6 @@ const getConfig = () => {
     provenDb: {
       apiKey: getEnvVariable("PROVENDB_API_KEY"),
       uri: getEnvVariable("PROVENDB_URI")
-    },
-    webSocket: {
-      wsPort: getEnvVariable("WS_PORT"),
-      privateKey: getEnvVariable("WS_SSL_PRIVATE_KEY"),
-      certificate: getEnvVariable("WS_SSL_CERTIFICATE"),
     }
   };
 

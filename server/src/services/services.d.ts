@@ -3,5 +3,4 @@ type Services = {
   sms: smsService.SMSService;
   ausPost: ausPostService.AusPostService;
   claim: claimService.ClaimService;
-  webSocket: webSocketService.WebSocketService;
 };

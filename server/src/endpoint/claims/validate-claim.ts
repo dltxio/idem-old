@@ -16,8 +16,7 @@ const bodyValidation: ValidationSchema<server.Claim> = {
   evidence: Joi.array().items(evidence).min(1),
   hash: Joi.string().empty(""),
   signature: Joi.string().empty(""),
-  timestamp: Joi.number().empty(""),
-  description: Joi.string().empty("")
+  timestamp: Joi.number().empty("")
 };
 
 const createClaim: RequestHandler<void, void, server.Claim, server.Claim> =

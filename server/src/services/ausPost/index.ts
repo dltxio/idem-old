@@ -59,18 +59,18 @@ export default class AusPostService implements ausPostService.AusPostService {
   private wrapperAusPostRequestBody = (
     data: server.ClaimRequest
   ): server.AusPostRequest => {
-    ausPostRequst.family_name = "";
-    ausPostRequst.middle_name = ""
-    ausPostRequst.given_name = data.name;
+    ausPostRequst.family_name = data.lastName;
+    ausPostRequst.middle_name = data.middleName;
+    ausPostRequst.given_name = data.firstName;
     ausPostRequst.dob = data.dob;
-    ausPostRequst.address.country = "";
-    ausPostRequst.address.locality = "";
-    ausPostRequst.address.postal_code = "";
-    ausPostRequst.address.region = "";
-    ausPostRequst.address.street_name = data.address;
-    ausPostRequst.address.street_number = "";
-    ausPostRequst.address.street_type = "";
-    ausPostRequst.address.unit_number = "";
+    ausPostRequst.address.country = data.country;
+    ausPostRequst.address.locality = data.locality;
+    ausPostRequst.address.postal_code = data.postCode;
+    ausPostRequst.address.region = data.region;
+    ausPostRequst.address.street_name = data.streetName;
+    ausPostRequst.address.street_number = data.streetNumber;
+    ausPostRequst.address.street_type = data.streetType;
+    ausPostRequst.address.unit_number = data.unitNumber;
     ausPostRequst.consent = "true";
 
     return ausPostRequst;
