@@ -62,28 +62,24 @@ And they are redirected to demo.idem.com.au's home page.
 <img src="https://user-images.githubusercontent.com/91101134/138626026-94b1a7a8-6581-4ede-9fcc-ca3066afea59.png" width=50% height=50%>
 <img src="https://user-images.githubusercontent.com/91101134/138625890-0f66e8bf-dfbd-494f-8f96-23ac0e3115b6.png" width=50% height=50%>
 
-## User Flow Experience - Customer POV
+## User Flow Experience - Customer Point of View
 The flowchart below is a user work flow demonstrating the user experience. Here we present 3 User scenarios.
 
 ### Existing Idem User
 An existing Idem User will be able to log in to a participating (third party) website by simply using the Idem App to scan the QR code displayed on the participating website. Once authenticated, the User will be able to:
 
-i)	Update their claims such as DOB, name and address using the verfied data on the Idem app.
-ii)	Supplied verified evidence in the form of documents to the participating website.
+i)	Update their claims such as Date of Birth, name and address using the verified data on the Idem app.
 
-### Registered (unverified) User
-A registered Idem User that has not yet been verified will be able to log in to a participating (third party) website by simply using the Idem App to scan the QR code displayed on the computer screen of the participating website. Once inside the website, the User will be requested to complete verification process by uploading requested documents. Once documents have been submitted and verified, the User will be able to:
-
-i)	Register credentials on the third party website using Idem credentials.
-ii)	Verify documents using Idem authenticated documents.
+ii)	Supply verified evidence in the form of documents to the participating website.
 
 ### New User
 A new user will initiate the registration process by entering their email address and a new password in to the participating (third party) website. At this point if the user does not complete the registration process, the new user will be able to return to the website and log in using the QR code displayed on the screen when returning to the same website. Once the New User logs in and is inside the website, the new Idem User will continue with the verification process, uploading the requested documents on the website using the Idem App. Once documents have been submitted and verified, the User will be able to:
 
 i)	Register credentials on the website using Idem credentials.
+
 ii)	Verify documents using Idem verified documents.
 
-![Flowchart Experience - Customer POV r1](https://user-images.githubusercontent.com/92293107/138814366-e25e9abc-251f-40ce-8952-fb4b2ee65866.jpg)
+![Flowchart Experience - Customer POV r2](https://user-images.githubusercontent.com/92293107/139000559-a2d0acc2-58cf-4d79-b7c4-9bc7439b5e39.jpg)
 
 
 ## Verification Workflow Diagram
@@ -93,7 +89,7 @@ The flowchart below is a verification workflow diagram for 3rd party developers 
 
 1. A user with no digital ID visits “demo.idem.com.au” and creates an account by entering their email address and password (a user with a registered ID will scan a QR code and log in directly).
 
-2. The “demo.idem.com.au” site will request give access to the user to enter the site. (dashboard)
+2. The “demo.idem.com.au” site will request give access to the user to enter the site (dashboard).
 
 3. A user with a registered ID will scan a QR code and have their claims verified directly. A new user will be asked to verify their claims using Idem. Specifically, this means that a user will verify specific information that is requested from them that is considered to be true, such as their name, address, etc. The user will be able to verify using existing (“old” implies already verified however document may have expired or not yet verified) mechanisms which involve uploading KYC documents (driver’s license / passports etc).
 
@@ -101,7 +97,7 @@ The flowchart below is a verification workflow diagram for 3rd party developers 
 
 5. The user checks the information being requested in Idem, approves the claims request and Idem verifies the claim and the user gains access to external site.
 
-6. The App posts the API specified in the QR code. Two options are to be made available
+6. The App posts the API specified in the QR code. Two options are to be made available:
 
 i) The App will post to the Exchange directly - see point 7. below.
 ii) The App will use ECDSA to sign the certificates using Idem.
