@@ -37,7 +37,7 @@ export default class WebSocketService implements webSocketService.WebSocketServi
       var userID = getUniqueID();
       const connection = request.accept(null, request.origin);
       this.clients.set(userID, connection);
-      connection.sendUTF("connected");
+      connection.sendUTF({id: userID});
       
       console.log(this.clients.keys());
       connection.on('message', function(msg: any) {
