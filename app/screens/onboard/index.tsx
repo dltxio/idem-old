@@ -102,7 +102,7 @@ const Onboard = () => {
               <Text style={styles.baseStyle.baseText}>Mobile</Text>
               <TextInput
                 style={styles.baseStyle.baseTextInput}
-                keyboardType="default"
+                keyboardType="numeric"
                 placeholder="Please enter your mobile number"
                 placeholderTextColor="gray"
                 value={values.mobile}
@@ -139,7 +139,7 @@ const Onboard = () => {
               <Text style={styles.baseStyle.baseText}>Address</Text>
               <TextInput
                 style={styles.baseStyle.baseTextInput}
-                keyboardType="numeric"
+                keyboardType="default"
                 placeholder="Please enter your address"
                 placeholderTextColor="gray"
                 value={values.address}
