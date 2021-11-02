@@ -3,6 +3,7 @@
     "name": "blockchain-id",
     "slug": "blockchain-id",
     "privacy": "public",
+    "scheme":"idem",
     "platforms": [
       "ios",
       "android",
