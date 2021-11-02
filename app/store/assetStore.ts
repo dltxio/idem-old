@@ -9,6 +9,7 @@ export const Claim = types
     description: types.string,
     value: types.maybe(types.string),
     verifiedBy: types.array(types.string),
+    evidence: types.array(types.string),
   })
   .views((self) => ({
     get isVerified() {

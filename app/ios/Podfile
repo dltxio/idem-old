@@ -22,4 +22,6 @@ target 'blockchainid' do
 
   pod 'react-native-fast-openpgp', :path => '../node_modules/react-native-fast-openpgp'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
 end

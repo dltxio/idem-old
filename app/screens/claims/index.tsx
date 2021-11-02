@@ -13,10 +13,11 @@ import { observer } from "mobx-react-lite";
 import { colors } from "../../styles/theme";
 import Profile from "../profile";
 import useClaims from "../../hooks/useClaims";
+import { IClaim } from "../../store/assetStore";
 
 type ClaimsListItemProps = {
   onPress: () => void;
-  claim: server.Claim;
+  claim: IClaim;
 };
 
 const ClaimListItem = ({ onPress, claim }: ClaimsListItemProps) => (
@@ -60,7 +61,7 @@ const ClaimListItem = ({ onPress, claim }: ClaimsListItemProps) => (
 
 const ClaimSelector = () => {
   const navigation = useNavigation();
-  const { claims, isLoading } = useClaims();
+  const { isLoading } = useClaims();
 
   const rootStore = useRootStore();
   const assetStore = rootStore.Assets;
@@ -79,14 +80,14 @@ const ClaimSelector = () => {
   return (
     <View style={styles.list.root as ViewStyle}>
       <StatusBar barStyle="light-content" />
-      {claims.length > 0 && (
+      {assetStore.claims.length > 0 && (
         <Profile
-          fullName={claims.find((c) => c.key === "0x02")!}
-          emailAddress={claims.find((c) => c.key === "0x03")!}
+          fullName={assetStore.claims.find((c) => c.key === "0x02")!}
+          emailAddress={assetStore.claims.find((c) => c.key === "0x03")!}
         />
       )}
       <View style={{ flex: 1, width: "100%" }}>
-        {claims.map((claim, index) => {
+        {assetStore.claims.map((claim, index) => {
           return (
             <ClaimListItem
               key={index}

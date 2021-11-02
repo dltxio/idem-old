@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
   },
 });
 const Profile: React.FC<{
-  fullName: server.Claim;
-  emailAddress: server.Claim;
+  fullName: IClaim;
+  emailAddress: IClaim;
 }> = ({ fullName, emailAddress }) => {
   return (
     <View style={styles.userRow}>

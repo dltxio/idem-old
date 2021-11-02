@@ -14,6 +14,7 @@ import { sendOnboarding } from "../../helpers/claim/verify";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Button from "../../components/Button";
 import useClaims from "../../hooks/useClaims";
+import { IClaim } from "../../store/assetStore";
 
 const Onboard = () => {
   const [showDate, setShowDate] = useState<boolean>(false);
@@ -40,6 +41,9 @@ const Onboard = () => {
     try {
       const claims = await sendOnboarding(values);
       if (claims.length > 0) {
+        claims.forEach(async (claim) => {
+          await AsyncStorage.setItem(claim.key, JSON.stringify(claim));
+        });
         await AsyncStorage.setItem("claims", JSON.stringify(claims));
       }
       await fetchClaims();
@@ -135,7 +139,7 @@ const Onboard = () => {
               <Text style={styles.baseStyle.baseText}>Address</Text>
               <TextInput
                 style={styles.baseStyle.baseTextInput}
-                keyboardType="default"
+                keyboardType="numeric"
                 placeholder="Please enter your address"
                 placeholderTextColor="gray"
                 value={values.address}
