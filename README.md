@@ -27,15 +27,35 @@ The app will automatically create a 256-bit private key on the device or allow u
 ### Step 3: Upload data
 On the mobile app users can choose certain types of claims to verify such as 18+, Date of Birth or Address. User are required to substantiate any of those claims with supporting evidence such as a government issued document, utilities bill etc. The documents are cached in the local storage of the device along with a keccak 256 hash and signed by the ECDSA curve.
 
-Claims are stored on the device as a JSON object:
+# <<<<<<< ID-103
+# Claims are stored on the device as a JSON object:
+# ## =======
+# Meta data is stored in a W3 Verifiable claims JSON object https://www.w3.org/TR/vc-data-model/#contexts:
+# >>>>>>> development
 
 ```json
 {
-    "claims": [{
-        "key": "0x02",
-        "type": "dob",
-        "value": "1979-04-29"
-    }]
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      "https://www.w3.org/2018/credentials/examples/v1"
+    ],
+    "id": "http://example.edu/credentials/58473",
+    "type": ["VerifiableCredential"],
+    "issuanceDate": "2010-01-01T19:73:24Z",
+    "credentialSubject": {
+      "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+      "alumniOf": {
+        "id": "did:example:c276e12ec21ebfeb1f712ebc6f1",
+        "name": [{
+          "value": "Example University",
+          "lang": "en"
+        }, {
+          "value": "Exemple d'Université",
+          "lang": "fr"
+        }]
+      }
+    },
+    "proof": {  }
 }
 ```
 
