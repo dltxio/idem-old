@@ -27,6 +27,7 @@ The app will automatically create a 256-bit private key on the device or allow u
 ### Step 3: Upload data
 On the mobile app users can choose certain types of claims to verify such as 18+, Date of Birth or Address. User are required to substantiate any of those claims with supporting evidence such as a government issued document, utilities bill etc. The documents are cached in the local storage of the device along with a keccak 256 hash and signed by the ECDSA curve.
 
+Meta data is stored in a W3 Verifiable claims JSON object https://www.w3.org/TR/vc-data-model/#contexts:
 
 ```json
 {
