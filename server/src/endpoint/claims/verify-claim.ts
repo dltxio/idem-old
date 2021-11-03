@@ -46,6 +46,7 @@ const verifyClaim: RequestHandler<
     proof: {type: ""},
     issuer: "",
     issuanceDate: new Date(),
+    title: "Full Name",
   };
   const fullnameClaimValidated = await services.claim.validateClaim(
     fullNameClaim
@@ -64,6 +65,7 @@ const verifyClaim: RequestHandler<
     proof: {type: ""},
     issuer: "",
     issuanceDate: new Date(),
+    title: "Date of Birth",
   };
   const dobClaimValidated = await services.claim.validateClaim(dobClaim);
   claims.push(dobClaimValidated);
@@ -80,6 +82,7 @@ const verifyClaim: RequestHandler<
     proof: {type: ""},
     issuer: "",
     issuanceDate: new Date(),
+    title: "Address",
   };
   const addressClaimValidated = await services.claim.validateClaim(
     addressClaim
@@ -97,6 +100,7 @@ const verifyClaim: RequestHandler<
     proof: {type: ""},
     issuer: "",
     issuanceDate: new Date(),
+    title: "Mobile Number",
   };
 
   const mobileClaimValidated = await services.claim.validateClaim(mobileClaim);
@@ -113,6 +117,7 @@ const verifyClaim: RequestHandler<
     proof: {type: ""},
     issuer: "",
     issuanceDate: new Date(),
+    title: "Email",
   };
 
   const emailClaimValidated = await services.claim.validateClaim(emailClaim);

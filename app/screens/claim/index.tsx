@@ -162,7 +162,7 @@ const Claim = () => {
   return (
     <>
       <View style={styles.claim.root}>
-        <Text style={styles.claim.title}>{selectedClaim?.type}</Text>
+        <Text style={styles.claim.title}>{selectedClaim?.title}</Text>
         {renderClaim(selectedClaim.type || [])}
       </View>
 

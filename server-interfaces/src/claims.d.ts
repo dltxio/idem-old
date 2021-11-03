@@ -9,6 +9,8 @@ declare namespace server {
     issuer: string;
     issuanceDate: Date;
     expirationDate?: Date;
+    title: string;
+    description?: string;
   }
 
   type ClaimValidated = {

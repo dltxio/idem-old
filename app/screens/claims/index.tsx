@@ -25,7 +25,7 @@ const ClaimListItem = ({ onPress, claim }: ClaimsListItemProps) => {
       style={styles.list.itemWrapper(styles.layout.window)}
       onPress={onPress}
     >
-      <Text style={styles.list.itemName}>{claim.type}</Text>
+      <Text style={styles.list.itemName}>{claim.title}</Text>
       {!value ? (
         <View
           style={{
