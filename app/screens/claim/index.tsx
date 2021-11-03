@@ -127,7 +127,6 @@ const Claim = () => {
   }
 
   const renderClaim = (type: string[]) => {
-    console.log(type);
     if (type.includes("DateOfBirthCredential")) {
       return (
         <DateClaim
