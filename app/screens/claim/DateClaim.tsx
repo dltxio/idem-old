@@ -13,7 +13,7 @@ const DateClaim = ({
   item,
   uploadFileFromBrowser,
 }: {
-  item: server.SClaim;
+  item: server.Claim;
   uploadFileFromBrowser: () => void;
 }) => {
   const [showDate, setShowDate] = useState(false);

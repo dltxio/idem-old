@@ -14,7 +14,7 @@ const SelectClaim = ({
   uploadFileFromBrowser,
   uploadPhotoFromLibrary,
 }: {
-  item: server.SClaim;
+  item: server.Claim;
   imageInfo: any;
   displayFileName: boolean;
   uploadPhotoFromCamera: () => void;

@@ -10,7 +10,7 @@ const OtherClaim = ({
   item,
   uploadFileFromBrowser,
 }: {
-  item: server.SClaim;
+  item: server.Claim;
   uploadFileFromBrowser: () => void;
 }) => {
   const { setClaim } = useClaims();

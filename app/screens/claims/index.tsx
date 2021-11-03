@@ -15,7 +15,7 @@ import useClaims from "../../hooks/useClaims";
 
 type ClaimsListItemProps = {
   onPress: () => void;
-  claim: server.SClaim;
+  claim: server.Claim;
 };
 
 const ClaimListItem = ({ onPress, claim }: ClaimsListItemProps) => {

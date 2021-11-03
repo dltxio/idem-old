@@ -2,12 +2,12 @@ import React, { createContext, useEffect, useState, useCallback } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export type ClaimContextType = {
-  claims: server.SClaim[];
-  selectedClaim: server.SClaim | undefined;
+  claims: server.Claim[];
+  selectedClaim: server.Claim | undefined;
   isLoading: boolean;
   fetchClaims: () => void;
   setClaim: (key: string, value: any) => void;
-  setSelectedClaim: (claim: server.SClaim) => void;
+  setSelectedClaim: (claim: server.Claim) => void;
 };
 
 export const ClaimContext = createContext<ClaimContextType>(null as any);
@@ -15,9 +15,9 @@ export const ClaimContext = createContext<ClaimContextType>(null as any);
 export const ClaimProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [claims, setClaims] = useState<server.SClaim[]>([]);
+  const [claims, setClaims] = useState<server.Claim[]>([]);
   const [isLoading, setLoading] = useState(true);
-  const [selectedClaim, setSelectedClaim] = useState<server.SClaim | undefined>(undefined);
+  const [selectedClaim, setSelectedClaim] = useState<server.Claim | undefined>(undefined);
 
   const fetchClaims = useCallback(async () => {
     const claimsLocal = await AsyncStorage.getItem("claims");

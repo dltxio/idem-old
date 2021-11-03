@@ -4,19 +4,6 @@ declare namespace server {
     id?: string;
     key: string;
     type: string[];
-    credentialSubject: CredentialSubject | CredentialSubject[];
-    proof: Proof;
-    issuer: string;
-    issuanceDate: Date;
-    expirationDate?: Date;
-    credentialStatus?: CredentialStatus;
-  };
-
-  type SClaim = {
-    "@context": string[];
-    id?: string;
-    key: string;
-    type: string[];
     credentialSubject: CredentialSubject;
     proof: Proof;
     issuer: string;

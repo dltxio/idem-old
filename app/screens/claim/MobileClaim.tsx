@@ -7,7 +7,7 @@ import Bodal from "../../components/Bodal";
 import { sendMobileCode, verifyMobileCode } from "../../helpers/claim/mobile";
 import useClaims from "../../hooks/useClaims";
 
-const MobileClaim = ({ item }: { item: server.SClaim }) => {
+const MobileClaim = ({ item }: { item: server.Claim }) => {
   const [mobile, setMobile] = useState(undefined as undefined | string);
   const [error, setError] = useState(undefined as undefined | string);
   const [modalOpen, setModalOpen] = useState(false);

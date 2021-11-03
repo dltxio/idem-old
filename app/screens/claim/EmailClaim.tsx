@@ -10,7 +10,7 @@ import {
 } from "../../helpers/claim/email";
 import useClaims from "../../hooks/useClaims";
 
-const EmailClaim = ({ item }: { item: server.SClaim }) => {
+const EmailClaim = ({ item }: { item: server.Claim }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string | undefined>(undefined);
   const [code, setCode] = useState<string | undefined>(undefined);
