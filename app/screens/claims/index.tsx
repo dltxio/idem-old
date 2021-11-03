@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import styles from "../../styles";
 import { useNavigation } from "@react-navigation/core";
-import { useRootStore } from "../../store/rootStore";
 import { observer } from "mobx-react-lite";
 import { colors } from "../../styles/theme";
 import Profile from "../profile";
@@ -16,59 +15,57 @@ import useClaims from "../../hooks/useClaims";
 
 type ClaimsListItemProps = {
   onPress: () => void;
-  claim: server.Claim;
+  claim: server.SClaim;
 };
 
-const ClaimListItem = ({ onPress, claim }: ClaimsListItemProps) => (
-  <TouchableOpacity
-    style={styles.list.itemWrapper(styles.layout.window)}
-    onPress={onPress}
-  >
-    <Text style={styles.list.itemName}>{claim.type}</Text>
-    <Text style={{ color: colors.gray }}>{claim.description}</Text>
-    {!claim.value ? (
-      <View
-        style={{
-          padding: 5,
-          borderRadius: 5,
-          borderColor: colors.gray,
-          position: "absolute",
-          right: 30,
-          top: 30,
-          borderWidth: 1,
-        }}
-      >
-        <Text>Not Supplied</Text>
-      </View>
-    ) : claim.evidence.length > 0 ? (
-      <View
-        style={{
-          padding: 5,
-          borderRadius: 5,
-          borderColor: colors.gray,
-          position: "absolute",
-          right: 30,
-          top: 30,
-          borderWidth: 1,
-        }}
-      >
-        <Text>Not Verified</Text>
-      </View>
-    ) : null}
-  </TouchableOpacity>
-);
+const ClaimListItem = ({ onPress, claim }: ClaimsListItemProps) => {
+  const value = claim.credentialSubject.value;
+  return (
+    <TouchableOpacity
+      style={styles.list.itemWrapper(styles.layout.window)}
+      onPress={onPress}
+    >
+      <Text style={styles.list.itemName}>{claim.type}</Text>
+      {!value ? (
+        <View
+          style={{
+            padding: 5,
+            borderRadius: 5,
+            borderColor: colors.gray,
+            position: "absolute",
+            right: 30,
+            top: 30,
+            borderWidth: 1,
+          }}
+        >
+          <Text>Not Supplied</Text>
+        </View>
+      ) : !claim.proof ? (
+        <View
+          style={{
+            padding: 5,
+            borderRadius: 5,
+            borderColor: colors.gray,
+            position: "absolute",
+            right: 30,
+            top: 30,
+            borderWidth: 1,
+          }}
+        >
+          <Text>Not Verified</Text>
+        </View>
+      ) : null}
+    </TouchableOpacity>
+  );
+};
 
 const ClaimSelector = () => {
   const navigation = useNavigation();
-  const { claims, isLoading } = useClaims();
-
-  const rootStore = useRootStore();
-  const assetStore = rootStore.Assets;
+  const { claims, isLoading, setSelectedClaim, fetchClaims } = useClaims();
 
   useEffect(() => {
-    assetStore.loadClaims();
+    fetchClaims();
   }, []);
-
   if (isLoading)
     return (
       <View style={styles.list.root as ViewStyle}>
@@ -81,8 +78,8 @@ const ClaimSelector = () => {
       <StatusBar barStyle="light-content" />
       {claims.length > 0 && (
         <Profile
-          fullName={claims.find((c) => c.key === "0x02")!}
-          emailAddress={claims.find((c) => c.key === "0x03")!}
+          fullName={claims.find((c) => c.key === "0x02")?.credentialSubject.value!}
+          emailAddress={claims.find((c) => c.key === "0x03")?.credentialSubject.value!}
         />
       )}
       <View style={{ flex: 1, width: "100%" }}>
@@ -92,7 +89,7 @@ const ClaimSelector = () => {
               key={index}
               claim={claim}
               onPress={() => {
-                rootStore.Assets.setClaimKey(claim.key);
+                setSelectedClaim(claim);
                 navigation.navigate("Claim");
               }}
             />

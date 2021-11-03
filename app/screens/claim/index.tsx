@@ -2,7 +2,6 @@
 import { Text, View, Platform, Modal, Pressable, Alert } from "react-native";
 import styles from "../../styles";
 import EmailClaim from "./EmailClaim";
-import { useRootStore } from "../../store/rootStore";
 import { observer } from "mobx-react-lite";
 import DateClaim from "./DateClaim";
 import OtherClaim from "./OtherClaim";
@@ -14,6 +13,7 @@ import * as Crypto from "expo-crypto";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as FileSystem from "expo-file-system";
 import styless from "./Styless";
+import useClaims from "../../hooks/useClaims";
 
 const Claim = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -120,53 +120,51 @@ const Claim = () => {
       setModalVisible(false);
     }
   };
-  const rootStore = useRootStore();
-  const claim = rootStore.Assets.selectedClaim;
+  const { selectedClaim } = useClaims();
 
-  if (!claim) {
+  if (!selectedClaim) {
     return <View>{/* TODO: error handling for this case */}</View>;
   }
 
-  const renderClaim = (type: string) => {
-    switch (type) {
-      case "DOB":
-        return (
-          <DateClaim
-            item={claim}
-            uploadFileFromBrowser={uploadFileFromBrowser}
-          />
-        );
-      case "Email":
-        return <EmailClaim item={claim} />;
-      case "Mobile":
-        return <MobileClaim item={claim} />;
-      case "18+":
-        return (
-          <SelectClaim
-            item={claim}
-            uploadPhotoFromCamera={uploadPhotoFromCamera}
-            uploadFileFromBrowser={uploadFileFromBrowser}
-            uploadPhotoFromLibrary={uploadPhotoFromLibrary}
-            imageInfo={imageInfo}
-            displayFileName={displayFileName}
-          />
-        );
-      default:
-        return (
-          <OtherClaim
-            item={claim}
-            uploadFileFromBrowser={uploadFileFromBrowser}
-          />
-        );
+  const renderClaim = (type: string[]) => {
+    console.log(type);
+    if (type.includes("DateOfBirthCredential")) {
+      return (
+        <DateClaim
+          item={selectedClaim}
+          uploadFileFromBrowser={uploadFileFromBrowser}
+        />
+      );
+    } else if (type.includes("EmailCredential")) {
+      return (<EmailClaim item={selectedClaim} />);
+    } else if (type.includes("MobileNumberCredential")) {
+      return (<MobileClaim item={selectedClaim} />);
+    } else if (type.includes("18+")) {
+      return (
+        <SelectClaim
+          item={selectedClaim}
+          uploadPhotoFromCamera={uploadPhotoFromCamera}
+          uploadFileFromBrowser={uploadFileFromBrowser}
+          uploadPhotoFromLibrary={uploadPhotoFromLibrary}
+          imageInfo={imageInfo}
+          displayFileName={displayFileName}
+        /> 
+      );
+    } else {
+      return (
+        <OtherClaim
+          item={selectedClaim}
+          uploadFileFromBrowser={uploadFileFromBrowser}
+        />
+      );
     }
   };
 
   return (
     <>
       <View style={styles.claim.root}>
-        <Text style={styles.claim.title}>{claim?.type}</Text>
-        <Text style={styles.claim.label}>{claim?.description}</Text>
-        {renderClaim(claim.type || "")}
+        <Text style={styles.claim.title}>{selectedClaim?.type}</Text>
+        {renderClaim(selectedClaim.type || [])}
       </View>
 
       {modalVisible && (
