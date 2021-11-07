@@ -15,7 +15,7 @@ const MobileClaim = ({ item }: { item: server.Claim }) => {
   const [submitting, setSubmitting] = useState(false);
   const { setClaim } = useClaims();
   
-  const value = item.credentialSubject.value;
+  const mobileCredentialValue = item.credentialSubject.value;
 
   const isMobile = (value: string) => {
     return (

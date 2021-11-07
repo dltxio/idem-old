@@ -19,7 +19,7 @@ const EmailClaim = ({ item }: { item: server.Claim }) => {
   const [isVerifySuccess, setIsVerifySuccess] = useState<boolean>(false);
 
   const { setClaim } = useClaims();
-  const value = item.credentialSubject.value;
+  const emailCredentialValue = item.credentialSubject.value;
   
   const onVerify = async () => {
     if (!value) {

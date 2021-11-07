@@ -24,7 +24,7 @@ const SelectClaim = ({
   const [isEnabled, setIsEnabled] = useState(false);
 
   const { setClaim } = useClaims();
-  const value = item.credentialSubject.value;
+  const selectedCredentialValue = item.credentialSubject.value;
   
   const toggleSwitch = () => {
     setIsEnabled((previousState) => !previousState);

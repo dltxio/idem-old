@@ -14,7 +14,7 @@ const OtherClaim = ({
   uploadFileFromBrowser: () => void;
 }) => {
   const { setClaim } = useClaims();
-  const value = item.credentialSubject.value;
+  const otherCredentialValue = item.credentialSubject.value;
 
   return (
     <View style={{ flex: 1 }}>
@@ -23,7 +23,7 @@ const OtherClaim = ({
           ...styles.claim.input,
           width: styles.layout.window.width,
         }}
-        value={`${value || ""}`}
+        value={value || ""}
         placeholder="Please enter your claim..."
         onChangeText={(value) => {
           setClaim(item.key, value);
