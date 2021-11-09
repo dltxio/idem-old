@@ -32,17 +32,21 @@ const verifyClaim: RequestHandler<
   // }
 
   const claims: Array<server.Claim> = [];
+  const context = ["https://www.w3.org/2018/credentials/v1"];
 
   //validate full name claim
   const fullNameClaim = {
-    type: "Full Name",
+    "@context": context,
     key: "0x02",
-    value: body.name,
-    evidence: [""],
-    hash: undefined,
-    signature: undefined,
-    timestamp: undefined,
-    description: "Your full name"
+    type: ["FullNameCredential"],
+    credentialSubject: {
+      name: "name",
+      value: body.name,
+    },
+    proof: {type: ""},
+    issuer: "",
+    issuanceDate: new Date(),
+    title: "Full Name",
   };
   const fullnameClaimValidated = await services.claim.validateClaim(
     fullNameClaim
@@ -51,28 +55,34 @@ const verifyClaim: RequestHandler<
 
   //validate dob claim
   const dobClaim = {
-    type: "DOB",
+    "@context": context,
     key: "0x01",
-    value: body.dob,
-    evidence: [""],
-    hash: undefined,
-    signature: undefined,
-    timestamp: undefined,
-    description: "Your date of birth"
+    type: ["DateOfBirthCredential"],
+    credentialSubject: {
+      name: "DoB",
+      value: body.dob,
+    },
+    proof: {type: ""},
+    issuer: "",
+    issuanceDate: new Date(),
+    title: "Date of Birth",
   };
   const dobClaimValidated = await services.claim.validateClaim(dobClaim);
   claims.push(dobClaimValidated);
 
   //validate address claim
   const addressClaim = {
-    type: "Address",
+    "@context": context,
     key: "0x05",
-    value: body.address,
-    evidence: [""],
-    hash: undefined,
-    signature: undefined,
-    timestamp: undefined,
-    description: "Your physical address"
+    type: ["AddressCredential"],
+    credentialSubject: {
+      name: "address",
+      value: body.address,
+    },
+    proof: {type: ""},
+    issuer: "",
+    issuanceDate: new Date(),
+    title: "Address",
   };
   const addressClaimValidated = await services.claim.validateClaim(
     addressClaim
@@ -80,28 +90,34 @@ const verifyClaim: RequestHandler<
   claims.push(addressClaimValidated);
 
   const mobileClaim = {
-    type: "Mobile",
+    "@context": context,
     key: "0x04",
-    value: body.mobile,
-    evidence: [""],
-    hash: undefined,
-    signature: undefined,
-    timestamp: undefined,
-    description: "Your mobile number"
+    type: ["MobileNumberCredential"],
+    credentialSubject: {
+      name: "mobile",
+      value: body.mobile,
+    },
+    proof: {type: ""},
+    issuer: "",
+    issuanceDate: new Date(),
+    title: "Mobile Number",
   };
 
   const mobileClaimValidated = await services.claim.validateClaim(mobileClaim);
   claims.push(mobileClaimValidated);
 
   const emailClaim = {
-    type: "Email",
+    "@context": context,
     key: "0x03",
-    value: body.email,
-    evidence: [""],
-    hash: undefined,
-    signature: undefined,
-    timestamp: undefined,
-    description: "Your email address"
+    type: ["EmailCredential"],
+    credentialSubject: {
+      name: "email",
+      value: body.email,
+    },
+    proof: {type: ""},
+    issuer: "",
+    issuanceDate: new Date(),
+    title: "Email",
   };
 
   const emailClaimValidated = await services.claim.validateClaim(emailClaim);

@@ -23,9 +23,10 @@ jobs:
           username: ${{ secrets.DO_DEPLOY_USERNAME }}
           key: ${{ secrets.DO_DEPLOY_KEY }}
           script: |
-              cd ~/idem &&
+              cd ~/idem/server &&
               git stash && 
               git checkout development &&
               git pull &&
               yarn && 
-              docker-compose up --detach
+              pm2 del idem-api &&
+              pm2 start "yarn start" --name "idem-api"

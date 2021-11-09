@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { Text, View, TextInput, ViewStyle, Alert } from "react-native";
 import styles from "../../styles";
-import { IClaim } from "../../store/assetStore";
 import Button from "../../components/Button";
 import { observer } from "mobx-react-lite";
 import Bodal from "../../components/Bodal";
 import { sendMobileCode, verifyMobileCode } from "../../helpers/claim/mobile";
+import useClaims from "../../hooks/useClaims";
 
-const MobileClaim = ({ item }: { item: IClaim }) => {
+const MobileClaim = ({ item }: { item: server.Claim }) => {
   const [mobile, setMobile] = useState(undefined as undefined | string);
   const [error, setError] = useState(undefined as undefined | string);
   const [modalOpen, setModalOpen] = useState(false);
   const [code, setCode] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const { setClaim } = useClaims();
+  
+  const mobileCredentialValue = item.credentialSubject.value;
 
   const isMobile = (value: string) => {
     return (
@@ -25,7 +28,7 @@ const MobileClaim = ({ item }: { item: IClaim }) => {
     setSubmitting(true);
     try {
       verifyMobileCode({
-        number: item.value!,
+        number: value,
         code,
       });
     } catch (e) {
@@ -40,13 +43,13 @@ const MobileClaim = ({ item }: { item: IClaim }) => {
     try {
       Alert.alert(
         "Send verification code?",
-        `Would you like to send a verification code to ${item.value}?`,
+        `Would you like to send a verification code to ${value}?`,
         [
           {
             text: "Proceed",
             onPress: () => {
               sendMobileCode({
-                number: item.value!,
+                number: value!,
               });
             },
           },
@@ -70,7 +73,7 @@ const MobileClaim = ({ item }: { item: IClaim }) => {
           width: styles.layout.window.width,
         }}
         value={
-          mobile !== undefined ? mobile : (item.value as undefined | string)
+          mobile !== undefined ? mobile : (value as undefined | string)
         }
         placeholder="Please enter your mobile number..."
         keyboardType="phone-pad"
@@ -81,8 +84,8 @@ const MobileClaim = ({ item }: { item: IClaim }) => {
           if (!!mobile && isMobile(mobile)) {
             setError("");
             try {
-              item.setValue(mobile);
-            } catch (error) {
+              setClaim(item.key, mobile);
+            } catch (error: any) {
               setError(error);
             }
           } else {
@@ -101,7 +104,7 @@ const MobileClaim = ({ item }: { item: IClaim }) => {
         <View style={{ width: "100%", minHeight: 200 }}>
           <Button
             title="Send verification code"
-            onPress={() => !!item.value && isMobile(item.value) && sendCode()}
+            onPress={() => !!value && isMobile(value) && sendCode()}
             disabled={submitting}
             style={styles.claim.button as ViewStyle}
           />
@@ -118,7 +121,7 @@ const MobileClaim = ({ item }: { item: IClaim }) => {
             disabled={submitting}
             title="Verify code"
             onPress={() =>
-              !!item.value && isMobile(item.value) && !!code && verifyMobile()
+              !!value && isMobile(value) && !!code && verifyMobile()
             }
             style={styles.claim.button as ViewStyle}
           />

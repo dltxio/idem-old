@@ -1,18 +1,21 @@
 import React from "react";
 import { View, TextInput, ViewStyle } from "react-native";
 import styles from "../../styles";
-import { IClaim } from "../../store/assetStore";
 import { observer } from "mobx-react-lite";
 import Button from "../../components/Button";
 import { verifyClaim } from "../../helpers/claim/verify";
+import useClaims from "../../hooks/useClaims";
 
 const OtherClaim = ({
   item,
   uploadFileFromBrowser,
 }: {
-  item: IClaim;
+  item: server.Claim;
   uploadFileFromBrowser: () => void;
 }) => {
+  const { setClaim } = useClaims();
+  const otherCredentialValue = item.credentialSubject.value;
+
   return (
     <View style={{ flex: 1 }}>
       <TextInput
@@ -20,10 +23,10 @@ const OtherClaim = ({
           ...styles.claim.input,
           width: styles.layout.window.width,
         }}
-        value={`${item.value || ""}`}
+        value={value || ""}
         placeholder="Please enter your claim..."
         onChangeText={(value) => {
-          item.setValue(value);
+          setClaim(item.key, value);
         }}
       />
       <Button

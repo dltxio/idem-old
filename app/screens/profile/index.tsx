@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
   },
 });
 const Profile: React.FC<{
-  fullName: server.Claim;
-  emailAddress: server.Claim;
+  fullName: string;
+  emailAddress: string;
 }> = ({ fullName, emailAddress }) => {
   return (
     <View style={styles.userRow}>
@@ -31,14 +31,14 @@ const Profile: React.FC<{
         />
       </View>
       <View>
-        <Text style={{ fontSize: 16 }}>{fullName?.value}</Text>
+        <Text style={{ fontSize: 16 }}>{fullName}</Text>
         <Text
           style={{
             color: "gray",
             fontSize: 16,
           }}
         >
-          {emailAddress?.value}
+          {emailAddress}
         </Text>
       </View>
     </View>

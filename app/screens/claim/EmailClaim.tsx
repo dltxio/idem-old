@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import isEmail from "validator/lib/isEmail";
 import { Text, View, TextInput, ViewStyle } from "react-native";
 import styles from "../../styles";
-import { IClaim } from "../../store/assetStore";
 import { observer } from "mobx-react-lite";
 import Button from "../../components/Button";
 import {
   sendEmailVerificationEmail,
   verifyEmailCode,
 } from "../../helpers/claim/email";
+import useClaims from "../../hooks/useClaims";
 
-const EmailClaim = ({ item }: { item: IClaim }) => {
+const EmailClaim = ({ item }: { item: server.Claim }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string | undefined>(undefined);
   const [code, setCode] = useState<string | undefined>(undefined);
@@ -18,8 +18,11 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
   const [isEmailSent, setIsEmailSent] = useState<boolean>(false);
   const [isVerifySuccess, setIsVerifySuccess] = useState<boolean>(false);
 
+  const { setClaim } = useClaims();
+  const emailCredentialValue = item.credentialSubject.value;
+  
   const onVerify = async () => {
-    if (!item.value) {
+    if (!value) {
       setError("Email can not be empty");
       return;
     }
@@ -28,7 +31,7 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
       return;
     }
     try {
-      await verifyEmailCode({ email: item.value, code: code });
+      await verifyEmailCode({ email: value, code: code });
     } catch (e) {
       console.log(e);
       const error = e as server.ErrorResponse;
@@ -45,7 +48,7 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
   };
 
   const onVerifyPress = async () => {
-    if (!item.value) {
+    if (!value) {
       // this should never happen because button should be disabled
       return;
     }
@@ -55,7 +58,7 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
       onVerify();
     } else {
       try {
-        await sendEmailVerificationEmail({ email: item.value });
+        await sendEmailVerificationEmail({ email: value });
       } catch (e) {
         console.log(e);
         const error = e as server.ErrorResponse;
@@ -80,7 +83,7 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
           ...styles.claim.input,
           width: styles.layout.window.width,
         }}
-        value={email !== undefined ? email : (item.value as undefined | string)}
+        value={email !== undefined ? email : (value as undefined | string)}
         keyboardType="email-address"
         placeholder="Please enter your email address..."
         onChangeText={(value) => {
@@ -90,8 +93,8 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
           if (!!email && isEmail(email)) {
             setError("");
             try {
-              item.setValue(email);
-            } catch (error) {
+              setClaim(item.key, email);
+            } catch (error: any) {
               setError(error);
             }
           } else {
@@ -117,7 +120,7 @@ const EmailClaim = ({ item }: { item: IClaim }) => {
       <Button
         title="Verify"
         style={styles.claim.verifyButton as ViewStyle}
-        disabled={!item.value}
+        disabled={!value}
         onPress={onVerifyPress}
       />
     </View>

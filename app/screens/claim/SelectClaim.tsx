@@ -1,10 +1,10 @@
 import { observer } from "mobx-react-lite";
 import React, { useState, useEffect } from "react";
 import { View, ViewStyle, Switch, StyleSheet, Text } from "react-native";
-import { IClaim } from "../../store/assetStore";
 import styles from "../../styles";
 import Button from "../../components/Button";
 import { verifyClaim } from "../../helpers/claim/verify";
+import useClaims from "../../hooks/useClaims";
 
 const SelectClaim = ({
   item,
@@ -14,7 +14,7 @@ const SelectClaim = ({
   uploadFileFromBrowser,
   uploadPhotoFromLibrary,
 }: {
-  item: IClaim;
+  item: server.Claim;
   imageInfo: any;
   displayFileName: boolean;
   uploadPhotoFromCamera: () => void;
@@ -22,12 +22,16 @@ const SelectClaim = ({
   uploadPhotoFromLibrary: () => void;
 }) => {
   const [isEnabled, setIsEnabled] = useState(false);
+
+  const { setClaim } = useClaims();
+  const selectedCredentialValue = item.credentialSubject.value;
+  
   const toggleSwitch = () => {
     setIsEnabled((previousState) => !previousState);
-    item.value === "false" ? item.setValue("true") : item.setValue("false");
+    value === "false" ? setClaim(item.key, "true") : setClaim(item.key, "false");
   };
   useEffect(() => {
-    if (item.value === undefined) {
+    if (value === undefined) {
       toggleSwitch();
     }
   }, []);
@@ -44,7 +48,7 @@ const SelectClaim = ({
       >
         <View
           style={
-            item.value === "true"
+            value === "true"
               ? styless.toggleTrueStyle
               : styless.toggleFalseStyle
           }
@@ -54,7 +58,7 @@ const SelectClaim = ({
             thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
             ios_backgroundColor="#3e3e3e"
             onValueChange={toggleSwitch}
-            value={item.value === "true" ? true : false}
+            value={value === "true" ? true : false}
           />
         </View>
       </View>

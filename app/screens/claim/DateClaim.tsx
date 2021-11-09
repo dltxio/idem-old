@@ -2,21 +2,24 @@ import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
 import { TouchableOpacity, View, Text, ViewStyle } from "react-native";
 import DatePick from "../../components/DatePick";
-import { IClaim } from "../../store/assetStore";
 import styles from "../../styles";
 import { colors } from "../../styles/theme";
 import { verifyClaim } from "../../helpers/claim/verify";
 import Button from "../../components/Button";
 import moment from "moment";
+import useClaims from "../../hooks/useClaims";
 
 const DateClaim = ({
   item,
   uploadFileFromBrowser,
 }: {
-  item: IClaim;
+  item: server.Claim;
   uploadFileFromBrowser: () => void;
 }) => {
   const [showDate, setShowDate] = useState(false);
+  const { setClaim } = useClaims();
+  const value = item.credentialSubject.value;
+  
   return (
     <View style={{ flex: 1 }}>
       <TouchableOpacity
@@ -26,8 +29,8 @@ const DateClaim = ({
           width: styles.layout.window.width,
         }}
       >
-        <Text style={{ color: item.value ? undefined : colors.gray }}>{`${
-          moment(item.value).format("DD/MM/YYYY") ||
+        <Text style={{ color: value ? undefined : colors.gray }}>{`${
+          moment(value).format("DD/MM/YYYY") ||
           "Please enter the specific date..."
         }`}</Text>
       </TouchableOpacity>
@@ -37,7 +40,7 @@ const DateClaim = ({
           setShowDate(false);
         }}
         handleDateChange={(value: Date) => {
-          item.setValue(value.toISOString());
+          setClaim(item.key, value.toISOString());
           setShowDate(false);
         }}
       />
