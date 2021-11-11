@@ -63,25 +63,47 @@ Meta data is stored in a W3 Verifiable claims JSON object https://www.w3.org/TR/
 
 ```json
 {
-    "@context": [
-      "https://www.w3.org/2018/credentials/v1",
-      "https://www.w3.org/2018/credentials/examples/v1"
-    ],
-    "id": "http://example.edu/credentials/58473",
-    "type": ["VerifiableCredential"],
-    "issuanceDate": "2021-01-01T19:73:24Z",
-    "credentialSubject": [{
-      "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
-      "name": "Name",
-      "value": "Mr Idem User"
-      }]
-    },
-    "proof": {  }
+    "connectionID": "16bcs3-vxc123",
+    "claims": [
+        {
+            "@context": [
+                "https://www.w3.org/2018/credentials/v1",
+            ],
+            "type": ["VerifiableCredential", "EmailCredential"],
+            "issuanceDate": "2020-01-01T19:73:24Z",
+            "credentialSubject": {
+                "name": "Email",
+                "value": "test@dltx.io",
+            },
+            "proof": {}
+        },{
+            "@context": [
+                "https://www.w3.org/2018/credentials/v1",
+            ],
+            "type": ["VerifiableCredential", "NameCredential"],
+            "issuanceDate": "2020-01-01T19:73:24Z",
+            "credentialSubject": {
+                "name": "Name",
+                "value": "John Doe",
+            },
+            "proof": {}
+        },{
+            "@context": [
+                "https://www.w3.org/2018/credentials/v1",
+            ],
+            "type": ["VerifiableCredential", "DateOfBirthCredential"],
+            "issuanceDate": "2020-01-01T19:73:24Z",
+            "credentialSubject": {
+                "name": "DoB",
+                "value": "1998-01-01T00:00:00Z",
+            },
+            "proof": {}
+        }
+    ]
 }
 ```
 
 Note:  See the Microsoft claims class for .net https://docs.microsoft.com/en-us/dotnet/api/system.security.claims.claim?view=net-5.0
-
 
 ## User Flow Experience - Customer Point of View
 The flowchart below is a user work flow demonstrating the user experience. Here we present 3 User scenarios.
