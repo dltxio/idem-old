@@ -90,8 +90,8 @@ The flowchart below is a user work flow demonstrating the user experience. Here 
 ### Existing Idem User
 An existing Idem User will be able to log in to a participating (third party) website by simply using the Idem App to scan the QR code displayed on the participating website. Once authenticated, the User will be able to:
 
-i)	Update their claims such as Date of Birth, name and address using the verified data on the Idem app.
-ii)	Supply verified evidence in the form of documents to the participating website.
+1. Update their claims such as Date of Birth, name and address using the verified data on the Idem app.
+2. Supply verified evidence in the form of documents to the participating website.
 
 ### New User
 A new user will initiate the registration process by entering their email address and a new password in to the participating (third party) website. At this point if the user does not complete the registration process, the new user will be able to return to the website and log in using the QR code displayed on the screen when returning to the same website. Once the New User logs in and is inside the website, the new Idem User will continue with the verification process, uploading the requested documents on the website using the Idem App. Once documents have been submitted and verified, the User will be able to:
