@@ -191,12 +191,12 @@ These claims are then verified by third-party KYC vendors who return an X-509 SS
 | Key | Subject | Mnemonic | Standard | Description |
 |---|---|---|---|---|
 | 0x00 | 18+ | eighteenplus | 18 Plus | 18 Plus | 
-| 0x01 | Date of Birth | dob | YYYY-MM-DD ISO 8601 | Clients Date of Birth | 
-| 0x02 | Full Name | fullname | | Clients Full Name |
-| 0x03 | Email | email | email | Clients email address  | 
-| 0x04 | Mobile Number | mobilenumber | Mobile Number | Clients mobile number | 
-| 0x05 | Address | address | Physical Address | Clients physical address | 
-| 0x06 | Birth Year | birthyear | YYYY ISO 8601 | Clients Year of Birth |
+| 0x01 | Date of Birth | dob | YYYY-MM-DD ISO 8601 | Users Date of Birth | 
+| 0x02 | Full Name | fullname | | Users Full Name |
+| 0x03 | Email | email | email | Users email address  | 
+| 0x04 | Mobile Number | mobilenumber | Mobile Number | Users mobile number | 
+| 0x05 | Address | address | Physical Address | Users physical address | 
+| 0x06 | Birth Year | birthyear | YYYY ISO 8601 | Users Year of Birth |
 
 
 ### Table of claims data types
