@@ -102,7 +102,6 @@ ii)	Verify documents using Idem verified documents.
 
 <img src="https://user-images.githubusercontent.com/91101134/141231143-676d3413-ac01-462a-9fac-ee0b4fd509a3.jpeg" width=100% height=100%>
 
-
 ## Verification Workflow Diagram
 The flowchart below is a verification workflow diagram for 3rd party developers to integrate their Exchange or website with Idem. It works as follows:
 
@@ -112,7 +111,7 @@ The flowchart below is a verification workflow diagram for 3rd party developers 
 
 1. A user with no digital ID visits “demo.idem.com.au” and creates an account by entering their email address and password (a user with a registered ID will scan a QR code and log in directly).
 
-2. The “demo.idem.com.au” site will request give access to the user to enter the site (dashboard).
+2. The "demo.idem.com.au" site will request give access to the user to enter the site (dashboard).
 
 3. A user with a registered ID will scan a QR code and have their claims verified directly. A new user will be asked to verify their claims using Idem. Specifically, this means that a user will verify specific information that is requested from them that is considered to be true, such as their name, address, etc. The user will be able to verify using existing (“old” implies already verified however document may have expired or not yet verified) mechanisms which involve uploading KYC documents (driver’s license / passports etc).
 
@@ -153,7 +152,6 @@ TBA
 Often a site will email a user once they have created an account with an email address and password.  At this step, the site could also pass an unsigned url for the users to scan with their Idem app to validate their email and other claims.
 
 A QR code deeplink is a URL providing the claims required by site, along with a call back url.  
-
 
 
 ## Verify these claims
