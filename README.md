@@ -83,8 +83,8 @@ Meta data is stored in a W3 Verifiable claims JSON object https://www.w3.org/TR/
             "type": ["VerifiableCredential", "NameCredential"],
             "issuanceDate": "2020-01-01T19:73:24Z",
             "credentialSubject": {
-                "name": "Name",
-                "value": "John Doe",
+                "name": "fullname",
+                "value": "Mr John Doe",
             },
             "proof": {}
         },{
@@ -94,7 +94,7 @@ Meta data is stored in a W3 Verifiable claims JSON object https://www.w3.org/TR/
             "type": ["VerifiableCredential", "DateOfBirthCredential"],
             "issuanceDate": "2020-01-01T19:73:24Z",
             "credentialSubject": {
-                "name": "DoB",
+                "name": "dob",
                 "value": "1998-01-01T00:00:00Z",
             },
             "proof": {}
