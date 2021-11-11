@@ -94,13 +94,15 @@ i)	Register credentials on the website using Idem credentials.
 
 ii)	Verify documents using Idem verified documents.
 
-![Flowchart Experience - Customer POV r2](https://user-images.githubusercontent.com/92293107/139000559-a2d0acc2-58cf-4d79-b7c4-9bc7439b5e39.jpg)
+<img src="https://user-images.githubusercontent.com/91101134/141231143-676d3413-ac01-462a-9fac-ee0b4fd509a3.jpeg" width=100% height=100%>
 
 
 ## Verification Workflow Diagram
 The flowchart below is a verification workflow diagram for 3rd party developers to integrate their Exchange or website with Idem. It works as follows:
 
-<img src="https://user-images.githubusercontent.com/92293107/138644574-c3cb25a1-1e02-4189-b3f4-3f8c4cd2ba7c.JPG" width=75% height=75%>
+<img src="https://user-images.githubusercontent.com/91101134/141231224-ad845a7c-d336-43cb-b9ea-a2d7c3f1a021.jpeg" width=100% height=100%>
+
+
 
 1. A user with no digital ID visits “demo.idem.com.au” and creates an account by entering their email address and password (a user with a registered ID will scan a QR code and log in directly).
 
@@ -166,8 +168,7 @@ And their personal data is updated at demo.idem.com.au
 ## Verify these claims
 These claims are then verified by third-party KYC vendors who return an X-509 SSL certificate signed JSON object that can then be used again. Each vendor has a different process for onboarding and the app will maintain these different business requirements.
 
-![Verification Sequence](/assets/did.verification.sequence.svg)
-
+<img src="https://user-images.githubusercontent.com/91101134/141231805-bbbfc5e8-341e-4d7e-b2f9-ff8015652fd1.jpeg" width=100% height=100%>
 
 ## Appendix
 
