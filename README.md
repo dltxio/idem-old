@@ -9,7 +9,7 @@ Each time an exchange requests an ID from a new user, the KYC provider charges t
 ## The Tech
 Idem uses a number of cryptographic protocols to sign and encrypt your data. PGP/GPG encryption is used to securely store data on your device, while the Ethereum elliptic curve (ECDSA) is used to sign claims which conforms to the DID foundations verifiable claims schema. Specifically, anyone can verify that the transaction is valid. The verification doesn't involve the users private key and is never known by Idem.
 
-## The Intent
+## What is Idem?
 Idem is designed to be used by third parties who require their customers to by KYC'd, such as crypto currency exchanges.  There are two ways in which the Idem app can be used: 
 
 1. Onboarding / Registering new users who do not have an account on the third party platform (User Story 1)
