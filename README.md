@@ -183,8 +183,10 @@ These claims are then verified by third-party KYC vendors who return an X-509 SS
 ## Appendix
 
 ### Routes
+TBA  
 
 ### Registration Schema
+TBA  
 
 ### Table of claims
 
