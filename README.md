@@ -1,4 +1,5 @@
-# Idem  
+# Idem 
+[![deploy-docker](https://github.com/dltxio/idem/actions/workflows/docker-image.yml/badge.svg)](https://github.com/dltxio/idem/actions/workflows/docker-image.yml)
 
 ## Abstract
 
