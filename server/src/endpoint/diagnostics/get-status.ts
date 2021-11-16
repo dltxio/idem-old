@@ -3,40 +3,34 @@ import crypto, { createECDH } from "crypto";
 
 type ResponseBody = {
   timestamp: number;
-}[];
+  signature: string;
+};
 
-const getStatus: RequestHandler<void, void, void, ResponseBody> = async () => {
+const getStatus: RequestHandler<void, void, void, ResponseBody> = async ({
+  config
+}) => {
   const curve = "secp256k1";
   const ecdh = createECDH(curve);
+
+  const timestamp = Date.now();
+  const response = {
+    timestamp: timestamp,
+    signature: ""
+  };
 
   const { privateKey } = crypto.generateKeyPairSync("ec", {
     namedCurve: curve
   });
 
-  // ecdh.setPrivateKey(config.ethKey, "hex");
-  // ecdh.getPrivateKey("hex");
+  ecdh.setPrivateKey(config.ethKey, "hex");
+  ecdh.getPrivateKey("hex");
 
-  // const sign = crypto.createSign("SHA256");
-  // sign.update(JSON.stringify(body));
-  // sign.end();
+  const sign = crypto.createSign("SHA256");
+  sign.update(timestamp.toString());
+  sign.end();
 
-  // const signature = sign.sign(privateKey);
-
-  // const hash = crypto
-  //   .createHash("SHA256")
-  //   .update(JSON.stringify(body))
-  //   .digest("hex");
-
-  // body.hash = hash;
-  // body.signature = signature.toString("hex");
-  // body.timestamp = Date.now();
-  // return body;
-
-  return [
-    {
-      timestamp: Date.now()
-    }
-  ];
+  response.signature = sign.sign(privateKey).toString("hex");
+  return response;
 };
 
 export default getStatus;

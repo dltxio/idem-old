@@ -3,7 +3,7 @@ import setupEndpoints from "./endpoint";
 import cors from "cors";
 import getConfig from "./config";
 import initServices from "./services";
-// import dbConnect from "./db";
+import dbConnect from "./db";
 
 const { log } = require("./logger")("server");
 
@@ -19,9 +19,12 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use("/api", setupEndpoints(config, services));
+app.use("/", setupEndpoints(config, services));
 
 app.listen(config.port);
 log(`listening on localhost:${config.port}`);
 
-// dbConnect(config);
+const use_proven = false;
+if (use_proven) {
+  dbConnect(config);
+}
