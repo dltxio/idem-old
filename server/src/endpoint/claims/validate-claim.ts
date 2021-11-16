@@ -35,7 +35,6 @@ const createClaim: RequestHandler<void, void, server.Claim, server.Claim> =
     });
 
     ecdh.setPrivateKey(config.ethKey, "hex");
-
     ecdh.getPrivateKey("hex");
 
     const sign = crypto.createSign("SHA256");
