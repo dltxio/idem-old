@@ -9,15 +9,37 @@ import DrawerNavigator from "./navigation/DrawerNavigator";
 import { RootStoreProvider } from "./store/rootStore";
 import { StatusBar } from "expo-status-bar";
 import { ClaimProvider } from "./providers/Claim";
+import * as Linking from "expo-linking";
+
+const prefix = Linking.createURL("/");
 
 const App = () => {
   const [didLoad, setDidLoad] = useState(false);
+  const linking = {
+    prefixes: [prefix],
+    config: {
+      screens: {
+        Home: {
+          screens: {
+            Claims: "claims",
+            "3rd Parites": "3rdParty",
+            Settings: "settings",
+            Test: "test/:value",
+          }
+        }
+      },
+    },
+  };
 
   const handleLoadAssets = async () => {
     // Asset preloading.
     await Promise.all<void | Asset>([...imageAssets, ...fontAssets]);
     setDidLoad(true);
   };
+
+  Linking.addEventListener('Home', () => {
+    console.log("linked");
+  });
 
   useEffect(() => {
     handleLoadAssets();
@@ -28,7 +50,7 @@ const App = () => {
   return (
     <RootStoreProvider>
       <StatusBar style="auto" />
-      <NavigationContainer ref={navRef}>
+      <NavigationContainer ref={navRef} linking={linking}>
         <ClaimProvider>
           <DrawerNavigator />
         </ClaimProvider>

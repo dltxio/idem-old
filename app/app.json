@@ -2,6 +2,7 @@
   "expo": {
     "name": "blockchain-id",
     "slug": "blockchain-id",
+    "scheme": "idem",
     "privacy": "public",
     "platforms": [
       "ios",

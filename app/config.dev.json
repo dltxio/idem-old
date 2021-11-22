@@ -12,6 +12,6 @@
     "endpoint": "http://localhost:3000/api/emails"
   },
   "onboard": {
-    "endpoint": "http://localhost:3001/api/claims"
+    "endpoint": "http://10.5.20.23:3001/claims"
   }
 }

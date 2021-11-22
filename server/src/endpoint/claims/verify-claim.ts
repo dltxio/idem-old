@@ -18,6 +18,7 @@ const verifyClaim: RequestHandler<
   server.ClaimRequest,
   server.Claim[]
 > = async ({ body, services }) => {
+  console.log("Verify Claim");
   const bodyValidationResult = await validate(body, bodyValidation);
 
   if (bodyValidationResult.isInvalid) {

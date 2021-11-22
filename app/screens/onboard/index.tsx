@@ -98,7 +98,7 @@ const Onboard = () => {
               <Text style={styles.baseStyle.baseText}>Mobile</Text>
               <TextInput
                 style={styles.baseStyle.baseTextInput}
-                keyboardType="default"
+                keyboardType="numeric"
                 placeholder="Please enter your mobile number"
                 placeholderTextColor="gray"
                 value={values.mobile}
