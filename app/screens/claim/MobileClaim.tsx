@@ -28,7 +28,7 @@ const MobileClaim = ({ item }: { item: server.Claim }) => {
     setSubmitting(true);
     try {
       verifyMobileCode({
-        number: value,
+        number: mobileCredentialValue,
         code,
       });
     } catch (e) {
@@ -43,13 +43,13 @@ const MobileClaim = ({ item }: { item: server.Claim }) => {
     try {
       Alert.alert(
         "Send verification code?",
-        `Would you like to send a verification code to ${value}?`,
+        `Would you like to send a verification code to ${mobileCredentialValue}?`,
         [
           {
             text: "Proceed",
             onPress: () => {
               sendMobileCode({
-                number: value!,
+                number: mobileCredentialValue!,
               });
             },
           },
@@ -73,7 +73,7 @@ const MobileClaim = ({ item }: { item: server.Claim }) => {
           width: styles.layout.window.width,
         }}
         value={
-          mobile !== undefined ? mobile : (value as undefined | string)
+          mobile !== undefined ? mobile : (mobileCredentialValue as undefined | string)
         }
         placeholder="Please enter your mobile number..."
         keyboardType="phone-pad"
@@ -104,7 +104,7 @@ const MobileClaim = ({ item }: { item: server.Claim }) => {
         <View style={{ width: "100%", minHeight: 200 }}>
           <Button
             title="Send verification code"
-            onPress={() => !!value && isMobile(value) && sendCode()}
+            onPress={() => !!mobileCredentialValue && isMobile(mobileCredentialValue) && sendCode()}
             disabled={submitting}
             style={styles.claim.button as ViewStyle}
           />
@@ -121,7 +121,7 @@ const MobileClaim = ({ item }: { item: server.Claim }) => {
             disabled={submitting}
             title="Verify code"
             onPress={() =>
-              !!value && isMobile(value) && !!code && verifyMobile()
+              !!mobileCredentialValue && isMobile(mobileCredentialValue) && !!code && verifyMobile()
             }
             style={styles.claim.button as ViewStyle}
           />

@@ -23,7 +23,7 @@ const OtherClaim = ({
           ...styles.claim.input,
           width: styles.layout.window.width,
         }}
-        value={value || ""}
+        value={otherCredentialValue || ""}
         placeholder="Please enter your claim..."
         onChangeText={(value) => {
           setClaim(item.key, value);

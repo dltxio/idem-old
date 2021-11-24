@@ -28,10 +28,10 @@ const SelectClaim = ({
   
   const toggleSwitch = () => {
     setIsEnabled((previousState) => !previousState);
-    value === "false" ? setClaim(item.key, "true") : setClaim(item.key, "false");
+    selectedCredentialValue === "false" ? setClaim(item.key, "true") : setClaim(item.key, "false");
   };
   useEffect(() => {
-    if (value === undefined) {
+    if (selectedCredentialValue === undefined) {
       toggleSwitch();
     }
   }, []);
@@ -48,7 +48,7 @@ const SelectClaim = ({
       >
         <View
           style={
-            value === "true"
+            selectedCredentialValue === "true"
               ? styless.toggleTrueStyle
               : styless.toggleFalseStyle
           }
@@ -58,7 +58,7 @@ const SelectClaim = ({
             thumbColor={isEnabled ? "#f4f3f4" : "#f4f3f4"}
             ios_backgroundColor="#3e3e3e"
             onValueChange={toggleSwitch}
-            value={value === "true" ? true : false}
+            value={selectedCredentialValue === "true" ? true : false}
           />
         </View>
       </View>

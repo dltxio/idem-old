@@ -22,7 +22,7 @@ const EmailClaim = ({ item }: { item: server.Claim }) => {
   const emailCredentialValue = item.credentialSubject.value;
   
   const onVerify = async () => {
-    if (!value) {
+    if (!emailCredentialValue) {
       setError("Email can not be empty");
       return;
     }
@@ -31,7 +31,7 @@ const EmailClaim = ({ item }: { item: server.Claim }) => {
       return;
     }
     try {
-      await verifyEmailCode({ email: value, code: code });
+      await verifyEmailCode({ email: emailCredentialValue, code: code });
     } catch (e) {
       console.log(e);
       const error = e as server.ErrorResponse;
@@ -48,7 +48,7 @@ const EmailClaim = ({ item }: { item: server.Claim }) => {
   };
 
   const onVerifyPress = async () => {
-    if (!value) {
+    if (!emailCredentialValue) {
       // this should never happen because button should be disabled
       return;
     }
@@ -58,7 +58,7 @@ const EmailClaim = ({ item }: { item: server.Claim }) => {
       onVerify();
     } else {
       try {
-        await sendEmailVerificationEmail({ email: value });
+        await sendEmailVerificationEmail({ email: emailCredentialValue });
       } catch (e) {
         console.log(e);
         const error = e as server.ErrorResponse;
@@ -83,7 +83,7 @@ const EmailClaim = ({ item }: { item: server.Claim }) => {
           ...styles.claim.input,
           width: styles.layout.window.width,
         }}
-        value={email !== undefined ? email : (value as undefined | string)}
+        value={email !== undefined ? email : (emailCredentialValue as undefined | string)}
         keyboardType="email-address"
         placeholder="Please enter your email address..."
         onChangeText={(value) => {
@@ -120,7 +120,7 @@ const EmailClaim = ({ item }: { item: server.Claim }) => {
       <Button
         title="Verify"
         style={styles.claim.verifyButton as ViewStyle}
-        disabled={!value}
+        disabled={!emailCredentialValue}
         onPress={onVerifyPress}
       />
     </View>
