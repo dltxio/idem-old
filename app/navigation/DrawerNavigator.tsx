@@ -10,6 +10,7 @@ import TabNavigator from "./MainTabNavigator";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Onboard from "../screens/onboard";
 import useClaims from "../hooks/useClaims";
+import ExchangeValidator from "../screens/exchangeValidate/index"
 
 const Drawer = createDrawerNavigator();
 
@@ -36,6 +37,7 @@ const DrawerNavigator = () => {
           drawerContent={DrawerMenuContainer}
         >
           <Drawer.Screen name="Home" component={TabNavigator} />
+          <Drawer.Screen name="Exchange" component={ExchangeValidator} />
         </Drawer.Navigator>
       ) : (
         <Onboard />

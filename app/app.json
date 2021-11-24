@@ -34,7 +34,23 @@
     },
     "description": "",
     "android": {
-      "package": "com.idem"
+      "package": "com.idem",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "https",
+              "host": "*.idem.com.au",
+              "path": "/*"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
     }
   }
 }

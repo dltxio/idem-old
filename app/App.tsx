@@ -16,7 +16,7 @@ const prefix = Linking.createURL("/");
 const App = () => {
   const [didLoad, setDidLoad] = useState(false);
   const linking = {
-    prefixes: [prefix],
+    prefixes: [prefix, "https://app.idem.com.au", "exp://app.idem.com.au"],
     config: {
       screens: {
         Home: {
@@ -24,7 +24,11 @@ const App = () => {
             Claims: "claims",
             "3rd Parites": "3rdParty",
             Settings: "settings",
-            Test: "test/:value",
+          }
+        },
+        Exchange: {
+          screens: {
+            Exchange: "exchange"
           }
         }
       },
@@ -37,9 +41,6 @@ const App = () => {
     setDidLoad(true);
   };
 
-  Linking.addEventListener('Home', () => {
-    console.log("linked");
-  });
 
   useEffect(() => {
     handleLoadAssets();
