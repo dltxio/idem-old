@@ -9,10 +9,10 @@
     "build": "tsc --build"
   },
   "dependencies": {
-    "axios": "^0.24.0",
+    "axios": "^0.25.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "ethers": "^5.4.3",
+    "ethers": "^5.5.4",
     "express": "^4.17.1",
     "joi": "^17.3.0",
     "messagebird": "^3.6.0",

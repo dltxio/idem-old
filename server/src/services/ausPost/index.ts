@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import { Buffer } from "buffer";
 
-const ausPostRequst: server.AusPostRequest = {
+const ausPostRequst: ausPostService.AusPostRequest = {
   given_name: "",
   middle_name: undefined,
   family_name: "",
@@ -40,7 +40,7 @@ export default class AusPostService implements ausPostService.AusPostService {
     //Mapping claims to body
     const ausPostRequest = this.wrapperAusPostRequestBody(data);
     //TODO: Got problem with auspost api, need to fix
-    const response = await this.client.post<server.AusPostResponse>(
+    const response = await this.client.post<ausPostService.AusPostResponse>(
       "",
       ausPostRequest
     );
@@ -58,7 +58,7 @@ export default class AusPostService implements ausPostService.AusPostService {
 
   private wrapperAusPostRequestBody = (
     data: server.ClaimRequest
-  ): server.AusPostRequest => {
+  ): ausPostService.AusPostRequest => {
     ausPostRequst.family_name = data.lastName;
     ausPostRequst.middle_name = data.middleName;
     ausPostRequst.given_name = data.firstName;

@@ -1,39 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { View } from "react-native";
-import { imageAssets } from "./styles/theme/images";
-import { fontAssets } from "./styles/theme/fonts";
-import navRef from "./navigation/navRef";
-import { NavigationContainer } from "@react-navigation/native";
-import { Asset } from "expo-asset";
-import DrawerNavigator from "./navigation/DrawerNavigator";
-import { RootStoreProvider } from "./store/rootStore";
-import { StatusBar } from "expo-status-bar";
-import { ClaimProvider } from "./providers/Claim";
+import { Text, View } from "react-native";
+import Info from "./screens/Info/Info";
+import ClaimRequest from './screens/ClaimRequest/ClaimRequest';
+import * as Linking from 'expo-linking';
+
+export type Screens = "Info" | "ClaimRequest";
+
+const SAMPLE_REQUEST = {
+  claims: [1, 2],
+  callbackURL: "https://example.com/callback"
+}
 
 const App = () => {
-  const [didLoad, setDidLoad] = useState(false);
-
-  const handleLoadAssets = async () => {
-    // Asset preloading.
-    await Promise.all<void | Asset>([...imageAssets, ...fontAssets]);
-    setDidLoad(true);
-  };
-
-  useEffect(() => {
-    handleLoadAssets();
-  }, []);
-
-  if (!didLoad) return <View />;
+  const [screen, setScreen] = useState<Screens>("ClaimRequest");
+  const [claimRequestData, setClaimRequestData] = useState<string | null>("NULL");
+  Linking.addEventListener('url', (event) => {
+    const data = Linking.parse(event.url);
+    setClaimRequestData(JSON.stringify(data.queryParams))
+  })
 
   return (
-    <RootStoreProvider>
-      <StatusBar style="auto" />
-      <NavigationContainer ref={navRef}>
-        <ClaimProvider>
-          <DrawerNavigator />
-        </ClaimProvider>
-      </NavigationContainer>
-    </RootStoreProvider>
+    <View style={{ flex: 1 }}>
+      <Text style={{ margin: 100 }}>{claimRequestData}</Text>
+      {screen === "Info" && <Info />}
+      {screen === "ClaimRequest" && <ClaimRequest setScreen={setScreen} claimData={SAMPLE_REQUEST} />}
+    </View>
   );
 };
 
