@@ -19,3 +19,8 @@ services:
             - PGP_PRIVATE_KEY="./info.asc"
             - PGP_PRIVATE_KEY_PASSWORD="Test1234"
             - CIPHER_SECRET="Test1234"
+            - AUS_POST_CLIENT_ID="2341"
+            - AUS_POST_CLIENT_SECRET="secret"
+            - AUS_POST_API="https://api.digitalid-sandbox.com/products/kyc/1/verification"
+            - PROVENDB_API_KEY="vfdfdvfd"
+            - PROVENDB_URI="mongodb://idem-dev:Password!12345@idem-dev.provendb.io/idem-dev?ssl=true"
